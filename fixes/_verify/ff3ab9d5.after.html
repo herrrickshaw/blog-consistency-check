@@ -1,0 +1,523 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<meta name="hz:canvas-width" content="1180">
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+  :root {
+    color-scheme: light;
+    --page-bg:      #eef1ea;
+    --surface:      #fcfcfa;
+    --ink:          #14180f;
+    --ink-2:        #4f5348;
+    --ink-muted:    #82867a;
+    --rule:         #d7dace;
+    --rule-strong:  #c3c7b8;
+    --accent:       #1f5f5b;
+    --accent-soft:  #dbe9e6;
+    --alert:        #a5402c;
+    --alert-soft:   #f3ded7;
+    --warn:         #c98a1f;
+    --warn-soft:    #f3e9d5;
+    --neg-bar:      #a5402c;
+    --pos-bar:      #2a78d6;
+    --chart-surface:#fcfcfb;
+    --chart-grid:   #e1e0d9;
+    --chart-axis:   #c3c2b7;
+    --font-display: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --font-body: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-mono: "IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg:#12151a; --surface:#1a1e21; --ink:#f2f1ea; --ink-2:#c1c4b7; --ink-muted:#8b8f83;
+    --rule:#2a2e28; --rule-strong:#383c33; --accent:#58bdb5; --accent-soft:#1d3634; --alert:#e0785f; --alert-soft:#3a241d;
+    --warn:#e0b23f; --warn-soft:#3a3220; --neg-bar:#e0785f; --pos-bar:#3987e5;
+    --chart-surface:#1a1a19; --chart-grid:#2c2c2a; --chart-axis:#383835;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page-bg:#eef1ea; --surface:#fcfcfa; --ink:#14180f; --ink-2:#4f5348; --ink-muted:#82867a;
+    --rule:#d7dace; --rule-strong:#c3c7b8; --accent:#1f5f5b; --accent-soft:#dbe9e6; --alert:#a5402c; --alert-soft:#f3ded7;
+    --warn:#c98a1f; --warn-soft:#f3e9d5; --neg-bar:#a5402c; --pos-bar:#2a78d6;
+    --chart-surface:#fcfcfb; --chart-grid:#e1e0d9; --chart-axis:#c3c2b7;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .bulletin { background: var(--page-bg); color: var(--ink); font-family: var(--font-body); padding: 40px 20px 56px; display: flex; justify-content: center; }
+  .sheet { width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 32px; }
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; gap: 10px; align-items: center; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.2vw, 33px); margin: 2px 0 0; line-height: 1.25; text-wrap: balance; letter-spacing: -0.01em; }
+  .dek { font-size: 14px; color: var(--ink-2); max-width: 78ch; line-height: 1.55; margin: 4px 0 0; }
+  .source-line { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 6px; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .stat-tile { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); }
+  .stat-value { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 12.5px; color: var(--ink-2); }
+  .stat-sub b { color: var(--ink); }
+
+  section.block { display: flex; flex-direction: column; gap: 14px; }
+  .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--rule-strong); padding-bottom: 8px; }
+  .block-title { font-family: var(--font-display); font-size: 21px; margin: 0; }
+  .block-note { font-size: 12.5px; color: var(--ink-muted); max-width: 50ch; text-align: right; }
+
+  .chart-card { background: var(--chart-surface); border: 1px solid var(--rule-strong); padding: 20px 22px 14px; position: relative; }
+  .chart-card svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .zero-line { stroke: var(--chart-axis); stroke-width: 1.25; }
+  .cat-label { font-family: var(--font-body); font-size: 12px; fill: var(--ink-2); }
+  .bar-label { font-family: var(--font-mono); font-size: 11px; fill: var(--ink); }
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--ink); color: var(--page-bg);
+    font-family: var(--font-mono); font-size: 11px; padding: 7px 10px; border-radius: 2px; line-height: 1.6;
+    opacity: 0; transition: opacity 0.08s ease; white-space: nowrap; z-index: 5; max-width: 320px; text-wrap: balance;
+  }
+  .legend-row { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 7px; }
+  .legend-swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
+  .legend-note { font-size: 12px; color: var(--ink-muted); line-height: 1.55; max-width: 84ch; }
+  .legend-note b { color: var(--ink-2); }
+
+  .country-panel { border: 1px solid var(--rule-strong); background: var(--surface); display: flex; flex-direction: column; gap: 0; }
+  .country-panel-head { padding: 12px 16px; border-bottom: 1px solid var(--rule-strong); display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .country-panel-name { font-family: var(--font-display); font-size: 16px; font-weight: 600; }
+  .country-panel-balance { font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+  .country-cols { display: grid; grid-template-columns: 1fr 1fr; }
+  .country-col { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .country-col + .country-col { border-left: 1px solid var(--rule); }
+  .country-col-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .commodity-row { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; }
+  .commodity-name { color: var(--ink-2); }
+  .commodity-val { font-family: var(--font-mono); color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .country-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+
+  .timeline { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .timeline-row { background: var(--surface); padding: 16px 20px; display: grid; grid-template-columns: 110px 1fr; gap: 18px; }
+  .timeline-country { font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; padding-top: 2px; }
+  .timeline-body { display: flex; flex-direction: column; gap: 6px; }
+  .timeline-head { font-size: 14px; font-weight: 600; }
+  .timeline-text { font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+  .timeline-text b { color: var(--ink); }
+  .timeline-verdict { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 10px; display: inline-block; width: fit-content; text-transform: uppercase; }
+  .verdict-notclosed { background: var(--alert-soft); color: var(--alert); }
+  .verdict-mixed { background: var(--warn-soft); color: var(--warn); }
+  .verdict-structural { background: var(--rule); color: var(--ink-muted); }
+
+  .prose { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; line-height: 1.65; color: var(--ink-2); max-width: 84ch; }
+  .prose p { margin: 0; }
+  .prose b { color: var(--ink); }
+
+  details.table-view { border-top: 1px solid var(--rule-strong); padding-top: 10px; }
+  details.table-view summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2); font-family: var(--font-mono); }
+  .data-table-wrap { overflow-x: auto; margin-top: 12px; }
+  table.data-table { border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11px; }
+  table.data-table th, table.data-table td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.data-table th:first-child, table.data-table td:first-child { text-align: left; }
+  table.data-table thead th { color: var(--ink-muted); font-weight: 500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; }
+
+  .errata {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--alert); background: var(--surface);
+    padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .errata-title { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--alert); }
+  .errata ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .errata li { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .errata li b { color: var(--ink); }
+
+  footer.colophon { text-align: center; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); padding-top: 8px; }
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th,table.data-table th,table.data-table td,table.data-table thead th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+
+<div class="bulletin">
+  <div class="sheet">
+    <div class="masthead">
+      <div class="eyebrow">MoSPI Dataset Analysis &#8212; Statistical Bulletin</div>
+      <h1>Nine countries account for most of India's merchandise deficit. Several have had a matching scheme for years &#8212; and the gap hasn't closed.</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+
+      <p class="dek">Ranks India's FY2025-26 bilateral trade balance by partner country to find where its forex is actually being spent, then traces the policy history behind the five biggest deficit relationships back several years &#8212; not just the last six months &#8212; to see whether sustained attention has actually narrowed each gap.</p>
+      <div class="source-line">SOURCES: Commerce Ministry Trade Intelligence &amp; Analytics Portal (trade-analytics.commerce.gov.in), country-wise export/import panels, FY2025-26; PIB releases and independent reporting on Atmanirbhar Bharat/PLI (2020&#8211;2026), India-Russia crude trade (2022&#8211;2026), and NMEO-OP/NMEO-Oilseeds (2021&#8211;2026); retrieved 18 Jul 2026</div>
+    </div>
+
+    <div class="stat-strip" id="statStrip"></div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">Bilateral trade balance by country, FY2025-26</h2>
+        <p class="block-note">38 countries with both export and import figures available; ranked by balance.</p>
+      </div>
+      <div class="chart-card">
+        <svg id="divergingChart" viewBox="0 0 1000 620" preserveAspectRatio="none"></svg>
+        <div class="tooltip" id="divTooltip"></div>
+      </div>
+      <p class="legend-note"><b>China alone accounts for a -$112.2bn bilateral deficit</b> &#8212; more than double the next-largest. <b>Russia is the fastest-moving entry on this list</b>: a market-driven reorientation, not a formal scheme, took Russian oil from roughly 2.5% of India's crude imports before 2022 to 35.8&#8211;35.9% in each of the last two fiscal years, making it India's #2 deficit country from a near-zero starting point four years ago. <b>UAE and Switzerland</b> are dominated by gold/rough-diamond bullion flows tied to the gems &amp; jewellery re-export trade (UAE's import mix is roughly split evenly with mineral fuels too &#8212; see the commodity breakdown below), not manufacturing import dependency. <b>Iraq, Saudi Arabia, Indonesia, Japan, South Korea and Singapore</b> round out the top ten.</p>
+      <details class="table-view">
+        <summary>View all 38 countries with export, import and balance figures</summary>
+        <div class="data-table-wrap"><table class="data-table" id="dataTable"></table></div>
+      </details>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">Validating this against TRADESTAT's own country&#215;commodity data</h2>
+        <p class="block-note">HS-2-digit chapters, FY2025-26, direct from the Commerce Ministry's TRADESTAT database.</p>
+      </div>
+      <p class="legend-note">The country totals above came from the TIA Portal dashboard. To check what's actually inside each number, this section pulls TRADESTAT's own <b>country-wise, all-commodities</b> report for the four countries that anchor this bulletin's argument &#8212; China, Russia, UAE, and the USA (as the one large surplus for comparison) &#8212; at 2-digit HS level. <b>The two independent Commerce Ministry sources agree almost to the decimal</b>: TRADESTAT's own chapter totals sum to $19,471.1M / $131,633.3M for China's exports/imports, against the TIA Portal's $19,471.1M / $131,633.4M &#8212; the same cross-check this repo ran on the aggregate trade-balance numbers earlier, now holding at the country level too.</p>
+      <div class="country-grid" id="countryGrid"></div>
+      <p class="legend-note"><b>China's import composition confirms the industrial-input reading, not a consumer-goods one:</b> electrical machinery (HS85, $46.4bn) and mechanical machinery (HS84, $29.5bn) alone are <b>58% of everything India imports from China</b> &#8212; components and capital goods that feed India's own manufacturing and export lines, not finished goods for Indian shoppers. <b>Russia confirms the single-commodity story even more starkly:</b> mineral fuels (HS27) are <b>86% of all Russian imports</b> into India. One new find worth flagging: Russia is also a fast-growing fertiliser supplier (HS31, $3.12bn, +69.5%) &#8212; a second link back to this repo's fertiliser-price bulletin. <b>UAE is a more even split than this bulletin first suggested</b>: gems &amp; pearls (HS71, $24.8bn) and mineral fuels (HS27, $24.3bn) are almost exactly tied, together 77% of UAE imports &#8212; not "almost entirely gold," as an earlier pass through this data implied, but gold and petroleum in roughly equal measure. <b>The USA comparison shows the other side of the China story:</b> India's <i>exports</i> to the US are led by the same chapter, electrical machinery (HS85, $25.7bn, +61.5% growth) &#8212; consistent with a pattern where China supplies the components India assembles into finished electronics it then exports to the US.</p>
+      <details class="table-view">
+        <summary>View top 8 import/export chapters for all four countries</summary>
+        <div class="data-table-wrap"><table class="data-table" id="commodityTable"></table></div>
+      </details>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">The policy history behind the five biggest deficits</h2>
+        <p class="block-note">Multi-year history, not the last six months.</p>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="block prose">
+      <h2 class="block-title" style="border:none; padding:0;">A note on visualization, and where this data could go next</h2>
+      <p>This bulletin was prompted in part by a look at the Commerce Ministry's own <b>NIRYAT portal</b> (niryat.gov.in) for visualization ideas. Direct access was blocked at the network level &#8212; the same TLS-level bot protection this repo has run into before on DGFT-family domains &#8212; so the description here relies on the portal's own public documentation rather than a first-hand screenshot. NIRYAT is built around a <b>World Map view</b> alongside Commodity and Table views, with color-coded, traffic-light-style indicators tracking each commodity/country pair against defined targets, plus a district-level geospatial drill-down for state export hubs. That target-vs-actual framing is a genuinely good idea this bulletin doesn't fully adopt &#8212; the diverging bar chart above ranks <i>where</i> the deficit sits, but doesn't score whether each relationship is "on track" against an explicit government target the way NIRYAT's traffic-light system does. A future version of this analysis could reasonably borrow that pattern for the timeline entries below.</p>
+    </section>
+
+    <div class="errata">
+      <div class="errata-title">Errata &amp; methodology caveats</div>
+      <ul>
+        <li><b>niryat.gov.in could not be accessed directly</b> for this bulletin &#8212; both the Browser tool and a direct HTTPS request were rejected at the TLS handshake stage. The description of its features above is reconstructed from public secondary sources (its own about-page copy as indexed by search, and third-party writeups), not a first-hand inspection &#8212; treat it as directionally reliable, not verified pixel-for-pixel.</li>
+        <li><b>Country-level export and import figures cover 38 of the roughly 217 trading partners</b> in the Commerce Ministry's own portal &#8212; specifically, the subset where this repo had already captured both an export and an import figure from an earlier FY2025-26 pull. Several large partners (e.g. Hong Kong) may be under- or mis-represented if they didn't appear in both of the original captures; nothing in the top 15 deficit or top 8 surplus lists is affected, since those countries all had solid figures on both sides.</li>
+        <li><b>"Coverage" and "on track" are different questions.</b> The electrical-machinery chapter (China's primary link into this bulletin) was rated "Strong" policy coverage in this repo's companion gap-analysis bulletin, based on the existence of ISM 2.0 and PLI electronics tracks. This bulletin's longer history check complicates that: independent reporting six years into Atmanirbhar Bharat states plainly that it "has not reduced structural import dependence," and China still supplies an estimated 62% of India's electronic components. A scheme existing, even a well-funded one, is not the same as the import gap actually closing.</li>
+        <li><b>The Russia shift is market economics, not a named scheme</b> &#8212; discounted crude plus a payment workaround (settling through UAE dirhams via Emirati traders) rather than a Cabinet-approved policy, which is why it doesn't appear on the companion gap-analysis bulletin's scheme matrix at all. It's included here because it's the single fastest-moving driver of India's country-level deficit list in this window.</li>
+        <li><b>The country&#215;commodity breakdown covers 4 of the 38 countries</b> in this bulletin (China, Russia, UAE, USA) &#8212; the ones anchoring the main argument &#8212; pulled directly from TRADESTAT's "Country-wise, all commodities" report at 2-digit HS level, US$ million, FY2025-26. Same session, method, and CSRF/cookie-jar workaround as this repo's other TRADESTAT-sourced bulletins.</li>
+        <li>Underlying data: <a href="https://raw.githubusercontent.com/herrrickshaw/mospi-dataset-analysis-public/main/data/country_trade_deficit_and_policy_history_2026-07-18.json">data/country_trade_deficit_and_policy_history_2026-07-18.json</a> (country balances, policy timeline) and <a href="https://raw.githubusercontent.com/herrrickshaw/mospi-dataset-analysis-public/main/data/country_commodity_breakdown_2026-07-18.json">data/country_commodity_breakdown_2026-07-18.json</a> (TRADESTAT country&#215;commodity validation).</li>
+      </ul>
+    </div>
+
+    <footer class="colophon">herrrickshaw/mospi-dataset-analysis &#8212; derived from Commerce Ministry TIA portal country data and public reporting on named schemes; not an official government assessment</footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var rows = [{"code": "CN", "name": "China", "export": 19471.1, "import": 131633.4, "balance": -112162.29999999999}, {"code": "RU", "name": "Russia", "export": 4493.5, "import": 55369.6, "balance": -50876.1}, {"code": "AE", "name": "UAE", "export": 37359.1, "import": 63894.5, "balance": -26535.4}, {"code": "CH", "name": "Switzerland", "export": 1213.4, "import": 24275.1, "balance": -23061.699999999997}, {"code": "IQ", "name": "Iraq", "export": 2958.2, "import": 24558.5, "balance": -21600.3}, {"code": "SA", "name": "Saudi Arabia", "export": 10281.1, "import": 30790.3, "balance": -20509.199999999997}, {"code": "ID", "name": "Indonesia", "export": 4491.4, "import": 20292.3, "balance": -15800.9}, {"code": "JP", "name": "Japan", "export": 6039.5, "import": 21436.9, "balance": -15397.400000000001}, {"code": "KR", "name": "South Korea", "export": 6012.0, "import": 21354.7, "balance": -15342.7}, {"code": "SG", "name": "Singapore", "export": 11863.7, "import": 24240.6, "balance": -12376.899999999998}, {"code": "TH", "name": "Thailand", "export": 5058.6, "import": 16427.0, "balance": -11368.4}, {"code": "QA", "name": "Qatar", "export": 1620.3, "import": 12292.6, "balance": -10672.300000000001}, {"code": "DE", "name": "Germany", "export": 11526.0, "import": 19507.6, "balance": -7981.5999999999985}, {"code": "MY", "name": "Malaysia", "export": 6825.6, "import": 14177.0, "balance": -7351.4}, {"code": "TW", "name": "Taiwan", "export": 1948.8, "import": 8880.9, "balance": -6932.099999999999}, {"code": "AU", "name": "Australia", "export": 7284.2, "import": 13811.4, "balance": -6527.2}, {"code": "KW", "name": "Kuwait", "export": 1651.7, "import": 7917.4, "balance": -6265.7}, {"code": "GH", "name": "Ghana", "export": 1292.1, "import": 6680.1, "balance": -5388.0}, {"code": "VN", "name": "Vietnam", "export": 6665.9, "import": 11615.2, "balance": -4949.300000000001}, {"code": "AR", "name": "Argentina", "export": 1013.1, "import": 4955.0, "balance": -3941.9}, {"code": "OM", "name": "Oman", "export": 4021.5, "import": 7166.4, "balance": -3144.8999999999996}, {"code": "NG", "name": "Nigeria", "export": 3132.3, "import": 5895.8, "balance": -2763.5}, {"code": "FR", "name": "France", "export": 7102.5, "import": 8713.9, "balance": -1611.3999999999996}, {"code": "BR", "name": "Brazil", "export": 7022.1, "import": 8050.6, "balance": -1028.5}, {"code": "MZ", "name": "Mozambique", "export": 1496.2, "import": 2289.5, "balance": -793.3}, {"code": "BE", "name": "Belgium", "export": 6598.6, "import": 6410.8, "balance": 187.80000000000018}, {"code": "PH", "name": "Philippines", "export": 2332.3, "import": 1568.4, "balance": 763.9000000000001}, {"code": "IT", "name": "Italy", "export": 7790.2, "import": 6674.1, "balance": 1116.0999999999995}, {"code": "EG", "name": "Egypt", "export": 3932.1, "import": 2603.2, "balance": 1328.9}, {"code": "CA", "name": "Canada", "export": 4671.1, "import": 3285.3, "balance": 1385.8000000000002}, {"code": "PL", "name": "Poland", "export": 2796.3, "import": 1252.7, "balance": 1543.6000000000001}, {"code": "GB", "name": "United Kingdom", "export": 13444.2, "import": 11682.4, "balance": 1761.800000000001}, {"code": "TZ", "name": "Tanzania", "export": 5420.1, "import": 3602.6, "balance": 1817.5000000000005}, {"code": "MX", "name": "Mexico", "export": 5727.1, "import": 2106.2, "balance": 3620.9000000000005}, {"code": "ES", "name": "Spain", "export": 6961.2, "import": 2234.2, "balance": 4727.0}, {"code": "BD", "name": "Bangladesh", "export": 10587.4, "import": 1780.3, "balance": 8807.1}, {"code": "NL", "name": "Netherlands", "export": 17500.7, "import": 5786.3, "balance": 11714.400000000001}, {"code": "US", "name": "United States", "export": 87316.0, "import": 53488.7, "balance": 33827.3}];
+  var timeline = [{"country": "China", "head": "Electronics &amp; machinery \u2014 six years of Atmanirbhar Bharat, and the largest deficit in this whole list", "text": "The Production Linked Incentive scheme was first introduced in March 2020, covering mobile manufacturing, pharmaceuticals and medical devices; the broader Rs 20 lakh crore Atmanirbhar Bharat Abhiyan followed in May 2020; PLI expanded to 14 sectors (Cabinet-approved November 2020, Budget February 2021) with a Rs 1.97 lakh crore outlay. Six years on, independent industry assessments still put <b>China at roughly 62% of India's electronic component imports</b>, and this bulletin's own data shows China as India's largest bilateral deficit by a wide margin (-$112.2bn). A well-funded, multi-year policy response and a still-growing dependency are not mutually exclusive.", "verdict": "not-closed"}, {"country": "Russia", "head": "Crude oil \u2014 from 2.5% to 35.8% of India's imports in four years, without a named scheme", "text": "Before the 2022 Ukraine war, Russia supplied about 2.5% of India's crude oil imports. Discounted pricing ($25-30/barrel below Brent through much of 2022-23) drove that to <b>21.6% in FY2022-23, 35.9% in FY2023-24, and 35.8% in FY2024-25</b> \u2014 India saved an estimated $5bn+ on its oil bill in the first year alone. This wasn't a Cabinet-approved import-substitution scheme; it was market economics plus a payment workaround (Indian refiners settling nearly all Russian oil purchases in UAE dirhams via Emirati traders to route around sanctions exposure). It is nonetheless the single fastest-moving driver of this bulletin's country-deficit ranking, turning Russia into India's #2 bilateral deficit from a near-zero base.", "verdict": "structural"}, {"country": "UAE &amp; Switzerland", "head": "Gold &amp; gems \u2014 a deliberately open door, not a substitution target", "text": "Gems and jewellery exporters can import cut &amp; polished diamonds duty-free up to 5% of FOB export value, and gold/silver/platinum jewellery inputs duty-free, provided they're used for exportable products \u2014 a long-standing Foreign Trade Policy (Chapter 4) provision, reinforced by RoDTEP export-duty remission. This is why UAE (-$26.5bn) and Switzerland (-$23.1bn, almost entirely bullion) show up as large deficits without a matching 'gap': the policy intent is to keep these import flows open, since they fund the re-export trade, not to substitute them.", "verdict": "structural"}, {"country": "Indonesia &amp; Malaysia", "head": "Palm oil \u2014 a scheme running since August 2021, and still ~57% import-dependent", "text": "The National Mission on Edible Oils - Oil Palm (NMEO-OP) launched in August 2021 with a Rs 11,040 crore outlay, targeting 11.2 lakh tonnes of domestic crude palm oil production by 2025-26; the broader NMEO-Oilseeds mission followed in 2024 with Rs 10,103 crore through 2030-31. Despite more than four years of continuous, funded policy attention, India is still estimated to import around 57% of its edible oil, with the gap cited as costing over $20bn a year in forex \u2014 consistent with this repo's own finding that edible-oil imports (HS15) grew 97.9% over FY2018-19 to FY2025-26 and that CPI oils &amp; fats swung from -18% to +21% year-on-year in the space of two years.", "verdict": "mixed"}, {"country": "Iraq, Saudi Arabia &amp; Qatar", "head": "The traditional Gulf crude suppliers \u2014 steady, not shrinking", "text": "Iraq (-$21.6bn) and Saudi Arabia (-$20.5bn) remain India's two largest traditional crude suppliers by volume even as Russia has grown fastest in share; Qatar (-$10.7bn) supplies LNG rather than crude. Together with Russia, these four countries make energy imports the largest single structural component of India's country-level deficit list, mirroring this bulletin's companion analysis showing mineral fuels (HS27) at 26.2% of India's entire import bill with no policy lever sized to match.", "verdict": "structural"}];
+  var commodityData = {"China": {"export_total": 19471.1, "import_total": 131633.3, "balance": -112162.2, "top_imports": [{"hs": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "value": 46367.46, "growth": "21.93"}, {"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 29450.97, "growth": "13.60"}, {"hs": "29", "name": "Organic Chemicals", "value": 11521.52, "growth": "0.40"}, {"hs": "39", "name": "Plastic And Articles Thereof.", "value": 6711.48, "growth": "5.94"}, {"hs": "87", "name": "Vehicles Other Than Railway Or Tramway Rolling Stock, And Parts And Accessories Thereof.", "value": 2869.28, "growth": "34.37"}, {"hs": "90", "name": "Optical, Photographic Cinematographic Measuring, Checking Precision, Medical Or Surgical Inst. And Apparatus Parts And Accessories Thereof;", "value": 2752.64, "growth": "7.46"}, {"hs": "76", "name": "Aluminium And Articles Thereof.", "value": 2581.13, "growth": "29.72"}, {"hs": "73", "name": "Articles Of Iron Or Steel", "value": 2504.74, "growth": "12.11"}], "top_exports": [{"hs": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "value": 3178.29, "growth": "277.19"}, {"hs": "27", "name": "Mineral Fuels, Mineral Oils And Products Of Their Distillation; Bituminous Substances; Mineral Waxes.", "value": 2462.26, "growth": "93.99"}, {"hs": "26", "name": "Ores, Slag And Ash.", "value": 1796.72, "growth": "-7.53"}, {"hs": "03", "name": "Fish And Crustaceans, Molluscs And Other Aquatic Invertabrates.", "value": 1374.97, "growth": "25.70"}, {"hs": "29", "name": "Organic Chemicals", "value": 1343.03, "growth": "6.27"}, {"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 1263.12, "growth": "8.80"}, {"hs": "25", "name": "Salt; Sulphur; Earths And Stone; Plastering Materials, Lime And Cement.", "value": 874.27, "growth": "11.27"}, {"hs": "15", "name": "Animal Or Vegetable Fats And Oils And Their Cleavage Products; Pre. Edible Fats; Animal Or Vegetable Waxex.", "value": 769.35, "growth": "-11.23"}]}, "Russia": {"export_total": 4493.5, "import_total": 55369.6, "balance": -50876.1, "top_imports": [{"hs": "27", "name": "Mineral Fuels, Mineral Oils And Products Of Their Distillation; Bituminous Substances; Mineral Waxes.", "value": 47824.9, "growth": "-15.91"}, {"hs": "31", "name": "Fertilisers.", "value": 3117.9, "growth": "69.46"}, {"hs": "15", "name": "Animal Or Vegetable Fats And Oils And Their Cleavage Products; Pre. Edible Fats; Animal Or Vegetable Waxex.", "value": 1675.72, "growth": "-30.02"}, {"hs": "98", "name": "Project Goods; Some Special Uses.", "value": 632.93, "growth": "7.19"}, {"hs": "72", "name": "Iron And Steel", "value": 448.95, "growth": "18.90"}, {"hs": "71", "name": "Natural Or Cultured Pearls,Precious Or Semiprecious Stones,Pre.Metals,Clad With Pre.Metal And Artcls Thereof;Imit.Jewlry;Coin.", "value": 375.54, "growth": "-13.46"}, {"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 272.37, "growth": "194.68"}, {"hs": "25", "name": "Salt; Sulphur; Earths And Stone; Plastering Materials, Lime And Cement.", "value": 161.69, "growth": "23.25"}], "top_exports": [{"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 660.18, "growth": "-41.96"}, {"hs": "30", "name": "Pharmaceutical Products", "value": 471.34, "growth": "11.93"}, {"hs": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "value": 344.64, "growth": "-5.07"}, {"hs": "29", "name": "Organic Chemicals", "value": 326.17, "growth": "-11.62"}, {"hs": "28", "name": "Inorganic Chemicals; Organic Or Inorganic Compounds Of Precious Metals, Of Rare-Earth Metals, Or Radi. Elem. Or Of Isotopes.", "value": 196.81, "growth": "-19.31"}, {"hs": "38", "name": "Miscellaneous Chemical Products.", "value": 169.33, "growth": "-2.21"}, {"hs": "03", "name": "Fish And Crustaceans, Molluscs And Other Aquatic Invertabrates.", "value": 159.14, "growth": "29.33"}, {"hs": "21", "name": "Miscellaneous Edible Preparations.", "value": 156.45, "growth": "65.34"}]}, "UAE": {"export_total": 37359.2, "import_total": 63894.4, "balance": -26535.2, "top_imports": [{"hs": "71", "name": "Natural Or Cultured Pearls,Precious Or Semiprecious Stones,Pre.Metals,Clad With Pre.Metal And Artcls Thereof;Imit.Jewlry;Coin.", "value": 24825.69, "growth": "-8.34"}, {"hs": "27", "name": "Mineral Fuels, Mineral Oils And Products Of Their Distillation; Bituminous Substances; Mineral Waxes.", "value": 24272.88, "growth": "-1.89"}, {"hs": "28", "name": "Inorganic Chemicals; Organic Or Inorganic Compounds Of Precious Metals, Of Rare-Earth Metals, Or Radi. Elem. Or Of Isotopes.", "value": 3359.27, "growth": "230.13"}, {"hs": "88", "name": "Aircraft, Spacecraft, And Parts Thereof.", "value": 1898.72, "growth": "-23.31"}, {"hs": "74", "name": "Copper And Articles Thereof.", "value": 1419.52, "growth": "33.02"}, {"hs": "39", "name": "Plastic And Articles Thereof.", "value": 1195.78, "growth": "-10.03"}, {"hs": "25", "name": "Salt; Sulphur; Earths And Stone; Plastering Materials, Lime And Cement.", "value": 1181.78, "growth": "20.56"}, {"hs": "89", "name": "Ships, Boats And Floating Structures.", "value": 1046.14, "growth": "65.01"}], "top_exports": [{"hs": "71", "name": "Natural Or Cultured Pearls,Precious Or Semiprecious Stones,Pre.Metals,Clad With Pre.Metal And Artcls Thereof;Imit.Jewlry;Coin.", "value": 8687.57, "growth": "11.97"}, {"hs": "27", "name": "Mineral Fuels, Mineral Oils And Products Of Their Distillation; Bituminous Substances; Mineral Waxes.", "value": 5850.69, "growth": "-22.97"}, {"hs": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "value": 5397.88, "growth": "40.57"}, {"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 2354.97, "growth": "31.57"}, {"hs": "89", "name": "Ships, Boats And Floating Structures.", "value": 1314.0, "growth": "18.68"}, {"hs": "87", "name": "Vehicles Other Than Railway Or Tramway Rolling Stock, And Parts And Accessories Thereof.", "value": 1177.88, "growth": "17.12"}, {"hs": "73", "name": "Articles Of Iron Or Steel", "value": 835.02, "growth": "-3.31"}, {"hs": "10", "name": "Cereals.", "value": 723.42, "growth": "38.04"}]}, "USA": {"export_total": 87316.0, "import_total": 53488.7, "balance": 33827.3, "top_imports": [{"hs": "27", "name": "Mineral Fuels, Mineral Oils And Products Of Their Distillation; Bituminous Substances; Mineral Waxes.", "value": 17315.21, "growth": "20.69"}, {"hs": "71", "name": "Natural Or Cultured Pearls,Precious Or Semiprecious Stones,Pre.Metals,Clad With Pre.Metal And Artcls Thereof;Imit.Jewlry;Coin.", "value": 6848.83, "growth": "29.45"}, {"hs": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "value": 5555.02, "growth": "64.22"}, {"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 4683.17, "growth": "5.79"}, {"hs": "90", "name": "Optical, Photographic Cinematographic Measuring, Checking Precision, Medical Or Surgical Inst. And Apparatus Parts And Accessories Thereof;", "value": 2261.43, "growth": "11.58"}, {"hs": "88", "name": "Aircraft, Spacecraft, And Parts Thereof.", "value": 1909.8, "growth": "14.74"}, {"hs": "29", "name": "Organic Chemicals", "value": 1756.64, "growth": "28.06"}, {"hs": "39", "name": "Plastic And Articles Thereof.", "value": 1438.53, "growth": "-6.03"}], "top_exports": [{"hs": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "value": 25682.64, "growth": "61.53"}, {"hs": "30", "name": "Pharmaceutical Products", "value": 8665.13, "growth": "-11.43"}, {"hs": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "value": 7190.2, "growth": "7.44"}, {"hs": "71", "name": "Natural Or Cultured Pearls,Precious Or Semiprecious Stones,Pre.Metals,Clad With Pre.Metal And Artcls Thereof;Imit.Jewlry;Coin.", "value": 5116.68, "growth": "-48.70"}, {"hs": "27", "name": "Mineral Fuels, Mineral Oils And Products Of Their Distillation; Bituminous Substances; Mineral Waxes.", "value": 3522.24, "growth": "-16.28"}, {"hs": "73", "name": "Articles Of Iron Or Steel", "value": 3015.46, "growth": "-3.22"}, {"hs": "29", "name": "Organic Chemicals", "value": 2679.95, "growth": "0.76"}, {"hs": "63", "name": "Other Made Up Textile Articles; Sets; Worn Clothing And Worn Textile Articles; Rags", "value": 2634.29, "growth": "-10.78"}]}};
+
+  var svgns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs) {
+    var e = document.createElementNS(svgns, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  // ---- Stat strip ----
+  var statStrip = document.getElementById("statStrip");
+  var stats = [
+    { label: "Largest bilateral deficit", value: "-$112.2bn", sub: "<b>China</b> &#8212; more than double the #2 country" },
+    { label: "Fastest-moving deficit", value: "2.5% &#8594; 35.8%", sub: "Share of India's crude oil imports from <b>Russia</b>, pre-2022 to FY2024-25" },
+    { label: "Top-3 deficit countries combined", value: "-$189.6bn", sub: "China + Russia + UAE alone" },
+    { label: "Only country in surplus, top 10 by trade", value: "United States", sub: "+$33.8bn &#8212; India's largest bilateral surplus" }
+  ];
+  stats.forEach(function (s) {
+    var elx = document.createElement("div");
+    elx.className = "stat-tile";
+    elx.innerHTML = '<div class="stat-label">' + s.label + '</div><div class="stat-value">' + s.value + '</div><div class="stat-sub">' + s.sub + '</div>';
+    statStrip.appendChild(elx);
+  });
+
+  // ---- Diverging bar chart ----
+  var sorted = rows.slice().sort(function (a, b) { return a.balance - b.balance; });
+  var display = sorted.slice(0, 15).concat(sorted.slice(-8).reverse());
+  var svg = document.getElementById("divergingChart");
+  var tooltip = document.getElementById("divTooltip");
+  var card = svg.parentElement;
+  var CW = 1000, CH = 620, padL = 150, padR = 90, padT = 10, padB = 10;
+  var plotW = CW - padL - padR;
+  var rowH = (CH - padT - padB) / display.length;
+  var maxAbs = Math.max.apply(null, display.map(function (r) { return Math.abs(r.balance); }));
+  var DxMid = padL + plotW / 2;
+  var scale = (plotW / 2) / maxAbs;
+
+  svg.appendChild(el("line", { x1: DxMid, x2: DxMid, y1: padT, y2: CH - padB, class: "zero-line" }));
+
+  display.forEach(function (r, i) {
+    var y0 = padT + i * rowH;
+    var barH = rowH * 0.62;
+    var barW = Math.abs(r.balance) * scale;
+    var neg = r.balance < 0;
+    var x = neg ? DxMid - barW : DxMid;
+    var rect = el("rect", { x: x, y: y0 + (rowH - barH) / 2, width: Math.max(barW, 1), height: barH, fill: neg ? "var(--neg-bar)" : "var(--pos-bar)" });
+    svg.appendChild(rect);
+
+    var catLbl = el("text", { x: padL - 12, y: y0 + rowH / 2 + 4, class: "cat-label", "text-anchor": "end" });
+    catLbl.textContent = r.name;
+    svg.appendChild(catLbl);
+
+    var valLbl = el("text", { x: neg ? DxMid - 8 : DxMid + 8, y: y0 + rowH / 2 + 4, class: "bar-label", "text-anchor": neg ? "end" : "start" });
+    valLbl.textContent = (r.balance >= 0 ? "+$" : "-$") + Math.abs(r.balance / 1000).toFixed(1) + "bn";
+    svg.appendChild(valLbl);
+
+    rect.addEventListener("mousemove", function () {
+      var cardRect = card.getBoundingClientRect();
+      var svgRect = svg.getBoundingClientRect();
+      var scaleX = svgRect.width / CW, scaleY = svgRect.height / CH;
+      var px = (svgRect.left - cardRect.left) + DxMid * scaleX;
+      var py = (svgRect.top - cardRect.top) + (y0 + rowH / 2) * scaleY;
+      tooltip.style.left = px + "px";
+      tooltip.style.top = (py - 10) + "px";
+      tooltip.style.transform = "translate(-50%, -100%)";
+      tooltip.style.opacity = 1;
+      tooltip.innerHTML = "<b>" + r.name + "</b><br>Export to: $" + r.export.toFixed(1) + "M &nbsp; Import from: $" + r.import.toFixed(1) + "M<br>Balance: " + (r.balance >= 0 ? "+" : "") + "$" + r.balance.toFixed(1) + "M";
+    });
+    rect.addEventListener("mouseleave", function () { tooltip.style.opacity = 0; });
+  });
+
+  // ---- Country x commodity panels ----
+  var countryGrid = document.getElementById("countryGrid");
+  var countryOrder = ["China", "Russia", "UAE", "USA"];
+  function fmtM(v) { return (v < 0 ? "-$" : "$") + Math.abs(v / 1000).toFixed(1) + "bn"; }
+  countryOrder.forEach(function (cname) {
+    var d = commodityData[cname];
+    var panel = document.createElement("div");
+    panel.className = "country-panel";
+    var impRows = d.top_imports.slice(0, 6).map(function (c) {
+      return '<div class="commodity-row"><span class="commodity-name">HS' + c.hs + ' ' + c.name + '</span><span class="commodity-val">' + fmtM(c.value) + '</span></div>';
+    }).join("");
+    var expRows = d.top_exports.slice(0, 6).map(function (c) {
+      return '<div class="commodity-row"><span class="commodity-name">HS' + c.hs + ' ' + c.name + '</span><span class="commodity-val">' + fmtM(c.value) + '</span></div>';
+    }).join("");
+    panel.innerHTML =
+      '<div class="country-panel-head"><span class="country-panel-name">' + cname + '</span>' +
+      '<span class="country-panel-balance" style="color:' + (d.balance < 0 ? 'var(--neg-bar)' : 'var(--pos-bar)') + '">' + (d.balance >= 0 ? "+" : "") + fmtM(d.balance) + '</span></div>' +
+      '<div class="country-cols">' +
+      '<div class="country-col"><div class="country-col-label">Top imports from ' + cname + '</div>' + impRows + '</div>' +
+      '<div class="country-col"><div class="country-col-label">Top exports to ' + cname + '</div>' + expRows + '</div>' +
+      '</div>';
+    countryGrid.appendChild(panel);
+  });
+
+  var commodityTable = document.getElementById("commodityTable");
+  var cthead = "<thead><tr><th>Country</th><th>Direction</th><th>#</th><th>HS Chapter</th><th>FY2025-26 (US$M)</th><th>Growth %</th></tr></thead>";
+  var ctrows = [];
+  countryOrder.forEach(function (cname) {
+    var d = commodityData[cname];
+    d.top_imports.forEach(function (c, i) {
+      ctrows.push("<tr><td>" + cname + "</td><td>Import</td><td>" + (i + 1) + "</td><td>HS" + c.hs + " " + c.name + "</td><td>" + c.value.toLocaleString() + "</td><td>" + c.growth + "</td></tr>");
+    });
+    d.top_exports.forEach(function (c, i) {
+      ctrows.push("<tr><td>" + cname + "</td><td>Export</td><td>" + (i + 1) + "</td><td>HS" + c.hs + " " + c.name + "</td><td>" + c.value.toLocaleString() + "</td><td>" + c.growth + "</td></tr>");
+    });
+  });
+  commodityTable.innerHTML = cthead + "<tbody>" + ctrows.join("") + "</tbody>";
+
+  // ---- Timeline ----
+  var timelineEl = document.getElementById("timeline");
+  var verdictClass = { "not-closed": "verdict-notclosed", "mixed": "verdict-mixed", "structural": "verdict-structural" };
+  var verdictLabel = { "not-closed": "Gap not closed", "mixed": "Mixed progress", "structural": "Structural constraint" };
+  timeline.forEach(function (t) {
+    var row = document.createElement("div");
+    row.className = "timeline-row";
+    row.innerHTML =
+      '<div class="timeline-country">' + t.country + '</div>' +
+      '<div class="timeline-body"><div class="timeline-head">' + t.head + '</div>' +
+      '<div class="timeline-text">' + t.text + '</div>' +
+      '<span class="timeline-verdict ' + verdictClass[t.verdict] + '">' + verdictLabel[t.verdict] + '</span></div>';
+    timelineEl.appendChild(row);
+  });
+
+  // ---- Data table ----
+  var table = document.getElementById("dataTable");
+  var thead = "<thead><tr><th>Country</th><th>Export (US$M)</th><th>Import (US$M)</th><th>Balance (US$M)</th></tr></thead>";
+  var trows = sorted.map(function (r) {
+    return "<tr><td>" + r.name + "</td><td>" + r.export.toLocaleString() + "</td><td>" + r.import.toLocaleString() + "</td><td>" + (r.balance >= 0 ? "+" : "") + r.balance.toLocaleString() + "</td></tr>";
+  }).join("");
+  table.innerHTML = thead + "<tbody>" + trows + "</tbody>";
+})();
+</script>
+
+<div class="disc-override" style="margin-top:24px;padding:14px 16px;border-top:1px solid #ddd;font-size:.82em;color:#444;background:#f8f8f6;line-height:1.5"><strong>Disclaimer:</strong> This analysis is based on publicly available government and market data cited in the article above. It is provided for informational and research purposes only and does not constitute investment, legal, or policy advice. Figures may be revised as source data is updated &#8212; verify against the original source before relying on them for decisions.<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--page-bg:#eef1ea!important;--surface:#fcfcfa!important;--ink:#14180f!important;--ink-2:#4f5348!important;--ink-muted:#82867a!important;--rule:#d7dace!important;--rule-strong:#c3c7b8!important;--accent:#1f5f5b!important;--accent-soft:#dbe9e6!important;--alert:#a5402c!important;--alert-soft:#f3ded7!important;--warn:#c98a1f!important;--warn-soft:#f3e9d5!important;--neg-bar:#a5402c!important;--pos-bar:#2a78d6!important;--chart-surface:#fcfcfb!important;--chart-grid:#e1e0d9!important;--chart-axis:#c3c2b7!important;color-scheme:light!important;}</style></div>

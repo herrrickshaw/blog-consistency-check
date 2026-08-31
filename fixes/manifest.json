@@ -1,0 +1,426 @@
+[
+ {
+  "url": "https://masaladeutsch.blogspot.com/2020/10/tech-for-business-so-2019-tech-as.html",
+  "slug": "tech-for-business-so-2019-tech-as",
+  "id": "e5591b87",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/tech-for-business-so-2019-tech-as.html",
+  "notes": [],
+  "before": [
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/07/ethanol-blending-omc-books-e20-today-vs.html",
+  "slug": "ethanol-blending-omc-books-e20-today-vs",
+  "id": "b056a545",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/ethanol-blending-omc-books-e20-today-vs.html",
+  "notes": [
+   "removed 2 inverted media-query block(s)",
+   "appended light-lock from the post's own :root"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 120,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/07/fci-grain-flow-procurement-storage.html",
+  "slug": "fci-grain-flow-procurement-storage",
+  "id": "5d72d342",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/fci-grain-flow-procurement-storage.html",
+  "notes": [
+   "removed 2 inverted media-query block(s)",
+   "appended light-lock from the post's own :root"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 84,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/07/fci-storage-scenario-capacity-stock-and.html",
+  "slug": "fci-storage-scenario-capacity-stock-and",
+  "id": "17c11470",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/fci-storage-scenario-capacity-stock-and.html",
+  "notes": [
+   "removed 2 inverted media-query block(s)",
+   "appended light-lock from the post's own :root"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 33,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/07/india-mineral-oil-hsn-ch27-trade.html",
+  "slug": "india-mineral-oil-hsn-ch27-trade",
+  "id": "acdb5e57",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/india-mineral-oil-hsn-ch27-trade.html",
+  "notes": [
+   "removed 1 inverted media-query block(s)",
+   "lifted 1 disclaimer(s) out of <script>",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (5 selectors kept dark)",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "no-disclaimer-in-script",
+   "no-inverted-media-query",
+   "dark-vars-locked",
+   "disclaimer-present"
+  ],
+  "after": [],
+  "contrast_before": 1048,
+  "contrast_after": 39
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/07/the-grain-value-loop-integrated-rice.html",
+  "slug": "the-grain-value-loop-integrated-rice",
+  "id": "3b241c9e",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/the-grain-value-loop-integrated-rice.html",
+  "notes": [
+   "removed 3 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 269,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/07/the-price-of-grain-msp-msv-and.html",
+  "slug": "the-price-of-grain-msp-msv-and",
+  "id": "69ab7f6b",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/the-price-of-grain-msp-msv-and.html",
+  "notes": [
+   "removed 2 inverted media-query block(s)",
+   "appended light-lock from the post's own :root"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 59,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/about-author.html",
+  "slug": "about-author",
+  "id": "c60733c6",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/about-author.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/chemical-import-substitution-full-hsn-8.html",
+  "slug": "chemical-import-substitution-full-hsn-8",
+  "id": "44227bcf",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/chemical-import-substitution-full-hsn-8.html",
+  "notes": [
+   "removed 4 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 1289,
+  "contrast_after": 10
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/five-year-synthesis-trade-currency.html",
+  "slug": "five-year-synthesis-trade-currency",
+  "id": "1eec5aee",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/five-year-synthesis-trade-currency.html",
+  "notes": [
+   "removed 1 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 43,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/iem-conversion-historical-performance.html",
+  "slug": "iem-conversion-historical-performance",
+  "id": "d8117dd6",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/iem-conversion-historical-performance.html",
+  "notes": [
+   "removed 2 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked",
+   "bw-override"
+  ],
+  "after": [],
+  "contrast_before": 27,
+  "contrast_after": 1
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/import-dependent-sectors-vs-government.html",
+  "slug": "import-dependent-sectors-vs-government",
+  "id": "6fedc558",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/import-dependent-sectors-vs-government.html",
+  "notes": [
+   "removed 1 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (1 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 59,
+  "contrast_after": 2
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/indias-animal-protein-export-complex.html",
+  "slug": "indias-animal-protein-export-complex",
+  "id": "82be6c75",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/indias-animal-protein-export-complex.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/indias-tyre-waste-problem-and-crumb.html",
+  "slug": "indias-tyre-waste-problem-and-crumb",
+  "id": "7fb4ab65",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/indias-tyre-waste-problem-and-crumb.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link",
+   "table-units-in-header"
+  ],
+  "after": [
+   "index-link",
+   "table-units-in-header"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/priority-export-destinations-by-growth.html",
+  "slug": "priority-export-destinations-by-growth",
+  "id": "81220332",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/priority-export-destinations-by-growth.html",
+  "notes": [
+   "removed 1 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 379,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/priority-trade-partners-by-import.html",
+  "slug": "priority-trade-partners-by-import",
+  "id": "5fcb72a5",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/priority-trade-partners-by-import.html",
+  "notes": [
+   "removed 1 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 402,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/rare-earth-magnets-and-specialty-steel.html",
+  "slug": "rare-earth-magnets-and-specialty-steel",
+  "id": "b2808974",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/rare-earth-magnets-and-specialty-steel.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/the-ethanol-sectors-buyers-market.html",
+  "slug": "the-ethanol-sectors-buyers-market",
+  "id": "3918949d",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/the-ethanol-sectors-buyers-market.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/vehicles-out-motors-in-indias-chapter.html",
+  "slug": "vehicles-out-motors-in-indias-chapter",
+  "id": "513139cd",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/vehicles-out-motors-in-indias-chapter.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/where-indias-factories-actually-get.html",
+  "slug": "where-indias-factories-actually-get",
+  "id": "a79db494",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/where-indias-factories-actually-get.html",
+  "notes": [
+   "removed 2 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (1 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked",
+   "bw-override"
+  ],
+  "after": [],
+  "contrast_before": 255,
+  "contrast_after": 1
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/where-indias-forex-goes-country.html",
+  "slug": "where-indias-forex-goes-country",
+  "id": "ff3ab9d5",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/where-indias-forex-goes-country.html",
+  "notes": [
+   "removed 1 inverted media-query block(s)",
+   "appended light-lock from the post's own :root",
+   "dark-panel guard (2 selectors kept dark)"
+  ],
+  "before": [
+   "no-inverted-media-query",
+   "dark-vars-locked"
+  ],
+  "after": [],
+  "contrast_before": 446,
+  "contrast_after": 0
+ },
+ {
+  "url": "https://masaladeutsch.blogspot.com/2026/08/whos-actually-building-mri-and-ct.html",
+  "slug": "whos-actually-building-mri-and-ct",
+  "id": "8d4f2c66",
+  "path": "/Users/umashankar/blog-consistency-check/fixes/whos-actually-building-mri-and-ct.html",
+  "notes": [
+   "dark-panel guard (2 selectors kept dark)",
+   "added Google Translate widget",
+   "appended AI disclosure at end of body"
+  ],
+  "before": [
+   "disclaimer-present",
+   "translate-widget",
+   "index-link"
+  ],
+  "after": [
+   "index-link"
+  ],
+  "contrast_before": 0,
+  "contrast_after": 0
+ }
+]

@@ -1,0 +1,85 @@
+fetching post list ...
+pre-screening for the white-on-white combination ...
+auditing 22 posts
+
+rendered pass (light + dark) ...
+# masaladeutsch consistency report
+
+posts audited: **22** · posts with at least one failure: **22**
+
+## Rule summary
+
+| severity | rule | failing | checked |
+|---|---|---:|---:|
+| BLOCKER | `no-inverted-media-query` | 22 | 22 |
+| BLOCKER | `dark-vars-locked` | 22 | 22 |
+| BLOCKER | `contrast-light` | 20 | 22 |
+| BLOCKER | `contrast-dark` | 12 | 22 |
+| BLOCKER | `no-disclaimer-in-script` | 1 | 22 |
+| BLOCKER | `js-parses` | 0 | 22 |
+| MAJOR | `disclaimer-present` | 1 | 22 |
+| MAJOR | `wpi-attribution` | 0 | 22 |
+| MINOR | `index-link` | 6 | 22 |
+| MINOR | `bw-override` | 4 | 22 |
+| MINOR | `translate-widget` | 0 | 22 |
+| MINOR | `table-units-in-header` | 0 | 22 |
+| MINOR | `no-overflow-light` | 0 | 22 |
+| MINOR | `no-overflow-dark` | 0 | 22 |
+
+## Posts needing attention
+
+### India Mineral-Oil (HSN Ch.27) Trade × Pricing Dashboard
+https://masaladeutsch.blogspot.com/2026/07/india-mineral-oil-hsn-ch27-trade.html
+- **BLOCKER** `no-disclaimer-in-script` — disclaimer inside <script> #[4]
+- **BLOCKER** `no-inverted-media-query` — 1 inverted dark-mode media query block(s)
+- **BLOCKER** `dark-vars-locked` — dark palette consumed with no !important light lock
+- **BLOCKER** `contrast-light` — 1032/1242 nodes below 3:1
+- **BLOCKER** `contrast-dark` — 1032/1241 nodes below 3:1
+- **MAJOR** `disclaimer-present` — no AI-disclosure outside a <script>
+
+### IEM Conversion — A Historical Performance Review (2017–2025)
+https://masaladeutsch.blogspot.com/2026/08/iem-conversion-historical-performance.html
+- **BLOCKER** `no-inverted-media-query` — 2 inverted dark-mode media query block(s)
+- **BLOCKER** `dark-vars-locked` — dark palette consumed with no !important light lock
+- **BLOCKER** `contrast-light` — 28/73 nodes below 3:1
+- **BLOCKER** `contrast-dark` — 2/73 nodes below 3:1
+- **MINOR** `bw-override` — dark palette present with no BW-override / light lock
+
+### Where India’s Factories Actually Get Built — IEM State & Sector Analysis
+https://masaladeutsch.blogspot.com/2026/08/where-indias-factories-actually-get.html
+- **BLOCKER** `no-inverted-media-query` — 2 inverted dark-mode media query block(s)
+- **BLOCKER** `dark-vars-locked` — dark palette consumed with no !important light lock
+- **BLOCKER** `contrast-light` — 256/530 nodes below 3:1
+- **BLOCKER** `contrast-dark` — 2/529 nodes below 3:1
+- **MINOR** `bw-override` — dark palette present with no BW-override / light lock
+
+### India Forest, Wildlife & CRZ Clearances — PARIVESH
+https://masaladeutsch.blogspot.com/2026/07/india-forest-wildlife-crz-clearances.html
+- **BLOCKER** `no-inverted-media-query` — 2 inverted dark-mode media query block(s)
+- **BLOCKER** `dark-vars-locked` — dark palette consumed with no !important light lock
+- **BLOCKER** `contrast-light` — 6/102 nodes below 3:1
+- **BLOCKER** `contrast-dark` — 4/102 nodes below 3:1
+- **MINOR** `index-link` — missing All-Articles index link
+
+### India Trade — Sector & Policy Recommendations (Chart Library)
+https://masaladeutsch.blogspot.com/2026/07/india-trade-sector-policy.html
+- **BLOCKER** `no-inverted-media-query` — 2 inverted dark-mode media query block(s)
+- **BLOCKER** `dark-vars-locked` — dark palette consumed with no !important light lock
+- **BLOCKER** `contrast-light` — 2/56 nodes below 3:1
+- **BLOCKER** `contrast-dark` — 3/56 nodes below 3:1
+- **MINOR** `index-link` — missing All-Articles index link
+
+### Import-Dependent Sectors vs. Government Scheme Attention — India
+https://masaladeutsch.blogspot.com/2026/08/import-dependent-sectors-vs-government.html
+- **BLOCKER** `no-inverted-media-query` — 1 inverted dark-mode media query block(s)
+- **BLOCKER** `dark-vars-locked` — dark palette consumed with no !important light lock
+- **BLOCKER** `contrast-light` — 59/173 nodes below 3:1
+- **BLOCKER** `contrast-dark` — 7/173 nodes below 3:1
+
+### Priority Trade Partners by Import-Growth Sector, & Real PLI Coverage
+https://masaladeutsch.blogspot.com/2026/08/priority-trade-partners-by-import.html
+- **BLOCKER** `no-inverted-media-query` — 1 inverted d
+
+full report: /Users/umashankar/blog-consistency-check/out/report.md
+
+77 BLOCKER failures

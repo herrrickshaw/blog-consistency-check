@@ -1,0 +1,638 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<style>
+/* tblwrap-css */
+.tblwrap{overflow-x:auto!important;-webkit-overflow-scrolling:touch;margin:0 0 1em}
+.tblwrap table{width:max-content!important;min-width:100%}
+</style><style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+/* === Design tokens (Open Color neutrals + Utopia-style fluid type + spacing scale) === */
+:root{
+  --oc-gray-0:#f8f9fa;--oc-gray-1:#f1f3f5;--oc-gray-2:#e9ecef;--oc-gray-3:#dee2e6;--oc-gray-4:#ced4da;
+  --oc-gray-5:#adb5bd;--oc-gray-6:#868e96;--oc-gray-7:#495057;--oc-gray-8:#343a40;--oc-gray-9:#212529;
+  --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--sp-7:3rem;
+  --radius:12px;--radius-sm:8px;
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);--shadow-2:0 2px 8px rgba(0,0,0,.06);
+  --step--1:clamp(.78rem,.75rem + .15vw,.85rem);
+  --step-0:clamp(.92rem,.88rem + .2vw,1rem);
+  --step-1:clamp(1.05rem,1rem + .3vw,1.2rem);
+  --step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem);
+  --surface:#fff;--surface-alt:var(--oc-gray-0);--border:var(--oc-gray-3);--text:#000;--text-mut:#333;
+}
+/* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+
+
+  :root {
+    color-scheme: light;
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,.10);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+    --good:#006300;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --good:#0ca30c;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--page); color:var(--ink-1);
+    font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }
+  header { max-width:1180px; margin:0 auto 18px; }
+  header h1 { font-size:20px; font-weight:650; }
+  header p { color:var(--ink-2); margin-top:4px; max-width:72ch; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+    gap:12px; max-width:1180px; margin:0 auto 14px; }
+  .tile { background:var(--surface-1); border:1px solid var(--border);
+    border-radius:10px; padding:14px 16px; }
+  .tile .lbl { color:var(--ink-2); font-size:12.5px; }
+  .tile .val { font-size:30px; font-weight:600; margin-top:2px; }
+  .tile .sub { color:var(--ink-3); font-size:12px; margin-top:2px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+    gap:14px; max-width:1180px; margin:0 auto; }
+  .card { background:var(--surface-1); border:1px solid var(--border);
+    border-radius:10px; padding:16px 16px 10px; min-width:0; }
+  .card.wide { grid-column:1 / -1; }
+  .card h2 { font-size:15px; font-weight:650; }
+  .card .sub { color:var(--ink-3); font-size:12px; margin:2px 0 8px; }
+  .legend { display:flex; flex-wrap:wrap; gap:12px; font-size:12px;
+    color:var(--ink-2); margin:2px 0 6px; }
+  .legend .key { display:inline-flex; align-items:center; gap:5px; }
+  .legend .sw { width:10px; height:10px; border-radius:2px; }
+  .legend .ln { width:14px; height:2px; border-radius:1px; }
+  .chartwrap { position:relative; }
+  svg { display:block; width:100%; height:auto; }
+  .tip { position:absolute; pointer-events:none; background:var(--surface-1);
+    border:1px solid var(--border); border-radius:8px; padding:8px 10px;
+    font-size:12px; box-shadow:0 2px 10px rgba(0,0,0,.12); display:none;
+    z-index:5; min-width:130px; }
+  .tip .t-h { color:var(--ink-3); margin-bottom:4px; }
+  .tip .row { display:flex; align-items:center; gap:6px; margin-top:2px; }
+  .tip .row .k { width:12px; height:2px; border-radius:1px; flex:none; }
+  .tip .row b { margin-left:auto; padding-left:10px; }
+  .tblbtn { background:none; border:none; color:var(--ink-3); font-size:12px;
+    cursor:pointer; padding:4px 0; text-decoration:underline; }
+  table { border-collapse:collapse; font-size:12.5px; width:100%; margin:6px 0 8px; }
+  th,td { text-align:right; padding:3px 8px; border-bottom:1px solid var(--grid);
+    font-variant-numeric:tabular-nums; }
+  th:first-child, td:first-child { text-align:left; }
+  th { color:var(--ink-2); font-weight:600; }
+  .hidden { display:none; }
+  footer { max-width:1180px; margin:16px auto 0; color:var(--ink-3); font-size:12px; }
+  footer a { color:var(--ink-2); }
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+
+<header>
+  <h1>FCI Grain Flow &#8212; Procurement &#183; Storage &#183; Disposal</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+
+  <p>India's foodgrain support system in one view: what the government buys, what it holds
+  against buffer norms, and where the grain goes &#8212; PDS, welfare, open-market sale to
+  processors, ethanol. Data: DFPD Foodgrain Bulletin (Nov 2024), DFPD Annual Report 2024-25,
+  PIB Year-End Review 2025, data.gov.in. Units: lakh metric tonnes (LMT). KMS = Kharif Marketing Season (paddy/rice), RMS = Rabi Marketing Season (wheat), DCP = Decentralized Procurement Scheme.</p>
+</header>
+
+<div class="kpis">
+  <div class="tile"><div class="lbl">Central pool stocks &#8212; 1 Jan 2025</div>
+    <div class="val">476.85 <span style="font-size:15px;font-weight:400">LMT</span></div>
+    <div class="sub">vs 214.1 LMT buffer norm &#183; +~319 LMT unmilled paddy</div></div>
+  <div class="tile"><div class="lbl">Paddy procured &#8212; KMS 2024-25</div>
+    <div class="val">832.17 <span style="font-size:15px;font-weight:400">LMT</span></div>
+    <div class="sub">record &#183; ~1.19 crore farmers paid</div></div>
+  <div class="tile"><div class="lbl">Wheat procured &#8212; RMS 2025-26</div>
+    <div class="val">300.35 <span style="font-size:15px;font-weight:400">LMT</span></div>
+    <div class="sub">Punjab &#8776; 47% of the wheat pool</div></div>
+  <div class="tile"><div class="lbl">Food subsidy released &#8212; FY25</div>
+    <div class="val">&#8377;1.99 <span style="font-size:15px;font-weight:400">lakh cr</span></div>
+    <div class="sub">FCI &#8377;1.29 + DCP states &#8377;0.70 lakh cr</div></div>
+</div>
+
+<div class="grid">
+  <div class="card wide" id="card-share"></div>
+  <div class="card" id="card-trend"></div>
+  <div class="card" id="card-stocks"></div>
+  <div class="card" id="card-offtake"></div>
+  <div class="card" id="card-wstates"></div>
+  <div class="card wide" id="card-storage"></div>
+  <div class="card" id="card-rfii"></div>
+  <div class="card" id="card-fuel"></div>
+<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+
+<footer>
+  Repo: <a href="https://github.com/herrrickshaw/FCI-warehouse-MSPvsMSV">FCI-warehouse-MSPvsMSV</a> &#183;
+  every series' provenance in <code>data/MANIFEST.md</code>. Rice 2024-25 procurement is the official Economic
+  Survey rice-terms figure (544.8 LMT).
+</footer>
+
+
+
+<script>
+
+// ?theme=dark|light forces a theme (used for screenshot capture; also a handy manual toggle)
+{ const t = new URLSearchParams(location.search).get('theme');
+  if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; }
+const DATA = {"trend":{"years":["2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24","2024-25","2025-26"],"rice":[342.0,350.6,340.4,318.4,320.4,342.2,381.1,381.9,444.0,520.0,601.7,575.9,568.7,525.4,544.8,null],"wheat":[null,283.4,381.5,250.9,280.2,280.9,229.6,308.2,357.9,341.3,389.9,433.4,187.9,262.0,266.1,300.4]},"share":[{"crop":"rice","year":"2024-25","share":36.3,"agency":"FCI_state_agencies"},{"crop":"wheat","year":"2024-25","share":22.6,"agency":"FCI_state_agencies"},{"crop":"ragi","year":"2023-24","share":14.8,"agency":"FCI_state_agencies"},{"crop":"mustard","year":"2019-20","share":8.8,"agency":"NAFED_PSS"},{"crop":"jowar","year":"2023-24","share":8.4,"agency":"FCI_state_agencies"},{"crop":"bajra","year":"2023-24","share":6.5,"agency":"FCI_state_agencies"},{"crop":"moong","year":"2023-24","share":4.7,"agency":"NAFED_PSS"},{"crop":"gram","year":"2022-23","share":1.4,"agency":"NAFED_PSS"},{"crop":"sunflower","year":"2022-23","share":0.7,"agency":"NAFED_PSS"},{"crop":"masur","year":"2019-20","share":0.1,"agency":"NAFED_PSS"},{"crop":"groundnut","year":"2022-23","share":0.1,"agency":"NAFED_PSS"},{"crop":"urad","year":"2022-23","share":0.0,"agency":"NAFED_PSS"},{"crop":"tur","year":"2022-23","share":0.0,"agency":"NAFED_PSS"},{"crop":"soybean","year":"2020-21","share":0.0,"agency":"NAFED_PSS"},{"crop":"maize","year":"2023-24","share":0.0,"agency":"FCI_state_agencies"}],"stocks":{"dates":["2021-01-01","2021-02-01","2021-03-01","2021-04-01","2021-05-01","2021-06-01","2021-07-01","2021-08-01","2021-09-01","2021-10-01","2021-11-01","2021-12-01","2022-01-01","2022-02-01","2022-03-01","2022-04-01","2022-05-01","2022-06-01","2022-07-01","2022-08-01","2022-09-01","2022-10-01","2022-11-01","2022-12-01","2023-01-01","2023-02-01","2023-03-01","2023-04-01","2023-05-01","2023-06-01","2023-07-01","2023-08-01","2023-09-01","2023-10-01","2023-11-01","2023-12-01","2024-01-01","2024-02-01","2024-03-01","2024-04-01","2024-05-01","2024-06-01","2024-07-01","2024-08-01","2024-09-01","2024-10-01","2024-11-01","2024-12-01"],"stock":[532.8,565.5,582.4,572.2,838.0,909.6,906.8,861.3,788.7,723.7,650.5,593.1,553.5,549.0,533.1,518.0,640.3,645.3,606.1,549.5,495.9,434.8,379.1,308.6,298.2,325.3,329.9,336.4,560.2,580.5,559.4,527.4,496.5,464.2,421.2,377.4,347.1,346.8,363.7,380.4,583.2,628.1,615.1,602.0,578.2,550.6,522.7,488.5],"norm":[214.1,null,null,210.4,null,null,411.2,null,null,307.7,null,null,214.1,null,null,210.4,null,null,411.2,null,null,307.7,null,null,214.1,null,null,210.4,null,null,411.2,null,null,307.7,null,null,214.1,null,null,210.4,null,null,411.2,null,null,307.7,null,null]},"offtake":{"years":["2019-20","2020-21","2021-22","2022-23","2023-24","2024-25"],"series":["NFSA/TPDS","PMGKAY","OMSS(D)","Other welfare"],"values":{"NFSA/TPDS":[501.0,491.9,462.9,490.4,493.0,323.9],"PMGKAY":[0,305.0,425.7,312.5,0,0],"OMSS(D)":[52.5,49.6,83.9,53.6,118.1,23.6],"Exports":[0,0,0,0,0,0],"Other welfare":[68.4,90.5,85.5,74.9,65.9,45.8]}},"storage":[{"agency":"State agencies (incl SWC)","lmt":365.7},{"agency":"FCI owned","lmt":147.2},{"agency":"Hired \u2013 SWC","lmt":102.7},{"agency":"Hired \u2013 PEG","lmt":85.2},{"agency":"Hired \u2013 other","lmt":43.1},{"agency":"Hired \u2013 CWC","lmt":32.8}],"wheatStates":{"years":["2019-20","2020-21","2021-22","2022-23","2023-24","2024-25"],"series":["Punjab","Haryana","Madhya Pradesh","Uttar Pradesh","Other"],"values":{"Punjab":[129.1,127.1,132.2,96.5,121.2,124.6],"Haryana":[93.2,74.0,84.9,41.9,63.2,71.5],"Madhya Pradesh":[67.2,129.4,128.2,46.0,71.0,48.4],"Uttar Pradesh":[37.0,35.8,56.4,3.4,2.2,9.3],"Other":[14.7,23.6,31.7,0.2,4.5,12.3]}},"rfii":{"years":["2016-17","2018-19","2021-22","2024-25*"],"rfii":[99.1,116.0,130.9,160.4],"target":[200,200,200,200],"measured":3},"fuelImpact":{"labels":["Diesel/hr","CNG/hr"],"cost":[498,378],"incomeAddFuel":5400,"incomeAddLoop":9750,"incomePct":[3.3,5.9],"rfiiPts":[3.3,5.9]}};
+
+const F = n => n==null ? '&#8212;' : n.toLocaleString('en-IN',{maximumFractionDigits:1});
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){ const e=document.createElementNS(NS,tag);
+  for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+function div(cls, parent){ const d=document.createElement('div'); if(cls) d.className=cls;
+  if(parent) parent.appendChild(d); return d; }
+
+function card(id, title, sub){
+  const c = document.getElementById(id);
+  const h = document.createElement('h2'); h.textContent = title; c.appendChild(h);
+  const s = div('sub', c); s.textContent = sub;
+  return c;
+}
+function legend(c, items){           // items: [{label, color, line}]
+  const lg = div('legend', c);
+  for(const it of items){
+    const k = document.createElement('span'); k.className='key';
+    const sw = document.createElement('span');
+    sw.className = it.line ? 'ln' : 'sw'; sw.style.background = it.color;
+    k.appendChild(sw); k.appendChild(document.createTextNode(it.label));
+    lg.appendChild(k);
+  }
+}
+function tableView(c, headers, rows){
+  const btn = document.createElement('button'); btn.className='tblbtn';
+  btn.textContent = 'Show data table';
+  const wrap = div('hidden', null);
+  const t = document.createElement('table');
+  const tr = document.createElement('tr');
+  headers.forEach(h=>{const th=document.createElement('th');th.textContent=h;tr.appendChild(th);});
+  t.appendChild(tr);
+  rows.forEach(r=>{ const tr=document.createElement('tr');
+    r.forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td);});
+    t.appendChild(tr); });
+  wrap.appendChild(t);
+  btn.addEventListener('click',()=>{ const hid = wrap.classList.toggle('hidden');
+    btn.textContent = hid ? 'Show data table' : 'Hide data table'; });
+  c.appendChild(btn); c.appendChild(wrap);
+}
+function tip(wrap){
+  const t = div('tip', wrap);
+  return {
+    show(x, y, head, rows){       // rows: [{k,label,val}]
+      t.replaceChildren();
+      const h = div('t-h', t); h.textContent = head;
+      for(const r of rows){
+        const row = div('row', t);
+        if(r.k){ const k=div('', row); k.className='row-k k'; k.style.cssText=
+          'width:12px;height:2px;border-radius:1px;flex:none;background:'+r.k; }
+        const lbl=document.createElement('span'); lbl.textContent=r.label;
+        lbl.style.color='var(--ink-2)'; row.appendChild(lbl);
+        const b=document.createElement('b'); b.textContent=r.val; row.appendChild(b);
+      }
+      t.style.display='block';
+      const W=wrap.clientWidth, tw=t.offsetWidth;
+      t.style.left = Math.min(Math.max(x+12,0), W-tw-4)+'px';
+      t.style.top  = Math.max(y-10,0)+'px';
+    },
+    hide(){ t.style.display='none'; }
+  };
+}
+function niceMax(v){ const p=Math.pow(10,Math.floor(Math.log10(v)));
+  for(const m of [1,1.5,2,2.5,3,4,5,6,8,10]) if(m*p>=v) return m*p; return 10*p; }
+
+/* ---------- 1. Share of production procured (wide, h-bars, 1 series) ---------- */
+(function(){
+  const c = card('card-share','Procurement as % of crop production &#8212; the MSP coverage gap',
+    'Latest full year per crop (labelled). MSP is announced for 23+ crops; sustained volume exists for two. Sources: DFPD, PIB, NAFED/PSS via data.gov.in.');
+  const wrap = div('chartwrap', c); const T = tip(wrap);
+  const d = DATA.share;
+  const W=1120, rowH=26, padL=118, padR=150, padT=6;
+  const H = padT + d.length*rowH + 22;
+  const svg = el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img',
+    'aria-label':'Bar chart of procurement share of production by crop'},wrap);
+  const xmax=50, xw=W-padL-padR;
+  const X=v=>padL+v/xmax*xw;
+  for(const g of [0,10,20,30,40,50]){
+    el('line',{x1:X(g),y1:padT,x2:X(g),y2:H-22,stroke:css('--grid'),'stroke-width':1},svg);
+    const t=el('text',{x:X(g),y:H-8,'text-anchor':'middle',fill:css('--ink-3'),
+      'font-size':11},svg); t.textContent=g+'%';
+  }
+  d.forEach((r,i)=>{
+    const y=padT+i*rowH;
+    const w=Math.max(r.share/xmax*xw, r.share>0? 2:0.8);
+    const bar=el('rect',{x:padL,y:y+5,width:w,height:16,fill:css('--s1'),rx:0},svg);
+    if(r.share>1) bar.setAttribute('rx','0'), el('rect',{x:padL+w-4,y:y+5,width:4,height:16,
+      fill:css('--s1'),rx:4},svg); // rounded data-end
+    const lbl=el('text',{x:padL-8,y:y+17,'text-anchor':'end',fill:css('--ink-1'),
+      'font-size':12.5},svg); lbl.textContent=r.crop;
+    const val=el('text',{x:padL+w+8,y:y+17,fill:css('--ink-2'),'font-size':12},svg);
+    val.textContent = r.share+'%  ('+r.year+')';
+    const hit=el('rect',{x:0,y:y,width:W,height:rowH,fill:'transparent'},svg);
+    hit.addEventListener('pointermove',e=>{
+      const b=wrap.getBoundingClientRect();
+      T.show(e.clientX-b.left,e.clientY-b.top, r.crop+' &#183; '+r.year,
+        [{k:css('--s1'),label:'share procured',val:r.share+'%'},
+         {label:'agency',val:r.agency.replace(/_/g,' ')}]);
+    });
+    hit.addEventListener('pointerleave',()=>T.hide());
+  });
+  tableView(c,['Crop','Year','Share %','Agency'],
+    d.map(r=>[r.crop,r.year,r.share,r.agency.replace(/_/g,' ')]));
+})();
+
+/* ---------- generic line chart ---------- */
+function lineChart(cid, title, sub, labels, seriesDefs, opts={}){
+  const c = card(cid,title,sub);
+  legend(c, seriesDefs.map(s=>({label:s.label,color:s.color,line:true})));
+  const wrap = div('chartwrap', c); const T = tip(wrap);
+  const W=540,H=280,padL=46,padR=14,padT=10,padB=34;
+  const svg = el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':title},wrap);
+  const all = seriesDefs.flatMap(s=>s.values.filter(v=>v!=null));
+  const ymax = niceMax(Math.max(...all));
+  const X=i=>padL+i/(labels.length-1)*(W-padL-padR);
+  const Y=v=>H-padB-(v/ymax)*(H-padT-padB);
+  for(let g=0; g<=4; g++){
+    const v=ymax*g/4;
+    el('line',{x1:padL,y1:Y(v),x2:W-padR,y2:Y(v),stroke:css('--grid'),'stroke-width':1},svg);
+    const t=el('text',{x:padL-6,y:Y(v)+4,'text-anchor':'end',fill:css('--ink-3'),
+      'font-size':10.5,'font-variant-numeric':'tabular-nums'},svg);
+    t.textContent=F(v);
+  }
+  el('line',{x1:padL,y1:H-padB,x2:W-padR,y2:H-padB,stroke:css('--axis'),'stroke-width':1},svg);
+  const step = Math.ceil(labels.length/6);
+  labels.forEach((lb,i)=>{ if(i%step && i!==labels.length-1) return;
+    const t=el('text',{x:X(i),y:H-padB+16,'text-anchor':'middle',fill:css('--ink-3'),
+      'font-size':10.5},svg); t.textContent=opts.shortLabel?opts.shortLabel(lb):lb; });
+  for(const s of seriesDefs){
+    let dstr='', pen=false;
+    s.values.forEach((v,i)=>{ if(v==null){pen=false;return;}
+      dstr += (pen?'L':'M')+X(i)+' '+Y(v)+' '; pen=true; });
+    el('path',{d:dstr,fill:'none',stroke:s.color,'stroke-width':2,
+      'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+    if(s.markers) s.values.forEach((v,i)=>{ if(v==null)return;
+      el('circle',{cx:X(i),cy:Y(v),r:4,fill:s.color,stroke:css('--surface-1'),
+        'stroke-width':2},svg); });
+    const lastIdx = s.values.length-1 - [...s.values].reverse().findIndex(v=>v!=null);
+    if(s.values[lastIdx]!=null){
+      const t=el('text',{x:X(lastIdx)-4,y:Y(s.values[lastIdx])-8,fill:css('--ink-2'),
+        'text-anchor':'end','font-size':11,'font-weight':600},svg);
+      t.textContent=F(s.values[lastIdx]);
+    }
+  }
+  const cross=el('line',{y1:padT,y2:H-padB,stroke:css('--axis'),'stroke-width':1,
+    visibility:'hidden'},svg);
+  const hitR=el('rect',{x:padL,y:padT,width:W-padL-padR,height:H-padT-padB,
+    fill:'transparent'},svg);
+  hitR.addEventListener('pointermove',e=>{
+    const b=svg.getBoundingClientRect();
+    const px=(e.clientX-b.left)*(W/b.width);
+    const i=Math.round((px-padL)/(W-padL-padR)*(labels.length-1));
+    if(i<0||i>=labels.length) return;
+    cross.setAttribute('x1',X(i)); cross.setAttribute('x2',X(i));
+    cross.setAttribute('visibility','visible');
+    const wb=wrap.getBoundingClientRect();
+    T.show(e.clientX-wb.left,e.clientY-wb.top, labels[i],
+      seriesDefs.map(s=>({k:s.color,label:s.label,
+        val:s.values[i]==null?'&#8212;':F(s.values[i])+' LMT'})));
+  });
+  hitR.addEventListener('pointerleave',()=>{cross.setAttribute('visibility','hidden');T.hide();});
+  tableView(c,['Period',...seriesDefs.map(s=>s.label+' (LMT)')],
+    labels.map((lb,i)=>[lb,...seriesDefs.map(s=>s.values[i]==null?'&#8212;':
+      (opts.mark && opts.mark(lb,s.label) ? F(s.values[i])+' &#9670;' : F(s.values[i])))]));
+}
+
+/* ---------- 2. Procurement trend ---------- */
+lineChart('card-trend','Rice & wheat procurement, all-India',
+  'Marketing seasons KMS/RMS 2010-11 &#8594; 2025-26. Rice 2024-25: official rice-terms figure (Economic Survey App. Table 26). Source: data.gov.in DFPD series + PIB.',
+  DATA.trend.years,
+  [{label:'Rice',color:css('--s1'),values:DATA.trend.rice},
+   {label:'Wheat',color:css('--s2'),values:DATA.trend.wheat}],
+  {shortLabel:y=>"'"+y.slice(2,4), mark:(y,s)=>y==='2024-25'&&s==='Rice'});
+
+/* ---------- 3. Stocks vs norms ---------- */
+lineChart('card-stocks','Central pool stocks vs buffer norm',
+  'Monthly opening stock (rice+wheat+coarse grains), quarterly minimum buffer norms (incl. strategic reserve). Excludes unmilled paddy. Source: DFPD Foodgrain Bulletin Nov-2024.',
+  DATA.stocks.dates.map(d=>d.slice(0,7)),
+  [{label:'Total stock',color:css('--s1'),values:DATA.stocks.stock},
+   {label:'Buffer norm',color:css('--s2'),values:DATA.stocks.norm,markers:true}],
+  {shortLabel:d=>d.slice(2,4)+'/'+d.slice(5)});
+
+/* ---------- generic stacked columns ---------- */
+function stacked(cid,title,sub,years,seriesNames,values,colors){
+  const c = card(cid,title,sub);
+  legend(c, seriesNames.map((s,i)=>({label:s,color:colors[i]})));
+  const wrap = div('chartwrap', c); const T = tip(wrap);
+  const W=540,H=300,padL=46,padR=14,padT=10,padB=34;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':title},wrap);
+  const totals=years.map((_,i)=>seriesNames.reduce((a,s)=>a+(values[s][i]||0),0));
+  const ymax=niceMax(Math.max(...totals));
+  const slot=(W-padL-padR)/years.length;
+  const bw=Math.min(24,slot*0.55);
+  const Y=v=>H-padB-(v/ymax)*(H-padT-padB);
+  for(let g=0; g<=4; g++){
+    const v=ymax*g/4;
+    el('line',{x1:padL,y1:Y(v),x2:W-padR,y2:Y(v),stroke:css('--grid'),'stroke-width':1},svg);
+    const t=el('text',{x:padL-6,y:Y(v)+4,'text-anchor':'end',fill:css('--ink-3'),
+      'font-size':10.5,'font-variant-numeric':'tabular-nums'},svg); t.textContent=F(v);
+  }
+  el('line',{x1:padL,y1:H-padB,x2:W-padR,y2:H-padB,stroke:css('--axis'),'stroke-width':1},svg);
+  years.forEach((yr,i)=>{
+    const cx=padL+slot*(i+0.5);
+    let acc=0;
+    seriesNames.forEach((s,si)=>{
+      const v=values[s][i]||0; if(!v) return;
+      const y1=Y(acc+v), y0=Y(acc);
+      el('rect',{x:cx-bw/2,y:y1+(si===seriesNames.length-1?0:1),width:bw,
+        height:Math.max(y0-y1-2,1),fill:colors[si]},svg);
+      acc+=v;
+    });
+    const t=el('text',{x:cx,y:H-padB+16,'text-anchor':'middle',fill:css('--ink-3'),
+      'font-size':10.5},svg); t.textContent="'"+yr.slice(2,4);
+    const tt=el('text',{x:cx,y:Y(acc)-6,'text-anchor':'middle',fill:css('--ink-2'),
+      'font-size':11,'font-weight':600},svg); tt.textContent=F(totals[i]);
+    const hit=el('rect',{x:cx-slot/2,y:padT,width:slot,height:H-padT-padB,
+      fill:'transparent'},svg);
+    hit.addEventListener('pointermove',e=>{
+      const wb=wrap.getBoundingClientRect();
+      T.show(e.clientX-wb.left,e.clientY-wb.top,yr,
+        seriesNames.map((s,si)=>({k:colors[si],label:s,val:F(values[s][i]||0)+' LMT'}))
+        .concat([{label:'Total',val:F(totals[i])+' LMT'}]));
+    });
+    hit.addEventListener('pointerleave',()=>T.hide());
+  });
+  tableView(c,['Year',...seriesNames,'Total'],
+    years.map((yr,i)=>[yr,...seriesNames.map(s=>F(values[s][i]||0)),F(totals[i])]));
+}
+
+/* ---------- 4. Offtake by scheme ---------- */
+stacked('card-offtake','Offtake from the central pool, by channel',
+  'Rice + wheat offtake. OMSS(D) = open-market e-auction sales to processors/millers; PMGKAY = Covid-era free-grain tranches (merged into NFSA from Jan 2024). 2024-25 is part-year (bulletin cut-off Nov 2024). Source: DFPD Foodgrain Bulletin.',
+  DATA.offtake.years, DATA.offtake.series, DATA.offtake.values,
+  [css('--s1'),css('--s2'),css('--s3'),css('--s4')]);
+
+/* ---------- 5. Wheat state concentration ---------- */
+stacked('card-wstates','Wheat procurement by state',
+  'Top states, RMS seasons. Punjab + Haryana + MP &#8776; 90% of the pool on the multi-year average (range ~80&#8211;98% by season). Source: DFPD via data.gov.in.',
+  DATA.wheatStates.years, DATA.wheatStates.series, DATA.wheatStates.values,
+  [css('--s1'),css('--s2'),css('--s3'),css('--s4'),css('--s5')]);
+
+/* ---------- 6. Storage capacity (wide, h-bars, 1 series) ---------- */
+(function(){
+  const c = card('card-storage','Where the grain can physically sit &#8212; covered storage capacity',
+    'Central-pool covered storage by agency, as on 30.11.2024. Grand total &#8776; 776.6 LMT &#8212; the hard ceiling any volume guarantee must fit under (1 Jan 2025 stocks alone: 476.9 LMT + unmilled paddy). Source: DFPD Foodgrain Bulletin.');
+  const wrap = div('chartwrap', c); const T = tip(wrap);
+  const d = DATA.storage;
+  const W=1120,rowH=30,padL=190,padR=90,padT=6;
+  const H=padT+d.length*rowH+22;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img',
+    'aria-label':'Bar chart of storage capacity by agency'},wrap);
+  const xmax=niceMax(d[0].lmt), xw=W-padL-padR;
+  const X=v=>padL+v/xmax*xw;
+  for(const g of [0,100,200,300,400]){ if(g>xmax) break;
+    el('line',{x1:X(g),y1:padT,x2:X(g),y2:H-22,stroke:css('--grid'),'stroke-width':1},svg);
+    const t=el('text',{x:X(g),y:H-8,'text-anchor':'middle',fill:css('--ink-3'),
+      'font-size':11},svg); t.textContent=F(g);
+  }
+  d.forEach((r,i)=>{
+    const y=padT+i*rowH;
+    const w=Math.max(r.lmt/xmax*xw,2);
+    el('rect',{x:padL,y:y+7,width:w,height:16,fill:css('--s1')},svg);
+    el('rect',{x:padL+w-4,y:y+7,width:4,height:16,fill:css('--s1'),rx:4},svg);
+    const lbl=el('text',{x:padL-8,y:y+19,'text-anchor':'end',fill:css('--ink-1'),
+      'font-size':12.5},svg); lbl.textContent=r.agency;
+    const val=el('text',{x:padL+w+8,y:y+19,fill:css('--ink-2'),'font-size':12},svg);
+    val.textContent=F(r.lmt)+' LMT';
+    const hit=el('rect',{x:0,y:y,width:W,height:rowH,fill:'transparent'},svg);
+    hit.addEventListener('pointermove',e=>{
+      const b=wrap.getBoundingClientRect();
+      T.show(e.clientX-b.left,e.clientY-b.top,r.agency,
+        [{k:css('--s1'),label:'capacity',val:F(r.lmt)+' LMT'}]);
+    });
+    hit.addEventListener('pointerleave',()=>T.hide());
+  });
+  tableView(c,['Agency','Capacity (LMT)'],d.map(r=>[r.agency,F(r.lmt)]));
+})();
+
+/* ---------- RFII monitor (line vs 200 target) ---------- */
+lineChart('card-rfii','Real Farm Income Index (RFII) &#8212; vs doubling target',
+  'Nominal income &#247; CPI-AL, base 2016-17=100. Target 200 = real doubling. 2024-25 projected*. Source: MoSPI CPIALRL + NAFIS/SAS.',
+  DATA.rfii.years,
+  [{label:'RFII (real)',color:css('--s1'),values:DATA.rfii.rfii,markers:true},
+   {label:'Doubling target',color:css('--s2'),values:DATA.rfii.target}],
+  {});
+
+/* ---------- Fuel shift &#8594; farmer income (custom card) ---------- */
+(function(){
+  const F=DATA.fuelImpact;
+  const c=document.getElementById('card-fuel');
+  const h=document.createElement('h2');h.textContent='Diesel&#8594;CNG fuel shift &#8594; farmer income';c.appendChild(h);
+  const s=div('sub',c);s.textContent='Per 1.5-ha paddy household. CNG saves 24% on tractor fuel; the CBG loop adds residue income. Real-income-protective (CBG is inflation-proof).';
+  const wrap=div('chartwrap',c);
+  const W=540,H=150,padL=90,padR=90,padT=16,padB=30;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'diesel vs CNG cost'},wrap);
+  const max=520,bw=26;
+  const rows=[['Diesel',F.cost[0],css('--s2')],['CNG',F.cost[1],css('--s3')]];
+  rows.forEach((r,i)=>{
+    const y=padT+i*46;
+    const w=r[1]/max*(W-padL-padR);
+    el('rect',{x:padL,y:y,width:w,height:bw,fill:r[2]},svg);
+    el('rect',{x:padL+w-4,y:y,width:4,height:bw,fill:r[2],rx:4},svg);
+    const lb=el('text',{x:padL-8,y:y+18,'text-anchor':'end',fill:css('--ink-1'),'font-size':13},svg);lb.textContent=r[0]+'/hr';
+    const v=el('text',{x:padL+w+8,y:y+18,fill:css('--ink-2'),'font-size':12,'font-variant-numeric':'tabular-nums'},svg);v.textContent='\u20B9'+r[1];
+  });
+  const sv=el('text',{x:padL,y:padT+2*46+12,fill:css('--good'),'font-size':13,'font-weight':700},svg);
+  sv.textContent='&#8595; \u20B9120/hr saved (24%) &#8212; CBG is inflation-proof; diesel is not';
+  // income stat row
+  const row=div('legend',c);row.style.marginTop='6px';
+  [['Fuel shift','+\u20B95,400/yr','3.3% of income &#183; +3.3 RFII pts'],
+   ['Full CBG loop','+\u20B99,750/yr','5.9% of income &#183; +5.9 RFII pts &#183; closes 9% of doubling gap']].forEach(t=>{
+    const d=document.createElement('div');d.style.cssText='flex:1;min-width:150px;background:var(--surface-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px';
+    d.innerHTML='';
+    const k=document.createElement('div');k.style.cssText='font-family:monospace;font-size:11px;color:var(--ink-3);text-transform:uppercase';k.textContent=t[0];
+    const vv=document.createElement('div');vv.style.cssText='font-size:18px;font-weight:600;color:var(--s3)';vv.textContent=t[1];
+    const ss=document.createElement('div');ss.style.cssText='font-size:11px;color:var(--ink-2)';ss.textContent=t[2];
+    d.appendChild(k);d.appendChild(vv);d.appendChild(ss);row.appendChild(d);
+  });
+})();
+
+</script>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--oc-gray-0:#f8f9fa!important;--oc-gray-1:#f1f3f5!important;--oc-gray-2:#e9ecef!important;--oc-gray-3:#dee2e6!important;--oc-gray-4:#ced4da!important;--oc-gray-5:#adb5bd!important;--oc-gray-6:#868e96!important;--oc-gray-7:#495057!important;--oc-gray-8:#343a40!important;--oc-gray-9:#212529!important;--sp-1:.25rem!important;--sp-2:.5rem!important;--sp-3:.75rem!important;--sp-4:1rem!important;--sp-5:1.5rem!important;--sp-6:2rem!important;--sp-7:3rem!important;--radius:12px!important;--radius-sm:8px!important;--shadow-1:0 1px 2px rgba(0,0,0,.04)!important;--shadow-2:0 2px 8px rgba(0,0,0,.06)!important;--step--1:clamp(.78rem,.75rem + .15vw,.85rem)!important;--step-0:clamp(.92rem,.88rem + .2vw,1rem)!important;--step-1:clamp(1.05rem,1rem + .3vw,1.2rem)!important;--step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem)!important;--surface:#fff!important;--surface-alt:var(--oc-gray-0)!important;--border:var(--oc-gray-3)!important;--text:#000!important;--text-mut:#333!important;color-scheme:light!important;}</style></div>

@@ -1,0 +1,510 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<meta name="hz:canvas-width" content="1180">
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+  :root {
+    color-scheme: light;
+    --page-bg:      #eef1ea;
+    --surface:      #fcfcfa;
+    --ink:          #14180f;
+    --ink-2:        #4f5348;
+    --ink-muted:    #82867a;
+    --rule:         #d7dace;
+    --rule-strong:  #c3c7b8;
+    --accent:       #1f5f5b;
+    --accent-soft:  #dbe9e6;
+    --alert:        #a5402c;
+    --alert-soft:   #f3ded7;
+    --warn:         #c98a1f;
+    --warn-soft:    #f3e9d5;
+    --data-line:    #2a78d6;
+    --chart-surface:#fcfcfb;
+    --chart-grid:   #e1e0d9;
+    --chart-axis:   #c3c2b7;
+    --font-display: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --font-body: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-mono: "IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  }
+  @media not all and (prefers-color-scheme:dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page-bg:      #12151a;
+      --surface:      #1a1e21;
+      --ink:          #f2f1ea;
+      --ink-2:        #c1c4b7;
+      --ink-muted:    #8b8f83;
+      --rule:         #2a2e28;
+      --rule-strong:  #383c33;
+      --accent:       #58bdb5;
+      --accent-soft:  #1d3634;
+      --alert:        #e0785f;
+      --alert-soft:   #3a241d;
+      --warn:         #e0b23f;
+      --warn-soft:    #3a3220;
+      --data-line:    #3987e5;
+      --chart-surface:#1a1a19;
+      --chart-grid:   #2c2c2a;
+      --chart-axis:   #383835;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg:#12151a; --surface:#1a1e21; --ink:#f2f1ea; --ink-2:#c1c4b7; --ink-muted:#8b8f83;
+    --rule:#2a2e28; --rule-strong:#383c33; --accent:#58bdb5; --accent-soft:#1d3634; --alert:#e0785f; --alert-soft:#3a241d;
+    --warn:#e0b23f; --warn-soft:#3a3220; --data-line:#3987e5;
+    --chart-surface:#1a1a19; --chart-grid:#2c2c2a; --chart-axis:#383835;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page-bg:#eef1ea; --surface:#fcfcfa; --ink:#14180f; --ink-2:#4f5348; --ink-muted:#82867a;
+    --rule:#d7dace; --rule-strong:#c3c7b8; --accent:#1f5f5b; --accent-soft:#dbe9e6; --alert:#a5402c; --alert-soft:#f3ded7;
+    --warn:#c98a1f; --warn-soft:#f3e9d5; --data-line:#2a78d6;
+    --chart-surface:#fcfcfb; --chart-grid:#e1e0d9; --chart-axis:#c3c2b7;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .bulletin { background: var(--page-bg); color: var(--ink); font-family: var(--font-body); padding: 40px 20px 56px; display: flex; justify-content: center; }
+  .sheet { width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 32px; }
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; gap: 10px; align-items: center; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.2vw, 33px); margin: 2px 0 0; line-height: 1.25; text-wrap: balance; letter-spacing: -0.01em; }
+  .dek { font-size: 14px; color: var(--ink-2); max-width: 78ch; line-height: 1.55; margin: 4px 0 0; }
+  .source-line { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 6px; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .stat-tile { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); }
+  .stat-value { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 12.5px; color: var(--ink-2); }
+  .stat-sub b { color: var(--ink); }
+
+  section.block { display: flex; flex-direction: column; gap: 14px; }
+  .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--rule-strong); padding-bottom: 8px; }
+  .block-title { font-family: var(--font-display); font-size: 21px; margin: 0; }
+  .block-note { font-size: 12.5px; color: var(--ink-muted); max-width: 50ch; text-align: right; }
+
+  .chart-card { background: var(--chart-surface); border: 1px solid var(--rule-strong); padding: 20px 22px 14px; position: relative; }
+  .chart-card svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .axis-line { stroke: var(--chart-axis); stroke-width: 1; }
+  .cat-label { font-family: var(--font-body); font-size: 12px; fill: var(--ink-2); }
+  .bar-label { font-family: var(--font-mono); font-size: 11px; fill: var(--ink); }
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--ink); color: var(--page-bg);
+    font-family: var(--font-mono); font-size: 11px; padding: 7px 10px; border-radius: 2px; line-height: 1.6;
+    opacity: 0; transition: opacity 0.08s ease; white-space: nowrap; z-index: 5; max-width: 320px; text-wrap: balance;
+  }
+  .legend-note { font-size: 12px; color: var(--ink-muted); line-height: 1.55; max-width: 84ch; }
+  .legend-note b { color: var(--ink-2); }
+
+  .sector-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .sector-tile { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .sector-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .sector-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+  .sector-rank { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); }
+  .pli-badge { font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; text-transform: uppercase; }
+  .badge-strong { background: var(--accent-soft); color: var(--accent); }
+  .badge-partial { background: var(--warn-soft); color: var(--warn); }
+  .badge-gap { background: var(--alert-soft); color: var(--alert); }
+  .supplier-row { display: flex; justify-content: space-between; font-size: 12px; gap: 8px; }
+  .supplier-name { color: var(--ink-2); }
+  .supplier-val { font-family: var(--font-mono); color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .sector-note { font-size: 11.5px; color: var(--ink-muted); line-height: 1.5; }
+
+  .tier-grid { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .tier-row { background: var(--surface); padding: 16px 20px; display: grid; grid-template-columns: 130px 1fr; gap: 18px; }
+  .tier-label { font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; padding-top: 2px; }
+  .tier-body { display: flex; flex-direction: column; gap: 6px; }
+  .tier-head { font-size: 14px; font-weight: 600; }
+  .tier-text { font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+  .tier-text b { color: var(--ink); }
+
+  .prose { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; line-height: 1.65; color: var(--ink-2); max-width: 84ch; }
+  .prose p { margin: 0; }
+  .prose b { color: var(--ink); }
+
+  details.table-view { border-top: 1px solid var(--rule-strong); padding-top: 10px; }
+  details.table-view summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2); font-family: var(--font-mono); }
+  .data-table-wrap { overflow-x: auto; margin-top: 12px; }
+  table.data-table { border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11px; }
+  table.data-table th, table.data-table td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.data-table th:first-child, table.data-table td:first-child { text-align: left; }
+  table.data-table thead th { color: var(--ink-muted); font-weight: 500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; }
+
+  .errata {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--alert); background: var(--surface);
+    padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .errata-title { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--alert); }
+  .errata ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .errata li { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .errata li b { color: var(--ink); }
+
+  footer.colophon { text-align: center; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); padding-top: 8px; }
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th,table.data-table th,table.data-table td,table.data-table thead th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+
+<div class="bulletin">
+  <div class="sheet">
+    <div class="masthead">
+      <div class="eyebrow">MoSPI Dataset Analysis &#8212; Statistical Bulletin</div>
+      <h1>China supplies 8 of India's 12 fastest-growing high-value imports. PLI schemes cover the import value of only 2 of the 12 with a strong scheme match (3 more have partial coverage; 7 have none).</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+
+      <p class="dek">Maps each of the 12 fastest-growing/highest-value import chapters (from this repo's HSN historical-trends bulletin) to its actual top supplier countries via TRADESTAT, builds a cross-sector country-priority ranking, and checks exactly which Production Linked Incentive sub-schemes &#8212; including White Goods and Specialty Steel &#8212; actually reach these chapters.</p>
+      <div class="source-line">SOURCES: TRADESTAT "Commodity-wise, all countries" import report (tradestat.commerce.gov.in), 2-digit HS level, US$ Million, FY2025-26; PIB/PMO releases and industry reporting on PLI White Goods and PLI Specialty Steel, retrieved 18 Jul 2026</div>
+    </div>
+
+    <div class="stat-strip" id="statStrip"></div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">Cross-sector country priority ranking</h2>
+        <p class="block-note">Combined FY2025-26 import value across the 12 growth chapters where each country appears as a top-8 supplier.</p>
+      </div>
+      <div class="chart-card">
+        <svg id="rankChart" viewBox="0 0 1000 480" preserveAspectRatio="none"></svg>
+        <div class="tooltip" id="rankTooltip"></div>
+      </div>
+      <p class="legend-note"><b>China</b> leads by dollar value ($102.4bn combined) and ranks #1 or #2 in five of the 12 chapters (electrical machinery, machinery, organic chemicals, plastics, and near the top of several others) &#8212; <b>$102.4bn</b> combined, more than double any other country. <b>UAE ($56.6bn, 7 sectors)</b> and <b>Russia ($52.6bn, only 3 sectors but #1 in mineral fuels and fertilisers)</b> follow. <b>The USA is the most diversified major partner</b> &#8212; present in 9 of 12 sectors but never dominant in any single one, which is a structurally different (and lower-risk) kind of relationship than China's.</p>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">The 12 growth sectors: top suppliers and PLI coverage</h2>
+        <p class="block-note">Ranked by FY2025-26 import value, same order as the source chart.</p>
+      </div>
+      <div class="sector-grid" id="sectorGrid"></div>
+    </section>
+
+    <section class="block prose">
+      <h2 class="block-title" style="border:none; padding:0;">What PLI actually covers, in detail</h2>
+      <p><b>PLI White Goods (Air Conditioners &amp; LED Lights)</b>, launched FY2021-22 through FY2028-29: all 85 companies now selected across four rounds, committing <b>&#8377;11,198 crore</b> against a cumulative production target of <b>&#8377;1,90,050 crore</b>, with a 4&#8211;6% incentive on incremental sales. Its actual target list is precise: high-value core inputs &#8212; <b>compressors, copper tubes, aluminium foils</b> &#8212; plus lower-value intermediates like PCB assemblies, BLDC motors, service valves and cross-flow fans. That matters for this bulletin's mapping because AC <b>compressors are classified under HS84</b> (machinery), not HS85 &#8212; so White Goods PLI is one of the few concrete levers actually touching this repo's #4 growth chapter (machinery &amp; mechanical appliances, +68.8%, 39.8% China-sourced), even though the scheme's popular name suggests it belongs entirely under electronics.</p>
+      <p><b>PLI Specialty Steel</b>, the most substantial single lever found here: PLI 1.0/1.1 committed <b>&#8377;44,106 crore</b>; a further round, PLI 1.2, launched November 2025 covering 22 product sub-categories across four categories (strategic-sector steel grades, two commercial grades, coated/wire products), with MoUs signed <b>9 February 2026</b> for 85 projects across 55 companies committing <b>&#8377;11,887 crore</b> and 8.7 million tonnes of new capacity. The stated target is 42 million tonnes of specialty steel production by FY2030-31, explicitly "to reduce imports significantly." This directly targets HS72 (iron &amp; steel, +25.2% growth, Korea/Indonesia/Japan/China as the top current suppliers) &#8212; a stronger, more recent lever than this repo's earlier "Partial" rating reflected.</p>
+      <p>Everything else in the 12-chapter list gets thinner coverage: electrical machinery (HS85) has the strongest combination &#8212; Semiconductor Mission 2.0 plus the PLI electronics/mobile/telecom/IT-hardware tracks, and a partial overlap with White Goods' electronics-adjacent components and the ACC battery PLI. Organic chemicals (HS29) and optical/medical instruments (HS90) get partial coverage through the PLI bulk-drugs/API and medical-devices tracks respectively, covering only a subset of each chapter. <b>Mineral fuels, gems &amp; jewellery, plastics, edible oils, fertilisers, inorganic chemicals, and aircraft &#8212; seven of the twelve chapters, and the majority of the fastest-growing ones by count &#8212; have no PLI sub-scheme at all.</b> Fertilisers and edible oils have separate, non-PLI mechanisms instead (NIPU-2026 and NMEO-Oilseeds respectively, covered in this repo's companion bulletins); the rest have none.</p>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">A three-tier priority framework for trade relationships</h2>
+        <p class="block-note">Based on breadth (how many growth sectors), depth (rank within those sectors), and dollar exposure.</p>
+      </div>
+      <div class="tier-grid" id="tierGrid"></div>
+    </section>
+
+    <details class="table-view">
+      <summary>View all 12 sectors &#215; top 8 supplier countries</summary>
+      <div class="data-table-wrap"><table class="data-table" id="sectorTable"></table></div>
+    </details>
+
+    <div class="errata">
+      <div class="errata-title">Errata &amp; methodology caveats</div>
+      <ul>
+        <li><b>"Top supplier" figures are import-side only</b> &#8212; this bulletin doesn't net out India's own exports to the same countries in the same chapters (that bilateral netting is done separately in this repo's country-deficit bulletin). A country can be a dominant chapter-level supplier and still be a net-surplus partner overall if it buys enough elsewhere.</li>
+        <li><b>Hong Kong and Singapore figures likely include re-exported goods</b> whose true country of origin is elsewhere (plausibly mainland China, in Hong Kong's case, and regional refined-fuel/electronics trade, in Singapore's) &#8212; TRADESTAT records the last shipping partner, not necessarily first origin. Treat their rankings as directionally real but not a clean origin attribution.</li>
+        <li><b>The country-priority ranking sums raw import value across a country's top-8 appearances</b> across 12 sectors &#8212; it is a simple, transparent scoring choice (breadth &#215; depth &#215; value), not an official risk index. A country appearing in fewer, larger sectors (like Russia, 3 sectors) can rank close to a country in many small ones; the tier framework below is a qualitative synthesis of this data, not a mechanical formula.</li>
+        <li><b>PLI figures are as reported through early-to-mid 2026</b> (White Goods: all 85 companies selected as of the fourth round; Specialty Steel PLI 1.2 MoUs signed 9 Feb 2026) &#8212; both schemes have multi-year timelines running to FY2028-29/FY2026-27 respectively, so current investment/production figures are commitments and interim milestones, not final outcomes.</li>
+        <li>Underlying data: <a href="https://raw.githubusercontent.com/herrrickshaw/mospi-dataset-analysis-public/main/data/sector_country_priority_and_pli_coverage_2026-07-18.json">data/sector_country_priority_and_pli_coverage_2026-07-18.json</a>.</li>
+      </ul>
+    </div>
+
+    <footer class="colophon">herrrickshaw/mospi-dataset-analysis &#8212; derived from TRADESTAT country&#215;commodity data and public PLI reporting; not an official government coverage assessment</footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var sectors = [{"hs": "27", "name": "Mineral fuels & oils", "pli": "gap", "note": "No PLI \u2014 energy commodity, not a manufactured product.", "top_countries": [{"country": "Russia", "fy2025_26": 47824.9, "share_pct": 23.5, "growth_pct": "-15.91"}, {"country": "UAE", "fy2025_26": 24272.88, "share_pct": 11.9, "growth_pct": "-1.89"}, {"country": "Iraq", "fy2025_26": 24146.03, "share_pct": 11.9, "growth_pct": "-15.85"}, {"country": "Saudi Arabia", "fy2025_26": 21788.12, "share_pct": 10.7, "growth_pct": "-5.27"}, {"country": "USA", "fy2025_26": 17315.21, "share_pct": 8.5, "growth_pct": "20.69"}, {"country": "Qatar", "fy2025_26": 10736.7, "share_pct": 5.3, "growth_pct": "-3.14"}, {"country": "Indonesia", "fy2025_26": 6604.64, "share_pct": 3.2, "growth_pct": "-22.68"}, {"country": "Kuwait", "fy2025_26": 6555.77, "share_pct": 3.2, "growth_pct": "2.52"}]}, {"hs": "71", "name": "Pearls, gems & jewellery", "pli": "gap", "note": "No PLI \u2014 trade-facilitation (duty-free import-for-re-export) sector instead.", "top_countries": [{"country": "UAE", "fy2025_26": 24825.69, "share_pct": 22.7, "growth_pct": "-8.34"}, {"country": "Switzerland", "fy2025_26": 20780.88, "share_pct": 19.0, "growth_pct": "12.91"}, {"country": "Hong Kong", "fy2025_26": 10006.25, "share_pct": 9.1, "growth_pct": "48.65"}, {"country": "Peru", "fy2025_26": 7993.21, "share_pct": 7.3, "growth_pct": "79.38"}, {"country": "USA", "fy2025_26": 6848.83, "share_pct": 6.3, "growth_pct": "29.45"}, {"country": "Ghana", "fy2025_26": 6026.43, "share_pct": 5.5, "growth_pct": "444.44"}, {"country": "United Kingdom", "fy2025_26": 5469.68, "share_pct": 5.0, "growth_pct": "129.57"}, {"country": "Thailand", "fy2025_26": 4367.11, "share_pct": 4.0, "growth_pct": "17.41"}]}, {"hs": "85", "name": "Electrical machinery", "pli": "strong", "note": "ISM 2.0 (semiconductors) + PLI electronics/mobile/telecom/IT-hardware tracks; partial overlap with White Goods and ACC battery PLI.", "top_countries": [{"country": "China", "fy2025_26": 46367.46, "share_pct": 44.2, "growth_pct": "21.93"}, {"country": "Hong Kong", "fy2025_26": 10492.8, "share_pct": 10.0, "growth_pct": "12.63"}, {"country": "Singapore", "fy2025_26": 6229.94, "share_pct": 5.9, "growth_pct": "15.46"}, {"country": "South Korea", "fy2025_26": 5717.28, "share_pct": 5.5, "growth_pct": "11.03"}, {"country": "USA", "fy2025_26": 5555.02, "share_pct": 5.3, "growth_pct": "64.22"}, {"country": "Ireland", "fy2025_26": 4992.17, "share_pct": 4.8, "growth_pct": "11.17"}, {"country": "Vietnam", "fy2025_26": 4885.8, "share_pct": 4.7, "growth_pct": "8.65"}, {"country": "Taiwan", "fy2025_26": 4339.87, "share_pct": 4.1, "growth_pct": "-20.49"}]}, {"hs": "84", "name": "Machinery, mechanical appliances", "pli": "partial", "note": "White Goods PLI's core component target \u2014 AC compressors \u2014 is classified under this chapter, not HS85; no broader capital-goods PLI.", "top_countries": [{"country": "China", "fy2025_26": 29450.97, "share_pct": 39.8, "growth_pct": "13.60"}, {"country": "Germany", "fy2025_26": 5547.74, "share_pct": 7.5, "growth_pct": "9.06"}, {"country": "USA", "fy2025_26": 4683.17, "share_pct": 6.3, "growth_pct": "5.79"}, {"country": "Singapore", "fy2025_26": 4280.95, "share_pct": 5.8, "growth_pct": "29.19"}, {"country": "Japan", "fy2025_26": 3892.48, "share_pct": 5.3, "growth_pct": "17.41"}, {"country": "Italy", "fy2025_26": 2455.35, "share_pct": 3.3, "growth_pct": "2.42"}, {"country": "South Korea", "fy2025_26": 2381.65, "share_pct": 3.2, "growth_pct": "3.73"}, {"country": "Malaysia", "fy2025_26": 2092.45, "share_pct": 2.8, "growth_pct": "-0.70"}]}, {"hs": "29", "name": "Organic chemicals", "pli": "partial", "note": "PLI bulk-drugs/API track covers the pharma-intermediate subset only, not broad petrochemical imports.", "top_countries": [{"country": "China", "fy2025_26": 11521.52, "share_pct": 45.3, "growth_pct": "0.40"}, {"country": "USA", "fy2025_26": 1756.64, "share_pct": 6.9, "growth_pct": "28.06"}, {"country": "Saudi Arabia", "fy2025_26": 1277.21, "share_pct": 5.0, "growth_pct": "-5.00"}, {"country": "South Korea", "fy2025_26": 1205.96, "share_pct": 4.7, "growth_pct": "-9.76"}, {"country": "Singapore", "fy2025_26": 1159.11, "share_pct": 4.6, "growth_pct": "-11.59"}, {"country": "Japan", "fy2025_26": 939.03, "share_pct": 3.7, "growth_pct": "-11.29"}, {"country": "Thailand", "fy2025_26": 924.29, "share_pct": 3.6, "growth_pct": "-23.18"}, {"country": "Taiwan", "fy2025_26": 860.67, "share_pct": 3.4, "growth_pct": "-29.42"}]}, {"hs": "39", "name": "Plastics", "pli": "gap", "note": "No PLI identified.", "top_countries": [{"country": "China", "fy2025_26": 6711.48, "share_pct": 30.2, "growth_pct": "5.94"}, {"country": "South Korea", "fy2025_26": 2121.3, "share_pct": 9.5, "growth_pct": "-7.42"}, {"country": "Singapore", "fy2025_26": 1496.31, "share_pct": 6.7, "growth_pct": "-2.19"}, {"country": "Thailand", "fy2025_26": 1492.84, "share_pct": 6.7, "growth_pct": "12.44"}, {"country": "USA", "fy2025_26": 1438.53, "share_pct": 6.5, "growth_pct": "-6.03"}, {"country": "Japan", "fy2025_26": 1199.79, "share_pct": 5.4, "growth_pct": "4.50"}, {"country": "UAE", "fy2025_26": 1195.78, "share_pct": 5.4, "growth_pct": "-10.03"}, {"country": "Saudi Arabia", "fy2025_26": 1120.78, "share_pct": 5.0, "growth_pct": "7.29"}]}, {"hs": "15", "name": "Animal/veg fats & oils", "pli": "gap", "note": "No PLI \u2014 NMEO-Oilseeds/NMEO-OP are separate agri-mission mechanisms, not PLI.", "top_countries": [{"country": "Indonesia", "fy2025_26": 3947.2, "share_pct": 19.9, "growth_pct": "-4.14"}, {"country": "Argentina", "fy2025_26": 3665.83, "share_pct": 18.5, "growth_pct": "24.35"}, {"country": "Malaysia", "fy2025_26": 3193.87, "share_pct": 16.1, "growth_pct": "16.13"}, {"country": "Russia", "fy2025_26": 1675.72, "share_pct": 8.5, "growth_pct": "-30.02"}, {"country": "Thailand", "fy2025_26": 1475.26, "share_pct": 7.5, "growth_pct": "99.05"}, {"country": "Nepal", "fy2025_26": 1071.95, "share_pct": 5.4, "growth_pct": "132.97"}, {"country": "Brazil", "fy2025_26": 1057.44, "share_pct": 5.3, "growth_pct": "35.06"}, {"country": "Ukraine", "fy2025_26": 787.35, "share_pct": 4.0, "growth_pct": "-7.62"}]}, {"hs": "72", "name": "Iron & steel", "pli": "strong", "note": "PLI Specialty Steel 1.0/1.1 (\u20b944,106cr) + 1.2 (\u20b911,887cr, MoUs signed Feb 2026), targeting 42 million tonnes by FY2026-27 explicitly to cut imports.", "top_countries": [{"country": "South Korea", "fy2025_26": 2589.6, "share_pct": 16.4, "growth_pct": "0.04"}, {"country": "Indonesia", "fy2025_26": 1666.96, "share_pct": 10.6, "growth_pct": "-14.26"}, {"country": "Japan", "fy2025_26": 1638.49, "share_pct": 10.4, "growth_pct": "-15.90"}, {"country": "China", "fy2025_26": 1571.0, "share_pct": 10.0, "growth_pct": "-34.07"}, {"country": "Vietnam", "fy2025_26": 878.68, "share_pct": 5.6, "growth_pct": "12.14"}, {"country": "USA", "fy2025_26": 676.87, "share_pct": 4.3, "growth_pct": "-19.26"}, {"country": "UAE", "fy2025_26": 646.71, "share_pct": 4.1, "growth_pct": "53.72"}, {"country": "Singapore", "fy2025_26": 486.02, "share_pct": 3.1, "growth_pct": "1.93"}]}, {"hs": "90", "name": "Optical/medical instruments", "pli": "partial", "note": "PLI Medical Devices covers a subset; broader optical/measuring instruments are not targeted.", "top_countries": [{"country": "China", "fy2025_26": 2752.64, "share_pct": 17.9, "growth_pct": "7.46"}, {"country": "USA", "fy2025_26": 2261.43, "share_pct": 14.7, "growth_pct": "11.58"}, {"country": "Germany", "fy2025_26": 1962.1, "share_pct": 12.7, "growth_pct": "15.98"}, {"country": "Singapore", "fy2025_26": 1295.94, "share_pct": 8.4, "growth_pct": "1.87"}, {"country": "Japan", "fy2025_26": 1197.77, "share_pct": 7.8, "growth_pct": "22.55"}, {"country": "Netherlands", "fy2025_26": 636.9, "share_pct": 4.1, "growth_pct": "23.19"}, {"country": "South Korea", "fy2025_26": 566.51, "share_pct": 3.7, "growth_pct": "10.27"}, {"country": "Hong Kong", "fy2025_26": 471.49, "share_pct": 3.1, "growth_pct": "23.99"}]}, {"hs": "31", "name": "Fertilisers", "pli": "gap", "note": "No PLI \u2014 NIPU-2026 (urea capacity) is a separate investment-policy mechanism, not PLI.", "top_countries": [{"country": "Russia", "fy2025_26": 3117.9, "share_pct": 21.3, "growth_pct": "69.46"}, {"country": "Saudi Arabia", "fy2025_26": 2397.39, "share_pct": 16.3, "growth_pct": "62.30"}, {"country": "China", "fy2025_26": 2336.7, "share_pct": 15.9, "growth_pct": "166.80"}, {"country": "Morocco", "fy2025_26": 1945.58, "share_pct": 13.3, "growth_pct": "141.16"}, {"country": "Oman", "fy2025_26": 843.67, "share_pct": 5.8, "growth_pct": "-21.10"}, {"country": "Qatar", "fy2025_26": 428.76, "share_pct": 2.9, "growth_pct": "105.74"}, {"country": "Indonesia", "fy2025_26": 377.8, "share_pct": 2.6, "growth_pct": "480.26"}, {"country": "UAE", "fy2025_26": 355.99, "share_pct": 2.4, "growth_pct": "46.21"}]}, {"hs": "28", "name": "Inorganic chemicals", "pli": "gap", "note": "No PLI identified; adjacent to fertiliser raw materials (phosphoric/sulphuric acid) covered under NBS capacity expansion.", "top_countries": [{"country": "UAE", "fy2025_26": 3359.27, "share_pct": 23.6, "growth_pct": "230.13"}, {"country": "Japan", "fy2025_26": 2188.78, "share_pct": 15.4, "growth_pct": "-13.65"}, {"country": "China", "fy2025_26": 1651.2, "share_pct": 11.6, "growth_pct": "29.56"}, {"country": "Jordan", "fy2025_26": 843.38, "share_pct": 5.9, "growth_pct": "14.97"}, {"country": "Indonesia", "fy2025_26": 737.18, "share_pct": 5.2, "growth_pct": "-2.64"}, {"country": "Morocco", "fy2025_26": 539.82, "share_pct": 3.8, "growth_pct": "43.74"}, {"country": "Senegal", "fy2025_26": 525.52, "share_pct": 3.7, "growth_pct": "5.83"}, {"country": "Oman", "fy2025_26": 440.73, "share_pct": 3.1, "growth_pct": "8.09"}]}, {"hs": "88", "name": "Aircraft & spacecraft", "pli": "gap", "note": "No PLI \u2014 no aerospace-manufacturing incentive in the 14 PLI sectors.", "top_countries": [{"country": "France", "fy2025_26": 3891.44, "share_pct": 28.2, "growth_pct": "42.93"}, {"country": "Germany", "fy2025_26": 2692.52, "share_pct": 19.5, "growth_pct": "-20.24"}, {"country": "USA", "fy2025_26": 1909.8, "share_pct": 13.9, "growth_pct": "14.74"}, {"country": "UAE", "fy2025_26": 1898.72, "share_pct": 13.8, "growth_pct": "-23.31"}, {"country": "Saudi Arabia", "fy2025_26": 702.49, "share_pct": 5.1, "growth_pct": "-16.39"}, {"country": "Seychelles", "fy2025_26": 339.07, "share_pct": 2.5, "growth_pct": "132.26"}, {"country": "Canada", "fy2025_26": 321.91, "share_pct": 2.3, "growth_pct": "98.09"}, {"country": "Kuwait", "fy2025_26": 290.95, "share_pct": 2.1, "growth_pct": "-45.86"}]}];
+  var ranking = [{"country_display": "China", "total_exposure_usd_m": 102363.0, "n_sectors": 8, "top2_count": 5, "sectors": [["85", "Electrical machinery", 46367.46, 44.2, 1], ["84", "Machinery, mechanical appliances", 29450.97, 39.8, 1], ["29", "Organic chemicals", 11521.52, 45.3, 1], ["39", "Plastics", 6711.48, 30.2, 1], ["72", "Iron & steel", 1571.0, 10.0, 4], ["90", "Optical/medical instruments", 2752.64, 17.9, 1], ["31", "Fertilisers", 2336.7, 15.9, 3], ["28", "Inorganic chemicals", 1651.2, 11.6, 3]]}, {"country_display": "UAE", "total_exposure_usd_m": 56555.0, "n_sectors": 7, "top2_count": 3, "sectors": [["27", "Mineral fuels & oils", 24272.88, 11.9, 2], ["71", "Pearls, gems & jewellery", 24825.69, 22.7, 1], ["39", "Plastics", 1195.78, 5.4, 7], ["72", "Iron & steel", 646.71, 4.1, 7], ["31", "Fertilisers", 355.99, 2.4, 8], ["28", "Inorganic chemicals", 3359.27, 23.6, 1], ["88", "Aircraft & spacecraft", 1898.72, 13.8, 4]]}, {"country_display": "Russia", "total_exposure_usd_m": 52618.5, "n_sectors": 3, "top2_count": 2, "sectors": [["27", "Mineral fuels & oils", 47824.9, 23.5, 1], ["15", "Animal/veg fats & oils", 1675.72, 8.5, 4], ["31", "Fertilisers", 3117.9, 21.3, 1]]}, {"country_display": "USA", "total_exposure_usd_m": 42445.5, "n_sectors": 9, "top2_count": 2, "sectors": [["27", "Mineral fuels & oils", 17315.21, 8.5, 5], ["71", "Pearls, gems & jewellery", 6848.83, 6.3, 5], ["85", "Electrical machinery", 5555.02, 5.3, 5], ["84", "Machinery, mechanical appliances", 4683.17, 6.3, 3], ["29", "Organic chemicals", 1756.64, 6.9, 2], ["39", "Plastics", 1438.53, 6.5, 5], ["72", "Iron & steel", 676.87, 4.3, 6], ["90", "Optical/medical instruments", 2261.43, 14.7, 2], ["88", "Aircraft & spacecraft", 1909.8, 13.9, 3]]}, {"country_display": "Saudi Arabia", "total_exposure_usd_m": 27286.0, "n_sectors": 5, "top2_count": 1, "sectors": [["27", "Mineral fuels & oils", 21788.12, 10.7, 4], ["29", "Organic chemicals", 1277.21, 5.0, 3], ["39", "Plastics", 1120.78, 5.0, 8], ["31", "Fertilisers", 2397.39, 16.3, 2], ["88", "Aircraft & spacecraft", 702.49, 5.1, 5]]}, {"country_display": "Iraq", "total_exposure_usd_m": 24146.0, "n_sectors": 1, "top2_count": 0, "sectors": [["27", "Mineral fuels & oils", 24146.03, 11.9, 3]]}, {"country_display": "Hong Kong", "total_exposure_usd_m": 20970.5, "n_sectors": 3, "top2_count": 1, "sectors": [["71", "Pearls, gems & jewellery", 10006.25, 9.1, 3], ["85", "Electrical machinery", 10492.8, 10.0, 2], ["90", "Optical/medical instruments", 471.49, 3.1, 8]]}, {"country_display": "Switzerland", "total_exposure_usd_m": 20780.9, "n_sectors": 1, "top2_count": 1, "sectors": [["71", "Pearls, gems & jewellery", 20780.88, 19.0, 2]]}, {"country_display": "Singapore", "total_exposure_usd_m": 14948.3, "n_sectors": 6, "top2_count": 0, "sectors": [["85", "Electrical machinery", 6229.94, 5.9, 3], ["84", "Machinery, mechanical appliances", 4280.95, 5.8, 4], ["29", "Organic chemicals", 1159.11, 4.6, 5], ["39", "Plastics", 1496.31, 6.7, 3], ["72", "Iron & steel", 486.02, 3.1, 8], ["90", "Optical/medical instruments", 1295.94, 8.4, 4]]}, {"country_display": "South Korea", "total_exposure_usd_m": 14582.3, "n_sectors": 6, "top2_count": 2, "sectors": [["85", "Electrical machinery", 5717.28, 5.5, 4], ["84", "Machinery, mechanical appliances", 2381.65, 3.2, 7], ["29", "Organic chemicals", 1205.96, 4.7, 4], ["39", "Plastics", 2121.3, 9.5, 2], ["72", "Iron & steel", 2589.6, 16.4, 1], ["90", "Optical/medical instruments", 566.51, 3.7, 7]]}, {"country_display": "Indonesia", "total_exposure_usd_m": 13333.8, "n_sectors": 5, "top2_count": 2, "sectors": [["27", "Mineral fuels & oils", 6604.64, 3.2, 7], ["15", "Animal/veg fats & oils", 3947.2, 19.9, 1], ["72", "Iron & steel", 1666.96, 10.6, 2], ["31", "Fertilisers", 377.8, 2.6, 7], ["28", "Inorganic chemicals", 737.18, 5.2, 5]]}, {"country_display": "Qatar", "total_exposure_usd_m": 11165.5, "n_sectors": 2, "top2_count": 0, "sectors": [["27", "Mineral fuels & oils", 10736.7, 5.3, 6], ["31", "Fertilisers", 428.76, 2.9, 6]]}, {"country_display": "Japan", "total_exposure_usd_m": 11056.3, "n_sectors": 6, "top2_count": 1, "sectors": [["84", "Machinery, mechanical appliances", 3892.48, 5.3, 5], ["29", "Organic chemicals", 939.03, 3.7, 6], ["39", "Plastics", 1199.79, 5.4, 6], ["72", "Iron & steel", 1638.49, 10.4, 3], ["90", "Optical/medical instruments", 1197.77, 7.8, 5], ["28", "Inorganic chemicals", 2188.78, 15.4, 2]]}, {"country_display": "Germany", "total_exposure_usd_m": 10202.4, "n_sectors": 3, "top2_count": 2, "sectors": [["84", "Machinery, mechanical appliances", 5547.74, 7.5, 2], ["90", "Optical/medical instruments", 1962.1, 12.7, 3], ["88", "Aircraft & spacecraft", 2692.52, 19.5, 2]]}, {"country_display": "Thailand", "total_exposure_usd_m": 8259.5, "n_sectors": 4, "top2_count": 0, "sectors": [["71", "Pearls, gems & jewellery", 4367.11, 4.0, 8], ["29", "Organic chemicals", 924.29, 3.6, 7], ["39", "Plastics", 1492.84, 6.7, 4], ["15", "Animal/veg fats & oils", 1475.26, 7.5, 5]]}, {"country_display": "Peru", "total_exposure_usd_m": 7993.2, "n_sectors": 1, "top2_count": 0, "sectors": [["71", "Pearls, gems & jewellery", 7993.21, 7.3, 4]]}, {"country_display": "Kuwait", "total_exposure_usd_m": 6846.7, "n_sectors": 2, "top2_count": 0, "sectors": [["27", "Mineral fuels & oils", 6555.77, 3.2, 8], ["88", "Aircraft & spacecraft", 290.95, 2.1, 8]]}, {"country_display": "Ghana", "total_exposure_usd_m": 6026.4, "n_sectors": 1, "top2_count": 0, "sectors": [["71", "Pearls, gems & jewellery", 6026.43, 5.5, 6]]}, {"country_display": "Vietnam", "total_exposure_usd_m": 5764.5, "n_sectors": 2, "top2_count": 0, "sectors": [["85", "Electrical machinery", 4885.8, 4.7, 7], ["72", "Iron & steel", 878.68, 5.6, 5]]}, {"country_display": "United Kingdom", "total_exposure_usd_m": 5469.7, "n_sectors": 1, "top2_count": 0, "sectors": [["71", "Pearls, gems & jewellery", 5469.68, 5.0, 7]]}];
+
+  var svgns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs) {
+    var e = document.createElementNS(svgns, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function fmtM(v) { return (v < 0 ? "-$" : "$") + Math.abs(v / 1000).toFixed(1) + "bn"; }
+
+  // ---- Stat strip ----
+  var statStrip = document.getElementById("statStrip");
+  var stats = [
+    { label: "Broadest, largest supplier", value: "China", sub: "<b>$102.4bn</b> across 8 of 12 growth sectors, #1/#2 rank in 5" },
+    { label: "Sectors with no PLI at all", value: "7 of 12", sub: "Mineral fuels, gems, plastics, edible oils, fertilisers, inorganic chemicals, aircraft" },
+    { label: "White Goods PLI committed", value: "\u20B911,198cr", sub: "85 companies; targets AC compressors (HS84), not just HS85" },
+    { label: "Specialty Steel PLI (1.0-1.2)", value: "\u20B955,993cr", sub: "42 million tonnes production target by FY2026-27" }
+  ];
+  stats.forEach(function (s) {
+    var elx = document.createElement("div");
+    elx.className = "stat-tile";
+    elx.innerHTML = '<div class="stat-label">' + s.label + '</div><div class="stat-value">' + s.value + '</div><div class="stat-sub">' + s.sub + '</div>';
+    statStrip.appendChild(elx);
+  });
+
+  // ---- Country priority bar chart ----
+  var top = ranking.slice(0, 14);
+  var svg = document.getElementById("rankChart");
+  var tooltip = document.getElementById("rankTooltip");
+  var card = svg.parentElement;
+  var CW = 1000, CH = 480, padL = 150, padR = 90, padT = 10, padB = 10;
+  var plotW = CW - padL - padR;
+  var rowH = (CH - padT - padB) / top.length;
+  var maxVal = Math.max.apply(null, top.map(function (r) { return r.total_exposure_usd_m; }));
+  var scale = plotW / maxVal;
+
+  top.forEach(function (r, i) {
+    var y0 = padT + i * rowH;
+    var barH = rowH * 0.62;
+    var barW = r.total_exposure_usd_m * scale;
+    var rect = el("rect", { x: padL, y: y0 + (rowH - barH) / 2, width: Math.max(barW, 1), height: barH, fill: "var(--data-line)" });
+    svg.appendChild(rect);
+
+    var catLbl = el("text", { x: padL - 12, y: y0 + rowH / 2 + 4, class: "cat-label", "text-anchor": "end" });
+    catLbl.textContent = r.country_display + " (" + r.n_sectors + " sectors)";
+    svg.appendChild(catLbl);
+
+    var valLbl = el("text", { x: padL + barW + 8, y: y0 + rowH / 2 + 4, class: "bar-label", "text-anchor": "start" });
+    valLbl.textContent = fmtM(r.total_exposure_usd_m);
+    svg.appendChild(valLbl);
+
+    rect.addEventListener("mousemove", function () {
+      var cardRect = card.getBoundingClientRect();
+      var svgRect = svg.getBoundingClientRect();
+      var scaleX = svgRect.width / CW, scaleY = svgRect.height / CH;
+      var px = (svgRect.left - cardRect.left) + (padL + barW) * scaleX;
+      var py = (svgRect.top - cardRect.top) + (y0 + rowH / 2) * scaleY;
+      tooltip.style.left = px + "px";
+      tooltip.style.top = (py - 10) + "px";
+      tooltip.style.transform = "translate(0, -100%)";
+      tooltip.style.opacity = 1;
+      var sectorList = r.sectors.map(function (s) { return "HS" + s[0] + " " + s[1] + ": " + fmtM(s[2]) + " (#" + s[4] + ")"; }).join("<br>");
+      tooltip.innerHTML = "<b>" + r.country_display + "</b><br>" + sectorList;
+    });
+    rect.addEventListener("mouseleave", function () { tooltip.style.opacity = 0; });
+  });
+
+  // ---- Sector grid ----
+  var sectorGrid = document.getElementById("sectorGrid");
+  var badgeClass = { strong: "badge-strong", partial: "badge-partial", gap: "badge-gap" };
+  var badgeLabel = { strong: "Strong PLI", partial: "Partial PLI", gap: "No PLI" };
+  sectors.forEach(function (s, i) {
+    var tile = document.createElement("div");
+    tile.className = "sector-tile";
+    var supplierRows = s.top_countries.slice(0, 4).map(function (c) {
+      return '<div class="supplier-row"><span class="supplier-name">' + c.country + '</span><span class="supplier-val">' + fmtM(c.fy2025_26) + ' (' + c.share_pct + '%)</span></div>';
+    }).join("");
+    tile.innerHTML =
+      '<div class="sector-top"><div><div class="sector-rank">#' + (i + 1) + ' &middot; HS' + s.hs + '</div><div class="sector-name">' + s.name + '</div></div>' +
+      '<span class="pli-badge ' + badgeClass[s.pli] + '">' + badgeLabel[s.pli] + '</span></div>' +
+      supplierRows +
+      '<div class="sector-note">' + s.note + '</div>';
+    sectorGrid.appendChild(tile);
+  });
+
+  // ---- Tier framework ----
+  var tierGrid = document.getElementById("tierGrid");
+  var tiers = [
+    { label: "Tier 1 &#8212; Critical", head: "China, UAE", text: "The two broadest cross-sector suppliers (8 and 7 of the 12 growth chapters respectively). China's $102.4bn spans industrial inputs (electronics, machinery, chemicals, plastics) that feed India's own manufacturing and export lines; UAE's $56.6bn spans energy, gold/gems, and inorganic chemicals. Both warrant sustained, high-bandwidth engagement -- not because the relationship is adversarial, but because a disruption in either would touch the widest range of India's growth-sector imports at once." },
+    { label: "Tier 1 &#8212; Critical", head: "Russia, Saudi Arabia, Iraq, Qatar", text: "The energy-and-fertiliser cluster: Russia ($52.6bn, #1 in mineral fuels and fertilisers), Saudi Arabia ($27.3bn, #4 in fuels and #2 in fertilisers), Iraq ($24.1bn, entirely mineral fuels, the most single-sector-concentrated relationship on this list), and Qatar (LNG plus a fertiliser/ammonia link). Together these four countries anchor both of India's fastest-growing and largest-value import chapters." },
+    { label: "Tier 2 &#8212; Strategic", head: "USA, Singapore, Korea, Japan, Germany", text: "The advanced-manufacturing and diversification partners. The USA (9 of 12 sectors, but never dominant in any one) is the most structurally balanced major relationship on this list and the one country in overall bilateral surplus -- a partner to deepen and diversify further, not a dependency to manage. Singapore, Korea, Japan and Germany supply moderate, diversified shares across electronics, machinery, chemicals, plastics and instruments -- useful counterweights to Chinese concentration if India can shift sourcing at the margin." },
+    { label: "Tier 3 &#8212; Watch", head: "Indonesia &amp; Malaysia, Switzerland, Morocco", text: "Narrower but high-stakes single-commodity relationships: Indonesia and Malaysia together dominate edible-oil imports (this repo's 3rd-fastest-growing chapter); Switzerland is almost entirely gold bullion; Morocco is a growing fertiliser/phosphate-rock supplier feeding directly into the same NIPU-2026/rock-phosphate story covered in this repo's companion bulletins." }
+  ];
+  tiers.forEach(function (t) {
+    var row = document.createElement("div");
+    row.className = "tier-row";
+    row.innerHTML = '<div class="tier-label">' + t.label + '</div><div class="tier-body"><div class="tier-head">' + t.head + '</div><div class="tier-text">' + t.text + '</div></div>';
+    tierGrid.appendChild(row);
+  });
+
+  // ---- Sector table ----
+  var table = document.getElementById("sectorTable");
+  var thead = "<thead><tr><th>HS Chapter</th><th>Rank</th><th>Supplier Country</th><th>FY2025-26 (US$M)</th><th>Share %</th><th>Growth %</th></tr></thead>";
+  var trows = [];
+  sectors.forEach(function (s) {
+    s.top_countries.forEach(function (c, i) {
+      trows.push("<tr><td>HS" + s.hs + " " + s.name + "</td><td>#" + (i + 1) + "</td><td>" + c.country + "</td><td>" + c.fy2025_26.toLocaleString() + "</td><td>" + c.share_pct + "</td><td>" + c.growth_pct + "</td></tr>");
+    });
+  });
+  table.innerHTML = thead + "<tbody>" + trows.join("") + "</tbody>";
+})();
+</script>
+
+<div class="disc-override" style="margin-top:24px;padding:14px 16px;border-top:1px solid #ddd;font-size:.82em;color:#444;background:#f8f8f6;line-height:1.5"><strong>Disclaimer:</strong> This analysis is based on publicly available government and market data cited in the article above. It is provided for informational and research purposes only and does not constitute investment, legal, or policy advice. Figures may be revised as source data is updated &#8212; verify against the original source before relying on them for decisions.<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div></div>

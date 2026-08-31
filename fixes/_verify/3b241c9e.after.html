@@ -1,0 +1,1041 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+/* === Design tokens (Open Color neutrals + Utopia-style fluid type + spacing scale) === */
+:root{
+  --oc-gray-0:#f8f9fa;--oc-gray-1:#f1f3f5;--oc-gray-2:#e9ecef;--oc-gray-3:#dee2e6;--oc-gray-4:#ced4da;
+  --oc-gray-5:#adb5bd;--oc-gray-6:#868e96;--oc-gray-7:#495057;--oc-gray-8:#343a40;--oc-gray-9:#212529;
+  --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--sp-7:3rem;
+  --radius:12px;--radius-sm:8px;
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);--shadow-2:0 2px 8px rgba(0,0,0,.06);
+  --step--1:clamp(.78rem,.75rem + .15vw,.85rem);
+  --step-0:clamp(.92rem,.88rem + .2vw,1rem);
+  --step-1:clamp(1.05rem,1rem + .3vw,1.2rem);
+  --step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem);
+  --surface:#fff;--surface-alt:var(--oc-gray-0);--border:var(--oc-gray-3);--text:#000;--text-mut:#333;
+}
+/* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+
+
+  :root{
+    --paper:#f7f5ef; --panel:#fffefb; --ink:#1b2019; --ink2:#55605108;
+    --ink-2:#54604f; --ink-3:#8a917f; --hair:#e2ddd0; --line:#cfc9ba;
+    --green:#2f7a4f; --green-d:#1f5637; --gold:#b7791f; --gold-soft:#f3ead6;
+    --blue:#3b6ea5; --green-soft:#e6efe7; --band:#efece2;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"]{
+    --paper:#12140f; --panel:#191c15; --ink:#eef0e8; --ink-2:#aab19c; --ink-3:#79806d;
+    --hair:#2a2e22; --line:#343829; --green:#4ea877; --green-d:#7cc79c; --gold:#d6a24a;
+    --gold-soft:#241f12; --blue:#6aa0d6; --green-soft:#17251b; --band:#1b1e16;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--band);color:var(--ink);
+    font:16px/1.55 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  .mono{font-family:"SF Mono",Menlo,Consolas,monospace}
+  .deck{max-width:1000px;margin:0 auto;padding:22px 16px 80px}
+  .slide{background:var(--paper);border:1px solid var(--hair);border-radius:14px;
+    padding:44px 48px;margin-bottom:20px;min-height:540px;position:relative;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);display:flex;flex-direction:column}
+  .slide::before{content:attr(data-n)" / 27";position:absolute;top:20px;right:26px;
+    font-family:"SF Mono",Menlo,monospace;font-size:11px;color:var(--ink-3);letter-spacing:.1em}
+  .eyebrow{font-family:"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--green)}
+  h1{font-size:clamp(30px,5.2vw,50px);line-height:1.08;font-weight:600;text-wrap:balance;margin:16px 0}
+  h2{font-size:clamp(22px,3.4vw,30px);line-height:1.16;font-weight:600;text-wrap:balance;margin:6px 0 18px}
+  h3{font-size:15px;font-family:"SF Mono",Menlo,monospace;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--gold);margin:18px 0 8px;font-weight:700}
+  p{margin:0 0 12px}.lead{font-size:19px;color:var(--ink-2)}
+  strong{font-weight:600}
+  .cover{background:linear-gradient(150deg,var(--green-d),var(--green));color:#fff;border:none}
+  .cover .eyebrow,.cover h3{color:#dff0e5}
+  .cover h1{color:#fff}.cover p{color:#eaf3ec}
+  .cover::before{color:#bcd8c6}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{background:var(--panel);border:1px solid var(--hair);border-radius:10px;padding:16px 18px}
+  .card .k{font-family:"SF Mono",Menlo,monospace;font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+  .card .v{font-size:27px;font-weight:600;margin:3px 0}
+  .card .s{font-size:13px;color:var(--ink-2)}
+  .accent{color:var(--green)}.gold{color:var(--gold)}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0}
+  th{text-align:left;font-family:"SF Mono",Menlo,monospace;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:2px solid var(--line);padding:7px 10px 7px 0}
+  td{padding:7px 10px 7px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;font-family:"SF Mono",Menlo,monospace;font-size:13px}
+  tr.hl td{background:var(--green-soft)}
+  ul{margin:0 0 12px;padding-left:20px}li{margin-bottom:7px}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:14px 0}
+  .step{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--hair);padding:12px 14px;position:relative}
+  .step:not(:last-child){border-right:none}
+  .step .t{font-weight:600;font-size:15px}.step .d{font-size:12.5px;color:var(--ink-2)}
+  .arrow{color:var(--gold);font-size:20px;align-self:center;padding:0 4px}
+  .pill{display:inline-block;font-family:"SF Mono",Menlo,monospace;font-size:11px;
+    padding:2px 8px;border-radius:20px;background:var(--gold-soft);color:var(--gold);margin:2px 4px 2px 0}
+  .foot{margin-top:auto;padding-top:16px;font-size:12px;color:var(--ink-3);font-family:"SF Mono",Menlo,monospace}
+  .big{font-size:clamp(40px,8vw,76px);font-weight:600;line-height:1;color:var(--green)}
+  .note{border-left:3px solid var(--gold);padding:2px 0 2px 16px;color:var(--ink-2);font-size:15px;margin:12px 0}
+  @media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}.slide{padding:30px 24px}.step{border-right:1px solid var(--hair)!important}}
+
+</style>
+<title>The Grain Value Loop &#8212; Integrated Rice Biorefinery Pitch</title>
+<style>
+  :root{
+    --paper:#f7f5ef; --panel:#fffefb; --ink:#1b2019; --ink2:#55605108;
+    --ink-2:#54604f; --ink-3:#8a917f; --hair:#e2ddd0; --line:#cfc9ba;
+    --green:#2f7a4f; --green-d:#1f5637; --gold:#b7791f; --gold-soft:#f3ead6;
+    --blue:#3b6ea5; --green-soft:#e6efe7; --band:#efece2;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"]{
+    --paper:#12140f; --panel:#191c15; --ink:#eef0e8; --ink-2:#aab19c; --ink-3:#79806d;
+    --hair:#2a2e22; --line:#343829; --green:#4ea877; --green-d:#7cc79c; --gold:#d6a24a;
+    --gold-soft:#241f12; --blue:#6aa0d6; --green-soft:#17251b; --band:#1b1e16;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--band);color:var(--ink);
+    font:16px/1.55 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  .mono{font-family:"SF Mono",Menlo,Consolas,monospace}
+  .deck{max-width:1000px;margin:0 auto;padding:22px 16px 80px}
+  .slide{background:var(--paper);border:1px solid var(--hair);border-radius:14px;
+    padding:44px 48px;margin-bottom:20px;min-height:540px;position:relative;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);display:flex;flex-direction:column}
+  .slide::before{content:attr(data-n)" / 27";position:absolute;top:20px;right:26px;
+    font-family:"SF Mono",Menlo,monospace;font-size:11px;color:var(--ink-3);letter-spacing:.1em}
+  .eyebrow{font-family:"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--green)}
+  h1{font-size:clamp(30px,5.2vw,50px);line-height:1.08;font-weight:600;text-wrap:balance;margin:16px 0}
+  h2{font-size:clamp(22px,3.4vw,30px);line-height:1.16;font-weight:600;text-wrap:balance;margin:6px 0 18px}
+  h3{font-size:15px;font-family:"SF Mono",Menlo,monospace;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--gold);margin:18px 0 8px;font-weight:700}
+  p{margin:0 0 12px}.lead{font-size:19px;color:var(--ink-2)}
+  strong{font-weight:600}
+  .cover{background:linear-gradient(150deg,var(--green-d),var(--green));color:#fff;border:none}
+  .cover .eyebrow,.cover h3{color:#dff0e5}
+  .cover h1{color:#fff}.cover p{color:#eaf3ec}
+  .cover::before{color:#bcd8c6}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{background:var(--panel);border:1px solid var(--hair);border-radius:10px;padding:16px 18px}
+  .card .k{font-family:"SF Mono",Menlo,monospace;font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+  .card .v{font-size:27px;font-weight:600;margin:3px 0}
+  .card .s{font-size:13px;color:var(--ink-2)}
+  .accent{color:var(--green)}.gold{color:var(--gold)}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0}
+  th{text-align:left;font-family:"SF Mono",Menlo,monospace;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:2px solid var(--line);padding:7px 10px 7px 0}
+  td{padding:7px 10px 7px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;font-family:"SF Mono",Menlo,monospace;font-size:13px}
+  tr.hl td{background:var(--green-soft)}
+  ul{margin:0 0 12px;padding-left:20px}li{margin-bottom:7px}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:14px 0}
+  .step{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--hair);padding:12px 14px;position:relative}
+  .step:not(:last-child){border-right:none}
+  .step .t{font-weight:600;font-size:15px}.step .d{font-size:12.5px;color:var(--ink-2)}
+  .arrow{color:var(--gold);font-size:20px;align-self:center;padding:0 4px}
+  .pill{display:inline-block;font-family:"SF Mono",Menlo,monospace;font-size:11px;
+    padding:2px 8px;border-radius:20px;background:var(--gold-soft);color:var(--gold);margin:2px 4px 2px 0}
+  .foot{margin-top:auto;padding-top:16px;font-size:12px;color:var(--ink-3);font-family:"SF Mono",Menlo,monospace}
+  .big{font-size:clamp(40px,8vw,76px);font-weight:600;line-height:1;color:var(--green)}
+  .note{border-left:3px solid var(--gold);padding:2px 0 2px 16px;color:var(--ink-2);font-size:15px;margin:12px 0}
+  @media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}.slide{padding:30px 24px}.step{border-right:1px solid var(--hair)!important}}
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th,tr.hl td{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+<div class="deck">
+
+<!-- 1 COVER -->
+<section class="slide cover" data-n="01">
+  <div class="eyebrow">Investment &amp; policy concept &#183; India &#183; 2026</div>
+  <h1>The Grain Value Loop</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+
+  <p class="lead" style="max-width:60ch">An integrated rice biorefinery model that turns the byproducts India's
+  government already procures &#8212; and currently gives away &#8212; into edible oil, food-grade derivatives, energy,
+  and exports. Feedstock the state owns; demand the state can contract.</p>
+  <div style="margin-top:26px" class="grid3">
+    <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)">
+      <div class="k" style="color:#cfe6d7">Import substitution</div><div class="v" style="color:#fff">&#8377;21,000 cr</div><div class="s" style="color:#dff0e5">per year, across crops</div></div>
+    <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)">
+      <div class="k" style="color:#cfe6d7">Bran given away today</div><div class="v" style="color:#fff">&#8377;7,650 cr</div><div class="s" style="color:#dff0e5">in free CMR byproduct</div></div>
+    <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)">
+      <div class="k" style="color:#cfe6d7">Capital subsidy</div><div class="v" style="color:#fff">35&#8211;50%</div><div class="s" style="color:#dff0e5">PMFME &#183; PMKSY &#183; PLISFPI</div></div>
+  </div>
+  <div class="foot">FCI-warehouse-MSPvsMSV &#183; figures verified against DFPD, DGCI&amp;S, MoFPI, real project DPRs</div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide" data-n="02">
+  <div class="eyebrow">The paradox</div>
+  <h2>India imports what it grows &#8212; and gifts the feedstock</h2>
+  <p class="lead">The government procures ~520 LMT of rice and ~300 LMT of wheat a year, then hands the
+  milling byproducts to private millers for free and imports the finished derivative.</p>
+  <div class="grid2" style="margin-top:14px">
+    <div class="card"><h3>What the state does today</h3>
+      <ul><li>Procures paddy at MSP, hands it to CMR millers</li>
+      <li>Millers keep <strong>~180 LMT husk + ~65 LMT bran</strong> &#8212; the &#8377;7,650 cr byproduct giveaway <span style="font-size:.8em;color:#888">(this figure matches only the ~40 LMT CMR-bran base, not the full husk+bran tonnage)</span></li>
+      <li>Sells surplus grain raw (OMSS) at ~2&#8211;4% trader margin, often at a loss</li></ul></div>
+    <div class="card"><h3>What the state imports</h3>
+      <ul><li><strong>57% of edible oil</strong> (~&#8377;1.68 lakh cr/yr) &#8212; while #1 in rice-bran oil</li>
+      <li><strong>67 LMT of pulses</strong>, vital wheat gluten, specialty starch, Vitamin-E, silica</li>
+      <li>The <em>derivative</em> &#8212; while holding the raw material</li></ul></div>
+  </div>
+  <div class="note">World's #1 rice-bran-oil producer, yet imports more than half its cooking oil. The same
+  pattern repeats for gluten, starch, protein, and nutraceuticals across every crop the state procures.</div>
+  <div class="foot">Sources: DFPD Annual Report 2024-25 &#183; DGCI&amp;S FY26 &#183; NITI Aayog edible-oil</div>
+</section>
+
+<!-- 3 INSIGHT -->
+<section class="slide" data-n="03">
+  <div class="eyebrow">The insight</div>
+  <h2>Value density rises ~1,000&#215; from grain to derivative</h2>
+  <p class="lead">The margin is in the cascade, not the commodity &#8212; the sugarcane model (sugar + ethanol +
+  power + CBG) ported to grain.</p>
+  <div class="flow">
+    <div class="step"><div class="t">Paddy</div><div class="d">&#8377;24/kg (MSP)</div></div>
+    <div class="arrow">&#8594;</div>
+    <div class="step"><div class="t">Milled rice + bran + husk</div><div class="d">the split the state gives away</div></div>
+    <div class="arrow">&#8594;</div>
+    <div class="step"><div class="t">Rice-bran oil</div><div class="d">&#8377;105/kg</div></div>
+    <div class="arrow">&#8594;</div>
+    <div class="step" style="border-color:var(--gold)"><div class="t gold">Oryzanol / Vit-E</div><div class="d">&#8377;1,200&#8211;17,700/kg</div></div>
+  </div>
+  <div class="grid3" style="margin-top:16px">
+    <div class="card"><div class="k">Commodity floor</div><div class="v accent">&#8377;7&#8211;40/kg</div><div class="s">flour, feed, husk, power &#8212; where the state operates now</div></div>
+    <div class="card"><div class="k">Industrial mid</div><div class="v accent">&#8377;40&#8211;110/kg</div><div class="s">RBO, silica, starch, gluten, dal, besan</div></div>
+    <div class="card"><div class="k">Molecular tail</div><div class="v gold">&#8377;350&#8211;17,700/kg</div><div class="s">wax, protein, oryzanol, tocotrienols</div></div>
+  </div>
+  <div class="foot">The state captures the bottom tier and gifts the top three. Source: byproduct product-tree (39 products)</div>
+</section>
+
+<!-- 4 THE PROJECT -->
+<section class="slide" data-n="04">
+  <div class="eyebrow">The project</div>
+  <h2>An integrated rice biorefinery &#8212; one complex, many streams</h2>
+  <div class="grid2">
+    <div>
+      <p>A cooperative/PPP-hosted complex, sited in an operational Mega Food Park, that takes government CMR
+      paddy and runs the full cascade instead of milling and selling raw:</p>
+      <div style="margin-top:10px">
+        <span class="pill">Rice mill</span><span class="pill">Bran stabilisation</span>
+        <span class="pill">RBO solvent extraction</span><span class="pill">RBO refinery</span>
+        <span class="pill">Oryzanol / wax recovery</span><span class="pill">Husk-fired power</span>
+        <span class="pill">Husk-ash &#8594; silica</span><span class="pill">Broken rice &#8594; poha/murmura</span>
+        <span class="pill">Fortified rice kernels</span><span class="pill">DORB &#8594; feed</span>
+      </div>
+    </div>
+    <div class="card"><h3>Why integrated</h3>
+      <ul><li><strong>Husk powers the process</strong> (already standard mill practice) &#8212; energy self-sufficient</li>
+      <li><strong>DORB feed credit</strong> makes the oil cheap (&#8377;60 vs &#8377;105/kg)</li>
+      <li>One feedstock stream &#8594; 8+ revenue lines</li>
+      <li>The distillery/mill is the natural aggregation host</li></ul></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">Edible oil first (import substitution at &#8377;105/kg),
+  fuel only from the non-edible residual &#8212; India must diverge from the US "distillers-oil-to-biodiesel" model.</div>
+  <div class="foot">Grounded in NCDC cooperative rice-mill DPR + SEA (30 MT existing crush capacity)</div>
+</section>
+
+<!-- 5 RAW MATERIAL -->
+<section class="slide" data-n="05">
+  <div class="eyebrow">Raw material &#183; prices &amp; sources</div>
+  <h2>Feedstock the state already owns</h2>
+  <div class="tblwrap"><table>
+    <tr><th>Input</th><th class="n">Indicative price</th><th>Source / basis</th></tr>
+    <tr class="hl"><td>Paddy (common)</td><td class="n">&#8377;2,369/qtl</td><td>MSP KMS 2025-26 &#183; govt CMR procurement (~832 LMT)</td></tr>
+    <tr><td>Rice bran</td><td class="n">&#8377;2,000/qtl (&#8377;20/kg)</td><td>NCDC DPR &#183; to oil extractors; 16&#8211;22% oil</td></tr>
+    <tr><td>Rice husk</td><td class="n">&#8377;2,000/MT</td><td>NCDC DPR &#183; fuel-grade; ~20% of paddy</td></tr>
+    <tr><td>Broken rice</td><td class="n">&#8377;1,500/qtl</td><td>NCDC DPR &#183; poha/starch/ethanol feedstock</td></tr>
+    <tr class="hl"><td>De-oiled bran (DORB)</td><td class="n">&#8377;15/kg (credit)</td><td>feed byproduct &#8212; the credit that makes RBO viable</td></tr>
+  </table></div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="card"><h3>Aggregation model</h3>
+      <p style="font-size:14px">PACS / FPO / cooperative societies &#8212; <em>already the paddy-procurement centres</em> &#8212;
+      aggregate paddy + bran. The feedstock chain exists; it is currently dispersed to 100,000+ private mills.</p></div>
+    <div class="card"><h3>Scale available to government</h3>
+      <p style="font-size:14px">~832 LMT CMR paddy &#8594; ~40 LMT government-touchable bran (41% of national) &#8594;
+      ~6.4 LMT RBO at full capture.</p></div>
+  </div>
+  <div class="foot">Prices: NCDC "Establishment of Rice Mill" DPR (Chhattisgarh) &#183; DFPD MSP &#183; vintage noted</div>
+</section>
+
+<!-- 6 ECONOMICS -->
+<section class="slide" data-n="06">
+  <div class="eyebrow">Unit economics &#183; from real DPRs</div>
+  <h2>Margin and IRR &#8212; ranked, government-DPR-backed</h2>
+  <div class="tblwrap"><table>
+    <tr><th>Product</th><th class="n">Net margin</th><th class="n">IRR</th><th>DPR source</th></tr>
+    <tr class="hl"><td>Poha / murmura</td><td class="n">10&#8211;15%</td><td class="n">&lt;3y payback</td><td>NIFTEM-T PMFME &#10003;</td></tr>
+    <tr class="hl"><td>RBO solvent extraction</td><td class="n">8&#8211;15%</td><td class="n">&#8212;</td><td>IMARC/EIRI</td></tr>
+    <tr class="hl"><td>Rice mill (anchor)</td><td class="n">8.5&#8211;15%</td><td class="n">19%</td><td>NCDC &#10003;</td></tr>
+    <tr><td>Maize wet-milling (starch)</td><td class="n">12&#8211;20%</td><td class="n">22&#8211;28%</td><td>industry</td></tr>
+    <tr><td>Dal mill</td><td class="n">~5.3%</td><td class="n">25&#8211;31%</td><td>RACP + NIFTEM &#10003;</td></tr>
+    <tr><td>Roller flour mill</td><td class="n">3&#8211;5.5%</td><td class="n">20&#8211;29%</td><td>RACP &#10003;</td></tr>
+  </table></div>
+  <div class="note"><strong>Margin &#8800; return.</strong> The staples show thin 3&#8211;5% margins but <strong>19&#8211;31% IRR</strong>
+  &#8212; low capex, fast turnover. The "process, don't sell raw" case rests on return-on-capital, not margin-on-sales.</div>
+  <div class="foot">Sources: NCDC &#183; Rajasthan RACP (Grant Thornton) &#183; NIFTEM-Thanjavur PMFME &#183; IMARC &#8212; verified/reported labelled</div>
+</section>
+
+<!-- 7 SCHEMES -->
+<section class="slide" data-n="07">
+  <div class="eyebrow">Schemes &#183; the funding stack</div>
+  <h2>35&#8211;50% of capital comes from MoFPI</h2>
+  <div class="grid3">
+    <div class="card"><h3>PMFME</h3><div class="v accent">35%</div>
+      <div class="s">credit-linked capital subsidy, max &#8377;10 L/unit &#183; <strong>micro</strong> units (RBO, dal, poha, besan)</div></div>
+    <div class="card"><h3>PMKSY</h3><div class="v accent">35&#8211;50%</div>
+      <div class="s">grants for clusters, cold chain, agro-processing (50% NE/difficult) &#183; <strong>the integrated complex</strong></div></div>
+    <div class="card"><h3>PLISFPI</h3><div class="v accent">6-yr</div>
+      <div class="s">incentive on incremental sales + branding-abroad &#183; <strong>large branded</strong> (RBO brand, exports)</div></div>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card"><h3>Mega Food Park infrastructure</h3>
+      <p style="font-size:14px"><strong>23 operational parks</strong> (of 41), ~&#8377;120 cr each with ~&#8377;50 cr PMKSY grant &#8212;
+      ready common facilities (power, cold chain, warehousing, effluent) to plug into, not build.</p></div>
+    <div class="card"><h3>The subsidy is a margin multiplier</h3>
+      <p style="font-size:14px">Anchor DPR: &#8377;80 L cost &#8594; &#8377;16 L subsidy + &#8377;52 L loan + &#8377;12 L own. The 19% project IRR
+      becomes a much higher return on the &#8377;12 L actually invested. Capital-heavy units (RBO, silica, wet-milling)
+      gain the most from a 35&#8211;50% grant.</p></div>
+  </div>
+  <div class="foot">Sources: pmfme.mofpi.gov.in &#183; PMKSY FAQs &#183; mofpi.gov.in/PLISFPI &#183; MoFPI 41-MFP list (31.01.2023)</div>
+</section>
+
+<!-- 8 MARKETS -->
+<section class="slide" data-n="08">
+  <div class="eyebrow">Markets &#183; three demand tiers</div>
+  <h2>Demand the government can contract</h2>
+  <div class="grid3">
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Captive &#183; surest</h3>
+      <ul style="font-size:13.5px"><li><strong>Fortified rice kernels</strong> &#8212; <strong>&#8377;17,082 cr program</strong> to 2028, 100% GoI-funded; ~3.5&#8211;4 LMT/yr standing demand</li>
+      <li>Fortified atta &#183; Vitamin-E fortificant from own bran</li></ul></div>
+    <div class="card" style="border-top:3px solid var(--gold)"><h3>Domestic growth</h3>
+      <ul style="font-size:13.5px"><li><strong>RBO</strong> &#8212; India #1 market, $1.39 bn; +exports $104.5 mn</li>
+      <li>Poha/murmura (snacks 14.5% CAGR) &#183; besan</li><li>Maize starch $4.1 bn &#183; wheat gluten</li></ul></div>
+    <div class="card" style="border-top:3px solid var(--blue)"><h3 style="color:var(--blue)">Export-led</h3>
+      <ul style="font-size:13.5px"><li><strong>Basmati &#8377;50,000 cr</strong> (FY25, +15.7%, &#8377;82/kg)</li>
+      <li>Plant protein (14% CAGR) &#183; spices &#8377;39,994 cr &#183; green silica (Tata &#8377;775 cr)</li></ul></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">The offtake is <strong>contractable, not consumer-dependent</strong>:
+  food-processing supply agreements + fortification mandates + institutional (PDS/ICDS) offtake form a demand
+  backbone independent of the retail shelf &#8212; the ethanol-blending-mandate lever, applied to processed grain.</div>
+  <div class="foot">Sources: APEDA FY25 (basmati &#8377;50k cr) &#183; DFPD FRK program &#183; DGCI&amp;S &#183; industry market reports &#8212; verified/reported labelled</div>
+</section>
+
+<!-- 9 SAVINGS -->
+<section class="slide" data-n="09">
+  <div class="eyebrow">The prize &#183; import substitution</div>
+  <h2>&#8377;21,000 cr/yr across the crops the state holds</h2>
+  <div class="tblwrap"><table>
+    <tr><th>Stream</th><th class="n">Import &#8377;/t (DGCI&amp;S)</th><th class="n">Savings &#8377; cr/yr</th><th>Offtake</th></tr>
+    <tr class="hl"><td>Rice bran oil</td><td class="n">97,970</td><td class="n">7,544 <span style="font-size:.75em;color:#888">(gross import value displaced, not price&#215;volume savings)</span></td><td>frying/HoReCa + fortification</td></tr>
+    <tr><td>Pulses (dal margin)</td><td class="n">50,888&#8211;74,163</td><td class="n">~7,000</td><td>dal millers + PDS</td></tr>
+    <tr><td>Cottonseed oil</td><td class="n">98,766</td><td class="n">1,975</td><td>food processing</td></tr>
+    <tr><td>Maize starch</td><td class="n">37,170</td><td class="n">1,115</td><td>food/pharma/paper</td></tr>
+    <tr><td>Husk &#8594; silica</td><td class="n">86,730</td><td class="n">867</td><td>tyre/industrial</td></tr>
+    <tr><td>Protein &#183; gluten &#183; Vit-E &#183; lecithin</td><td class="n">115k&#8211;17.7m</td><td class="n">~1,900</td><td>processors + export</td></tr>
+  </table></div>
+  <div class="grid3" style="margin-top:12px">
+    <div class="card"><div class="k">High-confidence tiers</div><div class="v accent">&#8377;18&#8211;21k cr</div><div class="s">oil + pulses + industrial mid</div></div>
+    <div class="card"><div class="k">On feedstock the state</div><div class="v accent">already owns</div><div class="s">via CMR procurement</div></div>
+    <div class="card"><div class="k">Through offtake it can</div><div class="v accent">contract</div><div class="s">not hope for</div></div>
+  </div>
+  <div class="foot">Source: consolidated-savings-by-crop &#183; DGCI&amp;S FY26 import unit values &#183; illustrative, additive</div>
+</section>
+
+<!-- 10 DURUM WHEAT MSV -->
+<section class="slide" data-n="10">
+  <div class="eyebrow">A concrete MSV case &#183; wheat &#8594; pasta</div>
+  <h2>Durum wheat: the fastest-growing value-add India under-grows</h2>
+  <div class="grid2">
+    <div>
+      <p>The same "import the derivative, hold the feedstock" pattern &#8212; in wheat. India is
+      <strong>wheat-surplus</strong> and sells it cheap via OMSS (~&#8377;2,550/qtl), yet:</p>
+      <ul>
+        <li>Pasta market <strong>$1.21 bn, growing ~14&#8211;16%/yr</strong> &#8212; the fastest wheat-product segment</li>
+        <li>India is the <strong>world's #2 durum-semolina importer</strong> &#8212; pasta needs durum (hard) wheat, which India barely grows (MP's Malwa belt, ~1.5&#8211;2 MT)</li>
+        <li>DGCI&amp;S: pasta imports <strong>+24%</strong>, biscuit imports <strong>+28%</strong>, gluten <strong>+35%</strong> &#8212; the value-added tier's imports are building</li>
+        <li><strong>Export prize:</strong> India ships only <strong>$63 mn</strong> of pasta into a global import trade of <strong>US $1.62 bn &#183; Germany $1.24 bn</strong> &#8212; under 4% of the US market, on cheap OMSS wheat Italy can't match</li>
+      </ul>
+    </div>
+    <div class="card"><h3>The double play (durum MSV)</h3>
+      <ul><li><strong>Procure durum by variety</strong> &#8212; a variety-specific MSV that de-risks
+      durum cultivation (the wheat parallel to the oilseed-MSP production lever)</li>
+      <li><strong>Mill semolina &#8594; pasta</strong> on OMSS/durum wheat, in a Mega Food Park</li>
+      <li>Substitutes <strong>both</strong> the pasta imports AND the durum-wheat imports</li>
+      <li>+ vital gluten (13,000 t/yr imported) from the same wheat wet-mill</li></ul></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">India is a net <em>exporter</em> of biscuits (Parle-G,
+  180 countries) &#8212; so the target is the <strong>premium/pasta/durum tier</strong> where imports are growing, not
+  the mass market. Import substitution is already visible: durum-pasta imports fell &#8722;25% YoY.</div>
+  <div class="foot">Sources: DGCI&amp;S TradeStat EIDB (exact 8-digit HS, FY25-26 prov.) &#183; industry market sizes &#183; report/wheat-value-added-products.md</div>
+</section>
+
+<!-- 11 EDIBLE OIL FROM FCI STOCK -->
+<section class="slide" data-n="11">
+  <div class="eyebrow">A concrete case &#183; edible oil from FCI/CMR stock reutilisation</div>
+  <h2>The oil India imports for &#8377;1.68 lakh cr &#8212; from grain the state already holds</h2>
+  <div class="grid2">
+    <div>
+      <p>India imports <strong>168 LMT of edible oil &#8212; US$19.3 bn, &#8377;1.68 lakh cr</strong> a year
+      (57% of demand), landing at <strong>~&#8377;100/kg crude</strong> (palm &#8377;96). Yet the 24 MSP crops
+      <strong>are</strong> the domestic oil-feedstock base &#8212; and FCI's own procured paddy throws off
+      the cheapest oil in the country as a byproduct:</p>
+      <ul>
+        <li><strong>Rice bran oil</strong> &#8212; bran from the ~832 LMT of paddy under CMR;
+        <strong>&#8377;60/kg ex-mill vs &#8377;105 import parity = &#8377;45/kg edge</strong>. India is the world's #1
+        RBO producer &#8212; and hands the bran to millers <strong>free</strong> (the &#8377;7,650 cr giveaway)</li>
+        <li>RBO is also the <em>better</em> oil: γ-oryzanol, tocotrienols, phytosterols;
+        cholesterol-lowering; high-heat stable; non-GMO (ICRBO-2016)</li>
+        <li><strong>Cottonseed oil</strong> &#8212; byproduct of cotton (an MSP crop): crush margin + cake</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Import-substitution savings estimate</h3>
+      <div class="tblwrap"><table style="margin:4px 0">
+        <tr><th>Stream</th><th class="n">&#8377;/kg edge</th><th class="n">&#8377; cr/yr</th></tr>
+        <tr class="hl"><td>Rice bran oil (7.7 LMT)</td><td class="n">45</td><td class="n">7,544</td></tr>
+        <tr><td>Cottonseed oil (2 LMT)</td><td class="n">~10</td><td class="n">1,975</td></tr>
+        <tr><td>Soy/sun crush &#8212; cake + forex*</td><td class="n">system</td><td class="n">~1,500</td></tr>
+        <tr style="font-weight:700;border-top:2px solid var(--green)"><td>Capturable now</td><td class="n"></td><td class="n">~&#8377;11,000 cr/yr</td></tr>
+      </table></div>
+      <p style="font-size:12.5px;margin-top:6px">*at-parity oils save via the oil-cake co-product imports don't carry + forex retained, not a retail-price cut.</p>
+    </div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">Honest tiering: <strong>~&#8377;11,000 cr/yr is
+  capturable now</strong> from byproduct oils on feedstock the state already procures. The
+  <strong>production lever</strong> (NMEO-OS oilseeds 39&#8594;69.7 MT) is the ceiling &#8212; closing even half the
+  168-LMT gap replaces <strong>~&#8377;84,000 cr</strong> of imports over 5&#8211;7 yrs &#8212; but mustard/groundnut are
+  premium oils, a <em>volume/self-sufficiency</em> lever, never an in-year cheaper-cooking-oil promise.</div>
+  <div class="foot">Sources: DGCI&amp;S TradeStat EIDB (168 LMT/&#8377;1.68 L cr) &#183; DFPD edible-oil scenario &#183; SEA (16.3 MT/&#8377;1.61 L cr) &#183; consolidated-savings-by-crop &#183; report/msp-crops-refined-oil-source.md</div>
+</section>
+
+<!-- 12 THE PROOF &#8212; ETHANOL -> OMSS -> RBO CHAIN -->
+<section class="slide" data-n="12">
+  <div class="eyebrow">The proof it works &#183; a mandate already saved &#8377;1.97 lakh cr</div>
+  <h2>Ethanol proves the model &#183; OMSS the channel &#183; rice-bran oil the un-pulled lever</h2>
+  <div class="flow">
+    <div class="step"><div class="t">1 &#183; ETHANOL &#8212; the model</div>
+      <div class="d"><strong>38 &#8594; 661 cr L</strong>; blending <strong>20% by Nov-2025</strong> (5 yrs early),
+      on broken rice + maize. A blending <em>mandate</em> built the offtake.</div>
+      <div class="pill">&#8377;1.97 lakh cr forex saved</div></div>
+    <div class="arrow">&#8594;</div>
+    <div class="step"><div class="t">2 &#183; OMSS &#8212; the channel</div>
+      <div class="d">FCI already sells surplus grain to millers at reserve price:
+      <strong>71 LMT wheat + 1.6 LMT rice</strong> (2023-24). OMSS rice &#8594; millers &#8594; <strong>bran</strong>.</div>
+      <div class="pill">the RBO feedstock pathway</div></div>
+    <div class="arrow">&#8594;</div>
+    <div class="step" style="border-left:3px solid var(--green)"><div class="t" style="color:var(--green)">3 &#183; RBO &#8212; the lever</div>
+      <div class="d">India is <strong>#1 in rice-bran oil</strong> (NITI, Aug-2024), yet leaves the bran's oil in
+      cattle feed. <strong>&#8377;60 vs &#8377;105/kg</strong> import parity = &#8377;45/kg edge.</div>
+      <div class="pill">the un-pulled lever</div></div>
+  </div>
+  <div class="grid3" style="margin-top:6px">
+    <div class="card"><div class="k">Govt CMR bran (~40 LMT)</div><div class="v accent">&#8377;6,698 cr</div><div class="s">6.4 LMT RBO &#8212; import displaced, feedstock the state controls</div></div>
+    <div class="card"><div class="k">All-India bran (~98 LMT)</div><div class="v accent">&#8377;16,464 cr</div><div class="s">15.7 LMT RBO &#8212; the ceiling</div></div>
+    <div class="card"><div class="k">Realistic near-term (+7.7 LMT)</div><div class="v gold">&#8377;7,544 cr</div><div class="s">~5% of the &#8377;1.68 lakh-cr oil bill; +&#8377;5,616 cr DORB feed</div></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">The ethanol mandate turned surplus/broken grain
+  into <strong>&#8377;1.97 lakh cr of forex saved</strong>. The edible-oil bill (&#8377;1.68 lakh cr) is the same-size
+  prize &#8212; and <strong>RBO is the grain-side lever not yet pulled</strong>: bran the state already owns and
+  gives away free, with a PDS-oil / fortification mandate as the offtake, just as blending was for fuel.</div>
+  <div class="foot">Sources: PIB PRID 2113234 (ethanol) &#183; PIB PRID 2200287 &amp; NITI Aayog Aug-2024 (India #1 in RBO) &#183; PIB PRID 2000937 (OMSS 2023-24) &#183; rbo_savings_scenarios.py &#183; report/omss-ethanol-rbo-import-substitution.md</div>
+</section>
+
+<!-- 13 FUEL vs FOOD SECURITY -->
+<section class="slide" data-n="13">
+  <div class="eyebrow">Answering the objection &#183; fuel vs food security</div>
+  <h2>Byproduct oil isn't fuel-vs-food &#8212; it competes with imports, not the plate</h2>
+  <div class="grid2">
+    <div>
+      <p class="lead" style="font-size:17px">The debate only exists when you burn the <em>grain</em>. It vanishes the moment you use the <strong>byproduct</strong>.</p>
+      <div class="tblwrap"><table>
+        <tr><th>Route</th><th>Feedstock</th><th>Competes with food?</th></tr>
+        <tr><td>Grain &#8594; ethanol</td><td>broken/surplus grain</td><td>partially &#8212; the debate lives here</td></tr>
+        <tr class="hl"><td><strong>Bran &#8594; RBO</strong></td><td>milling byproduct</td><td><strong>No</strong> &#8212; rice still feeds people</td></tr>
+        <tr><td>Cottonseed &#8594; oil</td><td>cotton byproduct</td><td><strong>No</strong></td></tr>
+        <tr><td>Husk &#8594; silica/energy</td><td>byproduct</td><td><strong>No</strong></td></tr>
+      </table></div>
+      <p style="font-size:13.5px">Paddy is milled and the <strong>rice feeds people through PDS exactly as before</strong> &#8212; only the bran (today given to cattle with its oil intact) is processed. No grain leaves the food chain.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">A clean decision rule</h3>
+      <ul style="font-size:13.5px">
+        <li><strong>Byproducts first</strong> &#8212; bran/cottonseed/husk: zero food tradeoff, pure import substitution, unlimited go-ahead</li>
+        <li><strong>Grain-to-fuel only above a stock threshold</strong> &#8212; institutionalise the <strong>July-2023 FCI-rice-to-ethanol pause</strong> (food already outranks fuel when stocks tighten)</li>
+        <li><strong>Never compress the entitlement</strong> or divert issue-grade grain &#8212; the 80-cr guarantee is ring-fenced</li>
+        <li><strong>Least water-intensive feedstock</strong> &#8212; maize/byproducts over paddy ethanol in stressed basins</li>
+      </ul>
+      <p style="font-size:12.5px;margin-top:4px">Spoilage is negligible (0.002&#8211;0.022% of off-take) &#8212; the grain is fine; the question is its <em>best use</em>.</p></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">The real choice isn't food vs fuel &#8212; it's whether to
+  <strong>capture the value of byproducts India already generates and gives away, or keep importing the derivative</strong>.
+  RBO substitutes &#8377;1.68 lakh cr of edible-oil <em>imports</em>, not the poor's ration.</div>
+  <div class="foot">Sources: PIB (ethanol/EBP; July-2023 FCI-rice pause) &#183; DFPD Foodgrain Bulletin (off-take/spoilage) &#183; report/fuel-vs-food-security.md</div>
+</section>
+
+<!-- 14 40% FCI-RICE CLAUSE + RICE-FLOW WATERFALL -->
+<section class="slide" data-n="14">
+  <div class="eyebrow">The live instrument &#183; BPCL/OMC 40% FCI-rice ethanol clause (ESY 2025-26)</div>
+  <h2>From 440 lakh ha of rice to a 52-LMT ethanol slice &#8212; is there "sufficient grain"? Yes.</h2>
+  <div class="grid2">
+    <div>
+      <div style="font-family:'SF Mono',Menlo,monospace;font-size:10.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Rice flow &#8212; where the grain goes (LMT &#183; DA&amp;FW / DFPD)</div>
+      <!-- waterfall bars: width &#8733; LMT, max 1378 -->
+      <div style="display:flex;flex-direction:column;gap:7px;margin:8px 0 4px">
+        <div><div style="height:22px;width:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding:0 8px;color:#fff;font-family:'SF Mono',monospace;font-size:12px">Production 1,378</div><div style="font-size:11px;color:var(--ink-3);font-family:'SF Mono',monospace">cultivation &#183; ~440 L ha</div></div>
+        <div><div style="height:22px;width:38%;background:var(--green-d);border-radius:4px;display:flex;align-items:center;padding:0 8px;color:#fff;font-family:'SF Mono',monospace;font-size:12px">FCI proc. 520</div><div style="font-size:11px;color:var(--ink-3);font-family:'SF Mono',monospace">38% of crop (rest = private/consumption/seed/export)</div></div>
+        <div><div style="height:22px;width:29%;background:var(--gold);border-radius:4px;display:flex;align-items:center;padding:0 8px;color:#fff;font-family:'SF Mono',monospace;font-size:12px">PDS/schemes 400</div><div style="font-size:11px;color:var(--ink-3);font-family:'SF Mono',monospace">NFSA + PM-POSHAN + ICDS off-take</div></div>
+        <div><div style="height:22px;width:3.8%;min-width:52px;background:var(--blue);border-radius:4px;display:flex;align-items:center;padding:0 6px;color:#fff;font-family:'SF Mono',monospace;font-size:11px">Eth. 52</div><div style="font-size:11px;color:var(--blue);font-family:'SF Mono',monospace">ethanol segment &#8212; ~234 cr L (~3.8% of crop)</div></div>
+      </div>
+      <div class="card" style="padding:9px 12px;margin-top:6px"><div class="k">Carry-over (rice opening stock, 1 Jul) vs norm ~135 LMT</div>
+        <div class="tblwrap"><table style="margin:3px 0 0;font-size:12.5px"><tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+        <tr class="hl"><td class="n">297</td><td class="n">317</td><td class="n">253</td><td class="n">326</td></tr></table></div>
+        <div class="s" style="margin-top:2px">Stock runs <strong>2&#8211;2.4&#215; the buffer norm</strong> every year &#8212; a persistent <strong>~150&#8211;190 LMT surplus</strong>. The 52-LMT ethanol draw sits comfortably inside it.</div>
+        <div class="k" style="margin-top:8px">Holding 40% as NITI-roadmap volumes scale &#8594; FCI-rice need (LMT)</div>
+        <div class="tblwrap"><table style="margin:3px 0 0;font-size:12px"><tr><th>Now 1,050</th><th>E20 1,350</th><th>E27 1,650</th><th>E30 2,000</th></tr>
+        <tr><td class="n">52 &#9989;</td><td class="n">79 &#9989;</td><td class="n">105 &#9989;</td><td class="n">136 &#9888;&#65039;</td></tr></table></div>
+        <div class="s" style="margin-top:2px">Sufficient to <strong>E27</strong>; at E30 the fixed 40% needs 72&#8211;91% of the surplus &#8594; shift growth to <strong>maize</strong> (NITI's own less-water steer).</div></div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">The 40% clause &#8212; evaluated</h3>
+      <p style="font-size:13.5px">New in ESY 2025-26: FCI surplus rice must be <strong>&#8805;40% of grain-based ethanol</strong> (A &#8805; 40%&#215;(A+B+C)). "Sufficient grain" is enforced by <strong>a 52-LMT cap, 30-Jun-26 sunset, and Q4 barred.</strong></p>
+      <div class="tblwrap"><table style="margin:2px 0">
+        <tr><th>Verdict</th><th></th></tr>
+        <tr><td>&#9989; Converts idle surplus &#8594; guaranteed offtake</td><td class="n">good</td></tr>
+        <tr><td>&#9989; Cap + sunset + Q4-bar = stock discipline</td><td class="n">right instinct</td></tr>
+        <tr><td>&#9888;&#65039; Fixed cap, not a <em>live</em> stock trigger</td><td class="n">blunt</td></tr>
+        <tr><td>&#9888;&#65039; &#8377;2,320/qtl &#8212; <strong>&#8377;5.8/kg below OMSS</strong></td><td class="n">subsidy</td></tr>
+      </table></div>
+      <p style="font-size:12.5px;margin-top:4px"><strong>Pair it with the byproduct route:</strong> the ethanol rice was milled from paddy &#8212; the <strong>bran&#8594;RBO is captured upstream regardless</strong>, so ethanol + RBO are complementary, not rival.</p></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)"><strong>Storage is scaling with it:</strong> the
+  <strong>World's Largest Grain Storage Plan</strong> adds <strong>+700 LMT cooperative capacity</strong>
+  (&#8377;1 lakh cr &#8594; 2,150 LMT total) with <strong>PACS-level godowns + processing units</strong> &#8212; capacity to hold
+  the surplus buffer <em>and</em> process it locally (bran&#8594;RBO, grain aggregation). <strong>Fix the clause:</strong>
+  make "sufficient grain" a <strong>live stock-threshold trigger</strong> (not a fixed cap), price ethanol-rice at
+  OMSS parity, mandate <strong>bran&#8594;RBO</strong>, and shift ethanol growth beyond E27 to <strong>maize</strong>.</div>
+  <div class="foot">Sources: BPCL/OMC ethanol tender ESY 2025-26 (T-22376) vs 2024-25 &#183; DA&amp;FW Final Est. 2023-24 (rice 1,378 LMT) &#183; DFPD Foodgrain Bulletin (rice stock) &#183; report/ethanol-fci-40pct-clause-evaluation.md</div>
+</section>
+
+<!-- 15 MAIZE SUBSTITUTION SCENARIO -->
+<section class="slide" data-n="15">
+  <div class="eyebrow">The safety valve &#183; and why it's not free either</div>
+  <h2>Maize substitution protects the rice buffer &#8212; but maize is already stretched</h2>
+  <div class="grid2">
+    <div>
+      <p style="font-size:15px">Cap FCI rice at the surplus-safe level (~79 LMT / E20), meet grain-ethanol growth from <strong>maize</strong> &#8212; NITI's less-water steer. But maize is <em>not</em> slack capacity:</p>
+      <div class="grid3" style="gap:10px">
+        <div class="card" style="padding:11px 13px"><div class="k">Maize already =</div><div class="v accent" style="font-size:23px">42%</div><div class="s">of ethanol (286 cr L, ESY23-24) &#8212; the primary grain feedstock</div></div>
+        <div class="card" style="padding:11px 13px"><div class="k">Maize&#8594;ethanol demand</div><div class="v accent" style="font-size:23px">75&#8594;126</div><div class="s">LMT, ESY24&#8594;25 (+68%)</div></div>
+        <div class="card" style="padding:11px 13px"><div class="k">India in 2024 turned</div><div class="v gold" style="font-size:23px">net importer</div><div class="s">of maize (+7,940%) &#8212; feed takes 60&#8211;70% of the ~356 LMT crop</div></div>
+      </div>
+      <div class="card" style="margin-top:10px;padding:11px 14px"><div class="k">Maize-to-ethanol need if it absorbs grain-ethanol growth (rice capped 79 LMT)</div>
+        <div class="tblwrap"><table style="margin:3px 0 0;font-size:12.5px"><tr><th>Now</th><th>E20</th><th>E27</th><th>E30</th></tr>
+        <tr class="hl"><td class="n">~90</td><td class="n">~140</td><td class="n">~219</td><td class="n">~311 LMT</td></tr></table></div>
+        <div class="s" style="margin-top:2px">vs ~356 LMT production &amp; ~230 LMT feed demand &#8594; beyond E20 it needs <strong>maize output to rise sharply</strong> (yield 3.3 t/ha vs US 11) or deeper imports.</div></div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">The honest read</h3>
+      <ul style="font-size:13.5px">
+        <li><strong>It works to ~E20</strong> &#8212; capping rice protects the food buffer, and maize is already the main feedstock</li>
+        <li><strong>But maize isn't free</strong> &#8212; India is already a net importer; more maize-ethanol deepens imports + feed/poultry inflation</li>
+        <li><strong>The real lever is maize <em>yield/area</em></strong> &#8212; 3.3 t/ha vs US 11 t/ha is huge headroom (the &#8377;5.79/L maize incentive already signals it) &#8212; plus 2G ethanol</li>
+        <li><strong>Not a swap that scales infinitely</strong> &#8212; beyond E27, neither rice nor maize alone sustains it; a stock-linked cap is unavoidable</li>
+      </ul>
+      <div class="note gold" style="border-color:var(--green);margin-top:8px;font-size:14px">The punch line: <strong>rice-ethanol and maize-ethanol both compete with food/feed. The byproduct route (bran&#8594;RBO) competes with neither</strong> &#8212; it uses the bran already generated, adding <em>zero</em> feedstock demand. That's why it's the first-best lever.</div></div>
+  </div>
+  <div class="foot">Sources: DA&amp;FW (maize ~356 LMT 2023-24) &#183; Drishti/DownToEarth (net importer, feed 60&#8211;70%) &#183; industry (maize&#8594;ethanol 75&#8594;126 LMT, 42% share) &#183; NITI Ethanol Roadmap (maize/2G) &#183; report/ethanol-fci-40pct-clause-evaluation.md</div>
+</section>
+
+<!-- 16 2G ETHANOL SCENARIO -->
+<section class="slide" data-n="16">
+  <div class="eyebrow">The escape from the food/feed constraint &#183; 2G ethanol</div>
+  <h2>2G runs on the straw, not the grain &#8212; the byproduct cascade, applied to fuel</h2>
+  <div class="grid2">
+    <div>
+      <p style="font-size:15px">Second-generation ethanol uses <strong>crop residue</strong> &#8212; rice straw (parali), bagasse, bamboo &#8212; <em>agricultural waste</em>, not food or feed. It resolves the whole debate at once:</p>
+      <div class="grid3" style="gap:10px">
+        <div class="card" style="padding:11px 13px"><div class="k">Surplus crop residue</div><div class="v accent" style="font-size:22px">~140 MT</div><div class="s">of ~500 MT/yr &#8212; much of it burned (NCR stubble smog)</div></div>
+        <div class="card" style="padding:11px 13px"><div class="k">Theoretical potential</div><div class="v accent" style="font-size:22px">~2,000 cr L</div><div class="s">&#8776; 1.5&#215; the E20 requirement &#8212; from waste alone</div></div>
+        <div class="card" style="padding:11px 13px"><div class="k">Food/feed competition</div><div class="v" style="font-size:22px;color:var(--green)">zero</div><div class="s">no rice buffer, no maize imports, no feed inflation</div></div>
+      </div>
+      <div class="card" style="margin-top:10px;padding:11px 14px"><h3 style="margin:0 0 4px;color:var(--gold)">PM JI-VAN plants (6 commercial + 4 demo)</h3>
+        <ul style="font-size:12.5px;margin:0"><li><strong>Panipat (IOCL)</strong> &#8212; 100 KLPD, <strong>3 cr L/yr from 2 lakh t rice straw</strong>, live Nov-2023 (&#8377;984 cr)</li>
+        <li><strong>Bargarh (BPCL)</strong> &#183; <strong>Bathinda (HPCL)</strong> &#8212; 100 KLPD paddy-straw</li>
+        <li><strong>Numaligarh (NRL)</strong> &#8212; 185 KLPD bamboo, live Sep-2025</li></ul></div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Why it fits the thesis exactly</h3>
+      <p style="font-size:13.5px">The same paddy, fully used &#8212; <strong>nothing wasted, nothing competes:</strong></p>
+      <div class="flow" style="flex-direction:column;gap:6px">
+        <div class="step" style="border-right:1px solid var(--hair)"><div class="t">Grain</div><div class="d">&#8594; PDS food security + 1G ethanol (capped, stock-linked)</div></div>
+        <div class="step" style="border-right:1px solid var(--hair);border-left:3px solid var(--green)"><div class="t" style="color:var(--green)">Bran</div><div class="d">&#8594; RBO (edible-oil import substitution)</div></div>
+        <div class="step" style="border-right:1px solid var(--hair)"><div class="t">Husk</div><div class="d">&#8594; silica / energy</div></div>
+        <div class="step" style="border-right:1px solid var(--hair);border-left:3px solid var(--gold)"><div class="t" style="color:var(--gold)">Straw</div><div class="d">&#8594; 2G ethanol (+ ends stubble burning)</div></div>
+      </div>
+      <p style="font-size:12.5px"><strong>Honest caveat:</strong> 2G is capital- and tech-heavy &#8212; &#8377;984 cr for one 100-KLPD plant (~10&#215; 1G capex/litre), enzyme costs high, biomass logistics hard. Output is still <strong>tiny today</strong> (~a few cr L of 661). It's the right <strong>long-run (5&#8211;10 yr) lever</strong>, not a near-term volume.</p></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)"><strong>The resolution:</strong> cap grain-ethanol at a stock-linked level, and let <strong>2G (straw) + the byproduct route (bran&#8594;RBO)</strong> carry the growth &#8212; both use residue the crop already produces, so blending can scale <em>without</em> ever competing with the plate or the feed trough.</div>
+  <div class="foot">Sources: PIB / PM JI-VAN Yojana (Panipat, Bargarh, Bathinda, Numaligarh 2G plants) &#183; ChiniMandi (&#8377;984 cr) &#183; MNRE/IARI crop-residue (~500 MT / ~140 MT surplus) &#183; report/ethanol-fci-40pct-clause-evaluation.md</div>
+</section>
+
+<!-- 14 THE AUDIT AGREES &#8212; CAG -->
+<section class="slide" data-n="17">
+  <div class="eyebrow">Independent validation &#183; the state's own auditor</div>
+  <h2>The CAG audited the same inefficiency &#8212; and put &#8377;-figures on it</h2>
+  <p class="lead" style="font-size:17px">Every efficiency claim here is inferred from public data. The
+  <strong>Comptroller &amp; Auditor General (Report No. 20 of 2023, FY2017-22)</strong> found the same,
+  audited &#8212; turning "a plausible reading" into "the supreme auditor agrees."</p>
+  <div class="grid3">
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="k">LTTC freight rebate forgone</div><div class="v gold">&#8377;1,736 cr</div><div class="s">largest single avoidable cost &#8212; movement inefficiency (&#182;4.4.1)</div></div>
+    <div class="card"><div class="k">Avoidable hiring &#8212; despite own vacant CAP</div><div class="v accent">&#8377;62.76 cr</div><div class="s">+ &#8377;170 cr avoidable carry-over to SGAs (&#182;3.4.3 / 3.4.6)</div></div>
+    <div class="card"><div class="k">Storage augmentation built</div><div class="v accent">12.25 / 34.5 LMT</div><div class="s">only ~36% of the 5-yr target (&#182;1.1.1)</div></div>
+  </div>
+  <div class="grid2" style="margin-top:6px">
+    <div class="card"><h3 style="color:var(--green)">Maps to the thesis</h3>
+      <ul style="font-size:13px">
+        <li><strong>Over-hiring despite vacant capacity</strong> &#8594; size owned/coop to average, hire the peak</li>
+        <li><strong>Sangrur silo &#8212; stock blocked</strong> (&#182;3.6.5) &#8594; the idle static base to divert to processing</li>
+        <li><strong>Augmentation under-delivered</strong> &#8594; the cooperative/PACS storage plan</li>
+        <li><strong>&#8377;158.88 cr railhead-issue foregone, Jharkhand</strong> (&#182;4.3.4) &#8594; distributed delivery</li>
+      </ul></div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">The honest counterweight</h3>
+      <p style="font-size:13.5px">The CAG critiques <strong>execution, not the outcome</strong>. FCI still
+      runs the world's largest food-security operation with <strong>negligible spoilage (0.002&#8211;0.022%)</strong>.
+      Both are true: the entitlement is delivered <em>and</em> the storage/movement machinery is materially
+      inefficient &#8212; that slack is exactly what value-capture + cooperative storage convert, without touching
+      the ration.</p></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)"><strong>~&#8377;2,383 cr</strong> of avoidable cost the
+  CAG could quantify (2017-22) &#8212; the inefficiency isn't a reason to shrink FCI; it's the <strong>slack a
+  processing + cooperative-storage redesign turns into value.</strong></div>
+  <div class="foot">Source: CAG Report No. 20 of 2023 &#8212; Performance Audit on Storage &amp; Movement of Food grains by FCI &#183; report/cag-audit-fci-findings.md</div>
+</section>
+
+<!-- 12 PDS / ONORC &#8212; jobs, volumes, spend -->
+<section class="slide" data-n="18">
+  <div class="eyebrow">The PDS &#183; ONORC case &#183; the demand rail already exists</div>
+  <h2>&#8377;2 lakh cr already spent, 80 cr served &#8212; redirect the oil spend to domestic jobs</h2>
+  <div class="grid3">
+    <div class="card"><h3 style="color:var(--green)">Domestic jobs</h3>
+      <div class="k">Fair Price Shops</div><div class="v accent">5.43 lakh</div>
+      <div class="s">99.8% ePoS-automated &#183; dealer + staff livelihoods, every district</div>
+      <div class="k" style="margin-top:12px">Rice mills</div><div class="v accent">75k&#8211;100k</div>
+      <div class="s">10&#8211;50 workers each &#183; TN 3,399 &#183; AP 1,913 &#183; WB 1,873</div>
+      <div class="k" style="margin-top:12px">Solvent-extraction plants</div><div class="v accent">~350</div>
+      <div class="s">875 SEA members &#183; 30 MT processing capacity</div></div>
+    <div class="card"><h3 style="color:var(--green)">Production volumes</h3>
+      <div class="tblwrap"><table style="margin:2px 0">
+        <tr><td>Rice procured</td><td class="n">~520 LMT</td></tr>
+        <tr><td>Wheat procured</td><td class="n">300 LMT</td></tr>
+        <tr><td>Paddy milled/yr</td><td class="n">~850 LMT</td></tr>
+        <tr class="hl"><td>Rice bran oil</td><td class="n">~10 LMT</td></tr>
+        <tr><td>Domestic edible oil</td><td class="n">122 LMT</td></tr>
+        <tr><td>Edible oil imported</td><td class="n">168 LMT</td></tr>
+        <tr><td>Oilseeds grown</td><td class="n">40.99 MT</td></tr>
+      </table></div>
+      <div class="s">The milling that makes free PDS rice already throws off the bran for domestic oil.</div></div>
+    <div class="card"><h3 style="color:var(--green)">State expenditure</h3>
+      <div class="k">Central food subsidy FY25</div><div class="v accent">&#8377;2.05 L cr</div>
+      <div class="s">free rice/wheat to ~80 cr (NFSA+PMGKAY) + &#8377;7,075 cr FPS margins</div>
+      <div class="k" style="margin-top:12px">TN special-PDS oil+dal</div><div class="v gold">&#8377;3,800 cr</div>
+      <div class="s">palmolein at &#8377;25/L on ~&#8377;65/L subsidy &#8212; <strong>on an import</strong> (AP/KA/TG/WB run their own)</div>
+      <div class="k" style="margin-top:12px">ONORC coverage</div><div class="v accent">36/36</div>
+      <div class="s">States/UTs &#183; 20.54 cr cards &#183; portable, deduplicated</div></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">The state already spends <strong>&#8377;2 lakh cr+</strong> and
+  runs <strong>5.43 lakh shops</strong> to feed 80 cr people &#8212; the demand rail is built. <strong>ONORC</strong>
+  turns it into one portable, deduplicated national offtake: redirect the state <em>oil</em> subsidy from imported
+  palmolein to <strong>domestic RBO</strong>, and the same rupee funds rice-mill, solvent-plant and oilseed-farm
+  jobs instead of foreign crushers &#8212; import substitution and employment on infrastructure that already exists.</div>
+  <div class="foot">Sources: PRS Demand-for-Grants 2024-25 (Food &amp; PD) &#183; DFPD/PIB Year-End 2024 &#183; TNCSC &#183; DCMSME &#183; SEA of India &#183; data/pds_onorc_jobs_volumes_spend.csv</div>
+</section>
+
+<!-- 13 PER-STATE PDS OIL & PULSE -->
+<section class="slide" data-n="19">
+  <div class="eyebrow">Per-state &#183; who already subsidises oil &amp; pulses in the ration</div>
+  <h2>The oil subsidy is real, state-run, and spent on imports</h2>
+  <div class="tblwrap"><table>
+    <tr><th>State</th><th>Oil in PDS</th><th>Pulse in PDS</th><th>Card price</th><th class="n">Spend &#8377;cr/yr</th></tr>
+    <tr class="hl"><td><strong>Tamil Nadu</strong></td><td>Palmolein 1 L/card</td><td>Tur dal 1 kg</td><td>oil &#8377;25/L &#183; dal &#8377;30/kg</td><td class="n">3,800</td></tr>
+    <tr><td>Karnataka</td><td>Palm oil + Indira kit</td><td>Tur/moong 1 kg</td><td>dal ~&#8377;38/kg</td><td class="n">~360*</td></tr>
+    <tr><td>Gujarat</td><td>Edible oil + sugar</td><td>Chana + tur dal</td><td>subsidised</td><td class="n">n/p</td></tr>
+    <tr><td>Andhra Pradesh</td><td>&#8212;</td><td>Tur dal 500 g</td><td>subsidised</td><td class="n">n/p</td></tr>
+    <tr><td>Maharashtra</td><td>&#8212;</td><td>Chana + urad</td><td>&#8377;35/kg</td><td class="n">n/p</td></tr>
+    <tr><td>Telangana</td><td>&#8212;</td><td>Red gram dal</td><td>subsidised</td><td class="n">n/p</td></tr>
+    <tr><td>Kerala (Supplyco)</td><td>Oil (below-mkt)</td><td>Pulses</td><td>ltd subsidy</td><td class="n">n/p</td></tr>
+    <tr><td>Centre (NAFED)</td><td>&#8212;</td><td>5.5 LMT &#8594; 11 states</td><td>varies</td><td class="n">6,999&#8224;</td></tr>
+  </table></div>
+  <div class="grid3" style="margin-top:10px">
+    <div class="card"><div class="k">TN palmolein bought</div><div class="v accent">156 lakh L</div><div class="s">+ 20,000 MT tur dal/yr &#8212; all imported oil</div></div>
+    <div class="card"><div class="k">States running oil-PDS</div><div class="v accent">4 major</div><div class="s">TN &#183; Karnataka &#183; Gujarat &#183; Kerala</div></div>
+    <div class="card"><div class="k">States taking NAFED pulses</div><div class="v accent">11+</div><div class="s">pulses far more widespread than oil</div></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)"><strong>Tamil Nadu is the flagship:</strong> &#8377;3,800 cr
+  a year, almost entirely on <em>imported</em> palmolein &#8212; the single largest identifiable state oil subsidy a
+  domestic-RBO switch would redirect. *Karnataka figure is dal-only (oil delivered in-kit); <strong>n/p</strong> =
+  scheme confirmed on state portals but per-commodity spend not published &#8212; not zero. &#8224;NAFED chana, free to states, 2020.</div>
+  <div class="foot">Sources: TNCSC PDS scale &#183; state civil-supplies portals &#183; NAFED via Business Standard &#183; press 2024-25 &#183; data/pds_state_oil_pulse_expenditure.csv</div>
+</section>
+
+<!-- 14 FISCAL RATIONALISATION -->
+<section class="slide" data-n="20">
+  <div class="eyebrow">The fiscal case &#183; same rupee, with value capture</div>
+  <h2>&#8377;2 lakh cr to give grain away &#8212; plus &#8377;2 lakh cr to import what it could make</h2>
+  <div class="grid2">
+    <div class="card" style="border-top:3px solid var(--gold)"><h3 style="color:var(--gold)">What the system costs now</h3>
+      <div class="tblwrap"><table style="margin:2px 0">
+        <tr><td>MSP paid to ~1.3 cr farmers</td><td class="n">&#8377;2.32 L cr</td></tr>
+        <tr><td>Food subsidy (free grain, 80 cr)</td><td class="n">&#8377;2.05 L cr</td></tr>
+        <tr><td>Edible-oil imports</td><td class="n">&#8377;1.68 L cr</td></tr>
+        <tr><td>Pulse imports</td><td class="n">&#8377;0.31 L cr</td></tr>
+        <tr><td>Excess-stock carry (~330 LMT over buffer)</td><td class="n">&#8377;18,000 cr</td></tr>
+        <tr><td>Rice bran given away free</td><td class="n">&#8377;7,650 cr</td></tr>
+      </table></div>
+      <p style="font-size:12px;margin-top:6px">No double-count: procurement sits <em>inside</em> the subsidy. The two clean burdens are the &#8377;2.05 L cr subsidy + ~&#8377;2.0 L cr imports.</p></div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">What processing recovers</h3>
+      <div class="tblwrap"><table style="margin:2px 0">
+        <tr class="hl"><td>Import substitution (processing)</td><td class="n">&#8377;21,087 cr</td></tr>
+        <tr><td>&#8212; of which capturable now</td><td class="n">~&#8377;11,000 cr</td></tr>
+        <tr><td>Byproduct monetised (bran &#8594; RBO)</td><td class="n">&#8377;7,650 cr</td></tr>
+        <tr><td>Excess-stock carry avoided</td><td class="n">up to &#8377;18,000 cr</td></tr>
+        <tr><td>Processing-margin uplift</td><td class="n">3&#8211;5&#215;</td></tr>
+      </table></div>
+      <p style="font-size:12px;margin-top:6px">Branded staple processing earns 11&#8211;12% EBITDA vs 2&#8211;4% raw trading &#8212; the money is in the processing, not the sourcing.</p></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)"><strong>Nothing in the food-security guarantee is cut.</strong>
+  Farmers still get MSP; 80 cr still get free grain. What changes: the byproducts stop being given away and the
+  oil/pulses stop being imported &#8212; the <em>surplus and the byproduct are processed</em> instead of dumped and
+  re-imported. A value-capture layer bolted onto a &#8377;4 lakh-cr/yr machine, not a new subsidy.</div>
+  <div class="foot">Sources: PIB/FCI procurement (wheat &#8377;62,156 cr RMS25-26) &#183; PRS food subsidy &#8377;2.05 L cr &#183; DGCI&amp;S imports &#183; FCI stock 738 LMT (1 May 25) &#183; report/fiscal-rationalisation-procurement-vs-processing.md</div>
+</section>
+
+<!-- 15 NATIONAL FCI x FPO MAP -->
+<section class="slide" data-n="21">
+  <div class="eyebrow">National build-out &#183; storage &#215; farmer-aggregation</div>
+  <h2>The grain and the farmers are in different states &#8212; design for it</h2>
+  <div class="grid2">
+    <div>
+      <div class="tblwrap"><table>
+        <tr><th>State</th><th class="n">FCI storage LMT</th><th class="n">SFAC FPOs</th></tr>
+        <tr class="hl"><td><strong>Madhya Pradesh</strong></td><td class="n">200</td><td class="n">348</td></tr>
+        <tr><td>Punjab</td><td class="n">175</td><td class="n">78</td></tr>
+        <tr><td>Haryana</td><td class="n">100</td><td class="n">119</td></tr>
+        <tr><td>Uttar Pradesh</td><td class="n">47</td><td class="n">758</td></tr>
+        <tr><td>Bihar</td><td class="n">21</td><td class="n">312</td></tr>
+        <tr><td>Andhra Pradesh</td><td class="n">25</td><td class="n">247</td></tr>
+        <tr><td>Rajasthan</td><td class="n">16</td><td class="n">225</td></tr>
+        <tr><td>Maharashtra</td><td class="n">24</td><td class="n">213</td></tr>
+      </table></div>
+      <p style="font-size:12px">FCI+hired storage (Nov-24 bulletin, ~841 LMT all-India) &#183; SFAC 10,000-FPO registry (3,649, Feb-25 &#8212; SFAC channel only)</p>
+    </div>
+    <div class="card"><h3 style="color:var(--green)">The mismatch = the design rule</h3>
+      <ul style="font-size:13.5px">
+        <li><strong>Storage belt</strong> (Punjab 175, MP 200, Haryana 100) holds the grain &#8212; but is thin on FPOs (Punjab 78)</li>
+        <li><strong>FPO belt</strong> (UP 758, Bihar 312, AP 247, Rajasthan 225) has the farmers &#8212; but far less storage</li>
+        <li><strong>MP is the one state with both</strong> &#8212; 200 LMT + 348 FPOs + soybean/pulses/mustard = <strong>the natural first hub</strong></li>
+      </ul>
+      <p style="font-size:13px;margin-top:6px"><strong>Siting logic:</strong> oilseed/pulse crush &#8594; FPO-dense deficit states (MP, Maharashtra, Rajasthan, AP); rice-bran &#8594; the paddy/storage belt (Punjab, Haryana, Chhattisgarh). Match each stream to the state that has its feedstock <em>and</em> the aggregation.</p></div>
+  </div>
+  <div class="foot">Sources: DFPD Foodgrain Bulletin Nov-2024 (storage) &#183; SFAC state-wise 10,000-FPO list 24-02-2025 &#183; data/national_fci_fpo_by_state.csv</div>
+</section>
+
+<!-- 16 FOOD-PROCESSING PSU (HVOC) -->
+<section class="slide" data-n="22">
+  <div class="eyebrow">The vehicle &#183; don't create a PSU &#8212; revive the one DFPD owns</div>
+  <h2>DFPD already owns a dormant edible-oils processing PSU</h2>
+  <div class="grid2">
+    <div>
+      <p>Per igod.gov.in, DFPD's org chart already holds <strong>three</strong> delivery bodies:</p>
+      <div class="flow" style="flex-direction:column;gap:8px">
+        <div class="step" style="border-right:1px solid var(--hair)"><div class="t">FCI</div><div class="d">procurement &#183; storage &#183; the grain + bran feedstock</div></div>
+        <div class="step" style="border-right:1px solid var(--hair)"><div class="t">CWC</div><div class="d">the warehousing network</div></div>
+        <div class="step" style="border-right:1px solid var(--hair);border-left:3px solid var(--green)"><div class="t" style="color:var(--green)">HVOC &#8212; Hindustan Vegetable Oils Corp</div><div class="d">a CPSE built for vegetable-oil / vanaspati processing &#8212; now dormant</div></div>
+      </div>
+      <p style="font-size:13.5px"><strong>India needn't <em>create</em> a food-processing PSU &#8212; it can <em>revive</em> HVOC:</strong> the corporate shell, the DFPD mandate and the edible-oil remit already exist, alongside the grain (FCI) and the storage (CWC).</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Build it like the survivors, not the failures</h3>
+      <ul style="font-size:13px">
+        <li><strong>Infrastructure + processing, NOT trading</strong> &#8212; STC&#8594;PEC&#8594;NCEL died trading naked</li>
+        <li><strong>FPO-fed supply</strong> &#8212; the AMUL/NAFED survival trait</li>
+        <li><strong>Ring-fenced, contracted offtake</strong> &#8212; PDS/ONORC oil + fortification, not the open market</li>
+        <li><strong>JV/PPP capital</strong> &#8212; HVOC brings mandate + sites; partner brings crush/refining</li>
+        <li><strong>Sit on the FCI/CWC network</strong> + the &#8377;7,650 cr free bran</li>
+      </ul></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">A revived HVOC is the <strong>edible-oil counterpart to FCI</strong>:
+  FCI holds the grain, HVOC processes the oil, CWC stores, FPOs supply, ONORC distributes &#8212; anchoring the &#8377;1.68 lakh-cr
+  import substitution and supplying the PDS oil ration domestically instead of buying imported palmolein.</div>
+  <div class="foot">Sources: igod.gov.in DFPD org list (FCI/CWC/HVOC) &#183; report/psu-agri-ventures-history.md (STC/PEC/NCEL vs CWC/AMUL) &#183; report/national-fci-fpo-food-processing-psu.md</div>
+</section>
+
+<!-- 12 MODEL -->
+<section class="slide" data-n="23">
+  <div class="eyebrow">The model &#183; why government-cooperative-PPP</div>
+  <h2>Ring-fence the commercial arm; contract the offtake</h2>
+  <div class="grid2">
+    <div class="card"><h3>Structure</h3>
+      <ul><li><strong>PACS/FPO</strong> aggregates paddy + bran (already the procurement centre)</li>
+      <li><strong>Private partner</strong> builds + runs RBO extraction, silica, power (the capital + know-how)</li>
+      <li><strong>State</strong> provides VGF/PMKSY grant + a fortified-rice / RBO <strong>offtake guarantee</strong></li>
+      <li>Ring-fenced from MSP/buffer policy &#8212; the COFCO lesson, not the STC/Thailand failure</li></ul></div>
+    <div class="card"><h3>Why not leave it to private millers</h3>
+      <ul><li>100,000 mills do basic CMR &#8212; but won't invest in bran stabilisation, RBO, silica, cogen</li>
+      <li>The integrated <strong>value-added</strong> mill is the PPP white space (verified: largely untried)</li>
+      <li>The offtake guarantee is the revenue backbone &#8212; mirrors PEG's silo-hire guarantee</li></ul></div>
+  </div>
+  <div class="note">History's warning (verified): STC&#8594;PEC&#8594;NCEL failed by trading naked; CWC, AMUL, Kendriya Bhandar
+  succeeded by infrastructure / farmer-ownership / ring-fencing. This is an <em>infrastructure + processing</em>
+  play, not a trading arm.</div>
+  <div class="foot">Sources: PPP rice-mills &#183; PSU-agri-ventures-history &#183; agri-trader-playbook</div>
+</section>
+
+<!-- 12 THE ASK -->
+<section class="slide" data-n="24">
+  <div class="eyebrow">Illustrative pilot</div>
+  <h2>One integrated complex, in an operational food park</h2>
+  <div class="grid3">
+    <div class="card"><div class="k">Anchor: rice mill</div><div class="v">&#8377;80 L</div><div class="s">1 TPH, 19% IRR (NCDC DPR)</div></div>
+    <div class="card"><div class="k">+ RBO extraction</div><div class="v">&#8377;15&#8211;40 cr</div><div class="s">8&#8211;15% margin, the &#8377;7,544 cr anchor</div></div>
+    <div class="card"><div class="k">+ poha/murmura line</div><div class="v">&#8377;21 L</div><div class="s">10&#8211;15% margin, &lt;3y payback</div></div>
+    <div class="card"><div class="k">+ husk power/silica</div><div class="v">cluster</div><div class="s">energy self-sufficiency + tyre-grade silica</div></div>
+    <div class="card"><div class="k">Capital subsidy</div><div class="v accent">35&#8211;50%</div><div class="s">PMKSY cluster + PMFME units</div></div>
+    <div class="card"><div class="k">Offtake secured by</div><div class="v accent">contract</div><div class="s">FRK/PDS + food processors + fortification</div></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)">The proof-points already exist as verified DPRs and operational
+  parks. The novelty is <strong>integration + the offtake guarantee</strong> &#8212; assembling proven units into one
+  government-anchored complex that captures the cascade instead of gifting it.</div>
+  <div class="foot">All component economics from real project DPRs; integration is the un-built step</div>
+</section>
+
+<!-- 13 FARMER INCOME / RFII -->
+<section class="slide" data-n="25">
+  <div class="eyebrow">Why it matters &#183; Doubling Farmers' Income</div>
+  <h2>Real farm income is ~a third of the way to doubling</h2>
+  <div class="grid2">
+    <div>
+      <p>The 2016 goal: double farmers' <em>real</em> income by 2022-23. Deflated by CPI-AL
+      (the farm household's own cost basket, MoSPI), the <strong>Real Farm Income Index</strong> reads:</p>
+      <div class="flow">
+        <div class="step"><div class="t">2016-17</div><div class="d">RFII 99</div></div>
+        <div class="arrow">&#8594;</div>
+        <div class="step"><div class="t">2021-22</div><div class="d">RFII 131</div></div>
+        <div class="arrow">&#8594;</div>
+        <div class="step" style="border-color:var(--gold)"><div class="t gold">Target</div><div class="d">200 = doubling</div></div>
+      </div>
+      <p class="lead" style="margin-top:6px">Achieved ~5.7%/yr real vs the 10.4%/yr needed &#8212; reaching 200 slips to ~2030.</p>
+    </div>
+    <div class="card"><h3>The lever the gap needs</h3>
+      <ul><li>Crop income is only <strong>37%</strong> of farm income &#8212; price alone can't double it</li>
+      <li>The other 63%: wages, livestock, <strong>non-farm/value-addition</strong></li>
+      <li>Cutting <em>cost</em> defends real income against inflation the nominal headline hides</li>
+      <li>Exactly the byproduct-cascade + processing-margin this project builds</li></ul></div>
+  </div>
+  <div class="note">RFII is a monitorable metric: CPI-AL deflator refreshes monthly (MoSPI), income on each SAS/NAFIS survey.</div>
+  <div class="foot">Sources: NABARD NAFIS 2021-22 &#183; NSSO SAS &#183; MoSPI CPIALRL &#183; Dalwai Committee (DFI)</div>
+</section>
+
+<!-- 14 CBG LOOP / FUEL -->
+<section class="slide" data-n="26">
+  <div class="eyebrow">The farm-side loop &#183; fuel choice</div>
+  <h2>Diesel&#8594;CNG + residue: the inflation-proof income lever</h2>
+  <div class="grid3">
+    <div class="card"><div class="k">Fuel shift (diesel&#8594;CNG)</div><div class="v accent">+&#8377;5,400</div><div class="s">/yr per 1.5-ha paddy household &#183; 24% on tractor fuel &#183; +3.3 RFII pts</div></div>
+    <div class="card"><div class="k">Full CBG loop (+residue)</div><div class="v accent">+&#8377;9,750</div><div class="s">/yr &#183; residue&#8594;CBG + FOM slurry &#183; +5.9 RFII pts &#183; closes 9% of the doubling gap</div></div>
+    <div class="card"><div class="k">Mill fuel choice</div><div class="v gold">&#8377;1 vs &#8377;10.45</div><div class="s">husk/CBG per kWh vs grid &#183; &#8377;2.7-7.9 cr/yr on the mill's EBITDA</div></div>
+  </div>
+  <div class="note gold" style="border-color:var(--green)"><strong>The loop closes:</strong> crop &#8594; residue &#8594; CBG &#8594;
+  fuels the tractor (24% cheaper, inflation-proof) AND the mill's boiler &#8594; slurry to the field. Diesel is a volatile
+  imported input; CBG from the farmer's own residue defends the <em>real</em> income the doubling metric measures.</div>
+  <div class="foot">CACP A2+FL &#183; PIB CNG-tractor (PRID 1697555) &#183; SATAT CBG &#183; TN diesel/CNG Jul 2026</div>
+</section>
+
+<!-- 15 CLOSE -->
+<section class="slide cover" data-n="27" style="background:linear-gradient(150deg,#1f5637,#2f7a4f)">
+  <div class="eyebrow">The one-line case</div>
+  <h1 style="font-size:clamp(26px,4.6vw,42px)">Stop gifting the byproduct.<br>Contract the demand. Capture the cascade.</h1>
+  <p class="lead" style="color:#eaf3ec;max-width:62ch">India is the world's #1 producer of the raw byproduct and a net importer
+  of the refined derivative &#8212; for oil, gluten, starch, protein, and Vitamin-E alike. The feedstock is procured, the
+  subsidy is 35&#8211;50%, the parks are built, the DPRs are proven. What's missing is the integrated complex and the
+  offtake guarantee. That is the project.</p>
+  <div class="grid3" style="margin-top:22px">
+    <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)"><div class="k" style="color:#cfe6d7">Savings</div><div class="v" style="color:#fff">&#8377;21k cr/yr</div></div>
+    <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)"><div class="k" style="color:#cfe6d7">Best DPR margin</div><div class="v" style="color:#fff">poha 10&#8211;15%</div></div>
+    <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)"><div class="k" style="color:#cfe6d7">Best DPR IRR</div><div class="v" style="color:#fff">dal 25&#8211;31%</div></div>
+  </div>
+  <div class="foot" style="color:#bcd8c6">Full analysis, data &amp; sources: github.com/herrrickshaw/FCI-warehouse-MSPvsMSV &#183; research synthesis, not investment advice</div>
+</section>
+
+<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--oc-gray-0:#f8f9fa!important;--oc-gray-1:#f1f3f5!important;--oc-gray-2:#e9ecef!important;--oc-gray-3:#dee2e6!important;--oc-gray-4:#ced4da!important;--oc-gray-5:#adb5bd!important;--oc-gray-6:#868e96!important;--oc-gray-7:#495057!important;--oc-gray-8:#343a40!important;--oc-gray-9:#212529!important;--sp-1:.25rem!important;--sp-2:.5rem!important;--sp-3:.75rem!important;--sp-4:1rem!important;--sp-5:1.5rem!important;--sp-6:2rem!important;--sp-7:3rem!important;--radius:12px!important;--radius-sm:8px!important;--shadow-1:0 1px 2px rgba(0,0,0,.04)!important;--shadow-2:0 2px 8px rgba(0,0,0,.06)!important;--step--1:clamp(.78rem,.75rem + .15vw,.85rem)!important;--step-0:clamp(.92rem,.88rem + .2vw,1rem)!important;--step-1:clamp(1.05rem,1rem + .3vw,1.2rem)!important;--step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem)!important;--surface:#fff!important;--surface-alt:var(--oc-gray-0)!important;--border:var(--oc-gray-3)!important;--text:#000!important;--text-mut:#333!important;color-scheme:light!important;}</style></div>

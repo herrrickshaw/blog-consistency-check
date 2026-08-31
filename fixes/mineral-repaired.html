@@ -1,0 +1,584 @@
+
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+/* === Design tokens (Open Color neutrals + Utopia-style fluid type + spacing scale) === */
+:root{
+  --oc-gray-0:#f8f9fa;--oc-gray-1:#f1f3f5;--oc-gray-2:#e9ecef;--oc-gray-3:#dee2e6;--oc-gray-4:#ced4da;
+  --oc-gray-5:#adb5bd;--oc-gray-6:#868e96;--oc-gray-7:#495057;--oc-gray-8:#343a40;--oc-gray-9:#212529;
+  --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--sp-7:3rem;
+  --radius:12px;--radius-sm:8px;
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);--shadow-2:0 2px 8px rgba(0,0,0,.06);
+  --step--1:clamp(.78rem,.75rem + .15vw,.85rem);
+  --step-0:clamp(.92rem,.88rem + .2vw,1rem);
+  --step-1:clamp(1.05rem,1rem + .3vw,1.2rem);
+  --step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem);
+  --surface:#fff;--surface-alt:var(--oc-gray-0);--border:var(--oc-gray-3);--text:#000;--text-mut:#333;
+}
+/* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+
+
+:root{--bg:#0f1720;--panel:#182430;--panel2:#1e2c3a;--ink:#e8eef4;--mut:#93a4b5;--line:#2b3b4d;
+--crude:#f4a24c;--imp:#e05d5d;--exp:#4fb0c6;--basket:#c9a227;--ok:#3fb27f;--part:#e0a83e;--no:#c85c5c;--accent:#6ea8fe;}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0c141c,#0f1720);color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:26px;margin:0 0 4px} h2{font-size:18px;margin:34px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+.sub{color:var(--mut);font-size:13.5px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:4px 11px;font-size:12px;color:var(--mut)}
+.chip b{color:var(--ink)}
+.badge{display:inline-block;background:rgba(63,178,127,.14);border:1px solid var(--ok);color:var(--ok);
+border-radius:20px;padding:4px 12px;font-size:12.5px;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0 6px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .v{font-size:22px;font-weight:700} .kpi .l{font-size:11.5px;color:var(--mut);margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr;gap:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h3{margin:0 0 2px;font-size:15px} .card .cap{color:var(--mut);font-size:12px;margin-bottom:8px}
+.chartbox{position:relative;height:300px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.tag.yes{background:rgba(63,178,127,.16);color:var(--ok)} .tag.partial{background:rgba(224,168,62,.16);color:var(--part)}
+.tag.no{background:rgba(200,92,92,.16);color:var(--no)}
+.formula{background:var(--panel2);border:1px dashed var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;margin:8px 0}
+.formula code{color:var(--crude);font-weight:700}
+.mut{color:var(--mut)} .small{font-size:12px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px}
+.note{background:rgba(224,168,62,.08);border:1px solid var(--part);border-radius:10px;padding:12px 14px;font-size:13px;margin-top:8px}
+.ok-row{color:var(--ok)} .foot{color:var(--mut);font-size:12px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
+.legend{font-size:12px;color:var(--mut);display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.legend i{width:11px;height:11px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:-1px}
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+<div class="wrap">
+
+<h1>India Mineral-Oil Trade &#215; Pricing Dashboard</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+
+<div class="sub">HSN Chapter 27 (Mineral fuels &amp; oils) import/export evaluated product-wise against the price
+benchmarks that drive Indian pricing &#8212; and mapped to OilPrice API coverage. Trade in US$; FY2018-19 &#8594; 2025-26.</div>
+<div class="chips">
+<span class="chip">Trade: <b>DGCI&amp;S / TRADESTAT</b> (HSN 2-digit)</span>
+<span class="chip">Product split &amp; prices: <b>PPAC Ready Reckoner</b></span>
+<span class="chip">Pricing formula: <b>Rangarajan 2006 &#183; Expert Group 2013 &#183; TERI</b></span>
+<span class="chip">Gas: <b>Kirit Parikh 2023</b></span>
+<span class="badge">&#10003; Consistency checks 20/20 passed</span>
+</div>
+
+<div class="kpis">
+<div class="kpi"><div class="v">$203.4B</div><div class="l">Ch.27 imports FY25-26 (26.2% of all imports)</div></div>
+<div class="kpi"><div class="v">$55.9B</div><div class="l">Ch.27 exports FY25-26</div></div>
+<div class="kpi"><div class="v">121.1 MMT</div><div class="l">Crude imported (FY25-26 H1)</div></div>
+<div class="kpi"><div class="v">4 / 11</div><div class="l">POL items with an OilPrice benchmark (2 partial, 5 none)</div></div>
+<div class="kpi"><div class="v">80 : 20</div><div class="l">Trade Parity Price = IPP : EPP weight</div></div>
+</div>
+
+<div class="card" style="margin-top:8px;border-color:var(--ok)">
+ <h3>&#63743;🟢 Live EIA spot benchmark <span class="mut small" id="eia_date"></span></h3>
+ <div class="cap">Pulled live from the EIA API &#8212; replaces the dead OilPrice feed. US Gulf Coast + crude benchmarks; directional proxy, not India FOB / Platts AG.</div>
+ <div class="kpis" id="eia_kpis" style="margin:8px 0 4px"></div>
+ <div class="note" id="eia_note"></div>
+</div>
+
+<h2>1 &#183; HSN Chapter 27 &#8212; the mineral-oil trade balance</h2>
+<div class="grid2">
+ <div class="card"><h3>Exports vs imports (US$ Billion)</h3>
+   <div class="cap">Chapter 27 is India's single largest import chapter and a major export earner. Structural net importer.</div>
+   <div class="chartbox"><canvas id="c_ch27"></canvas></div></div>
+ <div class="card"><h3>Chapter 27 share of total imports</h3>
+   <div class="cap">Share tracks the crude price cycle &#8212; peaks in FY22-23 (oil spike), eases as prices soften.</div>
+   <div class="chartbox"><canvas id="c_share"></canvas></div></div>
+</div>
+
+<h2>2 &#183; Product-level POL trade (PPAC) &#8212; where petrol, diesel, LPG &amp; lube sit</h2>
+<div class="card"><h3>Import vs export value by product</h3>
+ <div class="cap">India imports crude &amp; LPG (deficit products) and exports refined petrol/diesel/naphtha/ATF &#8212; the classic refining-hub pattern. Pick a year.</div>
+ <div class="controls"><label class="small mut">Year&nbsp;</label><select id="yearSel"></select></div>
+ <div class="chartbox" style="height:340px"><canvas id="c_prod"></canvas></div>
+ <div class="legend"><span><i style="background:var(--imp)"></i>Import value US$B</span><span><i style="background:var(--exp)"></i>Export value US$B</span></div>
+</div>
+
+<h2>3 &#183; Trade values vs price benchmark &#8212; the bridge</h2>
+<div class="grid2">
+ <div class="card"><h3>Crude: realized import unit-value vs Indian basket</h3>
+  <div class="cap">Implied $/bbl from trade value&#247;quantity tracks the Indian basket within &#177;6% every year &#8212; the core consistency check.</div>
+  <div class="chartbox"><canvas id="c_crude"></canvas></div></div>
+ <div class="card"><h3>Product unit values (US$/tonne)</h3>
+  <div class="cap">Import vs export realized unit value. Divergence = grade/quality &amp; timing vs the Platts benchmark. Pick a product.</div>
+  <div class="controls"><label class="small mut">Product&nbsp;</label><select id="prodSel"></select></div>
+  <div class="chartbox"><canvas id="c_unit"></canvas></div></div>
+</div>
+
+<h2>4 &#183; The pricing formula &#8212; how commodities set Indian prices</h2>
+<div class="card">
+ <div class="formula"><b>Refinery Gate Price</b> of sensitive products (MS, HSD), since 2006:<br>
+   <code>TPP = 0.80 &#215; IPP + 0.20 &#215; EPP</code></div>
+ <div class="grid2">
+  <div><div class="tblwrap"><table><tr><th>Term</th><th>Definition</th></tr>
+   <tr><td><b>IPP</b></td><td>FOB price + Ocean freight + Insurance + Customs duty + Port charges <span class="mut">(what an importer pays at an Indian port)</span></td></tr>
+   <tr><td><b>EPP</b></td><td>FOB price + Advance-license benefit + &#8230; <span class="mut">(&#8776; FOB export realisation)</span></td></tr>
+   <tr><td><b>Retail</b></td><td>RGP/RTP + Inland freight &amp; delivery + Marketing cost &amp; margin + Dealer commission + Excise + VAT</td></tr>
+  </table></div>
+  <div class="mut small" style="margin-top:6px">FOB = daily <b>Platts</b> (Argus for kero) Arab-Gulf product quotes, prior-fortnight/month average + premium.</div>
+  </div>
+  <div><div class="tblwrap"><table><tr><th>Product</th><th>Benchmark commodity that sets the price</th></tr>
+   <tr><td>Crude</td><td>Indian basket &#8212; 78.71% Oman+Dubai (sour) + 21.29% Brent</td></tr>
+   <tr><td>Petrol (MS)</td><td>FOB Gasoline Arab Gulf / Singapore (Platts)</td></tr>
+   <tr><td>Diesel (HSD)</td><td>FOB Gasoil 0.05%S Arab Gulf (Platts)</td></tr>
+   <tr><td>ATF / Kerosene</td><td>FOB Jet/Kero Arab Gulf (Platts/Argus)</td></tr>
+   <tr><td><b>LPG</b></td><td><b>Saudi Aramco CP</b> &#8212; Butane 60% + Propane 40% + Platts Gaswire premium</td></tr>
+   <tr><td>Fuel Oil</td><td>FOB Fuel Oil 180/380 cSt Arab Gulf/Singapore (Platts)</td></tr>
+  </table></div></div>
+ </div>
+ <div class="note"><b>Worked examples from primary price-build-up documents.</b>
+  <b>PDS Kerosene, Mumbai (Mar-16):</b> FOB AG Jet/Kero $40.26/bbl &#8594; IPP &#8377;18.10/L &#8594; total cost &#8377;20.13/L &#8594; RSP &#8377;15.24/L (under-recovery &#8377;6.58/L).
+  &nbsp;&#183;&nbsp; <b>Domestic LPG, Delhi (Mar-16):</b> FOB AG LPG $305.95/MT &#8594; IPP &#8377;326.40/cyl &#8594; market &#8377;513.50/cyl &#8594; subsidised effective &#8377;419.13/cyl.
+  &nbsp;&#183;&nbsp; <b>Gas (Kirit Parikh 2023):</b> APM gas sloped to the <i>same Indian crude basket</i>, floor $4 / ceiling $6.5 per MMBtu (+$0.5/yr), difficult fields cap $12.46 &#8212; one crude commodity anchors crude, LPG, MS, HSD <i>and</i> gas.</div>
+</div>
+
+<h2>5 &#183; HSN item &#8594; India benchmark &#8594; OilPrice API coverage</h2>
+<div class="card"><h3>Which mineral-oil lines the OilPrice API can actually price</h3>
+ <div class="cap">The API (this plan) has crude, gasoline, diesel, jet &amp; marine fuels &#8212; but no LPG, naphtha, base-oil/lube, bitumen or petcoke, and <b>no history</b> (spot only). So it proxies ~half the complex; the Platts/Saudi-CP benchmarks in column 3 are the real anchors.</div>
+ <div class="tblwrap"><table id="covtbl"><tr><th>Product</th><th>HSN</th><th>India pricing benchmark</th><th>OilPrice proxy</th><th>Coverage</th></tr></table></div>
+</div>
+
+<h2>7 &#183; Commodity-import pricing checklist (India, current rules)</h2>
+<div class="card"><h3>How to price a commodity import into India &#8212; step by step</h3>
+ <div class="cap">The landed-cost stack a trader must build before quoting. Duty rates change by notification &#8212; verify on CBIC/ICEGATE before costing a real cargo.</div>
+ <div class="tblwrap"><table id="chklist"><tr><th style="width:210px">Step</th><th>What to do</th></tr></table></div>
+ <div class="formula" style="margin-top:12px"><b>Worked duty stack &#8212; Base oil (HSN 2710 1971), CIF &#8377;100</b><br>
+  BCD 5% = &#8377;5.00 &nbsp;&#183;&nbsp; AIDC 5% on CIF = &#8377;5.00 &nbsp;&#183;&nbsp; SWS 10% on (BCD+AIDC) = &#8377;1.00 &nbsp;&#183;&nbsp; IGST 18% on (CIF+duties) = &#8377;19.98
+  &nbsp;&#8594;&nbsp; <code>Effective 30.98%</code> <span style="color:#8a5a12;font-size:.85em">(corrected: AIDC is levied on CIF, not BCD)</span>. &nbsp;FTA origin: Japan <b>0%</b> BCD &#183; UAE 2% &#183; Australia 1% &#8594; materially lower.</div>
+ <div class="note"><b>GST split matters.</b> Base oil, LPG, lubricants, naphtha, bitumen, petcoke sit <b>inside GST</b> (IGST 18% on import). Crude, petrol, diesel, ATF &amp; natural gas are <b>outside GST</b> &#8212; Central Excise + State VAT/CST apply instead, and their refinery-gate price is set by the Trade Parity formula, not a simple duty add-on.</div>
+</div>
+
+<h2>8 &#183; Segment picker &#8212; where the import/export margin is</h2>
+<div class="card"><h3>Profitable segments (PPAC FY2024-25 values + TRADESTAT orientation)</h3>
+ <div class="cap">India's refining-hub signature: export refined MS/HSD/ATF/naphtha; import crude, LPG, base oil, petcoke, bitumen. The value-add play is importing base oil to export finished lubricants.</div>
+ <div class="tblwrap"><table id="segtbl"><tr><th>Segment</th><th>Export $B</th><th>Import $B</th><th>Orientation</th><th>Trader verdict</th><th>Key risk</th></tr></table></div>
+ <div class="legend" style="margin-top:10px">
+  <span><i style="background:var(--exp)"></i>Export-surplus segments = sell India's refined output</span>
+  <span><i style="background:var(--imp)"></i>Import-deficit segments = source/distribute or import-substitute</span></div>
+</div>
+
+<h2>10 &#183; Country-wise mineral-oil trade (top partners)</h2>
+<div class="grid2">
+ <div class="card"><h3>Chapter 27 by partner &#8212; imports vs exports (US$B)</h3>
+   <div class="cap">Russia dominates the import bill (discounted crude); UAE &amp; USA are two-way; China is where India sells refined product. FY2025-26.</div>
+   <div class="chartbox"><canvas id="c_ctry"></canvas></div></div>
+ <div class="card"><h3>What each relationship is</h3>
+   <div class="tblwrap"><table id="ctrytbl"><tr><th>Partner</th><th>Import $B</th><th>Export $B</th><th>Role in the mineral-oil trade</th></tr></table></div>
+   <div class="note" id="ctrynote"></div></div>
+</div>
+
+<h2>11 &#183; Opportunity &#8212; UCO import &#8594; SAF export to the UK</h2>
+<div class="card"><h3>The value-add feedstock arbitrage</h3>
+ <div class="cap">Not plain UCO import for domestic use (India is a discount market) &#8212; the margin is in converting feedstock to certified SAF for the UK/EU mandate premium.</div>
+ <div class="grid2">
+  <div>
+   <div class="formula"><b>UK SAF Mandate</b> <span id="uk_mand" class="small"></span></div>
+   <div class="formula"><b>Price signal</b> <span id="uk_buy" class="small"></span></div>
+   <div class="formula"><b>The play</b> <span id="uk_play" class="small"></span></div>
+  </div>
+  <div><div class="tblwrap"><table><tr><th>What has to hold</th></tr><tbody id="uk_con"></tbody></table></div></div>
+ </div>
+ <div class="note"><b>Verdict.</b> <span id="uk_verdict"></span></div>
+</div>
+
+<h2>12 &#183; Net-export commodities &#8594; where to sell them</h2>
+<div class="grid2">
+ <div class="card"><h3>India's petroleum-product export destinations</h3>
+  <div class="cap">Europe leads (Netherlands &#8776;25% of the total); Africa is now the largest &amp; fastest-growing regional buyer. US$B, Apr-2023&#8594;Jan-2024.</div>
+  <div class="chartbox"><canvas id="c_dest"></canvas></div>
+  <div class="mut small" id="destnote" style="margin-top:6px"></div></div>
+ <div class="card"><h3>Net-export products &amp; target markets</h3>
+  <div class="cap">The four products where India is structurally long &#8212; and the countries the surplus can move to.</div>
+  <div class="tblwrap"><table id="netgt"><tr><th>Product</th><th>Net $B</th><th>Best targets</th></tr></table></div>
+ </div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Target-country detail</h3>
+ <div class="tblwrap"><table id="netgt2"><tr><th>Product (HSN)</th><th>Where it can go</th><th>Read</th></tr></table></div>
+</div>
+
+<h2>13 &#183; Export margin ranking (implied crack over crude, 8-digit HS)</h2>
+<div class="grid2">
+ <div class="card"><h3>Margin per tonne &#8212; export unit value &#8722; crude cost (FY25-26)</h3>
+  <div class="cap">Computed from 8-digit TRADESTAT value + quantity files (crude &#8776;$519/t). Bar = crack $/t; ATF &amp; specialty oils out-margin diesel per tonne, but diesel's volume wins the pool.</div>
+  <div class="chartbox" style="height:360px"><canvas id="c_marg"></canvas></div></div>
+ <div class="card"><h3>Ranked table &#8212; margin quality &amp; total pool</h3>
+  <div class="cap">Per-tonne crack = margin quality; pool ($/t &#215; volume) = total earnings. Ranked by crack/tonne.</div>
+  <div class="tblwrap"><table id="margtbl"><tr><th>#</th><th>HS-8 / line</th><th>Crack $/t</th><th>%</th><th>Pool $M</th></tr></table></div>
+  <div class="note" id="margnote"></div></div>
+</div>
+
+<h2>14 &#183; Trader destination playbook &#8212; buy ex-refinery, sell abroad</h2>
+<div class="card"><h3>Where each product fetches the best netback</h3>
+ <div class="cap" id="tp_lens"></div>
+ <div class="tblwrap"><table id="tptbl"><tr><th>Buy (product)</th><th>Best sell-to destinations</th><th>Why / how</th><th>Avoid / watch</th></tr></table></div>
+ <div class="formula" style="margin-top:12px"><b>Shortlist.</b> <span id="tp_short" class="small"></span></div>
+ <div class="legend" style="margin-top:8px" id="tp_freight"></div>
+ <div class="note" id="tp_api"></div>
+</div>
+
+<h2>15 &#183; Trade opportunity matrix &#8212; both directions, by Indian port</h2>
+<div class="card"><h3>Good trades: export India's surplus &amp; source India's deficit</h3>
+ <div class="cap" id="to_ctx"></div>
+ <div class="legend" style="margin:4px 0 10px"><span><i style="background:var(--exp)"></i>EXPORT direction (sell surplus &#8212; refining margin)</span><span><i style="background:var(--imp)"></i>IMPORT direction (source deficit &#8212; volume)</span></div>
+ <div class="tblwrap"><table id="to_exp"><tr><th>Export &#183; product (HS)</th><th>Size</th><th>Sell to</th><th>Indian ports</th><th>Trade angle</th><th>Risk</th></tr></table></div>
+ <div class="tblwrap"><table id="to_imp" style="margin-top:14px"><tr><th>Import &#183; product (HS)</th><th>Size</th><th>Source from</th><th>Indian ports</th><th>Trade angle</th><th>Risk</th></tr></table></div>
+</div>
+
+<h2>16 &#183; Movement &amp; margin-realisation check (2025-26 market data)</h2>
+<div class="card"><h3>Are the high-margin products actually moving to these destinations?</h3>
+ <div class="cap" id="mov_asof"></div>
+ <div class="tblwrap"><table id="mov_conf"><tr><th>Destination</th><th>Flow</th><th>Recent movement (confirmed)</th></tr></table></div>
+ <h3 style="margin-top:16px">Realised margin vs the estimate</h3>
+ <div class="tblwrap"><table id="mov_marg"><tr><th>Product</th><th>Dashboard estimate</th><th>Recent market (2025-26)</th><th>Verdict</th></tr></table></div>
+ <div class="note" id="mov_freight" style="margin-top:10px"></div>
+ <div class="note" id="mov_gap"></div>
+</div>
+
+<h2>17 &#183; 8-digit HS net-trade leaders (verified TRADESTAT)</h2>
+<div class="grid2">
+ <div class="card"><h3>Top net-EXPORT lines (US$M, FY25-26)</h3>
+  <div class="cap">Straight from the TRADESTAT EIDB 8-digit workbook. Diesel, petrol &amp; ATF dominate. 8-digit Ch.27 sums reconcile to the 2-digit totals at 0.00%.</div>
+  <div class="tblwrap"><table id="ne8tbl"><tr><th>HS-8</th><th>Commodity</th><th>Net $M</th><th>Exp growth</th></tr></table></div></div>
+ <div class="card"><h3>Top net-IMPORT lines (US$M, FY25-26)</h3>
+  <div class="cap">Crude ($134.7B) dwarfs all; then LNG, coal, LPG (propane+butane &#8776;$13B) and base oil ($2.6B &#8212; matches PPAC).</div>
+  <div class="tblwrap"><table id="ni8tbl"><tr><th>HS-8</th><th>Commodity</th><th>Net $M</th></tr></table></div></div>
+</div>
+
+<h2>18 &#183; Beyond petroleum &#8212; high-value export segments &amp; import-vs-export price</h2>
+<div class="card"><h3>Other high-value export segments (TRADESTAT 8-digit)</h3>
+ <div class="cap" id="hv_asof"></div>
+ <div class="tblwrap"><table id="hv_seg"><tr><th>Segment</th><th>Export $M</th><th>Net $M</th><th>Unit value</th><th>Growth</th><th>Read</th></tr></table></div>
+</div>
+<div class="grid2" style="margin-top:16px">
+ <div class="card"><h3>Value-add: export price &gt; import price</h3>
+  <div class="cap">Buy the cheaper input grade, export the higher-value good. Ratio = export unit price &#247; import unit price.</div>
+  <div class="tblwrap"><table id="hv_va"><tr><th>HS &#183; good</th><th>Imp/u</th><th>Exp/u</th><th>&#215;</th><th>Read</th></tr></table></div></div>
+ <div class="card"><h3>Import-premium: import price &gt; export price</h3>
+  <div class="cap">India imports the dear/branded grade, exports the commodity &#8212; <b>not</b> a value-add export.</div>
+  <div class="tblwrap"><table id="hv_ip"><tr><th>HS &#183; good</th><th>Imp/u</th><th>Exp/u</th><th>&#215;</th><th>Read</th></tr></table></div></div>
+</div>
+<div class="card" style="margin-top:16px">
+ <div class="note" id="hv_caveat"></div>
+ <div class="formula"><b>Verdict.</b> <span id="hv_verdict" class="small"></span></div>
+</div>
+
+<h2>19 &#183; Online trade ideas &#8212; validated against the data</h2>
+<div class="card"><h3>Cross-checking published export/import-substitution ideas vs TRADESTAT 8-digit</h3>
+ <div class="cap">Ideas from DHL/TradeBrains/FIEO (exports) &amp; the govt 500-item import-substitution list, each tested against actual FY25-26 net trade. Some confirm, some get debunked.</div>
+ <div class="tblwrap"><table id="idea_tbl"><tr><th>Direction</th><th>Idea</th><th>Exp $M</th><th>Imp $M</th><th>Net $M</th><th>Grw%</th><th>Verdict</th></tr></table></div>
+ <div class="note" id="idea_note"></div>
+</div>
+
+<h2>20 &#183; Import-substitution target list (all sectors)</h2>
+<div class="grid2">
+ <div class="card"><h3>By sector &#8212; substitutable net import (US$M, FY25-26)</h3>
+  <div class="cap">All net-import sectors India could substitute or supply into (crude/gold/coal excluded as structural). Trader column = commodity you can physically source vs a manufacturing build.</div>
+  <div class="tblwrap"><table id="isub_sec"><tr><th>Sector</th><th>Net import $M</th><th>Trader-tradeable?</th></tr></table></div></div>
+ <div class="card"><h3>Structural (not substitutable &#8212; India lacks the resource)</h3>
+  <div class="cap">Biggest deficits that import-substitution can't fix &#8212; for context.</div>
+  <div class="tblwrap"><table id="isub_str"><tr><th>HS &#183; good</th><th>Net import $M</th></tr></table></div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Top 40 import-substitution targets &#8212; 8-digit lines</h3>
+ <div class="cap">Ranked by net import. Category tags the play: <b>chemical/commodity</b> &amp; <b>agri/raw</b> &amp; <b>metal/scrap</b> = physically tradeable (supply into India); <b>hi-tech/mfg</b> = domestic-manufacturing/PLI play.</div>
+ <div class="tblwrap"><table id="isub_tbl"><tr><th>HS</th><th>Product</th><th>Net import $M</th><th>Imp growth</th><th>Category</th></tr></table></div>
+</div>
+
+<h2>21 &#183; Data consistency log</h2>
+<div class="card"><div class="tblwrap"><table id="chktbl"><tr><th>Check</th><th>Result</th><th>Detail</th></tr></table></div></div>
+
+<div class="foot">
+<b>Sources.</b> Trade: DGCI&amp;S / TRADESTAT commodity-wise export &amp; import (HSN 2-digit, US$M), <span class="mut">india-trade-data-analysis</span>.
+Product split, crude basket &amp; realized $/bbl: PPAC Ready Reckoner FY2025-26 H1, <span class="mut">ppac-ready-reckoner-data</span>.
+Pricing methodology: Rangarajan Committee (Feb 2006), Expert Group on Pricing (Oct 2013), TERI "Petroleum pricing in India", PPAC price build-ups.
+Gas: Kirit Parikh Committee (2023).
+<br><br><b>Caveats.</b> (1) HSN data is 2-digit &#8212; Chapter 27 aggregates coal/LNG/electricity alongside petroleum, so the product split comes from PPAC, not the HSN file. (2) The <b>OilPrice API on this plan returns no historical series</b> (tested: Brent 1-yr &amp; 1-mo both denied) and live spot was down during this build &#8212; the historical price backbone here is the repo/PPAC data; OilPrice can add only a current spot anchor once reachable. (3) OilPrice benchmarks are global proxies, not the exact Platts FOB-Arab-Gulf assessments used in Indian pricing. (4) FY2025-26 provisional; H1 columns are half-year.
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+
+const D={"generated": "session", "margin_ranking": {"fy": "2024-25", "crude_cost_usd_t": 564, "method": "Implied gross crack = export FOB unit value (PPAC value\u00f7qty) \u2212 crude import cost, US$/tonne. A refining-margin proxy; excludes opex/yield/co-product credits. Thin-volume lines (<3 MMT) are noisy (rounded PPAC qty).", "rows": [{"product": "Lubes/LOBS", "exp_qty_mmt": 0.02, "exp_val_usdb": 0.04, "exp_unit_usd_t": 2000, "crude_cost_usd_t": 564, "crack_usd_t": 1436, "crack_pct": 254.5, "margin_pool_usdm": 29, "material": false}, {"product": "Kerosene", "exp_qty_mmt": 0.01, "exp_val_usdb": 0.01, "exp_unit_usd_t": 1000, "crude_cost_usd_t": 564, "crack_usd_t": 436, "crack_pct": 77.3, "margin_pool_usdm": 4, "material": false}, {"product": "Petrol (MS)", "exp_qty_mmt": 15.8, "exp_val_usdb": 11.6, "exp_unit_usd_t": 734, "crude_cost_usd_t": 564, "crack_usd_t": 170, "crack_pct": 30.1, "margin_pool_usdm": 2687, "material": true}, {"product": "ATF/Jet", "exp_qty_mmt": 8.6, "exp_val_usdb": 6.1, "exp_unit_usd_t": 709, "crude_cost_usd_t": 564, "crack_usd_t": 145, "crack_pct": 25.7, "margin_pool_usdm": 1248, "material": true}, {"product": "Diesel (HSD)", "exp_qty_mmt": 28.0, "exp_val_usdb": 19.1, "exp_unit_usd_t": 682, "crude_cost_usd_t": 564, "crack_usd_t": 118, "crack_pct": 20.9, "margin_pool_usdm": 3304, "material": true}, {"product": "LPG", "exp_qty_mmt": 0.6, "exp_val_usdb": 0.4, "exp_unit_usd_t": 667, "crude_cost_usd_t": 564, "crack_usd_t": 103, "crack_pct": 18.2, "margin_pool_usdm": 62, "material": false}, {"product": "Naphtha", "exp_qty_mmt": 5.2, "exp_val_usdb": 3.4, "exp_unit_usd_t": 654, "crude_cost_usd_t": 564, "crack_usd_t": 90, "crack_pct": 15.9, "margin_pool_usdm": 466, "material": true}, {"product": "Petcoke", "exp_qty_mmt": 0.7, "exp_val_usdb": 0.4, "exp_unit_usd_t": 571, "crude_cost_usd_t": 564, "crack_usd_t": 7, "crack_pct": 1.3, "margin_pool_usdm": 5, "material": false}, {"product": "Bitumen", "exp_qty_mmt": 0.02, "exp_val_usdb": 0.01, "exp_unit_usd_t": 500, "crude_cost_usd_t": 564, "crack_usd_t": -64, "crack_pct": -11.4, "margin_pool_usdm": -1, "material": false}, {"product": "Fuel Oil", "exp_qty_mmt": 2.4, "exp_val_usdb": 1.1, "exp_unit_usd_t": 458, "crude_cost_usd_t": 564, "crack_usd_t": -106, "crack_pct": -18.8, "margin_pool_usdm": -254, "material": false}]}, "currency_note": "Ch27 trade in US$ Million; PPAC product qty in MMT, value in US$ Billion; unit values US$/tonne", "hsn_ch27": {"years": ["2018 - 2019", "2019 - 2020", "2020 - 2021", "2021 - 2022", "2022 - 2023", "2023 - 2024", "2024 - 2025", "2025 - 2026"], "export_usdm": [47920.32, 42708.83, 26907.73, 69570.14, 101241.86, 87602.38, 67045.98, 55871.21], "import_usdm": [167871.87, 153646.45, 99703.46, 194857.08, 260921.02, 219053.65, 218456.02, 203415.4], "total_export_usdm": [330078.1, 313361.1, 291808.5, 422004.4, 451070.0, 437072.1, 437704.5, 441745.9], "total_import_usdm": [514078.4, 474709.3, 394435.9, 613052.1, 715968.9, 678214.8, 721200.3, 776013.7]}, "ppac_years": ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2024-25(H1)", "2025-26(H1)"], "products": [{"product": "ATF/Jet", "import_qty_mmt": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "import_val_usdb": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "export_qty_mmt": [3.5, 5.2, 7.3, 8.6, 8.6, 4.5, 3.8], "export_val_usdb": [1.3, 3.7, 7.3, 7.0, 6.1, 3.3, 2.4], "import_unit_usd_t": [null, null, null, null, null, null, null], "export_unit_usd_t": [371.4, 711.5, 1000.0, 814.0, 709.3, 733.3, 631.6]}, {"product": "Bitumen", "import_qty_mmt": [2.1, 2.6, 2.8, 3.2, 2.9, 1.3, 1.5], "import_val_usdb": [0.6, 1.0, 1.2, 1.3, 1.1, 0.5, 0.6], "export_qty_mmt": [0.01, 0.01, 0.01, 0.02, 0.02, 0.01, 0.01], "export_val_usdb": [0.003, 0.004, 0.01, 0.009, 0.01, 0.01, 0.01], "import_unit_usd_t": [285.7, 384.6, 428.6, 406.2, 379.3, 384.6, 400.0], "export_unit_usd_t": [300.0, 400.0, 1000.0, 450.0, 500.0, 1000.0, 1000.0]}, {"product": "Crude oil", "import_qty_mmt": [196.5, 212.4, 232.7, 234.3, 243.2, 120.7, 121.1], "import_val_usdb": [62.2, 120.7, 157.5, 133.4, 137.2, 71.2, 60.6], "export_qty_mmt": null, "export_val_usdb": null, "import_unit_usd_t": [316.5, 568.3, 676.8, 569.4, 564.1, 589.9, 500.4], "export_unit_usd_t": null}, {"product": "Diesel (HSD)", "import_qty_mmt": [0.6, 0.04, 0.3, 0.04, 0.04, 0.02, 0.01], "import_val_usdb": [0.3, 0.03, 0.5, 0.04, 0.03, 0.01, 0.01], "export_qty_mmt": [30.6, 32.4, 28.5, 28.2, 28.0, 13.0, 13.8], "export_val_usdb": [11.1, 22.1, 28.9, 22.1, 19.1, 9.1, 8.7], "import_unit_usd_t": [500.0, 750.0, 1666.7, 1000.0, 750.0, 500.0, 1000.0], "export_unit_usd_t": [362.7, 682.1, 1014.0, 783.7, 682.1, 700.0, 630.4]}, {"product": "Fuel Oil", "import_qty_mmt": [6.5, 9.0, 8.6, 9.1, 7.7, 4.1, 2.9], "import_val_usdb": [1.9, 4.4, 4.2, 4.1, 3.4, 1.9, 1.2], "export_qty_mmt": [1.2, 1.8, 1.8, 2.1, 2.4, 1.3, 1.1], "export_val_usdb": [0.3, 0.9, 1.0, 1.0, 1.1, 0.6, 0.5], "import_unit_usd_t": [292.3, 488.9, 488.4, 450.5, 441.6, 463.4, 413.8], "export_unit_usd_t": [250.0, 500.0, 555.6, 476.2, 458.3, 461.5, 454.5]}, {"product": "Kerosene", "import_qty_mmt": [0.003, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "import_val_usdb": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "export_qty_mmt": [0.02, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01], "export_val_usdb": [0.01, 0.01, 0.01, 0.01, 0.01, 0.005, 0.01], "import_unit_usd_t": [0.0, null, null, null, null, null, null], "export_unit_usd_t": [500.0, 1000.0, 1000.0, 1000.0, 1000.0, 500.0, 1000.0]}, {"product": "LPG", "import_qty_mmt": [16.5, 17.0, 18.3, 18.5, 20.7, 9.6, 10.9], "import_val_usdb": [7.2, 12.2, 13.3, 10.4, 12.5, 5.6, 6.0], "export_qty_mmt": [0.5, 0.5, 0.5, 0.5, 0.6, 0.3, 0.3], "export_val_usdb": [0.2, 0.4, 0.5, 0.4, 0.4, 0.2, 0.2], "import_unit_usd_t": [436.4, 717.6, 726.8, 562.2, 603.9, 583.3, 550.5], "export_unit_usd_t": [400.0, 800.0, 1000.0, 800.0, 666.7, 666.7, 666.7]}, {"product": "Lubes/LOBS", "import_qty_mmt": [2.7, 3.1, 2.2, 2.4, 2.9, 1.6, 1.5], "import_val_usdb": [1.6, 2.6, 2.3, 2.3, 2.6, 1.4, 1.3], "export_qty_mmt": [0.01, 0.01, 0.01, 0.01, 0.02, 0.01, 0.004], "export_val_usdb": [0.01, 0.02, 0.03, 0.02, 0.04, 0.02, 0.01], "import_unit_usd_t": [592.6, 838.7, 1045.5, 958.3, 896.6, 875.0, 866.7], "export_unit_usd_t": [1000.0, 2000.0, 3000.0, 2000.0, 2000.0, 2000.0, 2500.0]}, {"product": "Naphtha", "import_qty_mmt": [1.2, 0.2, 0.9, 1.2, 0.9, 0.6, 0.5], "import_val_usdb": [0.5, 0.2, 0.6, 0.8, 0.6, 0.4, 0.3], "export_qty_mmt": [6.5, 6.9, 5.7, 5.3, 5.2, 2.6, 3.6], "export_val_usdb": [2.5, 5.0, 4.2, 3.3, 3.4, 1.7, 2.0], "import_unit_usd_t": [416.7, 1000.0, 666.7, 666.7, 666.7, 666.7, 600.0], "export_unit_usd_t": [384.6, 724.6, 736.8, 622.6, 653.8, 653.8, 555.6]}, {"product": "Petcoke", "import_qty_mmt": [8.3, 4.2, 8.7, 11.0, 13.2, 6.1, 6.5], "import_val_usdb": [0.9, 1.1, 2.3, 1.7, 1.6, 0.8, 0.9], "export_qty_mmt": [0.6, 0.2, 0.3, 0.03, 0.7, 0.6, 0.1], "export_val_usdb": [0.04, 0.1, 0.1, 0.003, 0.4, 0.3, 0.1], "import_unit_usd_t": [108.4, 261.9, 264.4, 154.5, 121.2, 131.1, 138.5], "export_unit_usd_t": [66.7, 500.0, 333.3, 100.0, 571.4, 500.0, 1000.0]}, {"product": "Petrol (MS)", "import_qty_mmt": [1.4, 0.7, 1.1, 0.7, 0.2, 0.2, 0.0], "import_val_usdb": [0.7, 0.5, 1.1, 0.7, 0.2, 0.2, 0.0], "export_qty_mmt": [11.6, 13.5, 13.1, 13.5, 15.8, 7.2, 8.2], "export_val_usdb": [5.0, 10.9, 12.9, 11.2, 11.6, 5.5, 5.5], "import_unit_usd_t": [500.0, 714.3, 1000.0, 1000.0, 1000.0, 1000.0, null], "export_unit_usd_t": [431.0, 807.4, 984.7, 829.6, 734.2, 763.9, 670.7]}], "price_basket_annual": {"2002-03": 26.6, "2003-04": 27.98, "2004-05": 39.21, "2005-06": 55.72, "2006-07": 62.46, "2007-08": 79.25, "2008-09": 83.57, "2009-10": 69.76, "2010-11": 85.09, "2011-12": 111.89, "2012-13": 107.97, "2013-14": 105.52, "2014-15": 84.16, "2015-16": 46.17, "2016-17": 47.56, "2017-18": 56.43, "2018-19": 69.88, "2019-20": 60.47, "2020-21": 44.82, "2021-22": 79.18, "2022-23": 93.15, "2023-24": 82.58, "2024-25": 78.56}, "crude_realized_usd_bbl": {"2018-19": 67.41, "2019-20": 60.94, "2020-21": 43.23, "2021-22": 77.52, "2022-23": 92.36, "2023-24": 77.67, "2024-25": 76.94}, "mapping": [{"product": "Crude oil", "hsn": "2709", "india_benchmark": "Indian basket: 78.71% Oman+Dubai (sour) + 21.29% Brent", "oilprice_proxy": "BRENT_CRUDE_USD / DUBAI_CRUDE_USD", "coverage": "yes", "note": "Both benchmarks exist in API; Dubai=sour proxy for Indian basket"}, {"product": "Petrol (MS)", "hsn": "2710.12", "india_benchmark": "FOB Gasoline Arab Gulf/Singapore (Platts); RGP=TPP 80:20", "oilprice_proxy": "GASOLINE_USD", "coverage": "yes", "note": "API gasoline is a proxy for FOB-AG Platts; spot only"}, {"product": "Diesel (HSD)", "hsn": "2710.19", "india_benchmark": "FOB Gasoil 0.05%S Arab Gulf (Platts); RGP=TPP 80:20", "oilprice_proxy": "DIESEL_USD", "coverage": "yes", "note": "API diesel is a proxy for FOB-AG Platts; spot only"}, {"product": "ATF/Jet", "hsn": "2710.19", "india_benchmark": "FOB Jet/Kero Arab Gulf (Platts/Argus)", "oilprice_proxy": "JET_FUEL_USD", "coverage": "yes", "note": "API jet fuel is a proxy; spot only"}, {"product": "Kerosene", "hsn": "2710.19", "india_benchmark": "FOB Jet/Kero Arab Gulf (Platts/Argus); IPP", "oilprice_proxy": "JET_FUEL_USD", "coverage": "partial", "note": "Kero\u2248jet proxy only"}, {"product": "LPG", "hsn": "2711.12/13", "india_benchmark": "Saudi Aramco CP: Butane 60% + Propane 40% + Platts Gaswire premium", "oilprice_proxy": "\u2014", "coverage": "no", "note": "No LPG commodity in API (Saudi CP / Fujairah not covered)"}, {"product": "Naphtha", "hsn": "2710.12", "india_benchmark": "FOB Naphtha Arab Gulf (Platts)", "oilprice_proxy": "\u2014", "coverage": "no", "note": "No naphtha benchmark; gasoline a weak proxy"}, {"product": "Fuel Oil", "hsn": "2710.19", "india_benchmark": "FOB Fuel Oil 180/380 cSt Arab Gulf/Singapore (Platts)", "oilprice_proxy": "HEATING_OIL_USD / marine VLSFO,IFO380", "coverage": "partial", "note": "No dedicated HSFO; heating-oil or marine-bunker proxy"}, {"product": "Lubes/LOBS", "hsn": "2710.19 / 3403", "india_benchmark": "Base oil (Group I/II) posted prices", "oilprice_proxy": "\u2014", "coverage": "no", "note": "No base-oil/lube benchmark in API"}, {"product": "Bitumen", "hsn": "2713/2714", "india_benchmark": "FOB Bitumen (regional posted)", "oilprice_proxy": "\u2014", "coverage": "no", "note": "Not covered"}, {"product": "Petcoke", "hsn": "2713.11", "india_benchmark": "Petcoke FOB US Gulf (Argus)", "oilprice_proxy": "COAL_USD (loose)", "coverage": "no", "note": "Petcoke not covered; coal only a loose proxy"}], "coverage_counts": {"BRENT_CRUDE_USD / DUBAI_CRUDE_USD": 1, "GASOLINE_USD": 1, "DIESEL_USD": 1, "JET_FUEL_USD": 2, "\u2014": 4, "HEATING_OIL_USD / marine VLSFO,IFO380": 1, "COAL_USD (loose)": 1}, "pricing_formula": {"refinery_gate_price": "RGP of sensitive products (MS, HSD) is fixed on Trade Parity Price (TPP) since 2006.", "TPP": "TPP = 0.80 x IPP + 0.20 x EPP  (weight 80% Import Parity, 20% Export Parity)", "IPP": "IPP = FOB price + Ocean Freight + Insurance + Customs Duty + Port charges  (price an importer would pay at Indian port)", "EPP": "EPP = FOB price + Advance-License benefit (duty-free crude import) + ...  (realisation an exporter would get; ~ FOB export)", "retail_build_up": "RSP = RGP/RTP + Inland freight & delivery + Marketing cost & margin + Dealer commission + Excise duty + VAT/State-specific cost", "fob_source": "FOB = daily Platts (and Argus for kero) Arab Gulf product quotes, previous fortnight/month average, + product premium/discount.", "benchmarks_by_product": {"Crude oil": "Indian basket (Oman+Dubai 78.71% sour, Brent 21.29% sweet)", "Petrol (MS)": "FOB Gasoline Arab Gulf / Singapore (Platts)", "Diesel (HSD)": "FOB Gasoil 0.05%S Arab Gulf (Platts)", "ATF/Jet & Kerosene": "FOB Jet/Kero Arab Gulf (Platts/Argus)", "LPG": "Saudi Aramco Contract Price (Butane 60% + Propane 40%) + Platts Gaswire premium", "Fuel Oil": "FOB Fuel Oil 180/380 cSt Arab Gulf/Singapore (Platts)"}, "example_buildups": {"PDS_Kerosene_Mumbai_Mar16_Rs_per_ltr": {"FOB_AG_Jet_Kero_usd_bbl": 40.26, "C&F_Rs_ltr": 17.92, "IPP_Rs_ltr": 18.1, "Total_cost_Rs_ltr": 20.13, "Under_recovery_Rs_ltr": 6.58, "RSP_Mumbai_Rs_ltr": 15.24}, "Domestic_LPG_Delhi_Mar16_Rs_per_cyl": {"FOB_AG_LPG_usd_mt": 305.95, "C&F_Rs_cyl": 322.54, "IPP_Rs_cyl": 326.4, "Market_price_Rs_cyl": 467.73, "RSP_Rs_cyl": 513.5, "Subsidised_effective_Rs_cyl": 419.13}}, "gas_pricing_kirit_parikh_2023": {"formula": "APM/legacy gas (ONGC/OIL) priced at a slope to the Indian crude basket (implemented at 10% of basket $/bbl) instead of the earlier gas-hub formula.", "floor_usd_mmbtu": 4.0, "ceiling_usd_mmbtu": 6.5, "ceiling_escalation_usd_mmbtu_yr": 0.5, "difficult_fields_ceiling_usd_mmbtu": 12.46, "note": "Links the same Indian crude benchmark that drives POL product IPP/TPP to domestic gas \u2014 one crude commodity anchors crude, LPG, MS, HSD and APM gas."}}, "country_ch27": [{"country": "Russia", "imp": 47824.9, "imp_share": 86, "exp": 11.1, "exp_share": 0, "role": "Dominant crude supplier \u2014 86% of ALL imports from Russia is Ch.27 (discounted Urals). Reverse flow negligible."}, {"country": "UAE", "imp": 24272.9, "imp_share": 38, "exp": 5850.7, "exp_share": 16, "role": "Two-way hub \u2014 crude & LPG in, refined products out. Petroleum \u2248 tied with gems as top import."}, {"country": "USA", "imp": 17315.2, "imp_share": 32, "exp": 3522.2, "exp_share": 4, "role": "US crude, LPG & petcoke in; refined products out."}, {"country": "China", "imp": 329.2, "imp_share": 0, "exp": 2462.3, "exp_share": 13, "role": "India is a NET EXPORTER of petroleum products to China (naphtha/petcoke/bitumen); minimal fuel import."}], "country_note": "Country\u00d7commodity is 2-digit HS, FY2025-26, for the 4 largest bilateral partners only (on-disk). Full country ranking & 8-digit lines need a fresh TRADESTAT pull.", "net_export_targets": [{"product": "Diesel / HSD", "hsn": "2710 1930/1944", "net": 19.1, "best": "NW-Europe + Africa", "targets": "Netherlands / NW-Europe \u00b7 Singapore \u00b7 UAE \u00b7 East & West Africa (Togo hub, Kenya, Tanzania, S.Africa) \u00b7 Brazil \u00b7 Australia \u00b7 Sri Lanka", "note": "EU diesel pull surged >1,150% since FY21 (Russian-crude arb); Africa is the structural-growth buyer. EU origin-scrutiny is the watch-item."}, {"product": "Petrol / MS", "hsn": "2710 1213/1219", "net": 11.4, "best": "West Africa + USA", "targets": "USA \u00b7 West Africa (Nigeria, Togo) \u00b7 UAE \u00b7 Netherlands \u00b7 Mexico \u00b7 East Africa \u00b7 Nepal/Bangladesh (SAFTA)", "note": "Africa's fuel deficit + US blendstock demand; neighbours give an FTA/SAFTA edge."}, {"product": "ATF / Jet", "hsn": "2710 1920", "net": 6.1, "best": "EU + UK", "targets": "Netherlands / EU \u00b7 UK \u00b7 USA \u00b7 UAE \u00b7 Singapore", "note": "Fastest-growing export (+9.8% FY25; EU +480% since FY21). Upside = certified SAF into the UK/EU mandate premium."}, {"product": "Naphtha", "hsn": "2710 1290", "net": 2.8, "best": "NE Asia (Korea/Japan)", "targets": "South Korea \u00b7 Japan \u00b7 UAE \u00b7 Singapore (petrochemical cracker feedstock)", "note": "NE-Asia petchem demand is the anchor; domestic crackers compete for the volume."}], "trade_opportunities": {"context": "India's Ch.27 book: ~$203B imports vs ~$56B exports (\u2248$147B deficit). Import-direction is where the VOLUME is; export-direction is where the refining MARGIN is. Good trades exist both ways.", "export_dir": [{"product": "Diesel / HSD", "hs": "2710 1944", "size": "$19.5B net-export", "counterparties": "East Africa \u00b7 NW-Europe (arb) \u00b7 Sri Lanka/Bangladesh/Nepal (captive)", "ports": "Jamnagar/Sikka, Vadinar, Paradip, Chennai/Ennore", "angle": "India's #1 export earner; +$163/t crack. Buy ex-refinery, sell into East-Africa deficit (best netback) or the EU gasoil premium.", "risk": "West Africa closing (Dangote); EU origin scrutiny; SAED re-imposition"}, {"product": "ATF / Jet", "hs": "2710 1939 / 1920", "size": "$10B net-export", "counterparties": "NW-Europe / UK \u00b7 Middle-East hubs \u00b7 USA", "ports": "Jamnagar, Mumbai, Chennai", "angle": "Highest per-tonne crack (+$198\u2013264/t). Europe/UK premium + SAF-mandate pull is the top price destination.", "risk": "Demand cyclicality"}, {"product": "Petrol / MS", "hs": "2710 1241", "size": "$9.4B net-export", "counterparties": "East Africa \u00b7 captive neighbours (SAFTA) \u00b7 Americas (opportunistic)", "ports": "Jamnagar/Sikka, Vadinar, Chennai", "angle": "+$145/t; East-Africa deficit + captive neighbours.", "risk": "West Africa (Nigeria) closing as Dangote ramps"}, {"product": "Naphtha", "hs": "2710 1221 / 1290", "size": "$7.3B net-export", "counterparties": "South Korea \u00b7 Japan \u00b7 Middle-East petchem \u00b7 Singapore", "ports": "Jamnagar/Sikka, Dahej", "angle": "Sell to NE-Asia crackers (petchem feedstock), not fuel markets.", "risk": "Domestic crackers compete for volume"}, {"product": "Specialty & lube oils", "hs": "2710 1989 / 3403", "size": "niche", "counterparties": "neighbours \u00b7 East Africa \u00b7 Middle East", "ports": "Mumbai, Chennai", "angle": "Highest per-tonne crack (+$510/t) but thin volume \u2014 value-add: import base oil \u2192 blend \u2192 export finished lube.", "risk": "Base-oil cost & FX; BIS/quality barriers"}], "import_dir": [{"product": "Crude oil", "hs": "2709 0010", "size": "$134.7B net-import", "counterparties": "Russia (discount Urals, 86% of Russia book) \u00b7 Iraq \u00b7 Saudi \u00b7 UAE \u00b7 USA", "ports": "Sikka/Vadinar, Paradip, Chennai/Ennore, Mundra", "angle": "The discounted-Russian-crude arbitrage is the margin; term + spot supply to refiners.", "risk": "Sanctions/insurance, freight, quality (sour) mix"}, {"product": "LPG (propane+butane)", "hs": "2711 1200 / 1300", "size": "~$13B net-import", "counterparties": "Saudi \u00b7 UAE \u00b7 Qatar \u00b7 USA", "ports": "Ennore, Kandla, Mumbai, Visakhapatnam", "angle": "59-62% import-dependent & growing; Saudi-CP linked; steady PSU + private demand.", "risk": "Saudi-CP price swings; subsidy/policy; PSU-dominated"}, {"product": "LNG", "hs": "2711 1100", "size": "$13.3B net-import", "counterparties": "Qatar \u00b7 USA \u00b7 UAE", "ports": "Dahej, Hazira, Ennore, Kochi", "angle": "Term contracts + spot; city-gas & power demand rising.", "risk": "JKM/TTF price volatility; regas capacity"}, {"product": "Coal (coking + steam)", "hs": "2701 1910 / 1920", "size": "~$23B net-import", "counterparties": "Australia (coking) \u00b7 Indonesia / S.Africa / Russia (steam)", "ports": "Paradip, Visakhapatnam, Mundra, Krishnapatnam", "angle": "Steel (coking) & power (steam) demand; large stable flows.", "risk": "Domestic coal push; freight; carbon policy"}, {"product": "Base oil", "hs": "2710 1971", "size": "$2.6B net-import", "counterparties": "South Korea / Japan (FTA 0% BCD) \u00b7 Middle East \u00b7 Singapore \u00b7 USA", "ports": "Mumbai, Chennai", "angle": "India structurally short; FTA-origin sourcing (Korea/Japan) beats the 24.8% MFN duty; feed finished-lube export.", "risk": "MFN duty 30.98% unless FTA origin"}, {"product": "Petcoke", "hs": "2713 1190", "size": "$1.3B net-import", "counterparties": "USA (US Gulf) \u00b7 Saudi", "ports": "Mundra, Krishnapatnam, Kandla", "angle": "Cement & CPC (aluminium) demand; high-volume, low unit value.", "risk": "Environmental/import curbs"}, {"product": "Bitumen", "hs": "2713 2000", "size": "~$1B net-import", "counterparties": "Middle East (Bahrain, Iran) \u00b7 Singapore", "ports": "Kandla, Mumbai, Chennai", "angle": "Road-construction / infra-capex linked; seasonal.", "risk": "Seasonality; freight/handling"}]}, "trader_playbook": {"lens": "Pure trader: buy ex-Indian-refinery, export abroad. Ranked by NETBACK = destination price \u2212 freight \u2212 export cost, not the crude crack.", "freight_ladder": "Short-haul \u2192 long-haul from India: Neighbours (Nepal/Bhutan land, Sri Lanka, Bangladesh) < Middle East / East Africa < SE Asia (Singapore) < Mediterranean / NW-Europe (Suez) < South/West Africa \u00b7 Americas \u00b7 NE-Asia. Short-haul + high price = best netback.", "access": "Duty/access sweeteners: SAFTA (neighbours duty-free), India\u2013UAE CEPA, India\u2013Australia ECTA, APTA. Secure Certificate of Origin.", "api_note": "OilPrice API can't price these lanes on this plan (no history, no marine/bunker, spot down) \u2014 destination read is built from trade-flow data + market intelligence.", "rows": [{"product": "Diesel / HSD", "best": "East Africa \u00b7 NW-Europe (arb) \u00b7 captive neighbours", "detail": "East Africa (Kenya, Tanzania, Mozambique, Uganda-via-Mombasa) \u2014 structural deficit, short-haul, CFR premium \u2192 best netback. NW-Europe/ARA pays the post-Russia gasoil premium but is long-haul via Suez. Sri Lanka/Bangladesh/Nepal are captive.", "avoid": "West Africa \u2014 Dangote now meets ~80-90% of Nigerian gasoline/diesel and exports regionally."}, {"product": "Petrol / MS", "best": "East Africa \u00b7 neighbours \u00b7 Americas (opportunistic)", "detail": "East-Africa deficit + captive neighbours (SAFTA duty-free). US/Mexico/LatAm seasonal blendstock arbitrage when NWE-USAC spread opens.", "avoid": "West Africa (Nigeria) \u2014 the historical #1 MS destination is closing as Dangote displaces imports (\u221244% YoY regional imports)."}, {"product": "ATF / Jet", "best": "NW-Europe / UK \u00b7 Middle-East hubs \u00b7 USA", "detail": "Europe/UK carry the largest jet premium (deficit + SAF-blend pull); the premium offsets the long haul. The best price destination of any product. UK/EU SAF mandate is the upside.", "avoid": "\u2014"}, {"product": "Naphtha", "best": "South Korea / Japan \u00b7 Middle-East petchem \u00b7 Singapore", "detail": "NE-Asia crackers are the deep, price-setting buyers; Middle-East petrochemical demand is short-haul. Sell to cracker demand, not fuel markets.", "avoid": "\u2014"}, {"product": "Specialty & lube oils / bitumen", "best": "neighbours \u00b7 East Africa \u00b7 Middle East", "detail": "Highest per-tonne crack (cutting/hydraulic/industrial oils +$510/t) but thin volume \u2014 a value-add niche; place into nearby high-margin markets where freight doesn't erode the premium.", "avoid": "\u2014"}], "shortlist": "Buy diesel \u2192 sell East Africa + NW-Europe arb; buy ATF \u2192 sell Europe/UK (top premium); buy petrol \u2192 East Africa + captive neighbours (NOT West Africa); buy naphtha \u2192 South Korea/Japan; specialty/lube oils \u2192 nearby high-margin markets."}, "export_destinations": {"period": "Apr-2023 \u2192 Jan-2024, US$B (India petroleum-product exports)", "data": [{"dest": "Europe", "usdb": 18.4}, {"dest": "Singapore", "usdb": 5.7}, {"dest": "UAE", "usdb": 5.4}, {"dest": "USA", "usdb": 5.0}], "note": "Netherlands alone \u224825% of India's petroleum-product exports; Africa is now the largest & fastest-growing regional buyer (Dec-2024)."}, "uco_saf_uk": {"uk_mandate": "UK SAF Mandate (from Jan-2025): 2% SAF \u2192 10% by 2030 \u2192 22% by 2040. PtL sub-mandate from 2028 (0.5% by 2030). HEFA (the UCO route) capped at ~71% of SAF supply by 2030 and declining.", "buyout": "Buy-out / effective price ceiling: \u00a35,875/t SAF (main), \u00a36,250/t PtL. Conventional jet \u2248 $700\u2013800/t \u2192 SAF carries a large green premium.", "play": "Collect/import UCO \u2192 produce HEFA-SAF in India \u2192 export to UK (and EU) into the mandate premium. Same shape as import-base-oil\u2192export-finished-lubricant.", "constraints": ["HEFA/UCO cap in UK & EU \u2014 a near-term window, not open-ended; advanced/PtL is where growth shifts post-2030.", "ISCC / UK-RTFO certification & full traceability \u2014 feedstock-fraud scrutiny is high.", "Global UCO is tight and premium-priced; importing feedstock into India competes with the same UK/EU buyers.", "India is diverting its own UCO into RUCO/biodiesel \u2014 domestic feedstock isn't freely available for export routes.", "HVO/SAF plant capex + long-dated UK offtake contracts required to bank the premium."], "verdict": "Real but capacity- and certification-gated. Margin = UK/EU SAF premium \u2212 (UCO feedstock at global-premium + HEFA processing). Works only with secured ISCC-certified feedstock and a UK offtake; plain UCO import for Indian domestic use does not clear."}, "consistency_checks": [{"check": "Ch27 import share sane (2024 - 2025)", "pass": true, "detail": "30.3% of total imports ($218,456M / $721,200M)"}, {"check": "Ch27 import share sane (2022 - 2023)", "pass": true, "detail": "36.4% of total imports ($260,921M / $715,969M)"}, {"check": "No negative Ch27 values", "pass": true, "detail": "0 negatives"}, {"check": "FY labels strictly increasing", "pass": true, "detail": "2018 - 2019\u21922025 - 2026"}, {"check": "Crude unit-value\u2248basket (2020-21)", "pass": true, "detail": "4.11 implies $43.2/bbl vs basket $44.8/bbl (-3.6%)"}, {"check": "Crude unit-value\u2248basket (2021-22)", "pass": true, "detail": "4.11 implies $77.5/bbl vs basket $79.2/bbl (-2.1%)"}, {"check": "Crude unit-value\u2248basket (2022-23)", "pass": true, "detail": "4.11 implies $92.3/bbl vs basket $93.2/bbl (-0.9%)"}, {"check": "Crude unit-value\u2248basket (2023-24)", "pass": true, "detail": "4.11 implies $77.7/bbl vs basket $82.6/bbl (-5.9%)"}, {"check": "Crude unit-value\u2248basket (2024-25)", "pass": true, "detail": "4.11 implies $77.0/bbl vs basket $78.6/bbl (-2.0%)"}, {"check": "Ch27 \u2265 POL, gap=coal/LNG/etc (2020 - 2021)", "pass": true, "detail": "Ch27 $99,703M \u2212 POL $77,000M = $22,703M residual (coal+LNG+elec)"}, {"check": "Ch27 \u2265 POL, gap=coal/LNG/etc (2021 - 2022)", "pass": true, "detail": "Ch27 $194,857M \u2212 POL $144,300M = $50,557M residual (coal+LNG+elec)"}, {"check": "Ch27 \u2265 POL, gap=coal/LNG/etc (2022 - 2023)", "pass": true, "detail": "Ch27 $260,921M \u2212 POL $184,400M = $76,521M residual (coal+LNG+elec)"}, {"check": "Ch27 \u2265 POL, gap=coal/LNG/etc (2023 - 2024)", "pass": true, "detail": "Ch27 $219,054M \u2212 POL $156,300M = $62,754M residual (coal+LNG+elec)"}, {"check": "Ch27 \u2265 POL, gap=coal/LNG/etc (2024 - 2025)", "pass": true, "detail": "Ch27 $218,456M \u2212 POL $160,800M = $57,656M residual (coal+LNG+elec)"}, {"check": "Ch27 8-digit export sum \u2248 2-digit total", "pass": true, "detail": "$55,871M vs $55,871M (+0.00%)"}, {"check": "Ch27 8-digit import sum \u2248 2-digit total", "pass": true, "detail": "$203,415M vs $203,415M (-0.00%)"}, {"check": "HSD/diesel(>0.25% S) [27101944] sign", "pass": true, "detail": "exp $19,519M imp $0M net $+19,519M \u2192 net_export"}, {"check": "Propane(LPG) [27111200] sign", "pass": true, "detail": "exp $0M imp $6,538M net $-6,538M \u2192 net_import"}, {"check": "UCO? [15180040] sign", "pass": true, "detail": "exp $3M imp $0M net $+3M \u2192 net_export"}, {"check": "8-digit diesel unit value \u2248 PPAC ($682/t)", "pass": true, "detail": "27101944 = $681/t (PPAC $682/t)"}], "oilprice_spot": null, "import_checklist": [{"step": "1 \u00b7 Classify (8-digit HSN)", "detail": "Duty & policy hinge on the exact line. e.g. Crude 2709 0000 \u00b7 Base oil 2710 1971 \u00b7 LPG 2711 1200/1300/1900 \u00b7 Bitumen 2713 2000 \u00b7 Petcoke 2713 1100 \u00b7 UCO 1518 0040 \u00b7 Finished lubricant 3403."}, {"step": "2 \u00b7 Assessable value (CIF)", "detail": "Customs value = FOB + freight + insurance. For crude oil & some edible oils CBIC notifies fortnightly TARIFF VALUES \u2014 use those, not invoice, when notified."}, {"step": "3a \u00b7 BCD", "detail": "Basic Customs Duty on assessable value. Base oil 5% (verify current CBIC notification; rates change at Budget/notification)."}, {"step": "3b \u00b7 AIDC", "detail": "Agri Infra & Dev Cess where applicable \u2014 base oil 5% on BCD; crude carries a specific AIDC (\u20b9/tonne). Verify current rate."}, {"step": "3c \u00b7 SWS", "detail": "Social Welfare Surcharge 10% on (BCD+AIDC), unless specifically exempted."}, {"step": "3d \u00b7 Trade-remedy duties", "detail": "Check DGTR for Anti-Dumping / Safeguard / Countervailing duty on the origin before costing."}, {"step": "3e \u00b7 IGST (+ cess)", "detail": "IGST 18% on (CIF+BCD+AIDC+SWS) for GST goods (base oil, LPG, lubricants, bitumen, petcoke, naphtha). KEY: crude, petrol, diesel, ATF & natural gas are OUTSIDE GST \u2014 they attract Central Excise + State VAT/CST, not IGST."}, {"step": "4 \u00b7 FTA / rules of origin", "detail": "Japan CEPA 0%, UAE CEPA 2%, Australia ECTA 1% on base oil vs 5% MFN \u2014 a valid Certificate of Origin can erase most BCD. Check ASEAN/other CEPAs per product."}, {"step": "5 \u00b7 Landed cost", "detail": "CIF + all duties + port/CHA/handling + demurrage + finance (LC/working capital). This is your true cost basis."}, {"step": "6 \u00b7 Parity check (margin)", "detail": "Compare landed cost to the domestic Import Parity Price (IPP) refiners/OMCs pay. Margin = domestic realisable \u2212 landed cost."}, {"step": "7 \u00b7 POL price-control overlay", "detail": "For sensitive products, refinery-gate = Trade Parity Price (80% IPP + 20% EPP); retail adds marketing margin, dealer commission, excise & VAT. LPG/kerosene carry subsidy/DBTL mechanics."}, {"step": "8 \u00b7 Hedge benchmark + FX", "detail": "Price risk sits in the Platts FOB-AG / Saudi-CP / crude-basket benchmark and USD/INR. The parity formula's prior-fortnight/month averaging is your timing exposure \u2014 hedge it."}, {"step": "9 \u00b7 Compliance & export incentives", "detail": "BIS/PESO specs, quality. On the export leg: RoDTEP/drawback, and watch export-duty/SAED windfall levies on MS/HSD/ATF (imposed 2022, rescinded Dec-2024 \u2014 can return)."}], "duty_example_base_oil": {"hsn": "2710 1971", "cif": 100.0, "BCD_pct": 5, "AIDC_pct_on_BCD": 5, "SWS_pct_on_BCDAIDC": 10, "IGST_pct": 18, "effective_pct": 30.98, "fta": {"Japan": 0, "UAE": 2, "Australia": 1}, "note": "Effective 30.98% on CIF\u20b9100: BCD 5.00 + AIDC 5.00 + SWS 1.00 + IGST 19.98 (corrected: AIDC on CIF not BCD)"}, "segment_picker": [{"segment": "Diesel / HSD (2710 19)", "fy": "2024-25", "exp_usdb": 19.1, "imp_usdb": 0.03, "orientation": "Export surplus", "verdict": "Prime export \u2014 India's #1 POL export earner; refining-margin play vs FOB Gasoil AG", "risk": "Export duty/SAED can be re-imposed on windfall margins"}, {"segment": "Petrol / MS (2710 12)", "fy": "2024-25", "exp_usdb": 11.6, "imp_usdb": 0.2, "orientation": "Export surplus", "verdict": "Prime export \u2014 strong, growing volumes vs FOB Gasoline AG/Singapore", "risk": "SAED / export-duty windows"}, {"segment": "ATF / Jet (2710 19)", "fy": "2024-25", "exp_usdb": 6.1, "imp_usdb": 0.0, "orientation": "Export surplus", "verdict": "Export \u2014 fastest-growing refined export (SAF tailwind)", "risk": "Demand cyclicality"}, {"segment": "Naphtha (2710 12)", "fy": "2024-25", "exp_usdb": 3.4, "imp_usdb": 0.6, "orientation": "Net export", "verdict": "Export / petchem feedstock arb", "risk": "Domestic cracker demand can absorb supply"}, {"segment": "Finished lubricants (3403) / blended oils", "fy": "2024-25", "exp_usdb": 1.06, "imp_usdb": 1.43, "orientation": "Value-add export", "verdict": "VALUE-ADD EXPORT: import base oil (2710 19) at ~24.8% duty \u2192 blend \u2192 export finished lube; Ch34 exports growing ~8%/yr", "risk": "Base-oil price & FX; brand/quality (BIS) barriers"}, {"segment": "Lubes / base oil (2710 1971)", "fy": "2024-25", "exp_usdb": 0.04, "imp_usdb": 2.6, "orientation": "Import deficit", "verdict": "Import-substitution / trading \u2014 India structurally short base oil (imports ~2.9 MMT); FTA sourcing (Japan 0%) sharpens margin", "risk": "30.98% MFN duty unless FTA origin"}, {"segment": "LPG (2711 12/13)", "fy": "2024-25", "exp_usdb": 0.4, "imp_usdb": 12.5, "orientation": "Import deficit", "verdict": "Import & distribution only \u2014 59-62% import-dependent, PSU-dominated, subsidised; NOT an export play", "risk": "Saudi-CP price swings; policy/subsidy"}, {"segment": "Fuel Oil (2710 19)", "fy": "2024-25", "exp_usdb": 1.1, "imp_usdb": 3.4, "orientation": "Net import", "verdict": "Import + bunker supply (VLSFO/380cSt) at ports", "risk": "IMO/sulphur spec shifts"}, {"segment": "Petcoke (2713 11)", "fy": "2024-25", "exp_usdb": 0.4, "imp_usdb": 1.6, "orientation": "Import deficit", "verdict": "Import for cement/CPC \u2014 high-volume, low unit value ($120-260/t)", "risk": "Environmental/import curbs"}, {"segment": "Bitumen (2713/2714)", "fy": "2024-25", "exp_usdb": 0.1, "imp_usdb": 1.1, "orientation": "Import deficit", "verdict": "Import for road construction \u2014 seasonal, infra-capex linked", "risk": "Freight/handling; demand seasonality"}, {"segment": "UCO \u2014 Used Cooking Oil (1518 0040)", "fy": "chapter-level", "exp_usdb": null, "imp_usdb": null, "orientation": "Export (policy-risk)", "verdict": "Historically lucrative export to EU/US for SAF/biodiesel \u2014 BUT India is diverting UCO to its own RUCO/biodiesel mandate; export window TIGHTENING", "risk": "Domestic diversion + possible export curbs; needs 4/8-digit TRADESTAT to size precisely (sits inside Ch.15)"}], "ne8": [{"hs": "27101944", "name": "AUTOMOTIVE DIESEL FUEL, NOT CONTAINING BIODIES", "exp": 19519.0, "imp": 0.4, "net": 19518.6, "exp_growth": 0.3}, {"hs": "27101241", "name": "MOTOR GASOLINE CONFORMING TO STANDARD IS 2796", "exp": 9474.3, "imp": 58.4, "net": 9415.9, "exp_growth": -9.8}, {"hs": "27101939", "name": "AVIATION TURBINE FUELS, KEROSENE TYPE CONFORMI", "exp": 8563.0, "imp": 0.6, "net": 8562.4, "exp_growth": -43.7}, {"hs": "27101290", "name": "OTHERS-OF-LIGHT OILS AND PREPARATIONS:", "exp": 4931.8, "imp": 6.0, "net": 4925.8, "exp_growth": -2.2}, {"hs": "27101221", "name": "LIGHT NAPHTHA", "exp": 3076.2, "imp": 664.7, "net": 2411.5, "exp_growth": -11.2}, {"hs": "27101949", "name": "HIGH FLASH HIGH SPEED DIESEL FUEL CONFORMING T", "exp": 1993.8, "imp": 33.8, "net": 1960.0, "exp_growth": -56.9}, {"hs": "27101920", "name": "AVIATION TURBINE FUEL (ATF)", "exp": 1507.7, "imp": 60.6, "net": 1447.1, "exp_growth": 3126.4}, {"hs": "27160000", "name": "ELECTRICAL ENERGY", "exp": 1368.3, "imp": 308.8, "net": 1059.5, "exp_growth": 20.6}, {"hs": "27101953", "name": "GRADE MV2", "exp": 536.9, "imp": 28.8, "net": 508.1, "exp_growth": -29.2}, {"hs": "27101961", "name": "DISTILLATE OIL", "exp": 683.9, "imp": 216.2, "net": 467.7, "exp_growth": -20.0}, {"hs": "27101989", "name": "OTHER CUTTING OIL, HYDRAULIC OIL, INDUSTRIAL W", "exp": 250.6, "imp": 17.6, "net": 233.1, "exp_growth": 0.8}, {"hs": "27111990", "name": "OTHERS-OF-OTHER IN GASEOUS STATE :", "exp": 387.0, "imp": 164.9, "net": 222.1, "exp_growth": -7.6}, {"hs": "27081010", "name": "OBTAINED BY BLENDING WITH CREOSOTE OIL OR OTHE", "exp": 127.7, "imp": 4.9, "net": 122.8, "exp_growth": 29.5}, {"hs": "27101941", "name": "GAS OIL", "exp": 121.9, "imp": 0.0, "net": 121.8, "exp_growth": 21.0}, {"hs": "38260000", "name": "BIODIESEL AND MIXTURES, NT CONTAINING OR CONTA", "exp": 116.8, "imp": 0.0, "net": 116.8, "exp_growth": 21939.6}], "ni8": [{"hs": "27090010", "name": "PETROLEUM   CRUDE", "exp": 0.0, "imp": 134716.8, "net": -134716.8, "exp_growth": null}, {"hs": "27111100", "name": "LIQUIFIED NATURAL GAS", "exp": 0.1, "imp": 13338.2, "net": -13338.2, "exp_growth": -99.7}, {"hs": "27011910", "name": "COKING COAL", "exp": 3.7, "imp": 11767.6, "net": -11763.9, "exp_growth": -92.1}, {"hs": "27011920", "name": "STEAM COAL", "exp": 18.7, "imp": 11666.3, "net": -11647.6, "exp_growth": 7.5}, {"hs": "27111200", "name": "LIQUIFIED PROPANE", "exp": 0.0, "imp": 6538.5, "net": -6538.5, "exp_growth": 0.0}, {"hs": "27111300", "name": "LIQUIFIED BUTANES", "exp": 0.0, "imp": 6529.9, "net": -6529.9, "exp_growth": 100.0}, {"hs": "27011990", "name": "OTHER COAL W/N PULVRSD BUT NTAGLDMRTD", "exp": 115.8, "imp": 2796.2, "net": -2680.4, "exp_growth": -3.2}, {"hs": "27101971", "name": "BASE OIL", "exp": 25.9, "imp": 2670.3, "net": -2644.4, "exp_growth": 9.6}, {"hs": "27101959", "name": "GRADE HV", "exp": 599.3, "imp": 2394.6, "net": -1795.3, "exp_growth": -16.5}, {"hs": "27131190", "name": "OTHERS-OF-PETROLEUM COKE NOT CALCINED", "exp": 15.1, "imp": 1280.5, "net": -1265.4, "exp_growth": 31.7}, {"hs": "27040090", "name": "OTHER COKES OF COAL", "exp": 2.8, "imp": 1107.3, "net": -1104.5, "exp_growth": -82.2}, {"hs": "27132000", "name": "PETROLEUM BITUMEN", "exp": 97.4, "imp": 1015.2, "net": -917.8, "exp_growth": 43.4}], "margin8": [{"hs": "27101989", "name": "OTHER CUTTING OIL, HYDRAULIC OIL, INDUSTRIAL", "qty_mmt": 0.24, "unit_usd_t": 1029, "crack_usd_t": 510, "crack_pct": 98.3, "pool_usdm": 124}, {"hs": "27101920", "name": "AVIATION TURBINE FUEL (ATF)", "qty_mmt": 1.93, "unit_usd_t": 783, "crack_usd_t": 264, "crack_pct": 51.0, "pool_usdm": 509}, {"hs": "27101290", "name": "OTHERS-OF-LIGHT OILS AND PREPARATIONS:", "qty_mmt": 6.63, "unit_usd_t": 744, "crack_usd_t": 225, "crack_pct": 43.4, "pool_usdm": 1493}, {"hs": "27101939", "name": "AVIATION TURBINE FUELS, KEROSENE TYPE CONFOR", "qty_mmt": 11.95, "unit_usd_t": 717, "crack_usd_t": 198, "crack_pct": 38.2, "pool_usdm": 2366}, {"hs": "27111990", "name": "OTHERS-OF-OTHER IN GASEOUS STATE :", "qty_mmt": 0.56, "unit_usd_t": 686, "crack_usd_t": 167, "crack_pct": 32.2, "pool_usdm": 94}, {"hs": "27101944", "name": "AUTOMOTIVE DIESEL FUEL, NOT CONTAINING BIODI", "qty_mmt": 28.65, "unit_usd_t": 681, "crack_usd_t": 163, "crack_pct": 31.4, "pool_usdm": 4665}, {"hs": "27081010", "name": "OBTAINED BY BLENDING WITH CREOSOTE OIL OR OT", "qty_mmt": 0.19, "unit_usd_t": 668, "crack_usd_t": 150, "crack_pct": 28.9, "pool_usdm": 29}, {"hs": "27101241", "name": "MOTOR GASOLINE CONFORMING TO STANDARD IS 279", "qty_mmt": 14.28, "unit_usd_t": 664, "crack_usd_t": 145, "crack_pct": 28.0, "pool_usdm": 2071}, {"hs": "27101949", "name": "HIGH FLASH HIGH SPEED DIESEL FUEL CONFORMING", "qty_mmt": 3.13, "unit_usd_t": 637, "crack_usd_t": 118, "crack_pct": 22.8, "pool_usdm": 370}, {"hs": "27101941", "name": "GAS OIL", "qty_mmt": 0.2, "unit_usd_t": 612, "crack_usd_t": 93, "crack_pct": 18.0, "pool_usdm": 19}, {"hs": "27101961", "name": "DISTILLATE OIL", "qty_mmt": 1.14, "unit_usd_t": 599, "crack_usd_t": 80, "crack_pct": 15.5, "pool_usdm": 92}, {"hs": "27101221", "name": "LIGHT NAPHTHA", "qty_mmt": 5.39, "unit_usd_t": 570, "crack_usd_t": 52, "crack_pct": 10.0, "pool_usdm": 279}, {"hs": "27131210", "name": "CALCINED PETROLEUM COKE FOR ANODE MAKING IN ", "qty_mmt": 0.46, "unit_usd_t": 465, "crack_usd_t": -54, "crack_pct": -10.4, "pool_usdm": -24}, {"hs": "27101951", "name": "GRADE LV", "qty_mmt": 0.21, "unit_usd_t": 460, "crack_usd_t": -59, "crack_pct": -11.4, "pool_usdm": -12}, {"hs": "27101953", "name": "GRADE MV2", "qty_mmt": 1.21, "unit_usd_t": 445, "crack_usd_t": -74, "crack_pct": -14.2, "pool_usdm": -89}], "crude_uv": 519, "margin8_method": "Per-line implied gross crack = export unit value (value\u00f7quantity, both 8-digit TRADESTAT) \u2212 crude 27090010 unit value, US$/tonne. Net-export lines with export value >$50M and >100k t only.", "eia": {"date": "2026-07-27", "source": "EIA Open Data API (petroleum/pri/spt) via user-supplied key", "series": [{"name": "Brent crude", "usd_bbl": 91.82}, {"name": "WTI crude", "usd_bbl": 84.25}, {"name": "USGC ULSD diesel", "usd_gal": 4.105, "usd_bbl": 172.41, "crack_bbl": 80.6}, {"name": "USGC gasoline", "usd_gal": 3.434, "usd_bbl": 144.23, "crack_bbl": 52.4}, {"name": "USGC jet/kero", "usd_gal": 3.582, "usd_bbl": 150.44, "crack_bbl": 58.6}], "note": "Latest daily spot from EIA \u2014 Brent/WTI plus US Gulf Coast product benchmarks. US hub prices: a directional proxy, NOT India FOB or the Platts Arab-Gulf assessments Indian pricing uses. Current product cracks over Brent are historically wide (diesel ~$80/bbl) \u2014 verify against primary Platts feeds before acting. Retrieved via WebFetch (sandbox blocks direct API calls); values cross-checked over 5 reproducible days."}, "mov": {"as_of": "2025-26 market data (S&P Global, Argus, OPIS, Business Standard)", "confirmations": [{"dest": "East Africa", "flow": "Diesel", "detail": "Record ~160,000 b/d Oct-2025; Africa now ~40% of India's gasoil exports (29% in 2023). Your #1 destination \u2014 confirmed & growing."}, {"dest": "West Africa", "flow": "Diesel", "detail": "~170,000 b/d Aug-2025 (all-time high); LSD STS Lome $661/mt, +$18/mt over European LSGO. (Dangote closes this longer-term.)"}, {"dest": "Latin America", "flow": "Diesel", "detail": "Brazil 210,000 b/d Sep-2025; India's share leapt to ~75% in Oct."}, {"dest": "SE Asia", "flow": "Diesel", "detail": "~600,000 t May-2025 (multi-year high) to Singapore & Malaysia."}, {"dest": "Neighbours", "flow": "Fuel", "detail": "India shipped ~38,000 MT fuel to Sri Lanka; Lanka IOC (IOCL) captive channel."}, {"dest": "Europe / UK", "flow": "Jet / ATF", "detail": "India expected to export more jet fuel & gasoil 'with bulk heading westward' \u2014 the premium ATF market."}, {"dest": "\u2014 (context)", "flow": "Base oil", "detail": "India's base-oil IMPORTS rose 11% in 2025 \u2014 confirms base oil is import-direction; finished-lube export to E.Africa growing but not shipment-confirmed."}], "margin_check": [{"product": "Diesel / HSD", "estimate": "+$163/t", "market": "Gasoil refining margin ~$16/bbl (~$119/t); diesel crack ~$119\u2013186/t; W.Africa LSD $661/mt (+$18 prem)", "verdict": "CONFIRMED \u2014 estimate sits inside the 2025 observed range"}, {"product": "ATF / Jet", "estimate": "+$198\u2013264/t", "market": "Jet cracks strong; bulk heading westward to EU/UK premium", "verdict": "CONFIRMED \u2014 high-margin, moving to premium markets"}, {"product": "Naphtha", "estimate": "+$52/t", "market": "NE-Asia petchem demand steady", "verdict": "Consistent (directional)"}, {"product": "Specialty / lube oils", "estimate": "+$510/t", "market": "E.Africa lubricants market growing; base oil is import-side", "verdict": "Plausible \u2014 NOT shipment-confirmed to named buyers"}], "freight": "Netback edge confirmed: India\u2192Singapore \u2248$25/t vs India\u2192NW-Europe $59/t (MR tanker); East-West gasoil spread ~$20/t favouring east. Short-haul East Africa / Asia beats long-haul Europe on netback \u2014 matches the playbook.", "gap": "Shipment-level confirmation to the specific buyers (Hass/Lake Oil/Oryx/Lanka IOC) and their contract margins need bill-of-lading data (Volza/Export Genius, paid) or live AIS via your AISStream key run outside this sandbox. The public flow & margin data confirms direction and margin RANGE, not individual cargoes."}, "hv": {"as_of": "TRADESTAT 8-digit FY2025-26 (US$M; unit value = value\u00f7quantity). 'Margin' proxy = value density + net-export competitiveness; not verified COGS margin.", "segments": [{"seg": "Pharmaceuticals (Ch30)", "exp": 25073, "net": 21441, "uv": "$29,057/t", "grw": 2.0, "read": "India's #1 high-value net exporter \u2014 but regulated/registration-heavy (generics)."}, {"seg": "Vehicles & parts (Ch87)", "exp": 25973, "net": 16612, "uv": "$15,740/t", "grw": 14.7, "read": "High value + fastest-growing big segment (2-wheelers, autos, components)."}, {"seg": "Seafood \u2014 fish & crustaceans (Ch03)", "exp": 7016, "net": 6727, "uv": "$4,797/t", "grw": 11.4, "read": "High-value, high-growth net exporter (shrimp) \u2014 cold-chain trade."}, {"seg": "Essential oils & perfumery (Ch33)", "exp": 2656, "net": 1121, "uv": "$7,388/t", "grw": -1.7, "read": "Chemical adjacency, very high value density (menthol, mint, oleoresins)."}, {"seg": "Organic chemicals (Ch29)", "exp": 20409, "net": -5002, "uv": "$3,930/t", "grw": 1.4, "read": "Huge two-way book; India strong in bulk-drug intermediates & specialty."}, {"seg": "Dyes, tanning & pigments (Ch32)", "exp": 3172, "net": 486, "uv": "$3,414/t", "grw": -10.9, "read": "India a global dye/pigment hub \u2014 net exporter, tradeable."}, {"seg": "Misc chemical products (Ch38)", "exp": 7113, "net": -1744, "uv": "$2,573/t", "grw": 2.0, "read": "Agro-chemicals, additives, biodiesel \u2014 your closest chemical adjacency."}, {"seg": "Coffee, tea & spices (Ch09)", "exp": 5424, "net": 4143, "uv": "$2,926/t", "grw": 1.1, "read": "High-value agri net exporter."}, {"seg": "Meat & offal (Ch02)", "exp": 5215, "net": 5202, "uv": "$3,620/t", "grw": 25.4, "read": "Buffalo meat \u2014 fastest grower here (+25%), strong net export."}], "value_add": [{"hs": "85044010", "name": "Electric inverters", "imp": "$63/u", "exp": "$657/u", "x": 10.4, "expv": 499, "read": "Import cells/parts \u2192 export inverters"}, {"hs": "85072000", "name": "Lead-acid accumulators (batteries)", "imp": "$4.2/u", "exp": "$91/u", "x": 21.8, "expv": 286, "read": "Battery assembly value-add"}, {"hs": "73089010", "name": "Prepared structural steel (beams/girders)", "imp": "$1.8/kg", "exp": "$54/kg", "x": 29.9, "expv": 355, "read": "Fabricated-steel value-add"}, {"hs": "85177910", "name": "Populated PCBs", "imp": "$1.5/u", "exp": "$75/u", "x": 50.9, "expv": 1606, "read": "Electronics assembly (grade-mix inflates ratio)"}, {"hs": "84798999", "name": "Other machines & mechanical appliances", "imp": "$18.5/u", "exp": "$271/u", "x": 14.6, "expv": 414, "read": "Machinery value-add"}], "import_premium": [{"hs": "30049099", "name": "Other medicine, retail packs", "imp": "$137/u", "exp": "$31/u", "x": 0.23, "expv": 10984, "read": "India exports generics cheap ($11B), imports patented dear \u2014 the pharma structure"}, {"hs": "84715000", "name": "Digital processing units (servers/CPUs)", "imp": "$5,521/u", "exp": "$866/u", "x": 0.16, "impv": 4958, "read": "India imports compute; exports low-end"}, {"hs": "30021500", "name": "Immunological products (vaccines)", "imp": "$4,878/u", "exp": "$763/u", "x": 0.16, "impv": 739, "read": "Premium biologics in, cheaper out"}, {"hs": "33030090", "name": "Perfumes & toilet waters", "imp": "$57.8/u", "exp": "$4.8/u", "x": 0.08, "impv": 128, "read": "Branded perfume imported dear"}], "caveat": "8-digit import-vs-export unit-price ratios flag value-add DIRECTION, but a single HS line mixes grades/specs, so extreme ratios (>20x) are partly composition, not pure arbitrage. Treat as a screen, then verify the specific grade.", "verdict": "For an oil/commodity trader's adjacency, the cleanest high-value export moves are SPECIALTY & ORGANIC CHEMICALS (29/38), ESSENTIAL OILS & PERFUMERY (33) and DYES/PIGMENTS (32): bulk-tradeable, high value density, India net-competitive. Pharma & vehicles are higher-value but registration/OEM-gated; seafood & spices are high-growth agri plays."}, "ideas": [{"dir": "EXPORT", "idea": "Pharmaceuticals", "exp": 25073, "imp": 3632, "net": 21441, "grw": 2.0, "verdict": "CONFIRMED export \u2014 net +$21.4B; but registration-gated", "flag": "CONFIRMED"}, {"dir": "EXPORT", "idea": "Electronics & electrical (Ch85)", "exp": 53976, "imp": 104853, "net": -50876, "grw": 22.5, "verdict": "DUAL \u2014 export +22.5% yet net \u2212$51B; both export & import-sub", "flag": "DUAL"}, {"dir": "EXPORT", "idea": "Engineering/machinery (Ch84)", "exp": 36630, "imp": 74019, "net": -37390, "grw": 9.4, "verdict": "DUAL \u2014 export +9.4% yet net \u2212$37B", "flag": "DUAL"}, {"dir": "EXPORT", "idea": "Organic chemicals (Ch29)", "exp": 20409, "imp": 25411, "net": -5002, "grw": 1.4, "verdict": "MIXED \u2014 near-balanced two-way ($20B/$25B)", "flag": "MIXED"}, {"dir": "EXPORT", "idea": "Specialty/misc chemicals (Ch38)", "exp": 7113, "imp": 8857, "net": -1744, "grw": 2.0, "verdict": "MIXED \u2014 slight net import; your adjacency", "flag": "MIXED"}, {"dir": "EXPORT", "idea": "Dyes & pigments (Ch32)", "exp": 3172, "imp": 2686, "net": 486, "grw": -10.9, "verdict": "NET-EXPORT but DECLINING \u221211% \u2014 caution", "flag": "NET-EXPORT"}, {"dir": "EXPORT", "idea": "Essential oils & perfumery (Ch33)", "exp": 2656, "imp": 1536, "net": 1121, "grw": -1.7, "verdict": "CONFIRMED export \u2014 net +$1.1B, high value density", "flag": "CONFIRMED"}, {"dir": "EXPORT", "idea": "Textiles & apparel (Ch61-63)", "exp": 21810, "imp": 2389, "net": 19421, "grw": -1.4, "verdict": "CONFIRMED export \u2014 net +$19.4B (large, understated earlier)", "flag": "CONFIRMED"}, {"dir": "EXPORT", "idea": "Cereals \u2014 rice (Ch10)", "exp": 12008, "imp": 125, "net": 11883, "grw": -5.8, "verdict": "CONFIRMED export \u2014 net +$11.9B; commodity-tradeable", "flag": "CONFIRMED"}, {"dir": "IMPORT-SUB", "idea": "Carbon fibre", "exp": 12, "imp": 110, "net": -98, "grw": -31.2, "verdict": "CONFIRMED import-sub \u2014 net \u2212$98M, niche/high-dependence", "flag": "CONFIRMED"}, {"dir": "IMPORT-SUB", "idea": "Silicon wafers / semiconductor", "exp": 330, "imp": 2979, "net": -2649, "grw": 0.1, "verdict": "CONFIRMED import-sub \u2014 net \u2212$2.6B", "flag": "CONFIRMED"}, {"dir": "IMPORT-SUB", "idea": "Graphite (incl. synthetic)", "exp": 202, "imp": 156, "net": 46, "grw": 300.5, "verdict": "WEAK \u2014 tiny, volatile (+300% low base)", "flag": "WEAK"}, {"dir": "IMPORT-SUB", "idea": "Industrial valves (8481)", "exp": 1516, "imp": 744, "net": 772, "grw": 9.9, "verdict": "DEBUNKED \u2014 India is NET-EXPORTER +$772M (not import-sub at aggregate)", "flag": "DEBUNKED"}, {"dir": "IMPORT-SUB", "idea": "Solar / photovoltaic cells", "exp": 1086, "imp": 4115, "net": -3028, "grw": -6.2, "verdict": "CONFIRMED import-sub \u2014 net \u2212$3B", "flag": "CONFIRMED"}, {"dir": "IMPORT-SUB", "idea": "Lithium-ion accumulators", "exp": 101, "imp": 4837, "net": -4736, "grw": 12.8, "verdict": "CONFIRMED import-sub \u2014 net \u2212$4.7B, imports +13% (EV wave)", "flag": "CONFIRMED"}, {"dir": "IMPORT-SUB", "idea": "Fertilisers (Ch31)", "exp": 156, "imp": 14580, "net": -14424, "grw": -3.6, "verdict": "CONFIRMED import-sub \u2014 net \u2212$14.4B (huge; subsidy-regulated)", "flag": "CONFIRMED"}, {"dir": "IMPORT-SUB", "idea": "Cosmetics / make-up (3304)", "exp": 166, "imp": 378, "net": -212, "grw": -46.0, "verdict": "MINOR \u2014 small net import", "flag": "MINOR"}, {"dir": "IMPORT-SUB", "idea": "Gas turbine / turbojet parts", "exp": 5665, "imp": 4080, "net": 1586, "grw": 7.1, "verdict": "DEBUNKED \u2014 India NET-EXPORTER +$1.6B (aero exports)", "flag": "DEBUNKED"}], "isub": {"targets": [{"hs": "85423100", "name": "MONOLITHIC INTEGRATED CIRCUITS - DIGITAL", "imp": 17543, "exp": 160, "net_imp": 17382, "grw": 15.8, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "85177990", "name": "OTHERS-OF-OTHERS-OF-ELCTRCL APARTS FR LINE T", "imp": 15810, "exp": 949, "net_imp": 14861, "grw": 14.4, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "88024000", "name": "AEROPLANES AND OTHR AIRCRAFT,OF AN UNLADEN  ", "imp": 11641, "exp": 12, "net_imp": 11629, "grw": -6.1, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "85423200", "name": "MEMORIES", "imp": 6793, "exp": 63, "net_imp": 6730, "grw": 53.4, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "84713010", "name": "PERSONAL COMPUTER (LAPTOP,PALMTOP,ETC)", "imp": 6203, "exp": 552, "net_imp": 5652, "grw": 12.3, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "85423900", "name": "OTHERS-OF-OTHERS-OF-ELCTRNC INTEGRTD CIRCUIT", "imp": 5366, "exp": 41, "net_imp": 5325, "grw": 20.2, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "31053000", "name": "DIAMONM HYDRGNORTHPHOSPHT(DIAMONM PHOSPHT)", "imp": 4872, "exp": 4, "net_imp": 4867, "grw": 75.8, "struct": false, "cat": "chemical/commodity"}, {"hs": "84715000", "name": "DIGITL PROCESNG UNITS EXCL OF SUB HDNGS   84", "imp": 4958, "exp": 149, "net_imp": 4809, "grw": 38.1, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "85076000", "name": "LITHIUM-ION", "imp": 4697, "exp": 80, "net_imp": 4617, "grw": 56.2, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "76020010", "name": "ALUMINIUM SCRAP COVERD BY ISRI CODE       TA", "imp": 4551, "exp": 12, "net_imp": 4539, "grw": 15.8, "struct": false, "cat": "metal/scrap"}, {"hs": "31021010", "name": "Fertilizer grade, conforming to Standard IS ", "imp": 3869, "exp": 0, "net_imp": 3869, "grw": 148.0, "struct": false, "cat": "chemical/commodity"}, {"hs": "85414200", "name": "Photovoltaic cells not assembled in modules ", "imp": 3059, "exp": 20, "net_imp": 3039, "grw": 86.4, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "28092010", "name": "PH0SPH0RIC ACID", "imp": 2674, "exp": 8, "net_imp": 2666, "grw": 26.3, "struct": false, "cat": "chemical/commodity"}, {"hs": "85176290", "name": "OTHERS-OF-MACHINES FOR THE RECEPTION, CONVER", "imp": 3914, "exp": 1668, "net_imp": 2247, "grw": 11.7, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "08013100", "name": "CASHEN NUTS FRESH/DRIED IN SHELL", "imp": 2294, "exp": 114, "net_imp": 2180, "grw": 40.8, "struct": false, "cat": "agri/raw commodity"}, {"hs": "85241220", "name": "Of organic light-emitting diodes (OLED) : Fo", "imp": 1937, "exp": 0, "net_imp": 1937, "grw": 78.1, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "85258900", "name": "Television cameras, digital cameras and vidc", "imp": 1973, "exp": 141, "net_imp": 1832, "grw": 1.3, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "84798999", "name": "OTHERS-OF-OTHR MCHN ANDMCHNCL APPLNCS OF HDG", "imp": 2194, "exp": 414, "net_imp": 1780, "grw": 26.1, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "39041020", "name": "SUSPENSION GRADE PVC RESIN", "imp": 1633, "exp": 0, "net_imp": 1632, "grw": -23.2, "struct": false, "cat": "chemical/commodity"}, {"hs": "52010024", "name": "Cotton, other than Indian, of staple length ", "imp": 1637, "exp": 7, "net_imp": 1631, "grw": 78.5, "struct": false, "cat": "agri/raw commodity"}, {"hs": "85340000", "name": "PRINTED CIRCUITS", "imp": 1677, "exp": 175, "net_imp": 1502, "grw": 11.1, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "29173600", "name": "TEREPHTHALIC ACID AND ITS SALTS", "imp": 1469, "exp": 3, "net_imp": 1466, "grw": -8.1, "struct": false, "cat": "chemical/commodity"}, {"hs": "70071900", "name": "OTHR TOUGHENED(TEMPERED)SAFETY GLASS", "imp": 1480, "exp": 29, "net_imp": 1451, "grw": 129.3, "struct": false, "cat": "other"}, {"hs": "08021100", "name": "ALMONDS FRSH OR DRIEDIN SHELL", "imp": 1356, "exp": 2, "net_imp": 1353, "grw": 30.6, "struct": false, "cat": "agri/raw commodity"}, {"hs": "84733099", "name": "OTHERS-OF-PRTS AND ACCSSRS OF MCHNS OF HDG N", "imp": 1408, "exp": 88, "net_imp": 1320, "grw": 49.2, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "28439012", "name": "NOBLE METAL SOLUTIONS OF PLATINUM,RHODIUM AN", "imp": 1294, "exp": 16, "net_imp": 1278, "grw": 35.1, "struct": false, "cat": "chemical/commodity"}, {"hs": "31021090", "name": "Other : Urea, whether or not in aqueous solu", "imp": 1287, "exp": 16, "net_imp": 1271, "grw": 56.0, "struct": false, "cat": "chemical/commodity"}, {"hs": "31042000", "name": "POTASSIUM CHLORIDE", "imp": 1270, "exp": 2, "net_imp": 1268, "grw": -0.1, "struct": false, "cat": "chemical/commodity"}, {"hs": "85235100", "name": "SOLID-STATE NON-VOLATILE STORAGE DEVICES", "imp": 1266, "exp": 54, "net_imp": 1212, "grw": 80.2, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "85299090", "name": "OTHE PARTS FR OTHR USE", "imp": 1442, "exp": 242, "net_imp": 1199, "grw": 20.7, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "31052000", "name": "MINRL/CHEMCL FERTLSRS CONTNG THE THREE    FR", "imp": 1153, "exp": 8, "net_imp": 1144, "grw": 48.2, "struct": false, "cat": "chemical/commodity"}, {"hs": "39021000", "name": "POLYPROPYLENE", "imp": 1372, "exp": 240, "net_imp": 1132, "grw": 19.1, "struct": false, "cat": "chemical/commodity"}, {"hs": "29025000", "name": "STYRENE", "imp": 1134, "exp": 18, "net_imp": 1116, "grw": -13.7, "struct": false, "cat": "chemical/commodity"}, {"hs": "87084000", "name": "GEAR BOXES", "imp": 1840, "exp": 738, "net_imp": 1102, "grw": 16.2, "struct": false, "cat": "other"}, {"hs": "28141000", "name": "ANHYDROUS AMMONIA", "imp": 1079, "exp": 2, "net_imp": 1077, "grw": 4.3, "struct": false, "cat": "chemical/commodity"}, {"hs": "90318000", "name": "OTHR MSRNGANDCHCKNG INSTRMNTS,APPLNCSANDMCHN", "imp": 1311, "exp": 250, "net_imp": 1061, "grw": 11.6, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "29051100", "name": "SATURATED METHANOL (METHYL ALCOHOL)", "imp": 1086, "exp": 28, "net_imp": 1058, "grw": 18.3, "struct": false, "cat": "chemical/commodity"}, {"hs": "84463090", "name": "OTHERS-OF-WEAVING MACHINES FOR WEAVING FABRI", "imp": 1048, "exp": 8, "net_imp": 1039, "grw": 90.2, "struct": false, "cat": "hi-tech/mfg"}, {"hs": "15079010", "name": "SOYA BEAN OIL OF EDIBLE GRADE", "imp": 950, "exp": 44, "net_imp": 906, "grw": 145.8, "struct": false, "cat": "chemical/commodity"}, {"hs": "07136000", "name": "PIGEON PEAS (CAJANUS CAJAN)", "imp": 947, "exp": 42, "net_imp": 905, "grw": -26.3, "struct": false, "cat": "agri/raw commodity"}], "by_sector": [{"ch": "85", "name": "Electrical Machinery And Equipment And Parts Thereof; Sound Recorders And Reproducers, Television Image And Sound Recorders And Reproducers,And Parts.", "net_imp": 76973, "trader": "No \u2014 manufacturing"}, {"ch": "84", "name": "Nuclear Reactors, Boilers, Machinery And Mechanical Appliances; Parts Thereof.", "net_imp": 30426, "trader": "No \u2014 manufacturing"}, {"ch": "31", "name": "Fertilisers.", "net_imp": 13585, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "88", "name": "Aircraft, Spacecraft, And Parts Thereof.", "net_imp": 12488, "trader": "No \u2014 manufacturing"}, {"ch": "39", "name": "Plastic And Articles Thereof.", "net_imp": 12048, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "29", "name": "Organic Chemicals", "net_imp": 8256, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "76", "name": "Aluminium And Articles Thereof.", "net_imp": 6852, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "28", "name": "Inorganic Chemicals; Organic Or Inorganic Compounds Of Precious Metals, Of Rare-Earth Metals, Or Radi. Elem. Or Of Isotopes.", "net_imp": 5999, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "90", "name": "Optical, Photographic Cinematographic Measuring, Checking Precision, Medical Or Surgical Inst. And Apparatus Parts And Accessories Thereof;", "net_imp": 4669, "trader": "No \u2014 manufacturing"}, {"ch": "08", "name": "Edible Fruit And Nuts; Peel Or Citrus Fruit Or Melons.", "net_imp": 4347, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "07", "name": "Edible Vegetables And Certain Roots And Tubers.", "net_imp": 3144, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "47", "name": "Pulp Of Wood Or Of Other Fibrous Cellulosic Material; Waste And Scrap Of Paper Or Paperboard.", "net_imp": 3089, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "38", "name": "Miscellaneous Chemical Products.", "net_imp": 2442, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "40", "name": "Rubber And Articles Thereof.", "net_imp": 2226, "trader": "Yes \u2014 commodity/chemical"}, {"ch": "52", "name": "Cotton.", "net_imp": 1837, "trader": "Yes \u2014 commodity/chemical"}], "struct_top": [{"hs": "27090010", "name": "PETROLEUM   CRUDE", "imp": 134717, "exp": 0, "net_imp": 134717, "grw": -5.8, "struct": true}, {"hs": "71081210", "name": "CONTAINING 99.5 PERCENT OR MORE BY WEIGHT OF", "imp": 46861, "exp": 76, "net_imp": 46785, "grw": null, "struct": true}, {"hs": "71081290", "name": "OTHERS-OF-OTHER UNWROUGHT FORMS", "imp": 24859, "exp": 10, "net_imp": 24848, "grw": null, "struct": true}, {"hs": "27111100", "name": "LIQUIFIED NATURAL GAS", "imp": 13338, "exp": 0, "net_imp": 13338, "grw": -10.4, "struct": true}, {"hs": "27011910", "name": "COKING COAL", "imp": 11768, "exp": 4, "net_imp": 11764, "grw": -3.2, "struct": true}, {"hs": "27011920", "name": "STEAM COAL", "imp": 11666, "exp": 19, "net_imp": 11648, "grw": -16.8, "struct": true}, {"hs": "71069221", "name": "CONTAINING 99.9 PERCENT OR MORE BY WEIGHT OF", "imp": 10849, "exp": 25, "net_imp": 10824, "grw": null, "struct": true}, {"hs": "71023100", "name": "NON-INDUSTRIAL DIAMONDS UNWORKED/SIMPLY   SA", "imp": 10321, "exp": 325, "net_imp": 9996, "grw": 1.3, "struct": true}, {"hs": "15111000", "name": "CRUDE PALM OIL AND ITS FRACTNS", "imp": 9053, "exp": 0, "net_imp": 9053, "grw": 41.4, "struct": true}, {"hs": "27111200", "name": "LIQUIFIED PROPANE", "imp": 6538, "exp": 0, "net_imp": 6538, "grw": -8.3, "struct": true}]}};
+const FYB=D.hsn_ch27.years.map(s=>s.replace(/ /g,''));
+const ax={color:'#93a4b5'}, grid={color:'rgba(120,140,160,.12)'};
+Chart.defaults.color='#93a4b5'; Chart.defaults.font.size=11.5;
+const base=(extra={})=>Object.assign({responsive:true,maintainAspectRatio:false,
+ plugins:{legend:{labels:{boxWidth:12}}},scales:{x:{ticks:ax,grid:grid},y:{ticks:ax,grid:grid}}},extra);
+
+// 0 EIA live spot
+if(D.eia){
+ document.getElementById('eia_date').textContent='&#8212; '+D.eia.date+' (EIA)';
+ document.getElementById('eia_note').innerHTML='<b>Note.</b> '+D.eia.note;
+ const ek=document.getElementById('eia_kpis');
+ D.eia.series.forEach(s=>{const el=document.createElement('div');el.className='kpi';
+  const crack=(s.crack_bbl!==undefined)?`<div class="l">crack vs Brent $${s.crack_bbl}/bbl</div>`:`<div class="l">$/bbl</div>`;
+  el.innerHTML=`<div class="v">$${s.usd_bbl}</div><div class="l">${s.name}${s.usd_gal?(' ($'+s.usd_gal+'/gal)'):''}
+</div>${crack}`;
+  ek.appendChild(el);});
+}
+
+// 1 Ch27
+new Chart(c_ch27,{type:'line',data:{labels:FYB,datasets:[
+ {label:'Imports',data:D.hsn_ch27.import_usdm.map(v=>v/1000),borderColor:'#e05d5d',backgroundColor:'rgba(224,93,93,.12)',fill:true,tension:.3},
+ {label:'Exports',data:D.hsn_ch27.export_usdm.map(v=>v/1000),borderColor:'#4fb0c6',backgroundColor:'rgba(79,176,198,.10)',fill:true,tension:.3}
+]},options:base({plugins:{legend:{position:'top'},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y.toFixed(1)+'B'}}}})});
+
+// 1b share
+const share=D.hsn_ch27.import_usdm.map((v,i)=>+(100*v/D.hsn_ch27.total_import_usdm[i]).toFixed(1));
+new Chart(c_share,{type:'bar',data:{labels:FYB,datasets:[{label:'Ch.27 % of total imports',data:share,backgroundColor:'#f4a24c'}]},
+ options:base({plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'%'}}},scales:{y:{ticks:{callback:v=>v+'%'},grid:grid}}})});
+
+// 2 product value by year
+const yrs=D.ppac_years, prods=D.products.map(p=>p.product);
+const ysel=document.getElementById('yearSel'); yrs.forEach((y,i)=>{let o=document.createElement('option');o.value=i;o.textContent=y;if(y==='2024-25')o.selected=true;ysel.appendChild(o);});
+let prodChart;
+function drawProd(){const yi=+ysel.value;
+ const imp=D.products.map(p=>p.import_val_usdb?p.import_val_usdb[yi]:0);
+ const exp=D.products.map(p=>p.export_val_usdb?p.export_val_usdb[yi]:0);
+ const d={labels:prods,datasets:[
+  {label:'Import US$B',data:imp,backgroundColor:'#e05d5d'},
+  {label:'Export US$B',data:exp,backgroundColor:'#4fb0c6'}]};
+ if(prodChart){prodChart.data=d;prodChart.update();}
+ else prodChart=new Chart(c_prod,{type:'bar',data:d,options:base({plugins:{legend:{position:'top'}},scales:{x:{ticks:ax,grid:grid},y:{ticks:{callback:v=>'$'+v+'B'},grid:grid}}})});
+}
+ysel.onchange=drawProd; drawProd();
+
+// 3 crude realized vs basket
+const cb=D.price_basket_annual, rz=D.crude_realized_usd_bbl;
+const cy=D.ppac_years.filter(y=>!y.includes('H1'));
+const impl=D.products.find(p=>p.product==='Crude oil').import_unit_usd_t;
+const implBbl=D.ppac_years.map((y,i)=>y.includes('H1')?null:+(impl[i]/7.33).toFixed(1));
+new Chart(c_crude,{data:{labels:D.ppac_years,datasets:[
+ {type:'line',label:'Indian basket $/bbl',data:D.ppac_years.map(y=>cb[y]??null),borderColor:'#c9a227',tension:.3,spanGaps:true},
+ {type:'line',label:'Realized crude import $/bbl (8.24)',data:D.ppac_years.map(y=>rz[y]??null),borderColor:'#6ea8fe',borderDash:[5,4],tension:.3,spanGaps:true},
+ {type:'line',label:'Implied $/bbl (4.11 value&#247;qty)',data:implBbl,borderColor:'#f4a24c',pointStyle:'rectRot',tension:.3,spanGaps:true}
+]},options:base({plugins:{legend:{position:'top'},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+(c.parsed.y??0).toFixed(1)}}}})});
+
+// 3b product unit values
+const psel=document.getElementById('prodSel');
+prods.forEach((p,i)=>{let o=document.createElement('option');o.value=i;o.textContent=p;if(p==='LPG')o.selected=true;psel.appendChild(o);});
+let unitChart;
+function drawUnit(){const p=D.products[+psel.value];
+ const d={labels:D.ppac_years,datasets:[
+  {label:'Import $/t',data:p.import_unit_usd_t,borderColor:'#e05d5d',tension:.3,spanGaps:true},
+  {label:'Export $/t',data:p.export_unit_usd_t,borderColor:'#4fb0c6',tension:.3,spanGaps:true}]};
+ if(unitChart){unitChart.data=d;unitChart.update();}
+ else unitChart=new Chart(c_unit,{type:'line',data:d,options:base({plugins:{legend:{position:'top'},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+(c.parsed.y??0).toFixed(0)+'/t'}}}})});
+}
+psel.onchange=drawUnit; drawUnit();
+
+// 5 coverage table
+const ct=document.getElementById('covtbl');
+D.mapping.forEach(m=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${m.product}</b></td><td class="mut">${m.hsn}</td><td>${m.india_benchmark}</td><td class="mut">${m.oilprice_proxy}</td><td><span class="tag ${m.coverage}">${m.coverage.toUpperCase()}</span></td>`;
+ ct.appendChild(tr);});
+
+// 7 checklist
+const cl=document.getElementById('chklist');
+D.import_checklist.forEach(s=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${s.step}</b></td><td class="mut">${s.detail}</td>`;cl.appendChild(tr);});
+
+// 8 segment picker
+const st=document.getElementById('segtbl');
+D.segment_picker.forEach(s=>{const tr=document.createElement('tr');
+ const oc=s.orientation.includes('Export')||s.orientation.includes('export')?'var(--exp)':'var(--imp)';
+ const ev=(v)=>(v===null)?'<span class="mut">n/a</span>':('$'+v.toFixed(2)+'B');
+ tr.innerHTML=`<td><b>${s.segment}</b></td><td class="ok-row">${ev(s.exp_usdb)}</td><td style="color:var(--imp)">${ev(s.imp_usdb)}</td>`+
+  `<td style="color:${oc};font-weight:600">${s.orientation}</td><td>${s.verdict}</td><td class="mut small">${s.risk}</td>`;
+ st.appendChild(tr);});
+
+// 10 country-wise
+const cd=D.country_ch27, cl2=cd.map(x=>x.country);
+new Chart(c_ctry,{type:'bar',data:{labels:cl2,datasets:[
+ {label:'Import US$B',data:cd.map(x=>x.imp/1000),backgroundColor:'#e05d5d'},
+ {label:'Export US$B',data:cd.map(x=>x.exp/1000),backgroundColor:'#4fb0c6'}
+]},options:base({plugins:{legend:{position:'top'}},scales:{y:{ticks:{callback:v=>'$'+v+'B'},grid:grid},x:{ticks:ax,grid:grid}}})});
+const ctt=document.getElementById('ctrytbl');
+cd.forEach(x=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${x.country}</b></td><td style="color:var(--imp)">$${(x.imp/1000).toFixed(1)}B${x.imp_share?' ('+x.imp_share+'%)':''}</td>`+
+  `<td class="ok-row">$${(x.exp/1000).toFixed(1)}B</td><td class="mut small">${x.role}</td>`;ctt.appendChild(tr);});
+document.getElementById('ctrynote').textContent=D.country_note;
+
+// 11 UCO/SAF UK
+const u=D.uco_saf_uk;
+document.getElementById('uk_mand').textContent=u.uk_mandate;
+document.getElementById('uk_buy').textContent=u.buyout;
+document.getElementById('uk_play').textContent=u.play;
+document.getElementById('uk_verdict').textContent=u.verdict;
+const uc=document.getElementById('uk_con');
+u.constraints.forEach(c=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="small">&#8226; ${c}</td>`;uc.appendChild(tr);});
+
+// 12 destinations + net-export targets
+const dd=D.export_destinations;
+new Chart(c_dest,{type:'bar',data:{labels:dd.data.map(x=>x.dest),datasets:[{label:'US$B',data:dd.data.map(x=>x.usdb),backgroundColor:'#4fb0c6'}]},
+ options:base({indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v+'B'},grid:grid},y:{ticks:ax,grid:grid}}})});
+document.getElementById('destnote').textContent=dd.note;
+const ng=document.getElementById('netgt');
+D.net_export_targets.forEach(x=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${x.product}</b></td><td class="ok-row">$${x.net.toFixed(1)}B</td><td class="small">${x.best}</td>`;ng.appendChild(tr);});
+const ng2=document.getElementById('netgt2');
+D.net_export_targets.forEach(x=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${x.product}</b><br><span class="mut small">HSN ${x.hsn}</span></td><td class="small">${x.targets}</td><td class="mut small">${x.note}</td>`;ng2.appendChild(tr);});
+
+// 13 margin ranking (8-digit)
+const mr=(D.margin8||[]).slice(0,12);
+const shortn=(s)=>s.replace(/,.*$/,'').replace(/CONFORMING.*/,'').replace(/OTHERS?-OF-/,'').trim().slice(0,26);
+new Chart(c_marg,{type:'bar',data:{labels:mr.map(x=>x.hs+' '+shortn(x.name)),datasets:[{label:'Crack $/t',
+  data:mr.map(x=>x.crack_usd_t),
+  backgroundColor:mr.map(x=>x.qty_mmt>=3?'#4fb0c6':'#6a7b8c')}]},
+ options:base({indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.parsed.x+'/t ('+mr[c.dataIndex].crack_pct+'%), pool $'+mr[c.dataIndex].pool_usdm+'M'}}},
+  scales:{x:{ticks:{callback:v=>'$'+v},grid:grid},y:{ticks:Object.assign({},ax,{font:{size:10}}),grid:grid}}})});
+const mt=document.getElementById('margtbl');
+mr.forEach((x,i)=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td class="mut">${i+1}</td><td class="small"><b>${x.hs}</b> ${shortn(x.name)}${x.qty_mmt>=3?'':' <span class="mut">(thin)</span>'}</td>`+
+  `<td class="ok-row"><b>$${x.crack_usd_t}</b></td><td class="small">${x.crack_pct}%</td><td class="small">$${x.pool_usdm.toLocaleString()}</td>`;mt.appendChild(tr);});
+document.getElementById('margnote').innerHTML='<b>Method.</b> '+D.margin8_method+' Crude cost FY25-26 &#8776; $'+D.crude_uv+'/t.';
+
+// 14 trader playbook
+const tp=D.trader_playbook;
+document.getElementById('tp_lens').textContent=tp.lens;
+document.getElementById('tp_short').textContent=tp.shortlist;
+document.getElementById('tp_freight').innerHTML='<span><b>Freight ladder:</b> '+tp.freight_ladder+'</span>';
+document.getElementById('tp_api').innerHTML='<b>Access:</b> '+tp.access+' &nbsp;&#183;&nbsp; '+tp.api_note;
+const tpt=document.getElementById('tptbl');
+tp.rows.forEach(r=>{const tr=document.createElement('tr');
+ const av=(r.avoid&&r.avoid!=='&#8212;')?`<span style="color:var(--no)">${r.avoid}</span>`:'<span class="mut">&#8212;</span>';
+ tr.innerHTML=`<td><b>${r.product}</b></td><td class="ok-row small">${r.best}</td><td class="small">${r.detail}</td><td class="small">${av}</td>`;
+ tpt.appendChild(tr);});
+
+// 15 trade opportunity matrix
+const to=D.trade_opportunities;
+document.getElementById('to_ctx').textContent=to.context;
+const toE=document.getElementById('to_exp');
+to.export_dir.forEach(r=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${r.product}</b><br><span class="mut small">${r.hs}</span></td><td class="ok-row small">${r.size}</td>`+
+  `<td class="small">${r.counterparties}</td><td class="mut small">${r.ports}</td><td class="small">${r.angle}</td><td class="mut small">${r.risk}</td>`;toE.appendChild(tr);});
+const toI=document.getElementById('to_imp');
+to.import_dir.forEach(r=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td><b>${r.product}</b><br><span class="mut small">${r.hs}</span></td><td style="color:var(--imp)" class="small">${r.size}</td>`+
+  `<td class="small">${r.counterparties}</td><td class="mut small">${r.ports}</td><td class="small">${r.angle}</td><td class="mut small">${r.risk}</td>`;toI.appendChild(tr);});
+
+// 16 movement & margin check
+if(D.mov){
+ document.getElementById('mov_asof').textContent='Source: '+D.mov.as_of;
+ const mc=document.getElementById('mov_conf');
+ D.mov.confirmations.forEach(r=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td><b>${r.dest}</b></td><td class="small">${r.flow}</td><td class="small">${r.detail}</td>`;mc.appendChild(tr);});
+ const mm=document.getElementById('mov_marg');
+ D.mov.margin_check.forEach(r=>{const tr=document.createElement('tr');
+  const vc=r.verdict.indexOf('CONFIRMED')===0?'ok-row':'';
+  tr.innerHTML=`<td><b>${r.product}</b></td><td class="ok-row small">${r.estimate}</td><td class="small">${r.market}</td><td class="small ${vc}">${r.verdict}</td>`;mm.appendChild(tr);});
+ document.getElementById('mov_freight').innerHTML='<b>Freight/netback.</b> '+D.mov.freight;
+ document.getElementById('mov_gap').innerHTML='<b>Confirmation gap.</b> '+D.mov.gap;
+}
+
+// 20 import-substitution targets
+if(D.isub){
+ const catcol={"chemical/commodity":"var(--ok)","agri/raw commodity":"var(--basket)","metal/scrap":"var(--part)","hi-tech/mfg":"var(--accent)","other":"var(--mut)"};
+ const ss=document.getElementById('isub_sec');
+ D.isub.by_sector.forEach(s=>{const tr=document.createElement('tr');
+  const tc=s.trader.indexOf('Yes')===0?'var(--ok)':(s.trader.indexOf('No')===0?'var(--imp)':'var(--part)');
+  tr.innerHTML=`<td class="small"><b>Ch${s.ch}</b> ${s.name}</td><td style="color:var(--imp)"><b>$${s.net_imp.toLocaleString()}</b></td><td class="small" style="color:${tc}">${s.trader}</td>`;ss.appendChild(tr);});
+ const st=document.getElementById('isub_str');
+ (D.isub.struct_top||[]).forEach(r=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td class="small"><b>${r.hs}</b> ${r.name}</td><td class="small" style="color:var(--imp)">$${r.net_imp.toLocaleString()}</td>`;st.appendChild(tr);});
+ const it=document.getElementById('isub_tbl');
+ D.isub.targets.forEach(r=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td class="mut small">${r.hs}</td><td class="small">${r.name}</td>`+
+   `<td style="color:var(--imp)"><b>$${r.net_imp.toLocaleString()}</b></td><td class="small">${r.grw}%</td>`+
+   `<td class="small" style="color:${catcol[r.cat]||'var(--ink)'}">${r.cat}</td>`;it.appendChild(tr);});
+}
+
+// 19 validated trade ideas
+if(D.ideas){
+ const it=document.getElementById('idea_tbl');
+ const col={"CONFIRMED":"var(--ok)","DUAL":"var(--part)","MIXED":"var(--mut)","DEBUNKED":"var(--no)","WEAK":"var(--mut)","MINOR":"var(--mut)","NET-EXPORT":"var(--ok)"};
+ D.ideas.forEach(r=>{const tr=document.createElement('tr');
+  const c=col[r.flag]||"var(--ink)";
+  const netc=r.net>=0?'var(--ok)':'var(--imp)';
+  tr.innerHTML=`<td class="small mut">${r.dir}</td><td class="small"><b>${r.idea}</b></td>`+
+   `<td class="small">$${r.exp.toLocaleString()}</td><td class="small">$${r.imp.toLocaleString()}</td>`+
+   `<td class="small" style="color:${netc}"><b>$${r.net.toLocaleString()}</b></td><td class="small">${r.grw}%</td>`+
+   `<td class="small" style="color:${c};font-weight:600">${r.verdict}</td>`;it.appendChild(tr);});
+ document.getElementById('idea_note').innerHTML='<b>How to read.</b> CONFIRMED = data backs the idea &#183; DUAL = export-growing yet net-importer (both plays) &#183; DEBUNKED = published as import-substitution but India is actually a net exporter (industrial valves +$772M, gas-turbine parts +$1.6B) &#183; MIXED/WEAK/MINOR = marginal. Growth is India FY24-25&#8594;25-26 (can differ from the global-market growth the articles cite).';
+}
+
+// 18 beyond-petroleum high-value segments
+if(D.hv){
+ document.getElementById('hv_asof').textContent=D.hv.as_of;
+ document.getElementById('hv_caveat').innerHTML='<b>Caveat.</b> '+D.hv.caveat;
+ document.getElementById('hv_verdict').textContent=D.hv.verdict;
+ const hs=document.getElementById('hv_seg');
+ D.hv.segments.forEach(s=>{const tr=document.createElement('tr');
+  const g=(s.grw>=0?'+':'')+s.grw+'%';
+  tr.innerHTML=`<td><b>${s.seg}</b></td><td>$${s.exp.toLocaleString()}</td><td class="${s.net>=0?'ok-row':''}" ${s.net<0?'style="color:var(--imp)"':''}>$${s.net.toLocaleString()}</td><td class="ok-row">${s.uv}</td><td class="small ${s.grw>=0?'ok-row':''}">${g}</td><td class="small mut">${s.read}</td>`;hs.appendChild(tr);});
+ const va=document.getElementById('hv_va');
+ D.hv.value_add.forEach(r=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td class="small"><b>${r.hs}</b> ${r.name}</td><td class="small">${r.imp}</td><td class="small ok-row">${r.exp}</td><td class="ok-row"><b>${r.x}&#215;</b></td><td class="small mut">${r.read}</td>`;va.appendChild(tr);});
+ const ip=document.getElementById('hv_ip');
+ D.hv.import_premium.forEach(r=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td class="small"><b>${r.hs}</b> ${r.name}</td><td class="small" style="color:var(--imp)">${r.imp}</td><td class="small">${r.exp}</td><td style="color:var(--imp)"><b>${r.x}&#215;</b></td><td class="small mut">${r.read}</td>`;ip.appendChild(tr);});
+}
+
+// 17 8-digit tables
+const n8=document.getElementById('ne8tbl');
+(D.ne8||[]).slice(0,12).forEach(r=>{const tr=document.createElement('tr');
+ const g=(r.exp_growth===null||r.exp_growth===undefined)?'<span class="mut">n/a</span>':((r.exp_growth>=0?'+':'')+r.exp_growth+'%');
+ const gc=(r.exp_growth>=0)?'ok-row':'';
+ tr.innerHTML=`<td class="mut">${r.hs}</td><td class="small">${r.name}</td><td class="ok-row"><b>$${r.net.toLocaleString()}</b></td><td class="small ${gc}">${g}</td>`;n8.appendChild(tr);});
+const i8=document.getElementById('ni8tbl');
+(D.ni8||[]).slice(0,10).forEach(r=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td class="mut">${r.hs}</td><td class="small">${r.name}</td><td style="color:var(--imp)"><b>$${r.net.toLocaleString()}</b></td>`;i8.appendChild(tr);});
+
+// 14 checks
+const kt=document.getElementById('chktbl');
+D.consistency_checks.forEach(c=>{const tr=document.createElement('tr');
+ tr.innerHTML=`<td>${c.check}</td><td class="ok-row">${c.pass?'&#10003; PASS':'&#10007; FAIL'}</td><td class="mut">${c.detail}</td>`;
+ kt.appendChild(tr);});
+
+</script>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--oc-gray-0:#f8f9fa!important;--oc-gray-1:#f1f3f5!important;--oc-gray-2:#e9ecef!important;--oc-gray-3:#dee2e6!important;--oc-gray-4:#ced4da!important;--oc-gray-5:#adb5bd!important;--oc-gray-6:#868e96!important;--oc-gray-7:#495057!important;--oc-gray-8:#343a40!important;--oc-gray-9:#212529!important;--sp-1:.25rem!important;--sp-2:.5rem!important;--sp-3:.75rem!important;--sp-4:1rem!important;--sp-5:1.5rem!important;--sp-6:2rem!important;--sp-7:3rem!important;--radius:12px!important;--radius-sm:8px!important;--shadow-1:0 1px 2px rgba(0,0,0,.04)!important;--shadow-2:0 2px 8px rgba(0,0,0,.06)!important;--step--1:clamp(.78rem,.75rem + .15vw,.85rem)!important;--step-0:clamp(.92rem,.88rem + .2vw,1rem)!important;--step-1:clamp(1.05rem,1rem + .3vw,1.2rem)!important;--step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem)!important;--surface:#fff!important;--surface-alt:var(--oc-gray-0)!important;--border:var(--oc-gray-3)!important;--text:#000!important;--text-mut:#333!important;color-scheme:light!important;}</style>
+<p class="disclaimer" data-gs-ai-disclosure-v1="1" style="font-size:.82rem;color:#555;margin-top:14px"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material — readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+<style>/*gs-dark-panel-guard*/.chip{background:#1e2c3a!important}.chip,.chip *{color:#fff!important}.chip a,.chip a *{color:#cfe3ff!important}.kpi{background:#182430!important}.kpi,.kpi *{color:#fff!important}.kpi a,.kpi a *{color:#cfe3ff!important}.card{background:#182430!important}.card,.card *{color:#fff!important}.card a,.card a *{color:#cfe3ff!important}.formula{background:#1e2c3a!important}.formula,.formula *{color:#fff!important}.formula a,.formula a *{color:#cfe3ff!important}</style>

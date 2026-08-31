@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<!-- AdSense -->
+<script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5664000309261019'/>
+
+<!-- Google tag (gtag.js) -->
+<script async='async' src='https://www.googletagmanager.com/gtag/js?id=G-SPT8TH9RS6'/>
+<script>//<![CDATA[
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SPT8TH9RS6');
+//]]></script>
+
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<meta content='#0B1F2D' name='theme-color'/>
+<b:include data='blog' name='all-head-content'/>
+<title><data:blog.pageTitle/></title>
+<b:skin><![CDATA[
+/* ===========================================================================
+   Masala Deutsch — a Blogger theme built for long, data-heavy analysis posts.
+   No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+
+   Two design constraints came from real failures on this blog:
+   1. Index pages render post SNIPPETS, never full bodies. Rendering full
+      bodies blew Blogger's per-page budget on 30-530KB posts and the post
+      list silently came back EMPTY.
+   2. NO automatic dark mode, at any level. The posts force a white background
+      with !important, so a theme-level dark block flips the text to near-white
+      while the surface stays white -- the page renders blank. See the note on
+      the palette below.
+   =========================================================================== */
+
+:root{
+  --ink:#0B1F2D;        /* headings, body text  */
+  --ink-soft:#43535F;   /* secondary text       */
+  --accent:#2251FF;     /* links, rules         */
+  --accent-ink:#1B3FCC; /* link hover           */
+  --cyan:#00A9F4;       /* kickers, eyebrow rules */
+  --bg:#FFFFFF;
+  --bg-alt:#F4F7FB;
+  --line:#D9E1E8;
+  --hero:#0B1F2D;
+  --hero-ink:#FFFFFF;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  --wrap:1080px;
+  --measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+   The published posts carry their own `body{background:#fff!important}`
+   override. A theme-level prefers-color-scheme block flips --ink to near-white
+   but CANNOT flip the surface, because the post's !important wins -- so every
+   heading and link renders white-on-white and the page reads as blank.
+   A theme declares <body>; it does not get the last word on it.
+   Light only. Do not re-add a dark block without first removing the
+   force-white rules from all 69 post bodies. */
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+  -webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+  position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+  justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+  letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+  color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:700;color:var(--ink);
+  border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+  display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+  margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+  text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+   page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+
+/* ---- Gadget slots in the page body -----------------------------------
+   The whole reason this theme exists. Blogger's modern themes (Contempo,
+   Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+   topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+   Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+  margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+  gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+  border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+  border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+  font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+  font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .hero h2{font-size:1.55rem}
+  .post-head h1{font-size:1.6rem}
+  .site-head{position:static}
+}
+]]></b:skin>
+</head>
+
+<body>
+
+<header class='site-head'>
+  <div class='wrap'>
+    <a class='site-title' expr:href='data:blog.homepageUrl'>
+      <data:blog.title/>
+    </a>
+    <b:section class='site-nav' id='nav' maxwidgets='2' showaddelement='yes'>
+      <b:widget id='PageList1' locked='false' title='Pages' type='PageList' version='1'>
+        <b:widget-settings>
+          <b:widget-setting name='pageListJson'><![CDATA[{"home":{"href":"http://masaladeutsch.blogspot.com/","position":0,"title":"Home"}}]]></b:widget-setting>
+          <b:widget-setting name='homeTitle'>Home</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:loop values='data:links' var='link'>
+            <a expr:href='data:link.target'><data:link.title/></a>
+          </b:loop>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</header>
+
+<!-- Featured post / hero. Snippet only &#8212; never the full body. -->
+<b:section class='hero-section' id='featured' showaddelement='yes'/>
+
+<div class='wrap'>
+
+  <!-- Gadget slot ABOVE the post list. An HTML/JavaScript gadget dropped
+       here puts an all-articles-by-topic index on the opening page. -->
+  <b:section class='slot' id='main-top' showaddelement='yes'>
+    
+  </b:section>
+
+  <b:section class='main' id='main' showaddelement='yes'>
+    <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='1'>
+      <b:widget-settings>
+        <b:widget-setting name='showDateHeader'>true</b:widget-setting>
+        <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+        <b:widget-setting name='authorLabel'>By</b:widget-setting>
+        <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+        <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showAuthor'>false</b:widget-setting>
+        <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+        <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='reactionsLabel'/>
+        <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+        <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+        <b:widget-setting name='showLabels'>true</b:widget-setting>
+        <b:widget-setting name='showLocation'>true</b:widget-setting>
+        <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+        <b:widget-setting name='postsPerAd'>2</b:widget-setting>
+        <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+        <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showInlineAds'>true</b:widget-setting>
+        <b:widget-setting name='showReactions'>false</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+
+        <b:if cond='data:blog.pageType == &quot;item&quot;'>
+          <!-- ============ SINGLE POST: full body ============ -->
+          <b:loop values='data:posts' var='post'>
+            <div class='post-head'>
+              <h1><data:post.title/></h1>
+              <div class='meta'><data:post.timestamp/></div>
+            </div>
+            <div class='post-body'>
+              <data:post.body/>
+            </div>
+          </b:loop>
+
+        <b:else/>
+          <!-- ============ INDEX: snippets only ============
+               data:post.body here would re-render every post in full and
+               exhaust Blogger's page budget, which silently empties the
+               whole list. Snippets keep index pages cheap. -->
+          <div class='section-label'>Recent analysis</div>
+          <b:loop values='data:posts' var='post'>
+            <div class='card'>
+              <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+              <div class='meta'><data:post.timestamp/></div>
+              <b:if cond='data:post.snippet'>
+                <p><data:post.snippet/></p>
+              </b:if>
+              <a class='more' expr:href='data:post.url'>Read the piece &#8594;</a>
+            </div>
+          </b:loop>
+        </b:if>
+
+        <div class='pager'>
+          <b:if cond='data:newerPageUrl'>
+            <a expr:href='data:newerPageUrl'>&#8592; Newer</a>
+          <b:else/>
+            <span/>
+          </b:if>
+          <b:if cond='data:olderPageUrl'>
+            <a expr:href='data:olderPageUrl'>Older &#8594;</a>
+          </b:if>
+        </div>
+
+      
+      <div class='site-contact' style='margin-top:2.2rem;padding-top:1.6rem;border-top:2px solid var(--ink,#0B1F2D);display:flex;gap:1rem;align-items:center;flex-wrap:wrap;'>
+        <div style='width:56px;height:56px;border-radius:50%;background:var(--cyan,#00A9F4);color:var(--ink,#0B1F2D);display:flex;align-items:center;justify-content:center;font-family:Georgia,&apos;Times New Roman&apos;,serif;font-size:1.15em;font-weight:700;flex-shrink:0;'>UT</div>
+        <div style='flex:1 1 220px;'>
+          <div style='font-size:.68em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,#2251FF);font-weight:700;margin-bottom:.15rem;'>Contact Us</div>
+          <div style='font-size:.92em;font-weight:700;color:var(--ink,#0B1F2D);'>Umashankar Triplicane Dwarakanathan</div>
+          <div style='font-size:.78em;color:var(--ink-soft,#43535F);'>Investment Promotion &amp; Energy-Sector Leader &#183; Chennai, Tamil Nadu, India</div>
+        </div>
+        <div style='display:flex;flex-wrap:wrap;gap:.4rem;'>
+          <a href='https://www.linkedin.com/in/umashankar-tdrickshaw-moc/' rel='noopener' style='font-size:.78em;font-weight:600;color:var(--ink,#0B1F2D);background:var(--bg-alt,#F4F7FB);padding:.4rem .75rem;border-radius:2px;text-decoration:none;white-space:nowrap;' target='_blank'>LinkedIn &#8594;</a>
+          <a href='https://github.com/herrrickshaw' rel='noopener' style='font-size:.78em;font-weight:600;color:var(--ink,#0B1F2D);background:var(--bg-alt,#F4F7FB);padding:.4rem .75rem;border-radius:2px;text-decoration:none;white-space:nowrap;' target='_blank'>GitHub &#8594;</a>
+          <a href='mailto:umashankartd1991@gmail.com' style='font-size:.78em;font-weight:600;color:var(--ink,#0B1F2D);background:var(--bg-alt,#F4F7FB);padding:.4rem .75rem;border-radius:2px;text-decoration:none;white-space:nowrap;'>Email</a>
+          <a href='tel:+917827381696' style='font-size:.78em;font-weight:600;color:var(--ink,#0B1F2D);background:var(--bg-alt,#F4F7FB);padding:.4rem .75rem;border-radius:2px;text-decoration:none;white-space:nowrap;'>+91 78273 81696</a>
+        </div>
+      </div>
+    </b:includable>
+      <b:includable id='backlinkDeleteIcon' var='backlink'/>
+      <b:includable id='backlinks' var='post'/>
+      <b:includable id='comment-form' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <b:if cond='data:mobile'>
+      <h4 id='comment-post-message'>
+        <a expr:id='data:widget.instanceId + &quot;_comment-editor-toggle-link&quot;' href='javascript:void(0)'><data:postCommentMsg/></a></h4>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' style='display: none' width='100%'/>
+    <b:else/>
+      <h4 id='comment-post-message'><data:postCommentMsg/></h4>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    </b:if>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+      <b:includable id='commentDeleteIcon' var='comment'>
+  <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
+    <b:if cond='data:showCmtPopup'>
+      <div class='goog-toggle-button'>
+        <div class='goog-inline-block comment-action-icon'/>
+      </div>
+    <b:else/>
+      <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:top.deleteCommentMsg'>
+        <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+      </a>
+    </b:if>
+  </span>
+</b:includable>
+      <b:includable id='comment_count_picker' var='post'>
+  <a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'>
+    <data:post.commentLabelFull/>:
+  </a>
+</b:includable>
+      <b:includable id='comment_picker' var='post'>
+  <b:if cond='data:post.showThreadedComments'>
+    <b:include data='post' name='threaded_comments'/>
+  <b:else/>
+    <b:include data='post' name='comments'/>
+  </b:if>
+</b:includable>
+      <b:includable id='comments' var='post'>
+  <div class='comments' id='comments'>
+    <a name='comments'/>
+    <b:if cond='data:post.allowComments'>
+      <h4><data:post.commentLabelFull/>:</h4>
+
+      <b:if cond='data:post.commentPagingRequired'>
+        <span class='paging-control-container'>
+          <b:if cond='data:post.hasOlderLinks'>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'><data:post.oldestLinkText/></a>
+              &#160;
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'><data:post.olderLinkText/></a>
+              &#160;
+          </b:if>
+
+          <data:post.commentRangeText/>
+
+          <b:if cond='data:post.hasNewerLinks'>
+            &#160;
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'><data:post.newerLinkText/></a>
+            &#160;
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'><data:post.newestLinkText/></a>
+          </b:if>
+        </span>
+      </b:if>
+
+      <div expr:id='data:widget.instanceId + &quot;_comments-block-wrapper&quot;'>
+        <dl expr:class='data:post.avatarIndentClass' id='comments-block'>
+          <b:loop values='data:post.comments' var='comment'>
+            <dt expr:class='&quot;comment-author &quot; + data:comment.authorClass' expr:id='data:comment.anchorName'>
+              <b:if cond='data:comment.favicon'>
+                <img expr:src='data:comment.favicon' height='16px' style='margin-bottom:-2px;' width='16px'/>
+              </b:if>
+              <a expr:name='data:comment.anchorName'/>
+              <b:if cond='data:blog.enabledCommentProfileImages'>
+                <data:comment.authorAvatarImage/>
+              </b:if>
+              <b:if cond='data:comment.authorUrl'>
+                <a expr:href='data:comment.authorUrl' rel='nofollow'><data:comment.author/></a>
+              <b:else/>
+                <data:comment.author/>
+              </b:if>
+              <data:commentPostedByMsg/>
+            </dt>
+            <dd class='comment-body' expr:id='data:widget.instanceId + data:comment.cmtBodyIdPostfix'>
+              <b:if cond='data:comment.isDeleted'>
+                <span class='deleted-comment'><data:comment.body/></span>
+              <b:else/>
+                <p>
+                  <data:comment.body/>
+                </p>
+              </b:if>
+            </dd>
+            <dd class='comment-footer'>
+              <span class='comment-timestamp'>
+                <a expr:href='data:comment.url' title='comment permalink'>
+                  <data:comment.timestamp/>
+                </a>
+                <b:include data='comment' name='commentDeleteIcon'/>
+              </span>
+            </dd>
+          </b:loop>
+        </dl>
+      </div>
+
+      <b:if cond='data:post.commentPagingRequired'>
+        <span class='paging-control-container'>
+          <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'>
+            <data:post.oldestLinkText/>
+          </a>
+          <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'>
+            <data:post.olderLinkText/>
+          </a>
+          &#160;
+          <data:post.commentRangeText/>
+          &#160;
+          <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'>
+            <data:post.newerLinkText/>
+          </a>
+          <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'>
+            <data:post.newestLinkText/>
+          </a>
+        </span>
+      </b:if>
+
+      <p class='comment-footer'>
+        <b:if cond='data:post.embedCommentForm'>
+          <b:if cond='data:post.allowNewComments'>
+            <b:include data='post' name='comment-form'/>
+          <b:else/>
+            <data:post.noNewCommentsText/>
+          </b:if>
+        <b:elseif cond='data:post.allowComments'/>
+          <a expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'><data:postCommentMsg/></a>
+        </b:if>
+      </p>
+    </b:if>
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+
+  </div>
+</b:includable>
+      <b:includable id='feedLinks'>
+  <b:if cond='data:blog.pageType != &quot;item&quot;'> <!-- Blog feed links -->
+    <b:if cond='data:feedLinks'>
+      <div class='blog-feeds'>
+        <b:include data='feedLinks' name='feedLinksBody'/>
+      </div>
+    </b:if>
+
+  <b:else/> <!--Post feed links -->
+    <div class='post-feeds'>
+      <b:loop values='data:posts' var='post'>
+        <b:include cond='data:post.allowComments and data:post.feedLinks' data='post.feedLinks' name='feedLinksBody'/>
+      </b:loop>
+    </div>
+  </b:if>
+</b:includable>
+      <b:includable id='feedLinksBody' var='links'>
+  <div class='feed-links'>
+  <data:feedLinksMsg/>
+  <b:loop values='data:links' var='f'>
+     <a class='feed-link' expr:href='data:f.url' expr:type='data:f.mimeType' target='_blank'><data:f.name/> (<data:f.feedType/>)</a>
+  </b:loop>
+  </div>
+</b:includable>
+      <b:includable id='iframe_comments' var='post'>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+      <b:includable id='mobile-index-post' var='post'>
+  <div class='mobile-date-outer date-outer'>
+    <b:if cond='data:post.dateHeader'>
+      <div class='date-header'>
+        <span><data:post.dateHeader/></span>
+      </div>
+    </b:if>
+
+    <div class='mobile-post-outer'>
+      <a expr:href='data:post.url'>
+        <h3 class='mobile-index-title entry-title' itemprop='name'>
+          <data:post.title/>
+        </h3>
+
+        <div class='mobile-index-arrow'>&amp;rsaquo;</div>
+
+        <div class='mobile-index-contents'>
+          <b:if cond='data:post.thumbnailUrl'>
+            <div class='mobile-index-thumbnail'>
+              <div class='Image'>
+                <img expr:src='data:post.thumbnailUrl'/>
+              </div>
+            </div>
+          </b:if>
+
+          <div class='post-body'>
+            <b:if cond='data:post.snippet'><data:post.snippet/></b:if>
+          </div>
+        </div>
+
+        <div style='clear: both;'/>
+      </a>
+
+      <div class='mobile-index-comment'>
+        <b:include cond='data:blog.pageType != &quot;static_page&quot;                          and data:post.allowComments                          and data:post.numComments != 0' data='post' name='comment_count_picker'/>
+      </div>
+    </div>
+  </div>
+</b:includable>
+      <b:includable id='mobile-main' var='top'>
+    <!-- posts -->
+    <div class='blog-posts hfeed'>
+
+      <b:include data='top' name='status-message'/>
+
+      <b:if cond='data:blog.pageType == &quot;index&quot;'>
+        <b:loop values='data:posts' var='post'>
+          <b:include data='post' name='mobile-index-post'/>
+        </b:loop>
+      <b:else/>
+        <b:loop values='data:posts' var='post'>
+          <b:include data='post' name='mobile-post'/>
+        </b:loop>
+      </b:if>
+    </div>
+
+   <b:include name='mobile-nextprev'/>
+</b:includable>
+      <b:includable id='mobile-nextprev'>
+  <div class='blog-pager' id='blog-pager'>
+    <b:if cond='data:newerPageUrl'>
+      <div class='mobile-link-button' id='blog-pager-newer-link'>
+      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'>&amp;lsaquo;</a>
+      </div>
+    </b:if>
+
+    <b:if cond='data:olderPageUrl'>
+      <div class='mobile-link-button' id='blog-pager-older-link'>
+      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'>&amp;rsaquo;</a>
+      </div>
+    </b:if>
+
+    <div class='mobile-link-button' id='blog-pager-home-link'>
+    <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
+    </div>
+
+    <div class='mobile-desktop-link'>
+      <a class='home-link' expr:href='data:desktopLinkUrl'><data:desktopLinkMsg/></a>
+    </div>
+
+  </div>
+  <div class='clear'/>
+</b:includable>
+      <b:includable id='mobile-post' var='post'>
+  <div class='date-outer'>
+    <b:if cond='data:post.dateHeader'>
+      <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
+    </b:if>
+    <div class='date-posts'>
+      <div class='post-outer'>
+
+        <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+          <b:if cond='data:post.thumbnailUrl'>
+            <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
+          </b:if>
+          <meta expr:content='data:blog.blogId' itemprop='blogId'/>
+          <meta expr:content='data:post.id' itemprop='postId'/>
+
+          <a expr:name='data:post.id'/>
+          <b:if cond='data:post.title'>
+            <h3 class='post-title entry-title' itemprop='name'>
+              <b:if cond='data:post.link'>
+                <a expr:href='data:post.link'><data:post.title/></a>
+              <b:elseif cond='data:post.url and data:blog.url != data:post.url'/>
+                <a expr:href='data:post.url'><data:post.title/></a>
+              <b:else/>
+                <data:post.title/>
+              </b:if>
+            </h3>
+          </b:if>
+
+          <div class='post-header'>
+            <div class='post-header-line-1'/>
+          </div>
+
+          <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' itemprop='articleBody'>
+            <data:post.body/>
+            <div style='clear: both;'/> <!-- clear for photos floats -->
+          </div>
+
+          <div class='post-footer'>
+            <div class='post-footer-line post-footer-line-1'>
+              <span class='post-author vcard'>
+                <b:if cond='data:top.showAuthor'>
+                  <b:if cond='data:post.authorProfileUrl'>
+                    <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                      <meta expr:content='data:post.authorProfileUrl' itemprop='url'/>
+                      <a expr:href='data:post.authorProfileUrl' rel='author' title='author profile'>
+                        <span itemprop='name'><data:post.author/></span>
+                      </a>
+                    </span>
+                  <b:else/>
+                    <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                      <span itemprop='name'><data:post.author/></span>
+                    </span>
+                  </b:if>
+                </b:if>
+              </span>
+
+              <span class='post-timestamp'>
+                <b:if cond='data:top.showTimestamp'>
+                  <data:top.timestampLabel/>
+                  <b:if cond='data:post.url'>
+                    <meta expr:content='data:post.url.canonical' itemprop='url'/>
+                    <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'><abbr class='published' expr:title='data:post.timestampISO8601' itemprop='datePublished'><data:post.timestamp/></abbr></a>
+                  </b:if>
+                </b:if>
+              </span>
+
+              <span class='post-comment-link'>
+                <b:include cond='data:blog.pageType not in {&quot;item&quot;,&quot;static_page&quot;}                                  and data:post.allowComments' data='post' name='comment_count_picker'/>
+              </span>
+            </div>
+
+            <div class='post-footer-line post-footer-line-2'>
+              <b:if cond='data:top.showMobileShare'>
+                <div class='mobile-link-button goog-inline-block' id='mobile-share-button'>
+                  <a href='javascript:void(0);'><data:shareMsg/></a>
+                </div>
+              </b:if>
+            </div>
+
+          </div>
+        </div>
+
+        <b:include cond='data:blog.pageType in {&quot;static_page&quot;,&quot;item&quot;}' data='post' name='comment_picker'/>
+      </div>
+    </div>
+  </div>
+</b:includable>
+      <b:includable id='nextprev'>
+  <div class='blog-pager' id='blog-pager'>
+    <b:if cond='data:newerPageUrl'>
+      <span id='blog-pager-newer-link'>
+      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'><data:newerPageTitle/></a>
+      </span>
+    </b:if>
+
+    <b:if cond='data:olderPageUrl'>
+      <span id='blog-pager-older-link'>
+      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'><data:olderPageTitle/></a>
+      </span>
+    </b:if>
+
+    <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
+
+    <b:if cond='data:mobileLinkUrl'>
+      <div class='blog-mobile-link'>
+        <a expr:href='data:mobileLinkUrl'><data:mobileLinkMsg/></a>
+      </div>
+    </b:if>
+
+  </div>
+  <div class='clear'/>
+</b:includable>
+      <b:includable id='post' var='post'>
+  <div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+    <b:if cond='data:post.firstImageUrl'>
+      <meta expr:content='data:post.firstImageUrl' itemprop='image_url'/>
+    </b:if>
+    <meta expr:content='data:blog.blogId' itemprop='blogId'/>
+    <meta expr:content='data:post.id' itemprop='postId'/>
+
+    <a expr:name='data:post.id'/>
+    <b:if cond='data:post.title'>
+      <h3 class='post-title entry-title' itemprop='name'>
+      <b:if cond='data:post.link or (data:post.url and data:blog.url != data:post.url)'>
+        <a expr:href='data:post.link ? data:post.link : data:post.url'><data:post.title/></a>
+      <b:else/>
+        <data:post.title/>
+      </b:if>
+      </h3>
+    </b:if>
+
+    <div class='post-header'>
+    <div class='post-header-line-1'/>
+    </div>
+
+    <!-- Then use the post body as the schema.org description, for good G+/FB snippeting. -->
+    <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' expr:itemprop='(data:blog.metaDescription ? &quot;&quot; : &quot;description &quot;) + &quot;articleBody&quot;'>
+      <data:post.body/>
+      <div style='clear: both;'/> <!-- clear for photos floats -->
+    </div>
+
+    <b:if cond='data:post.hasJumpLink'>
+      <div class='jump-link'>
+        <a expr:href='data:post.url + &quot;#more&quot;' expr:title='data:post.title'><data:post.jumpText/></a>
+      </div>
+    </b:if>
+
+    <div class='post-footer'>
+    <div class='post-footer-line post-footer-line-1'>
+      <span class='post-author vcard'>
+        <b:if cond='data:top.showAuthor'>
+          <data:top.authorLabel/>
+            <b:if cond='data:post.authorProfileUrl'>
+              <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                <meta expr:content='data:post.authorProfileUrl' itemprop='url'/>
+                <a class='g-profile' expr:href='data:post.authorProfileUrl' rel='author' title='author profile'>
+                  <span itemprop='name'><data:post.author/></span>
+                </a>
+              </span>
+            <b:else/>
+              <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                <span itemprop='name'><data:post.author/></span>
+              </span>
+            </b:if>
+        </b:if>
+      </span>
+
+      <span class='post-timestamp'>
+        <b:if cond='data:top.showTimestamp'>
+          <data:top.timestampLabel/>
+          <b:if cond='data:post.url'>
+            <meta expr:content='data:post.url.canonical' itemprop='url'/>
+            <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'><abbr class='published' expr:title='data:post.timestampISO8601' itemprop='datePublished'><data:post.timestamp/></abbr></a>
+          </b:if>
+        </b:if>
+      </span>
+
+      <span class='post-comment-link'>
+        <b:include cond='data:blog.pageType not in {&quot;item&quot;,&quot;static_page&quot;}                          and data:post.allowComments' data='post' name='comment_count_picker'/>
+      </span>
+
+      <span class='post-icons'>
+        <!-- email post links -->
+        <b:if cond='data:post.emailPostUrl'>
+          <span class='item-action'>
+          <a expr:href='data:post.emailPostUrl' expr:title='data:top.emailPostMsg'>
+            <img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+          </a>
+          </span>
+        </b:if>
+
+        <!-- quickedit pencil -->
+        <b:include data='post' name='postQuickEdit'/>
+      </span>
+
+      <!-- share buttons -->
+      <div class='post-share-buttons goog-inline-block'>
+        <b:include cond='data:post.sharePostUrl' data='post' name='shareButtons'/>
+      </div>
+
+      </div>
+
+      <div class='post-footer-line post-footer-line-2'>
+      <span class='post-labels'>
+        <b:if cond='data:top.showPostLabels and data:post.labels'>
+          <data:postLabelsLabel/>
+          <b:loop values='data:post.labels' var='label'>
+            <a expr:href='data:label.url' rel='tag'><data:label.name/></a><b:if cond='not data:label.isLast'>,</b:if>
+          </b:loop>
+        </b:if>
+      </span>
+      </div>
+
+      <div class='post-footer-line post-footer-line-3'>
+      <span class='post-location'>
+        <b:if cond='data:top.showLocation and data:post.location'>
+          <data:postLocationLabel/>
+          <a expr:href='data:post.location.mapsUrl' target='_blank'><data:post.location.name/></a>
+        </b:if>
+      </span>
+      </div>
+      <b:if cond='data:post.authorAboutMe'>
+        <div class='author-profile' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+          <b:if cond='data:post.authorPhoto.url'>
+            <img expr:src='data:post.authorPhoto.url' itemprop='image' width='50px'/>
+          </b:if>
+          <div>
+            <a class='g-profile' expr:href='data:post.authorProfileUrl' itemprop='url' rel='author' title='author profile'>
+              <span itemprop='name'><data:post.author/></span>
+            </a>
+          </div>
+          <span itemprop='description'><data:post.authorAboutMe/></span>
+        </div>
+      </b:if>
+    </div>
+  </div>
+</b:includable>
+      <b:includable id='postQuickEdit' var='post'>
+  <b:if cond='data:post.editUrl'>
+    <span expr:class='&quot;item-control &quot; + data:post.adminClass'>
+      <a expr:href='data:post.editUrl' expr:title='data:top.editPostMsg'>
+        <img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+      </a>
+    </span>
+  </b:if>
+</b:includable>
+      <b:includable id='shareButtons' var='post'>
+  <b:if cond='data:top.showEmailButton'><a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'><span class='share-button-link-text'><data:top.emailThisMsg/></span></a></b:if><b:if cond='data:top.showBlogThisButton'><a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'><span class='share-button-link-text'><data:top.blogThisMsg/></span></a></b:if><b:if cond='data:top.showTwitterButton'><a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a></b:if><b:if cond='data:top.showFacebookButton'><a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a></b:if><b:if cond='data:top.showPinterestButton'><a class='goog-inline-block share-button sb-pinterest' expr:href='data:post.sharePostUrl + &quot;&amp;target=pinterest&quot;' expr:title='data:top.shareToPinterestMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToPinterestMsg/></span></a></b:if>
+</b:includable>
+      <b:includable id='status-message'>
+  <b:if cond='data:navMessage'>
+  <div class='status-msg-wrap'>
+    <div class='status-msg-body'>
+      <data:navMessage/>
+    </div>
+    <div class='status-msg-border'>
+      <div class='status-msg-bg'>
+        <div class='status-msg-hidden'><data:navMessage/></div>
+      </div>
+    </div>
+  </div>
+  <div style='clear: both;'/>
+  </b:if>
+</b:includable>
+      <b:includable id='threaded-comment-form' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <b:if cond='data:mobile'>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' style='display: none' width='100%'/>
+    <b:else/>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    </b:if>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+      <b:includable id='threaded_comment_js' var='post'>
+  <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
+
+  <script type='text/javascript'>
+    (function() {
+      var items = <data:post.commentJso/>;
+      var msgs = <data:post.commentMsgs/>;
+      var config = <data:post.commentConfig/>;
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        var text = (entry &&
+                    ((entry.content && entry.content.$t) ||
+                     (entry.summary && entry.summary.$t))) ||
+            '';
+        if (entry && entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + text + '</span>';
+            }
+          }
+        }
+        return text;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/comment/delete/'
+               + config.blogId + '/' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+  </script>
+</b:includable>
+      <b:includable id='threaded_comments' var='post'>
+  <div class='comments' id='comments'>
+    <a name='comments'/>
+    <h4><data:post.commentLabelFull/>:</h4>
+
+    <div class='comments-content'>
+      <b:include cond='data:post.embedCommentForm' data='post' name='threaded_comment_js'/>
+      <div id='comment-holder'>
+         <data:post.commentHtml/>
+      </div>
+    </div>
+
+    <p class='comment-footer'>
+      <b:if cond='data:post.allowNewComments'>
+        <b:include data='post' name='threaded-comment-form'/>
+      <b:else/>
+        <data:post.noNewCommentsText/>
+      </b:if>
+    </p>
+
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+
+    <div id='backlinks-container'>
+    <div expr:id='data:widget.instanceId + &quot;_backlinks-container&quot;'>
+    </div>
+    </div>
+  </div>
+</b:includable>
+    </b:widget>
+  </b:section>
+
+  <!-- Gadget slot BELOW the post list &#8212; the strip that was unreachable
+       in Notable is an ordinary, addressable section here. -->
+  <b:section class='slot' id='main-bottom' showaddelement='yes'>
+<b:widget id='HTML2' locked='false' title='' type='HTML'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<div style="border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--bg-alt);padding:18px 22px;margin:22px 0 6px;font-family:var(--sans)">
+<div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:8px">How this site works</div>
+<p style="margin:0 0 10px;font-family:var(--serif);font-size:.98rem;color:var(--ink);max-width:78ch">
+Data-led analysis of India's trade, currency and industrial policy. Every article is built
+from primary official sources, and every figure links back to the release, table or filing
+it came from.</p>
+<p style="margin:0 0 10px;font-size:.85rem;color:var(--ink-soft);max-width:80ch">
+<strong style="color:var(--ink)">Sources.</strong>
+<a href="https://tradestat.commerce.gov.in/">DGCI&amp;S TradeStat</a> (imports/exports, HSN-wise) &#183;
+<a href="https://www.pib.gov.in/">PIB</a> (government press releases, January 2017 to today, refreshed daily) &#183;
+<a href="https://www.rbi.org.in/">RBI</a> (circulars, balance of payments) &#183;
+<a href="https://www.mospi.gov.in/">MoSPI</a> (CPI/WPI, IIP) &#183;
+<a href="https://parivesh.nic.in/">PARIVESH</a> (environmental clearances) &#183;
+<a href="https://www.ccilindia.com/">CCIL</a> (bond yields) &#183;
+<a href="https://www.bis.org/statistics/">BIS</a> (policy rates) &#183;
+SEBI, NSE/BSE and SEC filings for company data.</p>
+<p style="margin:0;font-size:.85rem;color:var(--ink-soft);max-width:80ch">
+<strong style="color:var(--ink)">Interpretation.</strong> Figures carry their vintage and retrieval
+date; estimates and press-reported numbers are labelled as such; where sources disagree, both are
+shown. Corrections are made visibly, never silently. Articles are written with AI assistance from
+the cited sources &#8212; AI-generated text can misstate figures even when working from real
+material, so verify any number that matters to a decision against the linked primary source.</p>
+</div>]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+    </b:widget>
+
+    <b:widget id='HTML1' locked='false' title='' type='HTML'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<div class="browse">
+<div class="browse-head">
+<h2>Browse all articles by topic</h2>
+<p>Every piece on this blog, grouped. Or read the <a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html">full index</a>.</p>
+</div>
+<div class="topics"><details class="topic"><summary><h3>Currency &amp; Monetary Policy</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/securitising-deficit-what-it-would.html">Is India a Dollar Salesman? China Sold the Yuan to BRICS as a Payment Rail — and Russia Still Put Its Savings </a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/indian-it-in-ai-era.html">Indian IT in an AI Era</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/if-india-paid-brics-in-rupees-scenario.html">If India Paid BRICS in Rupees: A Scenario Model of De-Dollarising 41% of the Import Bill</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/the-rupee-fell-10-and-exports-grew-09.html">The Rupee Fell 10% and Exports Grew 0.9%: What the Exchange Rate Actually Does to India&#x27;s Trade</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/the-price-and-tap-two-levers-behind.html">The Price and the Tap: The Two Levers Behind Every Central Bank, and Why RBI Pulls Them Differently</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/raising-green-debt-globally-rec-euroyen.html">Raising Green Debt Globally: The REC EuroYen Playbook, the CBI Stamp, and Every Avenue an Indian Issuer Actual</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/effective-buying-power-china-comparison.html">Effective Buying Power &amp; the China Comparison — Rupee Real Exchange Rate</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/rbi-foreign-exchange-reserves-20152026.html">RBI Foreign Exchange Reserves — 2015–2026</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/where-indias-forex-goes-country.html">Where India&#x27;s Forex Goes — Country Deficits &amp; a Decade of Policy History</a></li></ul></details><details class="topic"><summary><h3>Trade &amp; Import Substitution</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/half-of-indias-import-bill-is.html">Half of India&#x27;s Import Bill Is Commodities. Recycling and Import Substitution Are the Only Two Exits.</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/indias-trade-balance-hsn-wise.html">India&#x27;s Trade Balance — HSN-wise Export/Import Analysis</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/hsn-wise-historical-importexport-trends.html">HSN-wise Historical Import/Export Trends — India, FY2018-19 to FY2025-26</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/import-dependent-sectors-vs-government.html">Import-Dependent Sectors vs. Government Scheme Attention — India</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/priority-trade-partners-by-import.html">Priority Trade Partners by Import-Growth Sector, &amp; Real PLI Coverage</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/priority-export-destinations-by-growth.html">Priority Export Destinations by Growth Sector, &amp; Real PLI Coverage</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/fy2025-26-sample-report-india-trade.html">FY2025-26 Sample Report — India Trade, Currency &amp; Policy Snapshot</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/five-year-synthesis-trade-currency.html">Five-Year Synthesis: Trade, Currency &amp; Policy, FY2021-22 to FY2025-26</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-trade-sector-policy.html">India Trade — Sector &amp; Policy Recommendations (Chart Library)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/whos-actually-building-mri-and-ct.html">Who&#x27;s Actually Building MRI and CT Scanners in India: The PLI Applicant List and the Market They&#x27;re </a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/vehicles-out-motors-in-indias-chapter.html">Vehicles Out, Motors In: India&#x27;s Chapter 87 Surplus and Its Chapter 85 Problem</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/indias-medical-device-trade-gap-and.html">India&#x27;s Medical-Device Trade Gap — and the Devices Worth Making Here</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/pli-medical-devices-coverage-and-gaps.html">PLI for Medical Devices: What&#x27;s Covered, What Isn&#x27;t — and Where to Apply Next</a></li></ul></details><details class="topic"><summary><h3>Chemicals &amp; Petrochemicals</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/07/chemical-import-substitution-analysis.html">Chemical Import Substitution Analysis: Executive Summary</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/top-15-chemicals-for-import.html">Top 15 Chemicals for Import Substitution — India (FY26–30)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/top-15-chemicals-for-import.html">Top 15 Chemicals for Import Substitution: Detailed Analysis with Rationale</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/chemical-import-substitution-quarterly.html">Chemical Import Substitution — Quarterly Tracking Dashboard</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/chemical-import-substitution-full-hsn-8.html">Chemical Import Substitution — Full HSN-8 Chapter-Wise Registry (827 Codes)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/indias-petrochemical-import-tree-from.html">India’s Petrochemical Import Tree — From Petrol to Product (HSN-coded)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-mineral-oil-hsn-ch27-trade.html">India Mineral-Oil (HSN Ch.27) Trade × Pricing Dashboard</a></li></ul></details><details class="topic"><summary><h3>Energy, Fuels &amp; Mobility</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/annadata-to-urjadata-farmer-income-case.html">Annadata to Urjadata: The Farmer-Income Case for Ethanol Blending</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/a-tax-play-grow-ethanol-sgst-revenue.html">A Tax Play: Grow Ethanol SGST Revenue, Cut CNG VAT to Match Low-Tax States</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/state-by-state-who-actually-earns-from.html">State by State: Who Actually Earns from Ethanol Blending? SGST Scenarios, E10-E30</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/ethanol-blending-omc-books-e20-today-vs.html">Ethanol Blending &amp; the OMC Books — E20 today vs E30 + SGST</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/the-cbg-incentive-stack-every-leg-of.html">The CBG Incentive Stack — Every Leg of a Biogas Plant De-risked</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/indias-ev-market-single-digit.html">India&#x27;s EV Market: The Single-Digit Penetration Story Behind the Doubling Headline</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/cgd-geographical-areas-district.html">CGD Geographical Areas — District Allotment Map (Part 1 of 3)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-fuel-retail-outlets-82k-geocoded.html">India Fuel Retail Outlets — 82k Geocoded Map (Part 2 of 3)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/cold-chain-fuel-outlet-integrated-map.html">Cold-Chain × Fuel-Outlet Integrated Map (Part 3 of 3)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/discom-debt-relief-token-charge.html">DISCOM Debt Relief — Token Charge Calculator</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/the-ethanol-sectors-buyers-market.html">The Ethanol Sector&#x27;s Buyers&#x27; Market: Overcapacity, Cooperative Mills, and the M&amp;A Window</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/fuel-pricing-to-crude-cost.html">Fuel Pricing to Crude Cost</a></li></ul></details><details class="topic"><summary><h3>Agriculture &amp; Food Security</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/nature-versus-nurture-indias-fertiliser.html">Nature Versus Nurture: India&#x27;s Fertiliser-Fed Food Security</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/bio-fertiliser-and-green-credits.html">Bio-Fertiliser and Green Credits: Regrowing India&#x27;s Arid Land</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/indias-subsidised-imports-fertilisers.html">India&#x27;s Subsidised Imports — Fertilisers Explode +76% (FY25 vs FY26)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/jai-kisan-jai-javan-fci-based-military.html">Jai Kisan, Jai Javan — An FCI-Based Military Ration Strategy</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/fci-storage-scenario-capacity-stock-and.html">FCI Storage Scenario — Capacity, Stock, and the Road to 2,150 LMT</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-grain-cultivation-fci-storage.html">India — Grain Cultivation · FCI Storage · FPOs (State Map)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/fci-grain-flow-procurement-storage.html">FCI Grain Flow — Procurement · Storage · Disposal Dashboard</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/the-grain-value-loop-integrated-rice.html">The Grain Value Loop — Integrated Rice Biorefinery Pitch</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/the-price-of-grain-msp-msv-and.html">The Price of Grain: MSP, MSV, and the Arithmetic of the Indian Grain State</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/the-empty-shed-greenhouse-what-indias.html">The Empty-Shed Greenhouse: What India&#x27;s Polyhouse Economics Say About Retrofitting Warehouses and Farmhou</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/indias-animal-protein-export-complex.html">India&#x27;s Animal-Protein Export Complex: Buffalo Meat, the Tallow-Biodiesel Byproduct, and the Shrimp Boom</a></li></ul></details><details class="topic"><summary><h3>Textiles</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/re-spinning-charkha.html">Re-Spinning the Charkha</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/from-fuel-to-fibre-indias-textile.html">From Fuel to Fibre: India&#x27;s Textile Import-Substitution Loop</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/annexure-314-hsn-codes-mapped-to.html">Annexure: 314 HSN Codes Mapped to Technical-Textile Segments</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/textile-hsn-deep-dive-apparel-vs-mmf.html">Textile HSN Deep-Dive — Apparel vs MMF Fibre Trade Scenarios</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/indias-textile-import-export-strategy.html">India&#x27;s Textile Import-Export Strategy: From Dependency to Self-Sufficiency</a></li></ul></details><details class="topic"><summary><h3>Climate, Carbon &amp; Circularity</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/indias-carbon-credit-market-domestic.html">India&#x27;s Carbon Credit Market: Domestic Compliance Meets International Article 6.2</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/greenhouse-emissions-reduction-and-cbam.html">Greenhouse Emissions Reduction and CBAM Compliance — Real or Ideal Gases?</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/the-recycling-lottery-playbook-norways.html">The Recycling Lottery Playbook — Norway&#x27;s Pantelotteriet, and a Jal Jeevan Application</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/indias-tyre-waste-problem-and-crumb.html">India&#x27;s Tyre-Waste Problem and the Crumb-Rubber Road Fix</a></li></ul></details><details class="topic"><summary><h3>Industrial Policy &amp; Clearances</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/announced-vs-delivered-three-indian.html">Announced vs. Delivered: Five Indian State Industrial Policies, Checked Against the Numbers</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/iem-conversion-historical-performance.html">IEM Conversion — A Historical Performance Review (2017–2025)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/where-indias-factories-actually-get.html">Where India’s Factories Actually Get Built — IEM State &amp; Sector Analysis</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/root-bgfff-fg1a1a1a-mut666-cardf6f6f4.html">IPA Digital Twin — Reportage: Latest Updates (3 Jul – 1 Aug 2026)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-environmental-clearances-state.html">India Environmental Clearances — State × Sub-sector Dashboard</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-forest-wildlife-crz-clearances.html">India Forest, Wildlife &amp; CRZ Clearances — PARIVESH</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/india-ec-approval-funnel-parivesh-20.html">India EC Approval Funnel — PARIVESH 2.0</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/quarterly-reportage-4034-scheme.html">Quarterly Reportage — 4,034 Scheme Announcements</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/lok-sabha-question-registry-1843-scheme.html">Lok Sabha Question Registry — what Parliament asked, 2019 to today</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/rajya-sabha-question-registry-scheme.html">Rajya Sabha Question Registry — the upper house, 2019 to today</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/the-most-discussed-schemes-in.html">The Most Discussed Schemes in Parliament — LS &amp; RS vs PIB</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/rare-earth-magnets-and-specialty-steel.html">Rare-Earth Magnets and Specialty Steel: India&#x27;s ₹7,280 Crore Bet on the EV Supply Chain&#x27;s Missing Mi</a></li></ul></details><details class="topic"><summary><h3>Prices &amp; Macro Indicators</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/08/cpi-inflation-heatmap-india-june-2026.html">CPI Inflation Heatmap — India, June 2026</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/cpi-wpi-trends-mospi-bulletin.html">CPI &amp; WPI Trends — MoSPI Bulletin</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/imported-fertiliser-fuel-prices-diesel.html">Imported Fertiliser &amp; Fuel Prices → Diesel → CPI/WPI — India</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/08/real-gdp-growth-india-fy2012-13-to.html">Real GDP Growth — India, FY2012-13 to FY2025-26</a></li></ul></details><details class="topic"><summary><h3>Markets</h3></summary><ul><li><a href="https://masaladeutsch.blogspot.com/2026/07/the-fearless-girls-charter-indias.html">The Fearless Girl&#x27;s Charter — India&#x27;s Market Asks 2026</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/us-stock-picks-multi-screen-quant.html">US Stock Picks — Multi-Screen Quant Shortlist (24 Jul 2026)</a></li><li><a href="https://masaladeutsch.blogspot.com/2026/07/ai-high-demand-launch-tracker.html">AI High-Demand Launch Tracker</a></li><li><a href="https://masaladeutsch.blogspot.com/2020/10/tech-for-business-so-2019-tech-as.html">Tech for Business so 2019, Tech As Business is for 2020!</a></li></ul></details></div></div>]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+    </b:widget>
+  </b:section>
+
+</div>
+
+<footer class='site-foot'>
+  <div class='wrap'>
+    <b:section id='footer' showaddelement='yes'>
+      <b:widget id='Attribution1' locked='false' title='' type='Attribution'>
+        <b:widget-settings>
+          <b:widget-setting name='copyright'/>
+        </b:widget-settings>
+        <b:includable id='main'>
+    <div class='widget-content' style='text-align: center;'>
+      <b:if cond='data:attribution != &quot;&quot;'>
+       <data:attribution/>
+      </b:if>
+    </div>
+
+    <b:include name='quickedit'/>
+  </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</footer>
+
+</body>
+</html>

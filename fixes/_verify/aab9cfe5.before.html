@@ -1,0 +1,292 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+/* === Design tokens (Open Color neutrals + Utopia-style fluid type + spacing scale) === */
+:root{
+  --oc-gray-0:#f8f9fa;--oc-gray-1:#f1f3f5;--oc-gray-2:#e9ecef;--oc-gray-3:#dee2e6;--oc-gray-4:#ced4da;
+  --oc-gray-5:#adb5bd;--oc-gray-6:#868e96;--oc-gray-7:#495057;--oc-gray-8:#343a40;--oc-gray-9:#212529;
+  --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--sp-7:3rem;
+  --radius:12px;--radius-sm:8px;
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);--shadow-2:0 2px 8px rgba(0,0,0,.06);
+  --step--1:clamp(.78rem,.75rem + .15vw,.85rem);
+  --step-0:clamp(.92rem,.88rem + .2vw,1rem);
+  --step-1:clamp(1.05rem,1rem + .3vw,1.2rem);
+  --step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem);
+  --surface:#fff;--surface-alt:var(--oc-gray-0);--border:var(--oc-gray-3);--text:var(--oc-gray-9);--text-mut:var(--oc-gray-6);
+}
+@media not all and (prefers-color-scheme:dark){
+  :root{--surface:#14161a;--surface-alt:#1b1e24;--border:#2c2e36;--text:#e8e8e8;--text-mut:#9a9a9a}
+}
+.artx{font-family:'Segoe UI',system-ui,Arial,sans-serif;max-width:920px;margin:0 auto;line-height:1.6;color:#000}
+.artx .hero{background:linear-gradient(135deg,var(--h1),var(--h2));color:#fff;padding:24px;border-radius:12px;margin-bottom:20px}
+.artx .hero h1{margin:0;font-size:1.5em;line-height:1.25}
+.artx .hero p{margin:8px 0 0;opacity:.92;font-size:.95em}
+.artx h2{color:#0A2D5A;border-bottom:2px solid #0A5A2D;padding-bottom:6px;margin-top:30px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.stat{background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-4) var(--sp-5);box-shadow:var(--shadow-1)}
+.stat b{font-size:var(--step-2);display:block;color:#000}
+.stat span{color:#333;font-size:var(--step--1)}
+.tblwrap{overflow-x:auto}
+.artx table{border-collapse:collapse;width:max-content;min-width:100%;margin:10px 0;font-size:13.5px}
+.artx th{background:var(--oc-gray-9);color:#fff;padding:7px 10px;text-align:left;white-space:nowrap}
+.artx td{padding:6px 10px;border-bottom:1px solid var(--border);white-space:nowrap;color:#000}
+.artx tr:nth-child(even){background:var(--surface-alt)}
+.artx .num{text-align:right;font-variant-numeric:tabular-nums}
+.artx .risk-low{color:#0a7a3d;font-weight:600}
+.artx .risk-med{color:#a35d00;font-weight:600}
+.artx blockquote{border-left:4px solid #0A5A2D;margin:14px 0;padding:6px 14px;background:var(--surface-alt);color:#000}
+.artx .src{color:#333;font-size:.85em;margin-top:24px;border-top:1px dashed var(--border);padding-top:10px}
+@media not all and (prefers-color-scheme:dark){.artx{color:#eee}.artx td{color:#eee}.stat b{color:#eee}.stat span{color:#ccc}.artx blockquote{color:#ddd}.artx .src{color:#aaa}}
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+<div class="artx" style="--h1:#3d2914;--h2:#7a5028"><div class="hero"><h1>Jai Kisan, Jai Javan &#8212; An FCI-Based Military Ration Strategy</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+<p>A proposal to replace private-vendor combat rations with FCI-sourced, domestically-milled Ready-to-Cook/MRE production for the Indian Armed Forces &#8212; linking food processing capacity, farmer income and military nutrition into one supply chain.</p></div><blockquote>&#9888;&#65039; <b>Read this as a strategy proposal, not enacted policy.</b> This is a Cabinet-Committee-on-Security-style pitch deck &#8212; cost/savings/timeline figures below are the proposal's own projections, not audited defence-procurement numbers or a confirmed government decision. Framed here for its data architecture (multi-channel farm-to-ration sourcing, protein-density redesign, phased rollout) &#8212; treat every &#8377; figure as illustrative.</blockquote><div class="stats"><div class="stat"><b>62%</b><span>projected cost cut, &#8377;71 &#8594; &#8377;27/unit</span></div><div class="stat"><b>&#8377;8.51 Cr</b><span>projected 5-year savings vs private vendors</span></div><div class="stat"><b>53g</b><span>target daily protein vs 8-12g today</span></div><div class="stat"><b>54,700</b><span>jobs projected (farmers + logistics)</span></div></div><h2>The problem this is trying to solve</h2>
+<p>The pitch's starting complaint about the current private-vendor ration model:</p>
+<ul>
+<li><b>Cost crisis</b> &#8212; vendor pricing rising ~8.3%/year against a 5-6% budget growth ceiling.</li>
+<li><b>Vendor concentration</b> &#8212; ~70% of supply from just 4 companies, a single-point-of-failure risk.</li>
+<li><b>Quality variance</b> &#8212; &plusmn;25% batch-to-batch variance, 12-15% rejection rate at intake.</li>
+<li><b>Import dependency</b> &#8212; ~15% of spice/flavouring inputs imported, a strategic vulnerability for a defence-critical supply chain.</li>
+</ul>
+<h2>The proposed fix: route rations through FCI's existing mill network</h2>
+<p>Instead of tendering to private ration vendors, the proposal routes grain procurement and milling through the Food Corporation of India's existing infrastructure &#8212; treating combat rations as another FCI-adjacent food-processing output, not a separate private supply chain.</p>
+<div class="tblwrap"><table><thead><tr><th>Claim</th><th>Current (private vendor)</th><th>Proposed (FCI-based)</th></tr></thead><tbody>
+<tr><td>Unit cost</td><td class="num">&#8377;71</td><td class="num">&#8377;27 <span class="risk-low">(-62%)</span></td></tr>
+<tr><td>Supply reliability</td><td class="num">~70%</td><td class="num">100% <span class="risk-low">(20 mills, zero gaps claimed)</span></td></tr>
+<tr><td>Quality variance</td><td class="num">&plusmn;25%</td><td class="num">&plusmn;5%</td></tr>
+<tr><td>Domestic content</td><td class="num">~85%</td><td class="num">100%</td></tr>
+<tr><td>Ownership model</td><td>Private vendor contracts</td><td>Government-owned, FCI-operated</td></tr>
+</tbody></table></div>
+<h2>Multi-channel sourcing &#8212; spreading &#8377;300 Cr across 5 procurement routes</h2>
+<p style="margin:0 0 1em" style="color:#8a5a12;font-size:.85em">&#9888; &#8377;300 Cr is roughly two orders of magnitude larger than this plan's own annual output (~&#8377;11 Cr) and opex (&#8377;1.2&#8211;1.4 Cr/yr) &#8212; likely a multi-year cumulative figure the deck does not label as such.</p>
+<p>Rather than a single-source FCI monopoly, the sourcing plan deliberately spreads procurement across five channels &#8212; a diversification choice that also spreads farmer-income benefit across different scales of producer (large mandi-linked farmers via FCI/NAFED, smaller/FPO-linked producers via SFAC).</p>
+<div class="tblwrap"><table><thead><tr><th>Channel</th><th class="num">Share (%)</th><th class="num">Value (&#8377; Cr)</th><th class="num">Farmer income (&#8377; Cr)</th></tr></thead><tbody>
+<tr><td><b>FCI</b></td><td class="num">50</td><td class="num">150</td><td class="num">120</td></tr>
+<tr><td>State Boards</td><td class="num">20</td><td class="num">60</td><td class="num">50</td></tr>
+<tr><td>APMC/Direct</td><td class="num">15</td><td class="num">45</td><td class="num">42</td></tr>
+<tr><td>NAFED</td><td class="num">10</td><td class="num">30</td><td class="num">26</td></tr>
+<tr><td>SFAC/FPO</td><td class="num">5</td><td class="num">15</td><td class="num">13</td></tr>
+<tr><td><b>Total</b></td><td class="num"><b>100</b></td><td class="num"><b>300</b></td><td class="num"><b>251</b></td></tr>
+</tbody></table></div>
+<h2>The protein redesign &#8212; the actual nutrition-science core of the pitch</h2>
+<p>The most concrete part of the proposal isn't the procurement economics &#8212; it's a protein-density redesign of the ration itself, aimed at closing the gap between current combat-ration protein content (claimed 8-12g/day) and a 53g/day target, using shelf-stable, India-manufacturable protein sources:</p>
+<div class="tblwrap"><table><thead><tr><th>MRE component</th><th class="num">Protein/serving</th><th class="num">Cost/unit</th></tr></thead><tbody>
+<tr><td>Powdered eggs</td><td class="num">15g</td><td class="num">&#8377;18/pouch</td></tr>
+<tr><td>Chicken tikka</td><td class="num">18g</td><td class="num">&#8377;50/pouch</td></tr>
+<tr><td>Mutton keema</td><td class="num">20g</td><td class="num">&#8377;58/pouch</td></tr>
+<tr><td>Fish curry</td><td class="num">16g</td><td class="num">&#8377;48/pouch</td></tr>
+<tr><td>Soya mock meat</td><td class="num">16g</td><td class="num">&#8377;32/pouch</td></tr>
+<tr><td>Protein bars</td><td class="num">12g</td><td class="num">&#8377;22/bar</td></tr>
+</tbody></table></div>
+<p>A soya-based vegetarian option (mock meat) sitting alongside animal-protein pouches at a comparable protein density is the kind of detail that separates a genuine nutrition-engineering pass from a pure cost-cutting pitch &#8212; it suggests the protein target was designed to be met without mandating non-vegetarian rations across the force.</p>
+<h2>Financial case (as presented)</h2>
+<div class="tblwrap"><table><thead><tr><th>Line</th><th class="num">Value</th></tr></thead><tbody>
+<tr><td>Year-1 setup cost</td><td class="num">&#8377;2.85 Cr</td></tr>
+<tr><td>Operating cost, Year 2+</td><td class="num">&#8377;1.2-1.4 Cr/yr</td></tr>
+<tr><td>5-year net savings vs private <span style="color:#8a5a12;font-size:.85em">(the visible line items in this table sum to ~&#8377;10&#8211;14 Cr, not &#8377;8.51 Cr &#8212; the deck does not show a full reconciling derivation)</span></td><td class="num">&#8377;8.51 Cr</td></tr>
+<tr><td>Claimed ROI</td><td class="num">150%</td></tr>
+<tr><td>Claimed payback period</td><td class="num">12 months</td></tr>
+<tr><td>Perpetual annual savings (Yr 2+, gross &#8212; before the &#8377;1.2-1.4 Cr/yr operating cost and Year-1 setup are netted; the &#8377;8.51 Cr row above is the 5-year net of both)</td><td class="num">&#8377;4.5 Cr/yr</td></tr>
+</tbody></table></div>
+<h2>18-month rollout plan</h2>
+<ul>
+<li><b>Months 1-2:</b> Planning &amp; Cabinet approval</li>
+<li><b>Months 3-6:</b> Mill setup &#8212; three named sites: Kanpur, Panipat, Ranipet</li>
+<li><b>Months 7-9:</b> Pilot production, 100K units</li>
+<li><b>Months 10-12:</b> Regulatory approval &#8212; FSSAI + Directorate General of Quality Assurance (DGQA)</li>
+<li><b>Months 13-18:</b> Full scale-up to a claimed 4.1M units/year <span style="color:#8a5a12;font-size:.85em">(at the stated &#8377;71&#8594;&#8377;27/unit saving this implies ~&#8377;18 Cr/yr &#8212; 4&#215; the &#8377;4.5 Cr/yr the savings table below shows; one of the two figures in this deck is wrong)</span>, targeting operational status by July 2027 <span style="color:#8a5a12;font-size:.85em">(an 18-month plan starting Aug 2026 lands ~Feb 2028, not July 2027)</span></li>
+</ul>
+<h2>Risk assessment (as presented)</h2>
+<div class="tblwrap"><table><thead><tr><th>Risk</th><th>Rated</th><th>Mitigation claimed</th></tr></thead><tbody>
+<tr><td>FCI capacity strain</td><td class="risk-low">LOW</td><td>20 distributed mills, not one central facility</td></tr>
+<tr><td>Quality slippage</td><td class="risk-low">LOW</td><td>DQA oversight + 100% batch testing</td></tr>
+<tr><td>Supply delays</td><td class="risk-low">LOW</td><td>Five independent sourcing channels</td></tr>
+<tr><td>Soldier acceptance of new rations</td><td class="risk-med">MEDIUM-LOW</td><td>Tasting/field campaigns before full rollout</td></tr>
+</tbody></table></div>
+<p>The self-assessed "LOW" overall risk rating, set against an implicit "HIGH" risk for continued vendor dependency, is the pitch's own framing &#8212; worth reading skeptically rather than taken as an independent risk audit; a genuinely independent assessment would need to weigh FCI's existing operational load (grain procurement/storage/PDS distribution, already running near capacity in several zones per public FCI reporting) against adding a new production mandate.</p>
+<h2>What the pitch asks for</h2>
+<ol>
+<li>Approve an FCI-Defence MOU (5-year implementation horizon)</li>
+<li>Authorise a &#8377;2.85 Cr Year-1 setup budget</li>
+<li>Direct FCI to begin mill modifications at the three named sites</li>
+<li>Empower a Steering Committee (Defence Secretary + Service Chiefs)</li>
+<li>Direct coordination across State Boards, APMC, NAFED and FPOs for the multi-channel sourcing plan</li>
+</ol><p class="src">Source: internal strategy presentation ("Jai Kisan, Jai Javan &#8212; FCI-Based Military RTC Ration Strategy," Cabinet Committee on Security format, 12 slides). This is a proposal/pitch document, not a published government policy &#8212; no independent verification of the cost, savings, or timeline claims has been performed. Analysed 2 Aug 2026. Research synthesis &#8212; not policy or investment advice.</p><p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div></div>

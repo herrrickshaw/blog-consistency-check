@@ -1,0 +1,410 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<meta name="hz:canvas-width" content="1180">
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+  :root {
+    color-scheme: light;
+    --page-bg:      #eef1ea;
+    --surface:      #fcfcfa;
+    --ink:          #14180f;
+    --ink-2:        #4f5348;
+    --ink-muted:    #82867a;
+    --rule:         #d7dace;
+    --rule-strong:  #c3c7b8;
+    --accent:       #1f5f5b;
+    --accent-soft:  #dbe9e6;
+    --alert:        #a5402c;
+    --alert-soft:   #f3ded7;
+    --warn:         #c98a1f;
+    --warn-soft:    #f3e9d5;
+    --chart-surface:#fcfcfb;
+    --chart-grid:   #e1e0d9;
+    --chart-axis:   #c3c2b7;
+    --font-display: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --font-body: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-mono: "IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg:#12151a; --surface:#1a1e21; --ink:#f2f1ea; --ink-2:#c1c4b7; --ink-muted:#8b8f83;
+    --rule:#2a2e28; --rule-strong:#383c33; --accent:#58bdb5; --accent-soft:#1d3634; --alert:#e0785f; --alert-soft:#3a241d;
+    --warn:#e0b23f; --warn-soft:#3a3220;
+    --chart-surface:#1a1a19; --chart-grid:#2c2c2a; --chart-axis:#383835;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page-bg:#eef1ea; --surface:#fcfcfa; --ink:#14180f; --ink-2:#4f5348; --ink-muted:#82867a;
+    --rule:#d7dace; --rule-strong:#c3c7b8; --accent:#1f5f5b; --accent-soft:#dbe9e6; --alert:#a5402c; --alert-soft:#f3ded7;
+    --warn:#c98a1f; --warn-soft:#f3e9d5;
+    --chart-surface:#fcfcfb; --chart-grid:#e1e0d9; --chart-axis:#c3c2b7;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .bulletin { background: var(--page-bg); color: var(--ink); font-family: var(--font-body); padding: 40px 20px 56px; display: flex; justify-content: center; }
+  .sheet { width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 32px; }
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; gap: 10px; align-items: center; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.4vw, 34px); margin: 2px 0 0; line-height: 1.25; text-wrap: balance; letter-spacing: -0.01em; }
+  .dek { font-size: 14px; color: var(--ink-2); max-width: 78ch; line-height: 1.55; margin: 4px 0 0; }
+  .source-line { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 6px; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .stat-tile { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); }
+  .stat-value { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 25px; font-weight: 600; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 12.5px; color: var(--ink-2); }
+  .stat-sub b { color: var(--ink); }
+
+  section.block { display: flex; flex-direction: column; gap: 14px; }
+  .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--rule-strong); padding-bottom: 8px; }
+  .block-title { font-family: var(--font-display); font-size: 21px; margin: 0; }
+  .block-note { font-size: 12.5px; color: var(--ink-muted); max-width: 50ch; text-align: right; }
+
+  .matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .matrix-tile { background: var(--surface); padding: 15px 17px; display: flex; flex-direction: column; gap: 8px; }
+  .matrix-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .matrix-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+  .matrix-rank { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); }
+  .matrix-badge { font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.03em; }
+  .badge-strong { background: var(--accent-soft); color: var(--accent); }
+  .badge-partial { background: var(--warn-soft); color: var(--warn); }
+  .badge-gap { background: var(--alert-soft); color: var(--alert); }
+  .badge-na { background: var(--rule); color: var(--ink-muted); }
+  .matrix-figs { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); display: flex; justify-content: space-between; }
+  .matrix-note { font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+
+  .verdict {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--warn); background: var(--warn-soft);
+    padding: 18px 22px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .verdict-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warn); }
+  .verdict-answer { font-family: var(--font-display); font-size: 20px; }
+  .verdict-sub { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  .legend-row { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 7px; }
+  .legend-note { font-size: 12px; color: var(--ink-muted); line-height: 1.55; max-width: 84ch; }
+  .legend-note b { color: var(--ink-2); }
+
+  .prose { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; line-height: 1.65; color: var(--ink-2); max-width: 84ch; }
+  .prose p { margin: 0; }
+  .prose b { color: var(--ink); }
+  .prose ol, .prose ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+  details.table-view { border-top: 1px solid var(--rule-strong); padding-top: 10px; }
+  details.table-view summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2); font-family: var(--font-mono); }
+  .data-table-wrap { overflow-x: auto; margin-top: 12px; }
+  table.data-table { border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11px; }
+  table.data-table th, table.data-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.data-table td:nth-child(2), table.data-table td:nth-child(3) { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.data-table thead th { color: var(--ink-muted); font-weight: 500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; }
+
+  .errata {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--alert); background: var(--surface);
+    padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .errata-title { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--alert); }
+  .errata ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .errata li { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .errata li b { color: var(--ink); }
+
+  footer.colophon { text-align: center; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); padding-top: 8px; }
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th,table.data-table th,table.data-table td,table.data-table thead th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+
+<div class="bulletin">
+  <div class="sheet">
+    <div class="masthead">
+      <div class="eyebrow">MoSPI Dataset Analysis &#8212; Statistical Bulletin</div>
+      <h1>India's fastest-growing major import got a production-capacity scheme in mid-July 2026. Several bigger ones are still waiting.</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+
+      <p class="dek">Cross-references this repo's own HS-chapter import rankings (value and growth, FY2018-19 &#8594; FY2025-26) against a six-month roundup of PIB-reported government schemes and incentives (January&#8211;July 2026), to check whether import-dependent sectors are actually getting matching policy attention &#8212; and where the gaps are.</p>
+      <div class="source-line">SOURCES: this repo's own <code>data/hsn_historical_trends_2018-19_to_2025-26.json</code> (TRADESTAT/DGCI&amp;S) for import rankings; a compiled roundup of PIB coverage, Jan&#8211;Jul 2026 (Budget 2026-27, Cabinet approvals, PLI/ISM 2.0 scorecards) for scheme coverage; supplementary verification searches on fertiliser and edible-oil policy, 18 Jul 2026</div>
+    </div>
+
+    <div class="stat-strip" id="statStrip"></div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">The coverage matrix: 12 import chapters vs. six months of scheme news</h2>
+        <p class="block-note">Same 12 chapters as the HSN historical-trends bulletin, ranked by FY2025-26 import value.</p>
+      </div>
+      <div class="matrix-grid" id="matrixGrid"></div>
+      <div class="legend-row">
+        <span class="legend-item"><span class="matrix-badge badge-strong">Strong</span> a scheme sized to the chapter appeared in the window</span>
+        <span class="legend-item"><span class="matrix-badge badge-partial">Partial</span> adjacent/general schemes only</span>
+        <span class="legend-item"><span class="matrix-badge badge-gap">Gap</span> nothing found in the window</span>
+        <span class="legend-item"><span class="matrix-badge badge-na">N/A</span> not a substitution candidate</span>
+      </div>
+    </section>
+
+    <div class="verdict">
+      <div class="verdict-label">The story that changed while this bulletin was being written</div>
+      <div class="verdict-answer">Fertilisers (HS31) &#8212; this repo's fastest-growing high-value import &#8212; had no production-capacity scheme in the six-month window. On 15 July 2026, three days before this analysis, the Cabinet approved one.</div>
+      <div class="verdict-sub">The <b>National Investment Policy for Urea-2026 (NIPU-2026)</b> targets 8&#8211;9 new plants adding roughly 1 crore tonnes of capacity &#8212; sized almost exactly to India's current urea import gap (~30 million tonnes produced against ~40 million tonnes of demand, per the Cabinet's own figures). It didn't feature in the Jan&#8211;Jul roundup because it postdates it. This is either good news read one way (the system did respond) or a caution read the other (it took a multi-year import boom &#8212; this repo's own data shows HS31 imports up 118.9% since FY2018-19 &#8212; before the supply-side policy arrived; the interim response was a demand-side subsidy, not capacity).</div>
+    </div>
+
+    <section class="block prose">
+      <h2 class="block-title" style="border:none; padding:0;">Reading the fertiliser case in full</h2>
+      <p><b>Urea</b>: India produces about 30 million tonnes against demand of about 40 million tonnes; the 10-million-tonne gap is met by imports. NIPU-2026 (Cabinet-approved 15 Jul 2026) is a genuine supply-side response, replacing the 2012 investment policy with better economics for new plants (a 12&#8211;16% return-on-equity band, rupee-denominated cost conversion after four years to cut forex risk) &#8212; explicitly framed as import reduction, not just capacity for its own sake.</p>
+      <p><b>DAP / phosphatic fertiliser</b> is a different problem: only about 40% of India's DAP is produced domestically, and the constraint isn't manufacturing capacity so much as <b>India holding almost no rock-phosphate reserves of its own</b> &#8212; it imports roughly 86% of the raw phosphorus its fertiliser industry needs. The government's actual response here is diversifying <i>supply</i>, not substituting it: five-year agreements securing 3.1 million tonnes of DAP annually from Saudi Arabia's Ma'aden (from FY2025-26), plus a 2.5-million-tonne deal with Morocco for the current season, alongside domestic assembly capacity additions (about 59.65 lakh tonnes of new DAP/NPK capacity and 44.21 lakh tonnes of phosphoric/sulphuric acid capacity under the Nutrient-Based Subsidy scheme). This is a reasonable strategy for a geological constraint that import-substitution can't solve &#8212; but like NIPU-2026, none of it surfaced in the six-month "achievements" recap, which only mentioned the subsidy rate-setting.</p>
+      <p>Net effect: fertiliser is not actually the uncovered gap it looks like from a pure "did it appear in the news roundup" reading &#8212; but it is a case study in a <b>lag between visible policy communication and the underlying trade data</b>, which is exactly the kind of gap this bulletin exists to surface.</p>
+    </section>
+
+    <section class="block prose">
+      <h2 class="block-title" style="border:none; padding:0;">The gaps that, on this evidence, are still open</h2>
+      <ol>
+        <li><b>Mineral fuels &amp; oils (HS27) &#8212; 26% of India's entire import bill, no scheme at its scale.</b> The nearest levers in the six-month window &#8212; a coal/lignite gasification scheme, Carbon Capture Utilisation and Storage funding, and the advanced-battery/solar PLI tracks &#8212; are all real, but none of them is a crude-oil-import-substitution policy, and none is remotely sized to a chapter this large. The actual long-run substitution channel (EV adoption, renewables) runs through schemes built for a different stated purpose (decarbonisation, batteries), not import security.</li>
+        <li><b>Plastics (HS39, +45.8%) and inorganic chemicals (HS28, +86.0%)</b> &#8212; both fast-growing, together over $36bn &#8212; have no scheme identifiable in this window at all, adjacent or otherwise.</li>
+        <li><b>Aircraft &amp; spacecraft (HS88, +80.9%)</b> &#8212; the aviation schemes in this window (Seaplane VGF, Modified UDAN, Madurai's international designation) are all connectivity and infrastructure plays for an aviation <i>market</i> India is growing; none is a manufacturing incentive for the aircraft and components India is importing to serve that market.</li>
+      </ol>
+      <p>Two chapters don't really belong on a "gap" list at all: <b>pearls, gems &amp; jewellery (HS71)</b> is a process-trade sector &#8212; India imports rough stones and gold to re-export cut and polished goods &#8212; where the right policy lever is trade facilitation, not import substitution; and <b>electrical machinery (HS85)</b>, the repo's second-fastest-growing import chapter, is the one place this cross-reference finds strong, matched coverage: the Semiconductor Mission 2.0 (&#8377;76,000 crore, 10 projects worth &#8377;1.60 lakh crore approved) and the bulk of 836 approved Production Linked Incentive applications across electronics, mobile manufacturing, telecom and IT hardware sit squarely on top of it.</p>
+    </section>
+
+    <details class="table-view">
+      <summary>View the full coverage matrix as a table</summary>
+      <div class="data-table-wrap"><table class="data-table" id="matrixTable"></table></div>
+    </details>
+
+    <div class="errata">
+      <div class="errata-title">Errata &amp; methodology caveats</div>
+      <ul>
+        <li><b>The "six-month scheme window" is not an audit of every Indian government scheme</b> &#8212; it's the specific set of PIB-reported items compiled in a prior research pass covering January&#8211;July 2026 (Budget 2026-27, Cabinet Decisions Feb&#8211;Jun, PLI/ISM 2.0 scorecards, MSME/rural/trade announcements). A scheme's absence from that set means it didn't generate "achievement" news in that window &#8212; it does not mean no scheme exists. The fertiliser case above is the clearest illustration: real, substantial policy exists (NBS-linked capacity, NIPU-2026, Ma'aden/Morocco supply deals) that simply wasn't part of the recap.</li>
+        <li><b>Only the fertiliser and edible-oil rows were independently re-verified</b> via supplementary web search on 18 Jul 2026, because they were the two chapters where "gap" looked most surprising given this repo's own import-growth data. The other "Gap" and "Partial" ratings (plastics, inorganic chemicals, aircraft, machinery) reflect only what did or didn't appear in the compiled six-month window and have not been separately fact-checked against India's full scheme universe &#8212; treat them as a starting point for further checking, not a final verdict.</li>
+        <li><b>Edible oils (HS15) has a real scheme</b> &#8212; the National Mission on Edible Oils&#8211;Oilseeds (&#8377;10,103 crore, Cabinet-approved, 2024-25 to 2030-31, targeting 72% domestic self-sufficiency by 2030-31) &#8212; that also didn't surface in the six-month recap despite this chapter's own import growth (+97.9%) and the sharp CPI oils-and-fats swing (-18.17% to +21.24% y-o-y) documented in this repo's fertiliser/fuel-price-transmission bulletin. Flagged here as a visibility gap, not a scheme gap.</li>
+        <li><b>"Coverage" here means a matching scheme existed or was announced</b> &#8212; it says nothing about whether that scheme is adequately funded, on schedule, or actually closing the import gap it targets. NIPU-2026's ~1-crore-tonne urea capacity target and NMEO-Oilseeds' 2030-31 horizon are both several years from resolution; this bulletin doesn't attempt to forecast whether either will land on time.</li>
+        <li>Import value and growth figures for all 12 chapters are reused from <a href="../data/hsn_historical_trends_2018-19_to_2025-26.json">data/hsn_historical_trends_2018-19_to_2025-26.json</a> elsewhere in this repo; underlying scheme cross-reference notes: <a href="../data/import_dependency_policy_gap_analysis_2026-07-18.json">data/import_dependency_policy_gap_analysis_2026-07-18.json</a>.</li>
+      </ul>
+    </div>
+
+    <footer class="colophon">herrrickshaw/mospi-dataset-analysis &#8212; cross-references PIB scheme reporting against TRADESTAT/DGCI&amp;S import data; not an official government assessment of scheme coverage</footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var matrix = [{"hs": "27", "name": "Mineral fuels & oils", "value": "$203.4bn (26.2%)", "growth": "+21.2%", "coverage": "partial", "note": "Coal/lignite gasification scheme, CCUS funding, and battery/solar PLI are all real but none is a crude-oil-substitution policy sized to the largest single import chapter."}, {"hs": "71", "name": "Pearls, gems & jewellery", "value": "$109.4bn", "growth": "+69.1%", "coverage": "na", "note": "Process-trade sector (import rough stones/gold, re-export cut & polished) \u2014 trade facilitation is the relevant lever, not import substitution."}, {"hs": "85", "name": "Electrical machinery", "value": "$104.9bn", "growth": "+101.5%", "coverage": "strong", "note": "Semiconductor Mission 2.0 (\u20b976,000cr, 10 projects) plus the bulk of 836 PLI applications (electronics, mobile, telecom, IT hardware, white goods) sit directly on this chapter."}, {"hs": "84", "name": "Machinery, mechanical appliances", "value": "$74.0bn", "growth": "+68.8%", "coverage": "partial", "note": "Plug-and-Play Industrial Development scheme and legacy cluster revival help general manufacturing infra, but no capital-goods-specific incentive."}, {"hs": "29", "name": "Organic chemicals", "value": "$25.4bn", "growth": "+13.5%", "coverage": "partial", "note": "Biopharma Shakti and the PLI bulk-drugs/API track cover the pharma-intermediate subset, not broad petrochemical imports."}, {"hs": "39", "name": "Plastics", "value": "$22.2bn", "growth": "+45.8%", "coverage": "gap", "note": "No scheme identified in the six-month window, adjacent or otherwise."}, {"hs": "15", "name": "Animal/veg fats & oils", "value": "$19.8bn", "growth": "+97.9%", "coverage": "gap", "note": "NMEO-Oilseeds (\u20b910,103cr, Cabinet-approved, targets 72% self-sufficiency by 2030-31) is real but did not surface in the six-month recap \u2014 a visibility gap, not a scheme gap."}, {"hs": "72", "name": "Iron & steel", "value": "$15.8bn", "growth": "+25.2%", "coverage": "partial", "note": "Specialty Steel PLI 1.2 (85 MoUs, \u20b911,887cr, signed early 2026) is real but also absent from the six-month recap."}, {"hs": "90", "name": "Optical/medical instruments", "value": "$15.4bn", "growth": "+59.6%", "coverage": "partial", "note": "PLI medical devices exists among the 14 sectors; Regional Medical Hubs address inbound medical tourism, not domestic device manufacturing."}, {"hs": "31", "name": "Fertilisers", "value": "$14.6bn", "growth": "+118.9% (fastest)", "coverage": "gap", "note": "Only demand-side subsidy rate-setting in the window \u2014 but NIPU-2026 (urea capacity, Cabinet-approved 15 Jul 2026) landed 3 days before this analysis. DAP remains supply-diversification, not substitution (86% rock-phosphate import dependence)."}, {"hs": "28", "name": "Inorganic chemicals", "value": "$14.2bn", "growth": "+86.0%", "coverage": "gap", "note": "No dedicated scheme identified; partially adjacent to phosphoric/sulphuric acid capacity under the fertiliser subsidy scheme."}, {"hs": "88", "name": "Aircraft & spacecraft", "value": "$13.8bn", "growth": "+80.9%", "coverage": "gap", "note": "Seaplane VGF and Madurai's international-airport designation are aviation-market infrastructure, not aircraft-manufacturing incentives."}];
+
+  var statStrip = document.getElementById("statStrip");
+  var counts = { strong: 0, partial: 0, gap: 0, na: 0 };
+  matrix.forEach(function (m) { counts[m.coverage]++; });
+  var stats = [
+    { label: "Strong policy match", value: counts.strong + " of 12", sub: "Electrical machinery &#8212; ISM 2.0 + PLI electronics track" },
+    { label: "Partial / adjacent match", value: counts.partial + " of 12", sub: "General manufacturing or demand-side schemes only" },
+    { label: "No match in the window", value: counts.gap + " of 12", sub: "Plastics, inorganic chemicals, aircraft &amp; more" },
+    { label: "Newest response", value: "3 days old", sub: "NIPU-2026 urea policy, approved 15 Jul 2026" }
+  ];
+  stats.forEach(function (s) {
+    var el = document.createElement("div");
+    el.className = "stat-tile";
+    el.innerHTML = '<div class="stat-label">' + s.label + '</div><div class="stat-value">' + s.value + '</div><div class="stat-sub">' + s.sub + '</div>';
+    statStrip.appendChild(el);
+  });
+
+  var matrixGrid = document.getElementById("matrixGrid");
+  var badgeClass = { strong: "badge-strong", partial: "badge-partial", gap: "badge-gap", na: "badge-na" };
+  var badgeLabel = { strong: "Strong", partial: "Partial", gap: "Gap", na: "N/A" };
+  matrix.forEach(function (m, i) {
+    var tile = document.createElement("div");
+    tile.className = "matrix-tile";
+    tile.innerHTML =
+      '<div class="matrix-top"><div><div class="matrix-rank">#' + (i + 1) + ' by import value &middot; HS' + m.hs + '</div><div class="matrix-name">' + m.name + '</div></div>' +
+      '<span class="matrix-badge ' + badgeClass[m.coverage] + '">' + badgeLabel[m.coverage] + '</span></div>' +
+      '<div class="matrix-figs"><span>' + m.value + '</span><span>' + m.growth + '</span></div>' +
+      '<div class="matrix-note">' + m.note + '</div>';
+    matrixGrid.appendChild(tile);
+  });
+
+  var table = document.getElementById("matrixTable");
+  var thead = "<thead><tr><th>HS</th><th>Import value FY25-26</th><th>Growth FY18-19&#8594;25-26</th><th>Coverage</th><th>Matching scheme(s) / note</th></tr></thead>";
+  var trows = matrix.map(function (m) {
+    return "<tr><td>HS" + m.hs + " " + m.name + "</td><td>" + m.value + "</td><td>" + m.growth + "</td><td>" + badgeLabel[m.coverage] + "</td><td>" + m.note + "</td></tr>";
+  }).join("");
+  table.innerHTML = thead + "<tbody>" + trows + "</tbody>";
+})();
+</script>
+
+<div class="disc-override" style="margin-top:24px;padding:14px 16px;border-top:1px solid #ddd;font-size:.82em;color:#444;background:#f8f8f6;line-height:1.5"><strong>Disclaimer:</strong> This analysis is based on publicly available government and market data cited in the article above. It is provided for informational and research purposes only and does not constitute investment, legal, or policy advice. Figures may be revised as source data is updated &#8212; verify against the original source before relying on them for decisions.<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--page-bg:#eef1ea!important;--surface:#fcfcfa!important;--ink:#14180f!important;--ink-2:#4f5348!important;--ink-muted:#82867a!important;--rule:#d7dace!important;--rule-strong:#c3c7b8!important;--accent:#1f5f5b!important;--accent-soft:#dbe9e6!important;--alert:#a5402c!important;--alert-soft:#f3ded7!important;--warn:#c98a1f!important;--warn-soft:#f3e9d5!important;--chart-surface:#fcfcfb!important;--chart-grid:#e1e0d9!important;--chart-axis:#c3c2b7!important;color-scheme:light!important;}</style></div>

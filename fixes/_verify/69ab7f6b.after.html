@@ -1,0 +1,532 @@
+<!doctype html><meta charset=utf-8><style>
+/* ===========================================================================
+Masala Deutsch &#8212; a Blogger theme built for long, data-heavy analysis posts.
+No third-party JavaScript. No packed/encrypted footer scripts. No web fonts.
+Two design constraints came from real failures on this blog:
+1. Index pages render post SNIPPETS, never full bodies. Rendering full
+bodies blew Blogger's per-page budget on 30-530KB posts and the post
+list silently came back EMPTY.
+2. NO automatic dark mode, at any level. The posts force a white background
+with !important, so a theme-level dark block flips the text to near-white
+while the surface stays white -- the page renders blank. See the note on
+the palette below.
+=========================================================================== */
+:root{
+--ink:#0B1F2D;        /* headings, body text  */
+--ink-soft:#43535F;   /* secondary text       */
+--accent:#2251FF;     /* links, rules         */
+--accent-ink:#1B3FCC; /* link hover           */
+--cyan:#00A9F4;       /* kickers, eyebrow rules */
+--bg:#FFFFFF;
+--bg-alt:#F4F7FB;
+--line:#D9E1E8;
+--hero:#0B1F2D;
+--hero-ink:#FFFFFF;
+--serif:Georgia,'Times New Roman',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+--wrap:1080px;
+--measure:70ch;
+}
+/* NO dark mode. Deliberately, and this was learned the hard way twice.
+The published posts carry their own `body{background:#fff!important}`
+override. A theme-level prefers-color-scheme block flips --ink to near-white
+but CANNOT flip the surface, because the post's !important wins -- so every
+heading and link renders white-on-white and the page reads as blank.
+A theme declares <body>; it does not get the last word on it.
+Light only. Do not re-add a dark block without first removing the
+force-white rules from all 69 post bodies. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);
+-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-ink)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+/* ---- Header ---------------------------------------------------------- */
+.site-head{border-bottom:1px solid var(--line);background:var(--bg);
+position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;gap:18px;
+justify-content:space-between;min-height:60px;flex-wrap:wrap}
+.site-title{font-family:var(--sans);font-weight:700;font-size:1rem;
+letter-spacing:.02em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.site-title span{color:var(--accent)}
+.site-nav{font-family:var(--sans);font-size:.82rem;display:flex;gap:16px;flex-wrap:wrap}
+.site-nav a{text-decoration:none}
+.site-nav a:hover{text-decoration:underline}
+/* ---- Hero / featured -------------------------------------------------- */
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 66px;margin-bottom:8px}
+.hero .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:14px}
+.hero h2{font-size:2.5rem;line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;font-weight:300}
+.hero h2 strong{font-weight:700}
+.hero h2 a{color:var(--hero-ink);text-decoration:none}
+.hero h2 a:hover{text-decoration:underline}
+.hero p{color:#C7D4DF;max-width:var(--measure);margin:0 0 16px}
+.hero .more{font-family:var(--sans);font-size:.82rem;font-weight:700;
+color:#7FA5FF;text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Post list (index) ------------------------------------------------ */
+.section-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink);
+border-top:2px solid var(--ink);padding-top:10px;margin:52px 0 0;
+display:block}
+.card{border-bottom:1px solid var(--line);padding:32px 0;transition:padding-left .18s}
+.card:hover{padding-left:8px}
+.card:last-child{border-bottom:none}
+.card h3{font-size:1.5rem;line-height:1.22;margin:0 0 8px;letter-spacing:-.015em;font-weight:400}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{color:var(--accent)}
+.card .meta{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);
+margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card p{margin:0 0 10px;color:var(--ink-soft);max-width:var(--measure)}
+.card .more{font-family:var(--sans);font-size:.78rem;font-weight:700;
+text-decoration:none;letter-spacing:.04em;text-transform:uppercase}
+/* ---- Single post ------------------------------------------------------ */
+.post-head{padding:52px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:32px}
+.post-head h1{font-size:2.6rem;line-height:1.14;margin:0 0 14px;letter-spacing:-.025em;font-weight:300}
+.post-head h1 strong{font-weight:700}
+.post-head .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.post-body{font-size:1.02rem}
+.post-body p{max-width:var(--measure)}
+.post-body h2,.post-body h3{line-height:1.3}
+/* Long analysis posts carry wide tables; they scroll in their own box so the
+page body never scrolls sideways on a phone. */
+.post-body table{max-width:100%;border-collapse:collapse}
+.post-body .table-scroll,.post-body div[style*="overflow"]{overflow-x:auto}
+.post-body img{height:auto}
+/* ---- Gadget slots in the page body -----------------------------------
+The whole reason this theme exists. Blogger's modern themes (Contempo,
+Soho, Emporio, Notable) allow NO gadgets in the page body, so a
+topic index cannot be placed with the content. These sections do. */
+.slot{margin:26px 0}
+.slot .widget{margin-bottom:20px}
+.slot h2,.slot h3{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;
+text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:0 0 10px}
+.slot ul{margin:0;padding-left:1.1rem}
+.slot li{margin-bottom:5px}
+/* ---- Browse-by-topic block (an HTML gadget in the main-bottom slot) ----
+Sits BELOW the recent-article list: newest work first, whole archive after. */
+.browse{border-top:2px solid var(--ink);margin-top:40px;padding-top:20px}
+.browse-head h2{font-family:var(--sans);font-size:1.15rem;font-weight:700;
+margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.browse-head p{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);margin:0}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+gap:20px 28px;margin:26px 0 8px}
+.topic h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 8px;
+border-bottom:2px solid var(--accent);padding-bottom:5px}
+.topic h3 span{color:var(--ink-soft);font-weight:400;letter-spacing:0}
+.topic ul{margin:0;padding:0;list-style:none}
+.topic li{margin-bottom:6px;line-height:1.4}
+.topic a{font-size:.92rem;text-decoration:none;color:var(--ink)}
+.topic a:hover{color:var(--accent);text-decoration:underline}
+.topics{display:block;margin:26px 0 8px}
+.topic{margin:0}
+.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;border-top:2px solid var(--ink);padding:14px 0;position:relative;padding-right:28px}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3em;font-weight:700;color:var(--accent);line-height:1}
+.topic[open]>summary::after{content:"\2212"}
+.topic>summary h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);text-transform:none;letter-spacing:-.01em;border-bottom:none;padding-bottom:0}
+.topic ul{margin:14px 0 20px;padding:0;list-style:none}
+/* ---- Pager & footer --------------------------------------------------- */
+.pager{display:flex;justify-content:space-between;gap:16px;
+border-top:2px solid var(--ink);margin-top:34px;padding:16px 0 0;
+font-family:var(--sans);font-size:.8rem;font-weight:700}
+.pager a{text-decoration:none}
+.site-foot{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 40px;
+font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
+.site-foot .widget{margin-bottom:12px}
+@media (max-width:640px){
+body{font-size:16px}
+.hero h2{font-size:1.55rem}
+.post-head h1{font-size:1.6rem}
+.site-head{position:static}
+}
+
+</style><div class='post-body'><div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<style>
+/* BW-OVERRIDE: black text on white background */
+
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+
+</style><style>
+/* === Design tokens (Open Color neutrals + Utopia-style fluid type + spacing scale) === */
+:root{
+  --oc-gray-0:#f8f9fa;--oc-gray-1:#f1f3f5;--oc-gray-2:#e9ecef;--oc-gray-3:#dee2e6;--oc-gray-4:#ced4da;
+  --oc-gray-5:#adb5bd;--oc-gray-6:#868e96;--oc-gray-7:#495057;--oc-gray-8:#343a40;--oc-gray-9:#212529;
+  --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--sp-7:3rem;
+  --radius:12px;--radius-sm:8px;
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);--shadow-2:0 2px 8px rgba(0,0,0,.06);
+  --step--1:clamp(.78rem,.75rem + .15vw,.85rem);
+  --step-0:clamp(.92rem,.88rem + .2vw,1rem);
+  --step-1:clamp(1.05rem,1rem + .3vw,1.2rem);
+  --step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem);
+  --surface:#fff;--surface-alt:var(--oc-gray-0);--border:var(--oc-gray-3);--text:#000;--text-mut:#333;
+}
+/* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+
+
+  :root {
+    --paper:#fbf9f5; --ink:#211e19; --ink-2:#5d564b; --jute:#7d6a4e;
+    --stencil:#1a6b45; --stencil-soft:#e7f0ea; --hair:#e3ddd1; --band:#f4f0e8;
+    --warn:#a34b22; --tab:#f7f4ee;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--paper); color:var(--ink);
+    font:18px/1.65 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; }
+  .mono { font-family:"SF Mono",Menlo,Consolas,monospace; }
+  .wrap { max-width:100%; }
+  .col { max-width:70ch; margin:0 auto; padding:0 22px; }
+  header.masthead { border-bottom:3px double var(--hair); padding:56px 0 36px; }
+  .eyebrow { font-family:"SF Mono",Menlo,Consolas,monospace; font-size:12px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--stencil); }
+  h1 { font-size:clamp(30px,5vw,46px); line-height:1.12; font-weight:600;
+    text-wrap:balance; margin:14px 0 16px; }
+  .dek { font-size:20px; line-height:1.5; color:var(--ink-2); text-wrap:balance; }
+  .byline { margin-top:22px; font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-size:12px; color:var(--jute); }
+  section { padding:40px 0 8px; }
+  .secno { font-family:"SF Mono",Menlo,Consolas,monospace; font-size:13px;
+    color:var(--stencil); letter-spacing:.12em; }
+  h2 { font-size:27px; line-height:1.2; margin:6px 0 18px; font-weight:600; text-wrap:balance; }
+  h3 { font-size:20px; margin:26px 0 10px; font-weight:600; }
+  p { margin:0 0 16px; }
+  p.lead { font-size:19px; }
+  a { color:var(--stencil); text-decoration-thickness:1px; text-underline-offset:2px; }
+  strong { font-weight:600; }
+  .band { background:var(--band); border-top:1px solid var(--hair);
+    border-bottom:1px solid var(--hair); padding:34px 0; margin:30px 0; }
+  figure { margin:0; }
+  figcaption { font-family:"SF Mono",Menlo,Consolas,monospace; font-size:12px;
+    color:var(--ink-2); margin-top:14px; line-height:1.6; }
+  .ladder { display:flex; flex-direction:column; gap:0; max-width:640px; margin:0 auto; }
+  .rung { display:grid; grid-template-columns:110px 1fr; gap:16px; align-items:center;
+    padding:13px 0; border-bottom:1px solid var(--hair); }
+  .rung:last-child { border-bottom:none; }
+  .rung .price { font-family:"SF Mono",Menlo,Consolas,monospace; font-size:17px;
+    font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }
+  .rung .what { font-size:15.5px; line-height:1.45; }
+  .rung .what b { display:block; font-size:16px; }
+  .rung .tagbuy, .rung .tagsell, .rung .taggive, .rung .taghold {
+    font-family:"SF Mono",Menlo,Consolas,monospace; font-size:10.5px; letter-spacing:.14em;
+    text-transform:uppercase; padding:1px 7px; border-radius:2px; margin-left:6px; }
+  .tagbuy  { background:var(--stencil-soft); color:var(--stencil); }
+  .tagsell { background:var(--tab); color:var(--jute); border:1px solid var(--hair); }
+  .taggive { background:var(--tab); color:var(--warn); border:1px solid var(--hair); }
+  .taghold { background:var(--tab); color:var(--ink-2); border:1px solid var(--hair); }
+  .tablewrap { overflow-x:auto; margin:18px 0; }
+  table { border-collapse:collapse; width:100%; font-size:15px; }
+  caption { text-align:left; font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-size:12px; color:var(--ink-2); padding-bottom:10px; letter-spacing:.06em; }
+  th { text-align:left; font-family:"SF Mono",Menlo,Consolas,monospace; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2);
+    border-bottom:2px solid var(--ink); padding:8px 12px 8px 0; }
+  td { padding:9px 12px 9px 0; border-bottom:1px solid var(--hair); vertical-align:top; }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums;
+    font-family:"SF Mono",Menlo,Consolas,monospace; font-size:14px; }
+  tr.hl td { background:var(--stencil-soft); }
+  .small { font-size:14px; color:var(--ink-2); }
+  .formula { background:var(--tab); border:1px solid var(--hair); border-left:3px solid var(--stencil);
+    padding:18px 22px; margin:20px 0; font-size:16.5px; }
+  .formula .mono { font-size:15px; }
+  .note { border-left:3px solid var(--jute); padding:2px 0 2px 18px; color:var(--ink-2);
+    font-size:16px; margin:20px 0; }
+  footer { border-top:3px double var(--hair); margin-top:56px; padding:28px 0 60px;
+    font-size:14px; color:var(--ink-2); }
+  ul, ol { padding-left:24px; margin:0 0 16px; }
+  li { margin-bottom:8px; }
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th,tr.hl td{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<div class="wrap">
+<header class="masthead"><div class="col">
+  <div class="eyebrow">Policy analysis &#183; Indian agriculture &#183; July 2026</div>
+  <h1>The Price of Grain</h1>
+  <p class="dek">How India prices its harvest &#8212; for farmers, for ration shops, for distilleries,
+  for the world market &#8212; and why pairing the Minimum Support <em>Price</em> with a Minimum
+  Support <em>Volume</em> is the design that creates value on both sides of the ledger.</p>
+  <div class="byline">FCI-warehouse-MSPvsMSV &#183; verified-source synthesis &#183; figures carry season vintages</div>
+</div></header>
+
+<section><div class="col">
+  <div class="secno">&#167; 1</div>
+  <h2>One kilogram of rice, six government prices</h2>
+  <p class="lead">India does not have <em>a</em> price of grain. It has a ladder of administered
+  prices, each one a policy lever, and the gaps between the rungs are where every subsidy,
+  every incentive, and every distortion in the system lives.</p>
+</div>
+<div class="band"><div class="col">
+  <figure>
+    <div class="ladder">
+      <div class="rung"><div class="price mono">&#8377;4,000<span class="small">/qtl*</span></div>
+        <div class="what"><b>FCI economic cost of rice <span class="taghold">holds at</span></b>
+        MSP + procurement incidentals + milling + freight + storage + interest. What a quintal actually costs the state by the time it sits in a godown.</div></div>
+      <div class="rung"><div class="price mono">&#8377;3,535</div>
+        <div class="what"><b>Paddy MSP in rice terms <span class="tagbuy">buys at</span></b>
+        KMS 2025-26 common paddy MSP &#8377;2,369/qtl &#247; 0.67 milling outturn. The farmer-side guarantee, converted to the commodity the state stores.</div></div>
+      <div class="rung"><div class="price mono">&#8377;2,800</div>
+        <div class="what"><b>OMSS reserve price &#8212; private trade <span class="tagsell">sells at</span></b>
+        What a private processor pays at FCI's weekly e-auction (Jan 2025 tiering).</div></div>
+      <div class="rung"><div class="price mono">&#8377;2,320</div>
+        <div class="what"><b>Rice for ethanol distilleries <span class="tagsell">sells at</span></b>
+        Fixed pan-India rate, ESY 2025-26 (was &#8377;2,250). Every quintal moves at ~&#8377;1,700 below economic cost &#8212; an off-books transfer to the blending programme.</div></div>
+      <div class="rung"><div class="price mono">&#8377;2,250</div>
+        <div class="what"><b>OMSS to states &amp; Bharat-brand channel <span class="tagsell">sells at</span></b>
+        &#8377;2,250 for state governments (12 LMT cap), &#8377;2,400 for NAFED/NCCF milling into Bharat Rice/Atta.</div></div>
+      <div class="rung"><div class="price mono">&#8377;300</div>
+        <div class="what"><b>NFSA central issue price <span class="taggive">gives at</span></b>
+        &#8377;3/kg rice under the Act &#8212; and &#8377;0 under PMGKAY free-grain. The terminal rung: 90% of offtake exits here.</div></div>
+    </div>
+    <figcaption>The rice ladder, 2025-26 vintages. *Economic cost is order-of-magnitude
+    (DFPD/FCI cost heads); every other rung is a notified rate. The state buys at rung 2,
+    carries to rung 1, and disposes at rungs 3&#8211;6 &#8212; the vertical gaps are the food subsidy.</figcaption>
+  </figure>
+</div></div>
+<div class="col">
+  <p>Three features of this ladder define Indian farm pricing:</p>
+  <ul>
+    <li><strong>The buy rung is a promise, not a market.</strong> MSP is announced for 23+
+    crops each season on CACP cost formulas (A2+FL +50%), but it binds only where a
+    procurement machine stands behind it &#8212; which means purchase centres, mandis, and godowns, not gazette
+    notifications.</li>
+    <li><strong>The sell rungs are policy dials.</strong> OMSS reserve prices, the ethanol
+    rate, and issue prices move by executive order &#8212; sometimes twice a season (rice-for-ethanol:
+    &#8377;2,800 &#8594; &#8377;2,250 in one January). Government adjusts the <em>disposal</em> price to steer
+    private demand the way a central bank adjusts repo.</li>
+    <li><strong>Parallel ladders exist per crop.</strong> Sugarcane runs the same
+    architecture in mirror image: a statutory floor mills must pay (FRP &#8377;355/qtl, +29% since
+    2019) against a frozen output price (sugar MSP &#8377;31/kg since Feb 2019) &#8212; a policy-made
+    squeeze that produced &#8377;16,087 crore of farmer arrears by February 2026.</li>
+  </ul>
+</div></section>
+
+<section><div class="col">
+  <div class="secno">&#167; 2</div>
+  <h2>What the farmer actually receives</h2>
+  <p>The distance between announced price and received price is the central empirical fact
+  of the system. Three measurements, all from verified official series:</p>
+  <h3>Coverage &#8212; who sells at MSP at all</h3>
+  <p>Among households that actually <em>sold</em> the crop, 13% of paddy sellers and 16% of
+ wheat sellers sold to a procurement agency (NSS 70th round unit data, 2012-13; the famous "6%"
+  figure divides by <em>all</em> agricultural households). Official season counts: ~119 lakh paddy farmers paid in KMS 2024-25; 25.1 lakh wheat farmers in RMS 2025-26. For the
+  other twenty-one MSP crops, coverage is a few percent in the best year and zero in most.</p>
+  <h3>Volume &#8212; the share of the harvest the promise reaches</h3>
+  <div class="tablewrap"><div class="tblwrap"><table>
+    <caption>PROCUREMENT AS % OF PRODUCTION &#183; LATEST FULL YEAR PER CROP</caption>
+    <tr><th>Crop</th><th class="num">Share</th><th>Agency</th><th>Reading</th></tr>
+    <tr class="hl"><td>Rice</td><td class="num">36.3%</td><td>FCI + states</td><td>standing operation</td></tr>
+    <tr class="hl"><td>Wheat</td><td class="num">22.6%</td><td>FCI + states</td><td>standing operation</td></tr>
+    <tr><td>Ragi</td><td class="num">14.8%</td><td>states (PDS mandates)</td><td>scheme-driven</td></tr>
+    <tr><td>Mustard</td><td class="num">8.8%</td><td>NAFED/PSS</td><td>crash-year episodes</td></tr>
+    <tr><td>Jowar / bajra / moong</td><td class="num">4&#8211;8%</td><td>mixed</td><td>episodic</td></tr>
+    <tr><td>Gram, sunflower, groundnut, masur</td><td class="num">&lt;2%</td><td>NAFED/PSS</td><td>token</td></tr>
+    <tr><td>Tur, urad, soybean, maize</td><td class="num">&#8776;0%</td><td>&#8212;</td><td>notification only</td></tr>
+  </table></div></div>
+  <h3>Reliability &#8212; the variance that breaks sowing decisions</h3>
+  <p>Year-to-year coefficient of variation of procured volume: rice 24%, wheat 21% &#8212; versus
+  gram 80%, tur 109%, bajra 110%, maize 120%, urad 143%, soybean 163%. Cotton is the pure
+  case: 124 lakh bales bought in 2019-20, <strong>zero</strong> in 2021-22 and 2022-23, ~100
+  lakh again in 2024-25. For a farmer choosing what to sow, a guarantee with 120%
+  variance is not a guarantee; it is a lottery whose ticket is a season's income.</p>
+  <div class="note">This is the precise sense in which "MSP for 23 crops" is really one
+  guarantee, one semi-guarantee, and twenty-one lotteries &#8212; and why the binding reform
+  variable is <em>volume</em>, not price.</div>
+</div></section>
+
+<section><div class="col">
+  <div class="secno">&#167; 3</div>
+  <h2>The trade boundary: export and import parity</h2>
+  <p>Domestic administered prices float inside a boundary set by world prices. The rules of
+  thumb per crop class:</p>
+  <ul>
+    <li><strong>Rice &#8212; exports clear the market, not the government's stock.</strong>
+    DGCI&amp;S unit values put non-basmati exports at <strong>&#8722;12% to +2%</strong> of the
+    MSP-derived cost of rice across FY24&#8211;26 (FY26: record 15.0 MMT at ~$390/t after the
+    Sep&#8211;Oct 2024 ban unwind; basmati earns +100&#8211;140%). Private exporters at market paddy
+    prices clear ~40% of world trade &#8212; but the <em>state's</em> costlier procured stock
+    cannot exit at these unit values without loss, which is why its disposal runs through
+    discounted ethanol (&#8377;2,320) and OMSS instead. The 2022&#8211;24 bans were the same boundary
+    managed in the other direction.</li>
+    <li><strong>Maize &#8212; export parity below MSP, ethanol above it.</strong> Indian maize
+    FOB is ~$220&#8211;245/t &#8776; &#8377;1,890&#8211;2,110/qtl against a &#8377;2,400 MSP. Exports cannot absorb an
+    MSV purchase; the ethanol loop (NAFED delivery to distilleries at &#8377;2,291/qtl, blending
+    mandate demand) is the channel that can &#8212; and already does.</li>
+    <li><strong>Pulses &#8212; the parity sign just flipped hard.</strong> DGCI&amp;S FY26:
+    tur lands at CIF <strong>&#8377;5,659/qtl &#8212; 29% below its &#8377;8,000 MSP</strong> (from +10%
+    <em>above</em> in FY25); masur &#8722;23%, chana &#8722;15%, yellow peas &#8722;44% vs gram MSP. Tariffs
+    are visibly chasing the gap (chana and masur to 10%, yellow peas to 30%) while
+    tur/urad stay duty-free to Mar-2026 under the Mozambique&#8211;Myanmar&#8211;Malawi pacts. A
+    pulses MSV without tariff coordination is fiscally endless &#8212; duty policy and the
+    volume guarantee are one instrument, not two. Edible oils are the extreme case:
+    FY26 CIF undercuts MSP-linked crush economics by 30&#8211;40% even after duty, on a
+    $19.5&nbsp;bn import bill.</li>
+    <li><strong>Wheat &#8212; the marginal case.</strong> Export-viable only in world-price
+    spikes (2021-22: record procurement <em>and</em> record exports, then the May 2022 ban
+    a fortnight after a heatwave). Both boundaries are policy-active.</li>
+  </ul>
+  <div class="note">Rice, pulses, and oils figures: DGCI&amp;S/APEDA unit values, FY24&#8211;26
+  (FY26 full-year provisional) &#8212; the complete 67-row table is
+  <span class="mono">data/trade_price_parity.csv</span> in the repository, with per-row
+  sources, fx rates, and basis notes. Maize FOB is a trade-market quote (early 2026,
+  secondary).</div>
+</div></section>
+
+<section><div class="col">
+  <div class="secno">&#167; 4</div>
+  <h2>The MSP + MSV ratio: one number, tuned per crop</h2>
+  <p class="lead">Define <strong>θ (the MSV ratio)</strong>: the share of a crop's marketed
+  surplus the government commits &#8212; in advance, before sowing &#8212; to purchase at MSP.
+  Today θ is an accident of infrastructure: ~0.4 for rice, ~0.3 for wheat, ~0 for
+  everything else. The reform is to make θ an explicit, published policy variable.</p>
+
+  <h3>Why a partial ratio creates outsized farmer value</h3>
+  <div class="formula">
+    Farmer revenue per unit: <span class="mono">R = θ&#183;MSP + (1&#8722;θ)&#183;P<sub>mkt</sub></span><br>
+    Revenue variance: <span class="mono">Var(R) = (1&#8722;θ)&#178;&#183;Var(P<sub>mkt</sub>)</span>
+  </div>
+  <p>Variance falls with the <em>square</em> of the ratio: a θ of just 0.3 removes 51% of
+  price-revenue variance; θ = 0.5 removes 75%. The first tranche of guaranteed volume does
+  most of the stabilization work &#8212; because what destroys farm incomes is the crash-year tail,
+  and a pre-committed volume floor is exactly a put option on that tail. Three further
+  farmer-side effects compound it:</p>
+  <ul>
+    <li><strong>Credit:</strong> a government purchase commitment is bankable collateral;
+    kisan-credit pricing against an assured θ&#183;MSP cash flow beats pricing against a lottery.</li>
+    <li><strong>Sowing signal:</strong> announced <em>before</em> sowing, per-district
+    volume caps steer acreage the way Haryana's &#8377;7,000/acre diversion payments have failed
+    to &#8212; because they change expected revenue, not just add a side payment.</li>
+    <li><strong>Bargaining floor:</strong> even the (1&#8722;θ) share sold privately clears
+    nearer MSP when traders know the state stands ready at the margin &#8212; the documented
+    mandi-price support effect of procurement presence.</li>
+  </ul>
+
+  <h3>Why a capped ratio creates government value</h3>
+  <div class="formula">
+    Fiscal exposure: <span class="mono">C = θ&#183;Q&#183;(MSP + carrying &#8722; disposal price)</span> &#8212; bounded ex-ante by the cap.<br>
+    Against: open-ended MSP-for-all &#8776; &#8377;3.4 lakh crore/yr (+95% on the food subsidy).
+  </div>
+  <ul>
+    <li><strong>The exposure is capped and known at budget time</strong> &#8212; unlike the
+    sugarcane FRP model, where an uncapped statutory obligation with no viability check
+    manufactured &#8377;16,087 crore of arrears, or uncapped bajra buying that ended in
+    loss-making resale.</li>
+    <li><strong>The purchased volume is a merchant book, not a write-off.</strong> The state
+    already monetizes stock through four proven channels: OMSS e-auctions to processors
+    (71+ LMT wheat in 2023-24), the ethanol programme (52&#8211;72 LMT rice; a tender clause now
+    <em>mandates</em> 40% FCI-grain sourcing for distillery supplies), Bharat-brand retail,
+    and PDS/welfare offtake. MSV extends a working disposal machine to new crops &#8212; pulses to
+    dal mills, maize to feed and distilleries, millets to PDS/ICDS mandates.</li>
+    <li><strong>Storage physics is respected.</strong> Public capacity (<strong>~777 LMT covered</strong>)
+    caps feasible procurement at roughly 30% of the ~261 MT marketed surplus of the major
+    crops. <em>Basis:</em> 776.66 LMT is <strong>conventional covered</strong> capacity &mdash; FCI-owned plus hired (CWC, SWC, PEG, PWS-2010, private, state government) plus capacity held by state agencies &mdash; from the DFPD Foodgrain Bulletin, November 2024. It deliberately <em>excludes</em> the 64.62 LMT modern silo programme (hub-and-spoke Phase-I awarded, rail/road-fed and circuit-model silos, and units under construction), which is a later vintage (PIB, 31 December 2025) and not yet fully operational. Adding it gives the <strong>841 LMT</strong> all-agency figure used in the state-map piece; the <strong>917.83 LMT</strong> figure quoted elsewhere is FCI+State <em>covered plus CAP</em> (open-plinth) storage at 1 July 2025, and open plinth is not usable for the multi-season buffers modelled here. The three numbers differ by scope, not by disagreement. θ per crop is chosen <em>inside</em> that envelope &#8212; the constraint becomes a
+    design input instead of a crisis.</li>
+    <li><strong>Counter-cyclical release earns the spread.</strong> Buy at MSP in the glut,
+    release through OMSS in the tight year: the state's buffer function, done deliberately,
+    partially self-finances.</li>
+  </ul>
+
+  <h3>The grain book: what the state would buy, and where it would sell</h3>
+  <p>Priced against the market as it stands <strong>today</strong> &#8212; every mandi report in
+  the country on 23 July 2026 (17,247 Agmarknet records), medians per crop against
+  2025-26 MSPs:</p>
+  <div class="tablewrap"><div class="tblwrap"><table>
+    <caption>THE MSV GRAIN BOOK &#183; MANDI MEDIANS 23 JUL 2026 &#183; MSP 2025-26 &#183; &#8377;/QTL</caption>
+    <tr><th>Crop</th><th class="num">θ</th><th class="num">MSP<br>(buys at)</th><th class="num">Mandi today<br>(% reports &lt; MSP)</th><th>Sells to &#8594; at</th></tr>
+    <tr class="hl"><td><b>Bajra</b></td><td class="num">0.20</td><td class="num">2,775</td><td class="num">2,382 <span class="small">(92%)</span></td><td>PDS/ICDS millet mandates; feed mills</td></tr>
+    <tr class="hl"><td><b>Ragi</b></td><td class="num">0.20</td><td class="num">4,886</td><td class="num">3,550 <span class="small">(93%)</span></td><td>state PDS (Karnataka model)</td></tr>
+    <tr class="hl"><td><b>Jowar</b></td><td class="num">0.20</td><td class="num">3,699</td><td class="num">3,400 <span class="small">(56%)</span></td><td>PDS + feed</td></tr>
+    <tr class="hl"><td><b>Maize</b></td><td class="num">0.15&#8211;0.25</td><td class="num">2,400</td><td class="num">2,200 <span class="small">(75%)</span></td><td>ethanol distilleries &#8594; &#8377;2,291 (NAFED loop); feed. Export FOB &#8776; &#8377;1,890&#8211;2,110 &#8212; not a channel</td></tr>
+    <tr class="hl"><td><b>Tur</b></td><td class="num">0.20&#8211;0.30</td><td class="num">8,000</td><td class="num">7,531 <span class="small">(70%)</span></td><td>dal-mill e-auctions (NAFED buffer model). Import CIF &#8377;5,659 (&#8722;29% vs MSP), duty-free to Mar-2026 &#8212; duty coordination is a precondition</td></tr>
+    <tr class="hl"><td><b>Moong</b></td><td class="num">0.20&#8211;0.30</td><td class="num">8,768</td><td class="num">6,901 <span class="small">(84%)</span></td><td>dal mills; PDS pulse pilot</td></tr>
+    <tr class="hl"><td><b>Groundnut</b></td><td class="num">0.10&#8211;0.15</td><td class="num">7,263</td><td class="num">7,000 <span class="small">(55%)</span></td><td>own-account crushing (HAFED oil-mill model); HPS exports viable</td></tr>
+    <tr><td>Wheat</td><td class="num">0.30 hold</td><td class="num">2,425</td><td class="num">2,500 <span class="small">(19%)</span></td><td>OMSS to millers &#8594; &#8377;2,550 reserve; NFSA</td></tr>
+    <tr><td>Paddy/rice</td><td class="num">0.35 hold</td><td class="num">2,369</td><td class="num">2,385 <span class="small">(36%)</span></td><td>NFSA &#8377;300; ethanol &#8377;2,320; OMSS &#8377;2,250&#8211;2,800. Export FOB &#8776; &#8377;2,910&#8211;3,080 (differs from the ~&#8377;3,111&#8211;3,606 record-year/$390-per-tonne basis used in Section 3) vs &#8377;3,535 state cost &#8212; exit blocked</td></tr>
+    <tr><td>Gram</td><td class="num">dormant</td><td class="num">5,650</td><td class="num">5,900 <span class="small">(22%)</span></td><td>&#8212;</td></tr>
+    <tr><td>Urad</td><td class="num">dormant</td><td class="num">7,800</td><td class="num">8,800 <span class="small">(31%)</span></td><td>&#8212;</td></tr>
+    <tr><td>Mustard / soybean</td><td class="num">dormant</td><td class="num">5,950 / 5,328</td><td class="num">7,400 / 7,050 <span class="small">(4% / 2%)</span></td><td>&#8212;</td></tr>
+    <tr><td>Cotton</td><td class="num">0.15 floor</td><td class="num">7,710</td><td class="num">8,400 <span class="small">(23%)</span></td><td>CCI &#8594; mills (dormant today)</td></tr>
+    <tr><td>Perishables</td><td class="num">0</td><td class="num">&#8212;</td><td class="num">&#8212;</td><td>deficiency payments on e-NAM clearing prices + contracted processors</td></tr>
+  </table></div></div>
+  <p>Read the highlighted rows: <strong>the grains MSV would actually buy today are the
+  millets (bajra, ragi, jowar), maize, tur, moong, and groundnut</strong> &#8212; the crops where
+  a majority of mandi reports sit below MSP right now. Mustard, soybean, urad, gram, and
+  cotton trade <em>above</em> MSP today: their θ costs nothing while dormant. That is the
+  self-limiting property of the design &#8212; the volume guarantee spends only where and when
+  distress exists, and every buy-row has a named sell-channel at a stated price before the
+  first quintal moves.</p>
+
+  <h3>Three design rules the evidence keeps repeating</h3>
+  <ol>
+    <li><strong>Announce θ&#183;Q before sowing; never after.</strong> Post-harvest volume
+    decisions are politics; pre-sowing volume commitments are policy.</li>
+    <li><strong>Contract the exit before the entry.</strong> Every quintal procured under
+    MSV has a named disposal channel &#8212; a standing e-auction calendar, a blending-mandate
+    allocation, a PDS quota &#8212; priced and published. The July 2023 ethanol pause showed what
+    happens to processor trust when the exit is discretionary.</li>
+    <li><strong>Budget the rung-gap openly.</strong> Selling at &#8377;2,320 what costs &#8377;4,000 is
+    a legitimate policy transfer &#8212; when it appears as a line item, not as FCI balance-sheet
+    sediment.</li>
+  </ol>
+</div></section>
+
+<section><div class="col">
+  <div class="secno">&#167; 5</div>
+  <h2>The value split, stated plainly</h2>
+  <p><strong>For the farmer</strong>, MSP+MSV converts an announced price into a bankable
+  quantity: three-quarters of revenue variance removed at θ = 0.5, credit access against a
+  sovereign cash flow, and a sowing-time signal that actually moves acreage.</p>
+  <p><strong>For the government</strong>, it converts an open-ended moral commitment into a
+  budgeted, storage-feasible position with four working monetization channels &#8212; at roughly a
+  third of the fiscal cost of a universal legal MSP, with the crash-year tail (the part that
+  causes farm distress and its politics) covered first.</p>
+  <p><strong>The one-line design:</strong> <em>MSP without volume is a promise; MSV without
+  disposal is a warehouse fire in slow motion. The instrument that works is a pre-announced
+  volume ratio with a pre-sold exit.</em></p>
+</div></section>
+
+<footer><div class="col">
+  <p><b>Sources &amp; method.</b> Synthesis of a 102-agent adversarially-verified research run
+  (23/25 claims confirmed 3-0 or 2-1; DFPD Annual Report 2024-25, PIB Year-End Review 2025,
+  IEG WP379/WP420, RAS 2021, data.gov.in Rajya Sabha annexures), the Haryana
+  forward/backward-linkage brief (HAFED, OMSS, BPCL ethanol tenders via ChiniMandi), ChiniMandi
+  sugar-season 2025-26 statistics, and the project's own datasets (procurement, stocks vs norms,
+  offtake by scheme, storage capacity, production-vs-procurement, IISFM Phase-5 depots).
+  Full citations, per-claim verification votes, and every CSV:
+  <span class="mono">github.com/herrrickshaw/FCI-warehouse-MSPvsMSV</span>.
+  Mandi medians: full Agmarknet daily feed, 23 Jul 2026 (17,247 records, data.gov.in).
+  Trade parity: DGCI&amp;S/APEDA unit values FY24&#8211;26 (67-row table in the repository).
+  Figures carry season vintages; the &#8377;4,000 economic-cost rung is order-of-magnitude.
+  This is research synthesis, not investment or policy advice.</p>
+</div></footer>
+<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--oc-gray-0:#f8f9fa!important;--oc-gray-1:#f1f3f5!important;--oc-gray-2:#e9ecef!important;--oc-gray-3:#dee2e6!important;--oc-gray-4:#ced4da!important;--oc-gray-5:#adb5bd!important;--oc-gray-6:#868e96!important;--oc-gray-7:#495057!important;--oc-gray-8:#343a40!important;--oc-gray-9:#212529!important;--sp-1:.25rem!important;--sp-2:.5rem!important;--sp-3:.75rem!important;--sp-4:1rem!important;--sp-5:1.5rem!important;--sp-6:2rem!important;--sp-7:3rem!important;--radius:12px!important;--radius-sm:8px!important;--shadow-1:0 1px 2px rgba(0,0,0,.04)!important;--shadow-2:0 2px 8px rgba(0,0,0,.06)!important;--step--1:clamp(.78rem,.75rem + .15vw,.85rem)!important;--step-0:clamp(.92rem,.88rem + .2vw,1rem)!important;--step-1:clamp(1.05rem,1rem + .3vw,1.2rem)!important;--step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem)!important;--surface:#fff!important;--surface-alt:var(--oc-gray-0)!important;--border:var(--oc-gray-3)!important;--text:#000!important;--text-mut:#333!important;color-scheme:light!important;}</style></div>

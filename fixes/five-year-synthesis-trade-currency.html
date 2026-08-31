@@ -1,0 +1,516 @@
+<div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<meta name="hz:canvas-width" content="1180">
+<style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+</style><style>
+  :root {
+    color-scheme: light;
+    --page-bg:      #eef1ea;
+    --surface:      #fcfcfa;
+    --ink:          #14180f;
+    --ink-2:        #4f5348;
+    --ink-muted:    #82867a;
+    --rule:         #d7dace;
+    --rule-strong:  #c3c7b8;
+    --accent:       #1f5f5b;
+    --accent-soft:  #dbe9e6;
+    --alert:        #a5402c;
+    --alert-soft:   #f3ded7;
+    --warn:         #c98a1f;
+    --warn-soft:    #f3e9d5;
+    --mismatch:     #7a5aa8;
+    --mismatch-soft:#e7defa;
+    --data-line:    #2a78d6;
+    --neg-bar:      #a5402c;
+    --pos-bar:      #2a78d6;
+    --line-3:       #c98a1f;
+    --chart-surface:#fcfcfb;
+    --chart-grid:   #e1e0d9;
+    --chart-axis:   #c3c2b7;
+    --font-display: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --font-body: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-mono: "IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  }
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg:#12151a; --surface:#1a1e21; --ink:#f2f1ea; --ink-2:#c1c4b7; --ink-muted:#8b8f83;
+    --rule:#2a2e28; --rule-strong:#383c33; --accent:#58bdb5; --accent-soft:#1d3634; --alert:#e0785f; --alert-soft:#3a241d;
+    --warn:#e0b23f; --warn-soft:#3a3220; --mismatch:#b39ce0; --mismatch-soft:#2e2540; --data-line:#3987e5;
+    --neg-bar:#e0785f; --pos-bar:#3987e5; --line-3:#e0b23f;
+    --chart-surface:#1a1a19; --chart-grid:#2c2c2a; --chart-axis:#383835;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page-bg:#eef1ea; --surface:#fcfcfa; --ink:#14180f; --ink-2:#4f5348; --ink-muted:#82867a;
+    --rule:#d7dace; --rule-strong:#c3c7b8; --accent:#1f5f5b; --accent-soft:#dbe9e6; --alert:#a5402c; --alert-soft:#f3ded7;
+    --warn:#c98a1f; --warn-soft:#f3e9d5; --mismatch:#7a5aa8; --mismatch-soft:#e7defa; --data-line:#2a78d6;
+    --neg-bar:#a5402c; --pos-bar:#2a78d6; --line-3:#c98a1f;
+    --chart-surface:#fcfcfb; --chart-grid:#e1e0d9; --chart-axis:#c3c2b7;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .bulletin { background: var(--page-bg); color: var(--ink); font-family: var(--font-body); padding: 40px 20px 56px; display: flex; justify-content: center; }
+  .sheet { width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 32px; }
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; gap: 10px; align-items: center; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.2vw, 33px); margin: 2px 0 0; line-height: 1.25; text-wrap: balance; letter-spacing: -0.01em; }
+  .dek { font-size: 14px; color: var(--ink-2); max-width: 80ch; line-height: 1.55; margin: 4px 0 0; }
+  .source-line { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 6px; }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .stat-tile { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); }
+  .stat-value { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 12.5px; color: var(--ink-2); }
+  .stat-sub b { color: var(--ink); }
+
+  section.block { display: flex; flex-direction: column; gap: 14px; }
+  .block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--rule-strong); padding-bottom: 8px; }
+  .block-title { font-family: var(--font-display); font-size: 21px; margin: 0; }
+  .block-note { font-size: 12.5px; color: var(--ink-muted); max-width: 50ch; text-align: right; }
+
+  .chart-card { background: var(--chart-surface); border: 1px solid var(--rule-strong); padding: 20px 22px 14px; position: relative; }
+  .chart-card svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .cat-label { font-family: var(--font-body); font-size: 12px; fill: var(--ink-2); }
+  .bar-label { font-family: var(--font-mono); font-size: 11px; fill: var(--ink); }
+  .axis-label { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ink-muted); }
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--ink); color: var(--page-bg);
+    font-family: var(--font-mono); font-size: 11px; padding: 7px 10px; border-radius: 2px; line-height: 1.6;
+    opacity: 0; transition: opacity 0.08s ease; white-space: nowrap; z-index: 5; max-width: 320px; text-wrap: balance;
+  }
+  .legend-note { font-size: 12px; color: var(--ink-muted); line-height: 1.55; max-width: 84ch; }
+  .legend-note b { color: var(--ink-2); }
+  .legend-row { display: flex; gap: 18px; flex-wrap: wrap; font-size: 11.5px; color: var(--ink-2); font-family: var(--font-mono); }
+  .legend-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  .twin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .twin-grid { grid-template-columns: 1fr; } }
+
+  .prose { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; line-height: 1.65; color: var(--ink-2); max-width: 84ch; }
+  .prose p { margin: 0; }
+  .prose b { color: var(--ink); }
+
+  .timeline { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .timeline-row { background: var(--surface); padding: 14px 20px; display: grid; grid-template-columns: 96px 1fr; gap: 18px; }
+  .timeline-date { font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.03em; padding-top: 2px; }
+  .timeline-body { display: flex; flex-direction: column; gap: 4px; }
+  .timeline-head { font-size: 13.5px; font-weight: 600; }
+  .timeline-text { font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+  .timeline-text b { color: var(--ink); }
+
+  .verdict {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 18px 22px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .verdict-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+  .verdict-answer { font-family: var(--font-display); font-size: 20px; }
+  .verdict-sub { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .verdict-sub a { color: var(--ink); }
+
+  details.table-view { border-top: 1px solid var(--rule-strong); padding-top: 10px; }
+  details.table-view summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2); font-family: var(--font-mono); }
+  .data-table-wrap { overflow-x: auto; margin-top: 12px; }
+  table.data-table { border-collapse: collapse; width: 100%; font-family: var(--font-mono); font-size: 11px; }
+  table.data-table th, table.data-table td { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.data-table th:first-child, table.data-table td:first-child { text-align: left; }
+  table.data-table thead th { color: var(--ink-muted); font-weight: 500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; }
+
+  .errata {
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--alert); background: var(--surface);
+    padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .errata-title { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--alert); }
+  .errata ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .errata li { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .errata li b { color: var(--ink); }
+
+  footer.colophon { text-align: center; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); padding-top: 8px; }
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th,table.data-table th,table.data-table td,table.data-table thead th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+
+<div class="bulletin">
+  <div class="sheet">
+    <div class="masthead">
+      <div class="eyebrow">MoSPI Dataset Analysis &#8212; Statistical Bulletin &#8212; Capstone</div>
+      <h1>Five years, one line: imports grew nearly six times faster than exports &#8212; and a services surplus, not policy, absorbed most of the gap</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+<p class="gs-revised" data-gs-revision-v1="1" style="font-size:.8rem;color:#555;margin:0 0 14px">Revised <time datetime="2026-08-06" itemprop="dateModified">6 August 2026</time> &middot; v1.0.1 &middot; design and readability fixes</p>
+
+      <p class="dek">A synthesis across every thread in this repo, re-cut to a single consistent window: FY2021-22 to FY2025-26. Pulls together the trade totals, the goods-vs-services balance, the rupee, GDP growth, forex reserves, and the PLI policy timeline that the rest of this report examined one bulletin at a time.</p>
+      <div class="source-line">SOURCES: this repo's own tradestat_hsn_export_import, services_trade_and_overall_balance, rbi_forex_reserves, rbi_usd_inr_exchange_rate, gdp_growth_rate and sector/PLI datasets (see each chart above) &#8212; recombined here, no new data collection.</div>
+    </div>
+
+    <div class="stat-strip" id="statStrip"></div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">Exports vs. imports vs. the rupee, indexed to FY2021-22 = 100</h2>
+        <p class="block-note">One axis, one base year &#8212; the cleanest way to compare three series measured in different units.</p>
+      </div>
+      <div class="chart-card">
+        <svg id="indexChart" viewBox="0 0 1000 380" preserveAspectRatio="none"></svg>
+        <div class="tooltip" id="indexTooltip"></div>
+      </div>
+      <div class="legend-row">
+        <span><span class="legend-swatch" style="background:var(--neg-bar)"></span>Imports</span>
+        <span><span class="legend-swatch" style="background:var(--pos-bar)"></span>Exports</span>
+        <span><span class="legend-swatch" style="background:var(--line-3)"></span>Rupee (INR per US$, FY average)</span>
+      </div>
+      <p class="legend-note"><b>Imports grew 26.6% over the five years ($613.1bn &#8594; $776.0bn); exports grew 4.7% ($422.0bn &#8594; $441.7bn)</b> &#8212; a growth ratio of roughly 5.7:1. The rupee's FY-average depreciation (74.50 &#8594; 84.68, +13.7% through FY2024-25) tracks the import bill more closely than the export line, consistent with this repo's currency bulletin: a weaker rupee should help exporters, but it hasn't been enough to close the gap. The rupee's slide has since accelerated well past this indexed window &#8212; spot INR/USD hit 96.37 by mid-July 2026, up 11.9% in the twelve months from July 2025 alone.</p>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">The goods deficit widened by $92.5bn &#8212; the services surplus covered $81.3bn of it</h2>
+        <p class="block-note">FY2021-22 to FY2024-25 (FY2025-26 services data not yet published).</p>
+      </div>
+      <div class="chart-card">
+        <svg id="balanceChart" viewBox="0 0 1000 380" preserveAspectRatio="none"></svg>
+        <div class="tooltip" id="balanceTooltip"></div>
+      </div>
+      <div class="legend-row">
+        <span><span class="legend-swatch" style="background:var(--neg-bar)"></span>Goods balance (deficit)</span>
+        <span><span class="legend-swatch" style="background:var(--pos-bar)"></span>Services net (surplus)</span>
+      </div>
+      <p class="legend-note">The goods deficit went from <b>-$191.0bn to -$283.5bn</b> (+48.4%) while the services surplus nearly doubled, from <b>$107.6bn to $188.9bn</b> (+75.6%). Net effect: the overall gap widened by only <b>$11.1bn</b> ($83.5bn &#8594; $94.6bn) &#8212; services absorbed roughly <b>88% of the extra goods shortfall</b>. This is the same IT/professional-services strength this repo's trade-balance bulletin already flagged as India's real external cushion, just measured over five years instead of one.</p>
+    </section>
+
+    <div class="twin-grid">
+      <section class="block">
+        <div class="block-head">
+          <h2 class="block-title" style="font-size:17px;">GDP growth, latest estimate</h2>
+        </div>
+        <div class="chart-card">
+          <svg id="gdpChart" viewBox="0 0 460 260" preserveAspectRatio="none"></svg>
+          <div class="tooltip" id="gdpTooltip"></div>
+        </div>
+        <p class="legend-note">Real GDP growth ran 10% &#8594; 8% &#8594; 9% &#8594; 6% &#8594; 7% (First Advance Estimate) across the five years &#8212; none of it near the FY2020-21 COVID trough, but the FY2024-25 print is the softest of the five.</p>
+      </section>
+      <section class="block">
+        <div class="block-head">
+          <h2 class="block-title" style="font-size:17px;">Forex reserves, start of each FY</h2>
+        </div>
+        <div class="chart-card">
+          <svg id="forexChart" viewBox="0 0 460 260" preserveAspectRatio="none"></svg>
+          <div class="tooltip" id="forexTooltip"></div>
+        </div>
+        <p class="legend-note">Reserves grew from $588.0bn (Apr-2021) to $675.2bn (RBI Weekly Statistical Supplement, retrieved 10 Jul 2026 &#8212; a later vintage than this bulletin's other datasets, which end June 2025) &#8212; up 14.8%, well behind the import bill's 26.6% growth over the same window, so import-cover in months has quietly thinned. The path also turned: reserves peaked at $728.5bn on 27 Feb 2026, then fell to a $666.9bn trough on 26 Jun 2026 &#8212; an 8.5% peak-to-trough drawdown &#8212; so the final year of this window subtracted from reserves rather than adding to them.</p>
+      </section>
+    </div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">The PLI policy clock, compressed to five years</h2>
+        <p class="block-note">Every scheme milestone this report has documented, in one sequence.</p>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <div class="verdict">
+      <div class="verdict-label">What five years of data actually says</div>
+      <div class="verdict-answer">The policy response has been real and well-funded &#8212; but it hasn't yet bent the two curves that matter: import growth still outpaces export growth by nearly 6:1, and the country-concentration this repo mapped (China on imports, USA on exports) hasn't materially shifted.</div>
+      <div class="verdict-sub">This repo's <a href="sector_country_priority_and_pli_coverage.html">import-side</a> and <a href="export_destination_priority_and_pli_coverage.html">export-side</a> bulletins found China still supplied ~62% of India's electronic components in the 2020-22 data (more recent estimates put China alone at ~40% plus Hong Kong ~16%) despite PLI dating to April 2020, and the USA is a top-8 destination in 11 of 12 growth export chapters. Five years of PLI outlays (&#8377;1.97 lakh crore committed across 14 sectors &#8212; the outlay announced with the 2020-21 Budget cycle and still PIB's standard figure through December 2025; one mid-2025 PIB release cites a revised &#8377;1.91 lakh crore) sit alongside a services surplus that did more to stabilise the external balance than any single scheme &#8212; not a contradiction, but a reminder that this report's own <a href="rbi_forex_reserves_trend.html">currency</a> and <a href="country_trade_deficit_and_policy_history.html">country-deficit</a> findings point the same direction: the rupee's slide and the import bill are moving together, and the offset is coming from where India already has a structural advantage (services), not from where five years of targeted incentives have been aimed (goods-import substitution).</div>
+    </div>
+
+    <details class="table-view">
+      <summary>View the five-year headline table</summary>
+      <div class="data-table-wrap"><table class="data-table" id="summaryTable"></table></div>
+    </details>
+
+    <div class="errata">
+      <div class="errata-title">Errata &amp; methodology caveats</div>
+      <ul>
+        <li><b>This is a synthesis, not new data collection</b> &#8212; every figure here is re-derived from datasets already retrieved for other bulletins in this repo (see each chart's own errata for original sourcing and retrieval dates).</li>
+        <li><b>The rupee's indexed line covers only FY2021-22 to FY2024-25</b> (FY-average basis) &#8212; FY2025-26 has no completed FY average yet, so it's shown as a labelled spot-rate marker (96.37, 17 Jul 2026) rather than extending the indexed line, to avoid mixing an annual average with a single-day spot rate on the same axis.</li>
+        <li><b>Services trade data runs one year behind goods trade</b> (published through FY2024-25 vs. FY2025-26 for goods) &#8212; the goods-vs-services balance chart and the "88% cushion" figure are stated for FY2021-22 to FY2024-25 accordingly, not the full five-year window used elsewhere on this page.</li>
+        <li><b>Forex reserves are shown at the start of each fiscal year (April)</b> rather than fiscal-year average, to make the series comparable to a stock measured at a point in time rather than a flow.</li>
+        <li><b>"88% cushion" and "5.7:1 growth ratio" are this bulletin's own arithmetic on public data</b>, not official government framing &#8212; see the underlying JSON for the exact figures and formulas.</li>
+        <li>Underlying data: <a href="../data/five_year_trade_currency_synthesis_2026-07-18.json">data/five_year_trade_currency_synthesis_2026-07-18.json</a>.</li>
+      </ul>
+    </div>
+
+    <footer class="colophon">herrrickshaw/mospi-dataset-analysis &#8212; a synthesis of this repo's own prior bulletins; not an official government assessment</footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var years = ["FY2021-22", "FY2022-23", "FY2023-24", "FY2024-25", "FY2025-26"];
+  var exportsUsdM = [422004.4, 451070.0, 437072.1, 437704.5, 441745.9];
+  var importsUsdM = [613052.1, 715968.9, 678214.8, 721200.3, 776013.7];
+  var rupeeFyAvg = [74.50, 80.36, 82.79, 84.68, null];
+  var rupeeSpotLatest = { date: "2026-07-17", value: 96.3665 };
+
+  var goodsBalance = [-191.0, -264.9, -241.1, -283.5];
+  var servicesNet = [107.6, 143.6, 162.8, 188.9];
+  var overallBalance = [-83.5, -121.3, -78.3, -94.6];
+
+  var gdpRealPct = [10, 8, 9, 6, 7];
+  var gdpStage = ["Second Revised Estimates", "Final Estimates", "First Revised Estimates", "Provisional Estimates", "First Advance Estimates"];
+
+  var forexStartOfFy = [588.0, 596.7, 590.1, 640.2, 688.4];
+  var forexLatest = { date: "2026-07", value: 675.2 };
+
+  var timeline = [
+    { date: "Sep 2021", head: "PLI Auto &amp; Auto Components approved", text: "\u20B925,938 crore, FY2022-23 to FY2026-27 &#8212; targets battery-electric &amp; hydrogen fuel-cell vehicles (HS87)." },
+    { date: "Sep 2021", head: "PLI Textiles (MMF) notified", text: "\u20B910,683 crore &#8212; deliberately shifts focus to man-made-fibre apparel/technical textiles, away from the cotton-based apparel (HS61/62) that actually drives export growth." },
+    { date: "2022&#8211;2024", head: "PLI White Goods completes all 4 selection rounds", text: "\u20B911,198 crore committed, all 85 companies selected, \u20B91,90,050 crore cumulative production target." },
+    { date: "Aug 2023", head: "PLI expanded to 14 sectors", text: "Cumulative outlay reaches \u20B91.97 lakh crore across mobile manufacturing, electronics, pharma, textiles, steel, auto, batteries, solar, drones and more." },
+    { date: "2024", head: "NMEO-Oilseeds mission launched", text: "\u20B910,103 crore through FY2030-31, layered on the 2021 NMEO-Oil Palm mission &#8212; India still imports an estimated 57% of edible oil." },
+    { date: "Nov 2025", head: "PLI Specialty Steel round 1.2 launched", text: "Follows \u20B944,106 crore committed in rounds 1.0/1.1; targets 42 million tonnes of production by FY2026-27." },
+    { date: "Feb 2026", head: "Specialty Steel 1.2 MoUs signed", text: "85 projects, 55 companies, \u20B911,887 crore, 8.7 million tonnes of new capacity &#8212; one of the few schemes matched on both the import- and export-growth sides of the same HS chapter (72/73)." },
+    { date: "FY2026-27", head: "PLI Auto budget allocation nearly triples", text: "\u20B95,939.87 crore approved, up from the FY2025-26 revised estimate of \u20B92,091.26 crore." }
+  ];
+
+  var svgns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs) {
+    var e = document.createElementNS(svgns, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function fmtBn(v) { return (v < 0 ? "-$" : "$") + Math.abs(v).toFixed(1) + "bn"; }
+
+  var statStrip = document.getElementById("statStrip");
+  var stats = [
+    { label: "Import growth, 5yr", value: "+26.6%", sub: "$613.1bn &#8594; $776.0bn (FY2021-22 &#8594; FY2025-26)" },
+    { label: "Export growth, 5yr", value: "+4.7%", sub: "$422.0bn &#8594; $441.7bn &#8212; imports grew ~5.7&#215; faster" },
+    { label: "Rupee, FY avg 4yr", value: "+13.7%", sub: "74.50 &#8594; 84.68 INR/US$; spot now 96.37 (17 Jul 2026)" },
+    { label: "Services surplus, 4yr", value: "+75.6%", sub: "$107.6bn &#8594; $188.9bn &#8212; covered ~88% of the extra goods gap" }
+  ];
+  stats.forEach(function (s) {
+    var t = document.createElement("div");
+    t.className = "stat-tile";
+    t.innerHTML = '<div class="stat-label">' + s.label + '</div><div class="stat-value">' + s.value + '</div><div class="stat-sub">' + s.sub + '</div>';
+    statStrip.appendChild(t);
+  });
+
+  // --- Index chart: exports, imports, rupee, base FY2021-22 = 100 ---
+  (function () {
+    var svg = document.getElementById("indexChart");
+    var tooltip = document.getElementById("indexTooltip");
+    var card = svg.parentElement;
+    var CW = 1000, CH = 380, padL = 50, padR = 60, padT = 20, padB = 40;
+    var plotW = CW - padL - padR, plotH = CH - padT - padB;
+    var n = years.length;
+    var stepX = plotW / (n - 1);
+
+    var expIdx = exportsUsdM.map(function (v) { return v / exportsUsdM[0] * 100; });
+    var impIdx = importsUsdM.map(function (v) { return v / importsUsdM[0] * 100; });
+    var rupIdx = rupeeFyAvg.map(function (v) { return v === null ? null : v / rupeeFyAvg[0] * 100; });
+
+    var allVals = expIdx.concat(impIdx).concat(rupIdx.filter(function (v) { return v !== null; }));
+    var minV = Math.min.apply(null, allVals) - 5, maxV = Math.max.apply(null, allVals) + 5;
+    function yOf(v) { return padT + plotH - ((v - minV) / (maxV - minV)) * plotH; }
+    function xOf(i) { return padL + i * stepX; }
+
+    // gridlines
+    var gridSteps = 5;
+    for (var g = 0; g <= gridSteps; g++) {
+      var gv = minV + (maxV - minV) * g / gridSteps;
+      var gy = yOf(gv);
+      svg.appendChild(el("line", { x1: padL, x2: CW - padR, y1: gy, y2: gy, stroke: "var(--chart-grid)", "stroke-width": 1 }));
+      var lbl = el("text", { x: padL - 8, y: gy + 3, class: "axis-label", "text-anchor": "end" });
+      lbl.textContent = Math.round(gv);
+      svg.appendChild(lbl);
+    }
+
+    function drawLine(vals, color, key) {
+      var pts = [];
+      vals.forEach(function (v, i) { if (v !== null) pts.push([xOf(i), yOf(v)]); });
+      var d = pts.map(function (p, i) { return (i === 0 ? "M" : "L") + p[0] + "," + p[1]; }).join(" ");
+      svg.appendChild(el("path", { d: d, fill: "none", stroke: color, "stroke-width": 2.5 }));
+      pts.forEach(function (p, i) {
+        var c = el("circle", { cx: p[0], cy: p[1], r: 4, fill: color, stroke: "var(--chart-surface)", "stroke-width": 1.5 });
+        svg.appendChild(c);
+        c.addEventListener("mousemove", function () {
+          var cardRect = card.getBoundingClientRect(), svgRect = svg.getBoundingClientRect();
+          var scaleX = svgRect.width / CW, scaleY = svgRect.height / CH;
+          tooltip.style.left = ((svgRect.left - cardRect.left) + p[0] * scaleX) + "px";
+          tooltip.style.top = ((svgRect.top - cardRect.top) + p[1] * scaleY - 10) + "px";
+          tooltip.style.transform = "translate(-50%, -100%)";
+          tooltip.style.opacity = 1;
+          tooltip.innerHTML = "<b>" + key + "</b><br>" + years[i] + ": index " + vals[i].toFixed(1);
+        });
+        c.addEventListener("mouseleave", function () { tooltip.style.opacity = 0; });
+      });
+    }
+    drawLine(impIdx, "var(--neg-bar)", "Imports");
+    drawLine(expIdx, "var(--pos-bar)", "Exports");
+    drawLine(rupIdx, "var(--line-3)", "Rupee (FY avg)");
+
+    // rupee spot marker for FY2025-26
+    var spotIdx = rupeeSpotLatest.value / rupeeFyAvg[0] * 100;
+    var spotY = Math.min(Math.max(yOf(spotIdx), padT), padT + plotH);
+    var spotX = xOf(4);
+    svg.appendChild(el("circle", { cx: spotX, cy: spotY, r: 5, fill: "none", stroke: "var(--line-3)", "stroke-width": 2, "stroke-dasharray": "2,2" }));
+    var spotLbl = el("text", { x: spotX, y: spotY - 10, class: "bar-label", "text-anchor": "middle", fill: "var(--line-3)" });
+    spotLbl.textContent = "spot 96.37";
+    svg.appendChild(spotLbl);
+
+    years.forEach(function (y, i) {
+      var lbl = el("text", { x: xOf(i), y: CH - padB + 20, class: "cat-label", "text-anchor": "middle" });
+      lbl.textContent = y.replace("FY", "");
+      svg.appendChild(lbl);
+    });
+  })();
+
+  // --- Balance chart: diverging goods/services bars + overall marker ---
+  (function () {
+    var svg = document.getElementById("balanceChart");
+    var tooltip = document.getElementById("balanceTooltip");
+    var card = svg.parentElement;
+    var CW = 1000, CH = 380, padL = 60, padR = 60, padT = 20, padB = 40;
+    var plotW = CW - padL - padR, plotH = CH - padT - padB;
+    var fys = years.slice(0, 4);
+    var n = fys.length;
+    var colW = plotW / n;
+    var maxAbs = Math.max.apply(null, goodsBalance.map(Math.abs).concat(servicesNet.map(Math.abs))) * 1.1;
+    var zeroY = padT + plotH / 2;
+    function yOf(v) { return zeroY - (v / maxAbs) * (plotH / 2); }
+
+    svg.appendChild(el("line", { x1: padL, x2: CW - padR, y1: zeroY, y2: zeroY, stroke: "var(--chart-axis)", "stroke-width": 1.5 }));
+
+    fys.forEach(function (fy, i) {
+      var cx = padL + i * colW + colW / 2;
+      var barW = colW * 0.28;
+
+      var gVal = goodsBalance[i], gY = yOf(gVal), gH = Math.abs(zeroY - gY);
+      var gRect = el("rect", { x: cx - barW - 4, y: Math.min(zeroY, gY), width: barW, height: Math.max(gH, 1), fill: "var(--neg-bar)" });
+      svg.appendChild(gRect);
+
+      var sVal = servicesNet[i], sY = yOf(sVal), sH = Math.abs(zeroY - sY);
+      var sRect = el("rect", { x: cx + 4, y: Math.min(zeroY, sY), width: barW, height: Math.max(sH, 1), fill: "var(--pos-bar)" });
+      svg.appendChild(sRect);
+
+      [[gRect, "Goods balance", gVal], [sRect, "Services net", sVal]].forEach(function (pair) {
+        pair[0].addEventListener("mousemove", function () {
+          var cardRect = card.getBoundingClientRect(), svgRect = svg.getBoundingClientRect();
+          var scaleX = svgRect.width / CW, scaleY = svgRect.height / CH;
+          tooltip.style.left = ((svgRect.left - cardRect.left) + cx * scaleX) + "px";
+          tooltip.style.top = ((svgRect.top - cardRect.top) + Math.min(gY, sY, zeroY) * scaleY - 10) + "px";
+          tooltip.style.transform = "translate(-50%, -100%)";
+          tooltip.style.opacity = 1;
+          tooltip.innerHTML = "<b>" + fys[i] + "</b><br>" + pair[1] + ": " + fmtBn(pair[2]) + "<br>Overall: " + fmtBn(overallBalance[i]);
+        });
+        pair[0].addEventListener("mouseleave", function () { tooltip.style.opacity = 0; });
+      });
+
+      var oY = yOf(overallBalance[i]);
+      var marker = el("path", { d: "M" + (cx - 7) + "," + oY + " L" + (cx + 7) + "," + oY + " M" + cx + "," + (oY - 7) + " L" + cx + "," + (oY + 7), stroke: "var(--ink)", "stroke-width": 2 });
+      svg.appendChild(marker);
+
+      var lbl = el("text", { x: cx, y: CH - padB + 20, class: "cat-label", "text-anchor": "middle" });
+      lbl.textContent = fy.replace("FY", "");
+      svg.appendChild(lbl);
+    });
+
+    var zeroLbl = el("text", { x: padL - 10, y: zeroY + 4, class: "axis-label", "text-anchor": "end" });
+    zeroLbl.textContent = "$0";
+    svg.appendChild(zeroLbl);
+  })();
+
+  // --- small bar chart helper ---
+  function smallBars(svgId, tooltipId, values, labels, color, fmt) {
+    var svg = document.getElementById(svgId);
+    var tooltip = document.getElementById(tooltipId);
+    var card = svg.parentElement;
+    var CW = 460, CH = 260, padL = 20, padR = 20, padT = 16, padB = 34;
+    var plotW = CW - padL - padR, plotH = CH - padT - padB;
+    var n = values.length;
+    var colW = plotW / n;
+    var maxV = Math.max.apply(null, values) * 1.15;
+    var minV = Math.min(0, Math.min.apply(null, values));
+    function yOf(v) { return padT + plotH - ((v - minV) / (maxV - minV)) * plotH; }
+    var zeroY = yOf(0);
+    svg.appendChild(el("line", { x1: padL, x2: CW - padR, y1: zeroY, y2: zeroY, stroke: "var(--chart-axis)", "stroke-width": 1 }));
+
+    values.forEach(function (v, i) {
+      var cx = padL + i * colW + colW / 2;
+      var barW = colW * 0.5;
+      var y = yOf(v);
+      var h = Math.abs(zeroY - y);
+      var rect = el("rect", { x: cx - barW / 2, y: Math.min(zeroY, y), width: barW, height: Math.max(h, 1), fill: color, rx: 2 });
+      svg.appendChild(rect);
+      var vLbl = el("text", { x: cx, y: y - 8, class: "bar-label", "text-anchor": "middle" });
+      vLbl.textContent = fmt(v);
+      svg.appendChild(vLbl);
+      var cLbl = el("text", { x: cx, y: CH - padB + 18, class: "cat-label", "text-anchor": "middle" });
+      cLbl.textContent = labels[i];
+      svg.appendChild(cLbl);
+
+      rect.addEventListener("mousemove", function () {
+        var cardRect = card.getBoundingClientRect(), svgRect = svg.getBoundingClientRect();
+        var scaleX = svgRect.width / CW, scaleY = svgRect.height / CH;
+        tooltip.style.left = ((svgRect.left - cardRect.left) + cx * scaleX) + "px";
+        tooltip.style.top = ((svgRect.top - cardRect.top) + y * scaleY - 10) + "px";
+        tooltip.style.transform = "translate(-50%, -100%)";
+        tooltip.style.opacity = 1;
+        tooltip.innerHTML = "<b>" + labels[i] + "</b><br>" + fmt(v);
+      });
+      rect.addEventListener("mouseleave", function () { tooltip.style.opacity = 0; });
+    });
+  }
+  smallBars("gdpChart", "gdpTooltip", gdpRealPct, years.map(function (y) { return y.replace("FY", ""); }), "var(--accent)", function (v) { return v + "%"; });
+  smallBars("forexChart", "forexTooltip", forexStartOfFy, years.map(function (y) { return y.replace("FY", ""); }), "var(--data-line)", function (v) { return "$" + v.toFixed(0) + "bn"; });
+
+  var timelineEl = document.getElementById("timeline");
+  timeline.forEach(function (t) {
+    var row = document.createElement("div");
+    row.className = "timeline-row";
+    row.innerHTML =
+      '<div class="timeline-date">' + t.date + '</div>' +
+      '<div class="timeline-body"><div class="timeline-head">' + t.head + '</div>' +
+      '<div class="timeline-text">' + t.text + '</div></div>';
+    timelineEl.appendChild(row);
+  });
+
+  var table = document.getElementById("summaryTable");
+  var thead = "<thead><tr><th>Fiscal Year</th><th>Exports (US$M)</th><th>Imports (US$M)</th><th>Rupee (FY avg)</th><th>Goods balance ($bn)</th><th>Services net ($bn)</th><th>Overall ($bn)</th><th>GDP real %</th><th>Forex, FY start ($bn)</th></tr></thead>";
+  var rows = years.map(function (y, i) {
+    return "<tr><td>" + y + "</td><td>" + exportsUsdM[i].toLocaleString() + "</td><td>" + importsUsdM[i].toLocaleString() + "</td><td>" + (rupeeFyAvg[i] !== null ? rupeeFyAvg[i] : "spot 96.37") + "</td><td>" + (goodsBalance[i] !== undefined ? goodsBalance[i] : "&#8212;") + "</td><td>" + (servicesNet[i] !== undefined ? servicesNet[i] : "&#8212;") + "</td><td>" + (overallBalance[i] !== undefined ? overallBalance[i] : "&#8212;") + "</td><td>" + gdpRealPct[i] + "</td><td>" + forexStartOfFy[i] + "</td></tr>";
+  });
+  table.innerHTML = thead + "<tbody>" + rows.join("") + "</tbody>";
+})();
+</script>
+
+<div class="disc-override" style="margin-top:24px;padding:14px 16px;border-top:1px solid #ddd;font-size:.82em;color:#444;background:#f8f8f6;line-height:1.5"><strong>Disclaimer:</strong> This analysis is based on publicly available government and market data cited in the article above. It is provided for informational and research purposes only and does not constitute investment, legal, or policy advice. Figures may be revised as source data is updated &#8212; verify against the original source before relying on them for decisions.<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--page-bg:#eef1ea!important;--surface:#fcfcfa!important;--ink:#14180f!important;--ink-2:#4f5348!important;--ink-muted:#82867a!important;--rule:#d7dace!important;--rule-strong:#c3c7b8!important;--accent:#1f5f5b!important;--accent-soft:#dbe9e6!important;--alert:#a5402c!important;--alert-soft:#f3ded7!important;--warn:#c98a1f!important;--warn-soft:#f3e9d5!important;--mismatch:#7a5aa8!important;--mismatch-soft:#e7defa!important;--data-line:#2a78d6!important;--neg-bar:#a5402c!important;--pos-bar:#2a78d6!important;--line-3:#c98a1f!important;--chart-surface:#fcfcfb!important;--chart-grid:#e1e0d9!important;--chart-axis:#c3c2b7!important;color-scheme:light!important;}</style>
+<style>/*gs-dark-panel-guard*/.eyebrow::before{background:var(--accent)!important}.eyebrow::before,.eyebrow::before *{color:#fff!important}.eyebrow::before a{color:#cfe3ff!important}.tooltip{background:var(--ink)!important}.tooltip,.tooltip *{color:#fff!important}.tooltip a{color:#cfe3ff!important}</style>

@@ -1,0 +1,22 @@
+/* Urban Institute chart rules applied to the existing class names.
+   Scoped to .post-body so it cannot leak. Colour only inside charts. */
+.post-body .gridline, .post-body .grid line, .post-body g.grid line,
+.post-body line.gridline { stroke: #ededed !important; stroke-width: 1 !important; }
+.post-body .axis line, .post-body .axis path, .post-body .domain,
+.post-body .axis-line { stroke: #000 !important; stroke-width: 1 !important; }
+.post-body .tick text, .post-body .axis text {
+  font-size: 12px !important; fill: #595959 !important; font-weight: 400 !important;
+}
+.post-body .legend, .post-body .legend-note, .post-body .chart-legend {
+  font-size: 14px !important; color: #595959 !important;
+}
+/* deemphasise anything explicitly marked secondary */
+.post-body .muted, .post-body .secondary { fill: #D2D2D2 !important; stroke: #D2D2D2 !important; }
+/* exhibit furniture */
+.post-body .gs-exhibit-no {
+  font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: #0A4C6A; margin: 0 0 .2rem; display: block;
+}
+.post-body .gs-exhibit-title { font-size: 20px; font-weight: 700; line-height: 1.3; margin: 0 0 .15rem; }
+.post-body .gs-exhibit-sub { font-size: 16px; font-style: italic; color: #595959; margin: 0 0 .7rem; }
+.post-body .gs-exhibit-source { font-size: 11px; color: #595959; margin: .6rem 0 0; }

@@ -1,0 +1,162 @@
+<div class='post-body'>
+<style>/*gs-typo-unify-v1*/
+.artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide,.stat{font-family:Georgia,'Times New Roman',serif!important;}
+.artx p,.fertx p,.ecx p,.mapx p,.idx p,.wrap p,.slide p,.stat p,
+.artx li,.fertx li,.ecx li,.mapx li,.idx li,.wrap li,.slide li,.stat li,
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,
+.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,
+.artx blockquote,.fertx blockquote,.ecx blockquote,.mapx blockquote,.idx blockquote,.wrap blockquote,.slide blockquote,.stat blockquote
+{font-family:Georgia,'Times New Roman',serif!important;}
+.artx h1,.fertx h1,.ecx h1,.mapx h1,.idx h1,.wrap h1,.slide h1,.stat h1,
+.artx h2,.fertx h2,.ecx h2,.mapx h2,.idx h2,.wrap h2,.slide h2,.stat h2,
+.artx h3,.fertx h3,.ecx h3,.mapx h3,.idx h3,.wrap h3,.slide h3,.stat h3
+{font-family:Georgia,'Times New Roman',serif!important;line-height:1.3!important;}
+body,p,li,td,th,blockquote,h1,h2,h3{font-family:Georgia,'Times New Roman',serif;}
+</style>
+<style>
+/* tblwrap-css */
+.tblwrap{overflow-x:auto!important;-webkit-overflow-scrolling:touch;margin:0 0 1em}
+.tblwrap table{width:max-content!important;min-width:100%}
+</style><style>
+/* BW-OVERRIDE: black text on white background */
+@media all {
+  body{background:#fff!important}
+  .artx,.fertx,.ecx,.mapx,.idx,.wrap,.slide{background:#fff!important;color:#000!important}
+  .artx p,.artx li,.artx td,.artx div,.artx span:not(.sig):not(.chip):not(.cnt):not(.badge),
+  .fertx p,.fertx li,.fertx td,.fertx div,
+  .ecx p,.ecx li,.ecx td,.ecx div,
+  .mapx p,.mapx li,.mapx td,.mapx div,
+  .idx p,.idx li,.idx td,
+  .wrap p,.wrap li,.wrap td,
+  .slide p,.slide li,.slide td
+  {color:#000!important}
+  .stat{background:#f6f6f4!important}
+  .stat b{color:#000!important}
+  .stat span{color:#333!important}
+}
+
+/* === Design tokens (Open Color neutrals + Utopia-style fluid type + spacing scale) === */
+:root{
+  --oc-gray-0:#f8f9fa;--oc-gray-1:#f1f3f5;--oc-gray-2:#e9ecef;--oc-gray-3:#dee2e6;--oc-gray-4:#ced4da;
+  --oc-gray-5:#adb5bd;--oc-gray-6:#868e96;--oc-gray-7:#495057;--oc-gray-8:#343a40;--oc-gray-9:#212529;
+  --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.5rem;--sp-6:2rem;--sp-7:3rem;
+  --radius:12px;--radius-sm:8px;
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);--shadow-2:0 2px 8px rgba(0,0,0,.06);
+  --step--1:clamp(.78rem,.75rem + .15vw,.85rem);
+  --step-0:clamp(.92rem,.88rem + .2vw,1rem);
+  --step-1:clamp(1.05rem,1rem + .3vw,1.2rem);
+  --step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem);
+  --surface:#fff;--surface-alt:var(--oc-gray-0);--border:var(--oc-gray-3);--text:#000;--text-mut:#333;
+}
+/* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+
+
+  :root{--paper:#f7f5ef;--panel:#fffefb;--ink:#1b2019;--ink-2:#54604f;--ink-3:#8a917f;--hair:#e2ddd0;
+    --green:#2f7a4f;--green-d:#1f5637;--gold:#b7791f;--coop:#c8952a;--stock:#3b6ea5;--band:#efece2;}
+  /* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */
+  :root[data-theme="dark"]{--paper:#12140f;--panel:#191c15;--ink:#eef0e8;--ink-2:#aab19c;--ink-3:#79806d;
+    --hair:#2a2e22;--green:#4ea877;--green-d:#7cc79c;--gold:#d6a24a;--coop:#d6a24a;--stock:#6aa0d6;--band:#1b1e16;}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--band);color:var(--ink);font:15px/1.5 "Iowan Old Style",Palatino,Georgia,serif;padding:24px 16px 60px}
+  .wrap{max-width:960px;margin:0 auto}
+  h1{font-size:clamp(21px,3.2vw,29px);font-weight:600;margin-bottom:4px}
+  .sub{color:var(--ink-2);margin-bottom:14px;max-width:82ch}
+  .mono{font-family:"SF Mono",Menlo,monospace}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;font-family:"SF Mono",Menlo,monospace;font-size:12px;color:var(--ink-2);margin:8px 0 6px}
+  .legend .sw{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+  .chart{background:var(--panel);border:1px solid var(--hair);border-radius:10px;padding:14px 10px 8px;overflow-x:auto}
+  svg{display:block;width:100%;height:auto;min-width:640px}
+  .gl{stroke:var(--hair);stroke-width:1}
+  .axlab{fill:var(--ink-3);font-family:"SF Mono",Menlo,monospace;font-size:11px}
+  .yr{fill:var(--ink);font-family:"SF Mono",Menlo,monospace;font-size:12px;font-weight:700;text-anchor:middle}
+  .phase{fill:var(--ink-3);font-family:"SF Mono",Menlo,monospace;font-size:9.5px;text-anchor:middle;text-transform:uppercase;letter-spacing:.04em}
+  .val{fill:var(--ink);font-family:"SF Mono",Menlo,monospace;font-size:10.5px;text-anchor:middle}
+  .note{border-left:3px solid var(--gold);padding:4px 0 4px 14px;color:var(--ink-2);font-size:14px;margin:14px 0}
+  footer{margin-top:16px;padding-top:12px;border-top:1px solid var(--hair);color:var(--ink-3);font-size:11.5px;font-family:"SF Mono",Menlo,monospace}
+  a{color:var(--stock)}
+.artx td,.fertx td,.ecx td,.mapx td,.idx td,.wrap td,.slide td,.stat td,.artx th,.fertx th,.ecx th,.mapx th,.idx th,.wrap th,.slide th,.stat th,td,th{word-wrap:break-word;overflow-wrap:break-word;word-break:break-word;}
+</style>
+
+<div class="wrap">
+  <h1>FCI storage scenario &#8212; from 851 LMT to the 2,150 LMT plan</h1>
+<div id="google_translate_element" style="margin:8px 0 16px;"></div><script type="text/javascript">function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"en",layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},"google_translate_element");}</script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="topnav-index-link" style="font-size:.82em;margin:6px 0 14px"><a href="https://masaladeutsch.blogspot.com/2026/08/article-index-start-here.html" style="color:#0b5394;text-decoration:none">&#8592; All Articles (Index)</a></div>
+<p class="gs-revised" data-gs-revision-v1="1" style="font-size:.8rem;color:#555;margin:0 0 14px">Revised <time datetime="2026-08-06" itemprop="dateModified">6 August 2026</time> &middot; v1.0.1 &middot; design and readability fixes</p>
+
+  <p class="sub">India's grain-storage system has grown slowly (851&#8594;918 LMT, FCI+State, 2018&#8594;2025) while
+  central-pool <b>stock</b> swings roughly 300&ndash;910 LMT with the crop cycle (it touched the ~907 LMT record cited below). The <b>World's Largest Grain Storage
+  Plan</b> (2023, &#8377;1 lakh cr) now adds <b>+700 LMT of cooperative (PACS) capacity</b> to lift total
+  agri-storage from 1,450 to <b>2,150 LMT</b>. Each figure is PIB-sourced (below).</p>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--green)"></span>FCI + State covered+CAP (LMT)</span>
+    <span><span class="sw" style="background:var(--coop);opacity:.55"></span>+ cooperative / total agri-storage (plan)</span>
+    <span><span class="sw" style="background:var(--stock)"></span>peak central-pool stock (LMT)</span>
+    <span><span class="sw" style="background:transparent;border:1px dashed var(--ink-3)"></span>2,150 LMT target</span>
+  </div>
+  <div class="chart"><svg id="svg" viewBox="0 0 900 470"></svg></div>
+  <div class="note"><b>The scenario story:</b> in mid-2021 stock hit a record <b>~907 LMT</b> &#8212; brushing
+  the covered-godown ceiling and spilling into open CAP/hired space (FCI is <b>70% hired</b>, only ~147 LMT owned &mdash; note that 147 LMT is a small share of FCI's total covered capacity, closer to 60% hired by that arithmetic; the 70% figure may use a different capacity base not stated here). The cooperative plan fixes this at the <b>village level</b> (PACS godowns, 1,000 MT each; 2,000 MT
+  hubs) &#8212; turning rented, centralised, over-stretched storage into owned, distributed capacity that doubles
+  as procurement centres, Fair Price Shops and <b>processing units</b> &#8212; the feedstock node for the biorefinery.</div>
+  <footer>
+  Sources &#8212; 2018: <a href="https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1564065">PIB PRID 1564065</a> (851.54 LMT, 31-12-2018).
+  2023: <a href="https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1945170">PIB PRID 1945170</a> (FCI 1,923 warehouses / 371.93 LMT, 01-07-2023).
+  2025: <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2172351">PIB PRID 2172351</a> (FCI+State 917.83 LMT covered+CAP, 01-07-2025) + Year-End Reviews
+  <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2086345">2024</a>/<a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2210211">2025</a>.
+  Plan: <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2080612">PIB PRID 2080612</a> (+700 LMT cooperative &#8594; 2,150 LMT).
+  Stock: DFPD Foodgrain Bulletin monthly series. Data: data/fci_storage_scenario.csv. Scenario years (2028/2031) are plan-ramp illustrations, not official forecasts.</footer>
+</div>
+
+
+<script>
+
+// year, phase, fciState(green), totalAg(faint gold, 0=none shown), peakStock
+const D=[
+ ["2018","historical",851,0,700],
+ ["2021","historical",880,0,907],
+ ["2023","historical",900,1450,559],
+ ["2025","historical",918,0,615],
+ ["2028","plan (ramp)",1150,1800,650],
+ ["2031","plan (full)",1400,2150,700],
+];
+const W=900,H=470,ML=52,MR=20,MT=24,MB=54, YMAX=2200;
+const x0=ML, x1=W-MR, y0=H-MB, y1=MT;
+const y=v=>y0-(v/YMAX)*(y0-y1);
+const n=D.length, band=(x1-x0)/n, bw=band*0.42;
+const svg=document.getElementById("svg");
+let s="";
+// gridlines + y labels
+[0,500,1000,1450,2150,2000].forEach(v=>{
+  s+=`<line class="gl" x1="${x0}" y1="${y(v)}" x2="${x1}" y2="${y(v)}"/>`;
+  s+=`<text class="axlab" x="${x0-8}" y="${y(v)+3}" text-anchor="end">${v}</text>`;
+});
+// 2150 target dashed
+s+=`<line x1="${x0}" y1="${y(2150)}" x2="${x1}" y2="${y(2150)}" stroke="var(--ink-3)" stroke-width="1.2" stroke-dasharray="6 4"/>`;
+// bars
+D.forEach((d,i)=>{
+  const [yr,ph,fs,tot,st]=d;
+  const cx=x0+band*i+band/2;
+  // faint total-ag bar (behind)
+  if(tot){ s+=`<rect x="${cx-bw*0.7}" y="${y(tot)}" width="${bw*1.4}" height="${y0-y(tot)}" fill="var(--coop)" opacity="0.28" rx="3"/>`;
+    s+=`<text class="val" x="${cx}" y="${y(tot)-4}" fill="var(--coop)">${tot}</text>`; }
+  // FCI+State bar
+  s+=`<rect x="${cx-bw/2}" y="${y(fs)}" width="${bw}" height="${y0-y(fs)}" fill="var(--green)" rx="3"/>`;
+  s+=`<text class="val" x="${cx}" y="${y(fs)-4}">${fs}</text>`;
+  // stock dot
+  s+=`<circle cx="${cx}" cy="${y(st)}" r="4.5" fill="var(--stock)"/>`;
+  s+=`<text class="val" x="${cx+16}" y="${y(st)+3}" fill="var(--stock)" text-anchor="start">${st}</text>`;
+  // year + phase
+  s+=`<text class="yr" x="${cx}" y="${y0+18}">${yr}</text>`;
+  s+=`<text class="phase" x="${cx}" y="${y0+32}">${ph}</text>`;
+});
+// stock line connecting dots
+s+=`<polyline points="${D.map((d,i)=>`${x0+band*i+band/2},${y(d[4])}`).join(' ')}" fill="none" stroke="var(--stock)" stroke-width="1.4" opacity="0.55"/>`;
+// axis title
+s+=`<text class="axlab" x="${x0-40}" y="${MT+2}" transform="rotate(-90 ${x0-40} ${MT+2})" text-anchor="end">Lakh Metric Tonnes (LMT)</text>`;
+svg.innerHTML=s;
+
+</script>
+<div class="disc-override" style="margin-top:24px;padding:14px 16px;border-top:1px solid #ddd;font-size:.82em;color:#444;background:#f8f8f6;line-height:1.5"><strong>Disclaimer:</strong> This analysis is based on publicly available government and market data cited in the article above. It is provided for informational and research purposes only and does not constitute investment, legal, or policy advice. Figures may be revised as source data is updated &#8212; verify against the original source before relying on them for decisions.<p class="disclaimer" data-gs-ai-disclosure-v1="1"><strong>AI Disclosure:</strong> This article was researched and written with AI assistance (Claude Sonnet), drawing on publicly available government, industry, and academic sources cited above. AI-generated text can occasionally misstate figures or "hallucinate" details even when working from real source material &#8212; readers should treat this piece as a synthesis aid, verify any figure that matters to a decision against the cited primary source, and focus on the underlying material rather than this summary alone.</p>
+</div>
+</div>
+<style>/*gs-light-lock-v1*/:root,:root[data-theme="dark"],:root[data-theme="light"]{--oc-gray-0:#f8f9fa!important;--oc-gray-1:#f1f3f5!important;--oc-gray-2:#e9ecef!important;--oc-gray-3:#dee2e6!important;--oc-gray-4:#ced4da!important;--oc-gray-5:#adb5bd!important;--oc-gray-6:#868e96!important;--oc-gray-7:#495057!important;--oc-gray-8:#343a40!important;--oc-gray-9:#212529!important;--sp-1:.25rem!important;--sp-2:.5rem!important;--sp-3:.75rem!important;--sp-4:1rem!important;--sp-5:1.5rem!important;--sp-6:2rem!important;--sp-7:3rem!important;--radius:12px!important;--radius-sm:8px!important;--shadow-1:0 1px 2px rgba(0,0,0,.04)!important;--shadow-2:0 2px 8px rgba(0,0,0,.06)!important;--step--1:clamp(.78rem,.75rem + .15vw,.85rem)!important;--step-0:clamp(.92rem,.88rem + .2vw,1rem)!important;--step-1:clamp(1.05rem,1rem + .3vw,1.2rem)!important;--step-2:clamp(1.3rem,1.2rem + .5vw,1.6rem)!important;--surface:#fff!important;--surface-alt:var(--oc-gray-0)!important;--border:var(--oc-gray-3)!important;--text:#000!important;--text-mut:#333!important;color-scheme:light!important;}</style>
