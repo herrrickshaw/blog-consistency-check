@@ -11,12 +11,24 @@ alone.
 """
 import argparse
 import json
+import os
 import pathlib
 import re
 import sys
 
 FIXES = pathlib.Path(__file__).resolve().parent / "fixes"
-MANIFEST = pathlib.Path("/Users/umashankar/masaladeutsch-archive/meta/manifest.json")
+# This standalone repo has no fixed relationship to the archive checkout
+# (blogger_writeups_code) that holds meta/manifest.json -- unlike the copy of
+# this file embedded inside that archive repo, where consistency-check/ is a
+# subdirectory and the path is always one level up. Point MASALADEUTSCH_ARCHIVE
+# at your checkout; this only guesses a sibling directory as a fallback, and
+# pending_slugs() below fails with a clear message rather than a bare
+# FileNotFoundError if that guess is wrong.
+ARCHIVE = pathlib.Path(os.environ.get(
+    "MASALADEUTSCH_ARCHIVE",
+    pathlib.Path(__file__).resolve().parent.parent / "blogger_writeups_code",
+))
+MANIFEST = ARCHIVE / "meta" / "manifest.json"
 MARKER = "data-gs-revision-v1"
 
 # These fixes are design repairs — light-lock, dark-panel guard, removing an
@@ -54,6 +66,12 @@ MIN_GAP_BEFORE_DISCLOSURE = 500  # characters
 
 def pending_slugs():
     """A fix is pending when the live post does not yet satisfy what it repairs."""
+    if not MANIFEST.exists():
+        sys.exit(
+            f"can't find {MANIFEST} -- set MASALADEUTSCH_ARCHIVE to your "
+            "blogger_writeups_code checkout, e.g.\n"
+            "  MASALADEUTSCH_ARCHIVE=~/blogger_writeups_code python3 add_revision_line.py"
+        )
     live = {r["slug"]: r for r in json.loads(MANIFEST.read_text())["posts"].values()}
     out = []
     for e in json.loads((FIXES / "manifest.json").read_text()):

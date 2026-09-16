@@ -32,13 +32,11 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/
 DISCLAIMER = (
     '<p class="disclaimer" data-gs-ai-disclosure-v1="1" '
     'style="font-size:.82rem;color:#555;margin-top:14px">'
-    '<strong>AI Disclosure:</strong> This article was researched and written with AI '
-    'assistance (Claude Sonnet), drawing on publicly available government, industry, and '
-    'academic sources cited above. AI-generated text can occasionally misstate figures or '
-    '"hallucinate" details even when working from real source material \u2014 readers should '
-    'treat this piece as a synthesis aid, verify any figure that matters to a decision '
-    'against the cited primary source, and focus on the underlying material rather than '
-    'this summary alone.</p>')
+    '<strong>About this article:</strong> Researched, written and edited by '
+    'Umashankar Triplicane Dwarakanathan, with AI research assistance; every figure '
+    'is meant to trace to the primary source cited. See the '
+    '<a href="https://masaladeutsch.blogspot.com/p/disclaimer.html">Editorial Policy</a> '
+    'for how sourcing, AI use and corrections work.</p>')
 
 
 def sh(c):
