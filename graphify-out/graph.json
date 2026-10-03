@@ -1,0 +1,4287 @@
+{
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "nodes": [
+    {
+      "id": "add_index_link",
+      "label": "add_index_link.py",
+      "file_type": "code",
+      "source_file": "add_index_link.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "add_index_link_insert",
+      "label": "insert()",
+      "file_type": "code",
+      "source_file": "add_index_link.py",
+      "source_location": "L45",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "add_index_link_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "add_index_link.py",
+      "source_location": "L64",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "add_index_link_rationale_2",
+      "label": "Insert the site index backlink into fix files that are missing it. The backlink…",
+      "file_type": "rationale",
+      "source_file": "add_index_link.py",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line",
+      "label": "add_revision_line.py",
+      "file_type": "code",
+      "source_file": "add_revision_line.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line_pending_slugs",
+      "label": "pending_slugs()",
+      "file_type": "code",
+      "source_file": "add_revision_line.py",
+      "source_location": "L55",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line_insert",
+      "label": "insert()",
+      "file_type": "code",
+      "source_file": "add_revision_line.py",
+      "source_location": "L75",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "add_revision_line.py",
+      "source_location": "L92",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line_rationale_2",
+      "label": "Insert the house revision line into pending fix files in fixes/. The line goes…",
+      "file_type": "rationale",
+      "source_file": "add_revision_line.py",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line_rationale_56",
+      "label": "A fix is pending when the live post does not yet satisfy what it repairs.",
+      "file_type": "rationale",
+      "source_file": "add_revision_line.py",
+      "source_location": "L56",
+      "_origin": "ast"
+    },
+    {
+      "id": "add_revision_line_rationale_76",
+      "label": "Return (new_body, where) or (None, reason) if there is nowhere sane.",
+      "file_type": "rationale",
+      "source_file": "add_revision_line.py",
+      "source_location": "L76",
+      "_origin": "ast"
+    },
+    {
+      "id": "audit",
+      "label": "audit.py",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_sh",
+      "label": "sh()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L32",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_post_list",
+      "label": "post_list()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L36",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_fetch",
+      "label": "fetch()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L59",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_body_of",
+      "label": "body_of()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L63",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_js_syntax_errors",
+      "label": "js_syntax_errors()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L101",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_static_audit",
+      "label": "static_audit()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L115",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_rendered_audit",
+      "label": "rendered_audit()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L135",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "audit.py",
+      "source_location": "L163",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_rationale_2",
+      "label": "masaladeutsch consistency checker. Two passes: static - fetch every post, run…",
+      "file_type": "rationale",
+      "source_file": "audit.py",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "audit_rationale_64",
+      "label": "Return just the post body. Blogger renders no post-footer on this theme, so…",
+      "file_type": "rationale",
+      "source_file": "audit.py",
+      "source_location": "L64",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks",
+      "label": "checks.py",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_scripts",
+      "label": "_scripts()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L26",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_strip_scripts",
+      "label": "_strip_scripts()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_disclaimer_not_in_script",
+      "label": "r_disclaimer_not_in_script()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L34",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_disclaimer_present",
+      "label": "r_disclaimer_present()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L42",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_no_inverted_media_query",
+      "label": "r_no_inverted_media_query()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L49",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_dark_vars_locked",
+      "label": "r_dark_vars_locked()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L57",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_translate_widget",
+      "label": "r_translate_widget()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L72",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_index_link",
+      "label": "r_index_link()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L78",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_bw_override",
+      "label": "r_bw_override()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L84",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_table_units_in_header",
+      "label": "r_table_units_in_header()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L95",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_scripts_parse",
+      "label": "r_scripts_parse()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L108",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_r_wpi_attribution",
+      "label": "r_wpi_attribution()",
+      "file_type": "code",
+      "source_file": "checks.py",
+      "source_location": "L116",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_1",
+      "label": "Rule definitions for the masaladeutsch consistency checker. Every rule here…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_35",
+      "label": "Bulk disclaimer insertion spliced <p> into a JS string literal, with a raw…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L35",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_43",
+      "label": "Disclaimer must exist OUTSIDE any script. On the 7 broken posts the only copy…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L43",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_50",
+      "label": "`@media not all and (prefers-color-scheme:dark)` matches in LIGHT mode. Blocks…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L50",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_58",
+      "label": "A post that declares its own dark palette must also pin the light values with…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L58",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_73",
+      "label": "Per-post Google Translate embed (site-wide placement is blocked in Blogger).",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L73",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_79",
+      "label": "Every post carries the back-to-index nav link.",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L79",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_85",
+      "label": "The black-on-white override safety net. Only required where the post ships its…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L85",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_96",
+      "label": "Units belong in <th>, not repeated in every <td>. Was polluting 30-91% of cells…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L96",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_109",
+      "label": "Any JS syntax error kills the whole block (charts, tables, stat strips).",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L109",
+      "_origin": "ast"
+    },
+    {
+      "id": "checks_rationale_117",
+      "label": "WPI is published by the Office of the Economic Adviser, DPIIT - not MoSPI…",
+      "file_type": "rationale",
+      "source_file": "checks.py",
+      "source_location": "L117",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix",
+      "label": "fix.py",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_sh",
+      "label": "sh()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L44",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_body_of",
+      "label": "body_of()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L48",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_strip_inverted",
+      "label": "strip_inverted()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L66",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_unsplice_disclaimer",
+      "label": "unsplice_disclaimer()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L95",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_unsplice_disclaimer_scrub",
+      "label": "scrub()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L104",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_light_lock",
+      "label": "light_lock()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L116",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_lum",
+      "label": "_lum()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L133",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_is_panel",
+      "label": "_is_panel()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L171",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_dark_panel_guard",
+      "label": "dark_panel_guard()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L182",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_dark_panel_guard_resolve",
+      "label": "resolve()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L204",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_add_translate",
+      "label": "add_translate()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L266",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_repair",
+      "label": "repair()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L284",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_static_pass",
+      "label": "static_pass()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L311",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_q",
+      "label": "_Q",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L326",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_q_log_message",
+      "label": ".log_message()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L327",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_serve",
+      "label": "serve()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L331",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_theme_css",
+      "label": "theme_css()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L341",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_contrast_of",
+      "label": "contrast_of()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L366",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_verify_live",
+      "label": "verify_live()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L372",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_verify",
+      "label": "verify()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L410",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "fix.py",
+      "source_location": "L441",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_2",
+      "label": "Generate corrected post bodies for the defects audit.py finds, and prove the…",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_67",
+      "label": "Remove every inverted media-query block, matching braces properly.",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L67",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_96",
+      "label": "Pull an AI-disclosure out of any <script> string literal. The splice always…",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L96",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_117",
+      "label": "Build a lock from the post's OWN light palette. Returns '' if none found.",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L117",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_134",
+      "label": "Relative luminance of a #hex / rgb() colour, or None.",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L134",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_183",
+      "label": "Keep intentionally-dark panels, but stop the BW-override painting black text on…",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L183",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_267",
+      "label": "Insert the per-post Google Translate embed. Site-wide placement is blocked in…",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L267",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_312",
+      "label": "Return list of failing rule names.",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L312",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_342",
+      "label": "The live theme's own stylesheet. Rendering a post body on a bare page is NOT…",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L342",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_373",
+      "label": "Faithful verification: load the real post, measure, then swap the repaired body…",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L373",
+      "_origin": "ast"
+    },
+    {
+      "id": "fix_rationale_411",
+      "label": "Offline harness (kept for posts that render standalone).",
+      "file_type": "rationale",
+      "source_file": "fix.py",
+      "source_location": "L411",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_syntax",
+      "label": "_syntax.js",
+      "file_type": "code",
+      "source_file": "out/_syntax.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_syntax_fs",
+      "label": "fs",
+      "file_type": "code",
+      "source_file": "out/_syntax.js",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_syntax_html",
+      "label": "html",
+      "file_type": "code",
+      "source_file": "out/_syntax.js",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_syntax_bad",
+      "label": "bad",
+      "file_type": "code",
+      "source_file": "out/_syntax.js",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist",
+      "label": "CHECKLIST.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_masaladeutsch_post_checklist",
+      "label": "masaladeutsch post checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_a_blockers_the_reader_sees_something_broken",
+      "label": "A. Blockers — the reader sees something broken",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_a1_no_html_inside_a_script_tag",
+      "label": "A1. No HTML inside a `<script>` tag",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L13",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_a2_no_backwards_media_queries",
+      "label": "A2. No backwards media queries",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L27",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_a3_a_post_s_own_dark_palette_must_be_pinned_to_light",
+      "label": "A3. A post's own dark palette must be pinned to light",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L41",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_a4_contrast_3_1_in_both_colour_schemes",
+      "label": "A4. Contrast ≥ 3:1, in **both** colour schemes",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L55",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_b_major_the_information_is_wrong",
+      "label": "B. Major — the information is wrong",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L62",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_b1_attribute_statistics_to_the_agency_that_publishes_them",
+      "label": "B1. Attribute statistics to the agency that publishes them",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L64",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_b2_state_the_base_year_and_never_splice_across_a_rebasing",
+      "label": "B2. State the base year, and never splice across a rebasing",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L73",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_b3_don_t_claim_a_statistic_is_unavailable_without_checking",
+      "label": "B3. Don't claim a statistic is unavailable without checking",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L78",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_b4_recheck_derived_figures_against_the_primary_source",
+      "label": "B4. Recheck derived figures against the primary source",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L85",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_b5_every_post_carries_the_ai_disclosure_outside_any_script",
+      "label": "B5. Every post carries the AI disclosure, outside any script",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L89",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_c_minor_house_style",
+      "label": "C. Minor — house style",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L94",
+      "_origin": "ast"
+    },
+    {
+      "id": "checklist_d_process_rules_for_editing_posts",
+      "label": "D. Process rules for editing posts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L106",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme",
+      "label": "README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_blog_consistency_check",
+      "label": "blog-consistency-check",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_install",
+      "label": "Install",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L16",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_use",
+      "label": "Use",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_what_it_checks",
+      "label": "What it checks",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L38",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_current_state_88_posts_2026_08_06",
+      "label": "Current state (88 posts, 2026-08-06)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L55",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_adding_a_rule",
+      "label": "Adding a rule",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L73",
+      "_origin": "ast"
+    },
+    {
+      "id": "readme_screenshot_baselines",
+      "label": "Screenshot baselines",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report",
+      "label": "report.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "out/report.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_masaladeutsch_consistency_report",
+      "label": "masaladeutsch consistency report",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_rule_summary",
+      "label": "Rule summary",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_posts_needing_attention",
+      "label": "Posts needing attention",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L20",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_quarterly_reportage_4_034_scheme_announcements_2017_to_august_2026",
+      "label": "Quarterly Reportage — 4,034 Scheme Announcements, 2017 to August 2026",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L22",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_mineral_oil_hsn_ch_27_trade_pricing_dashboard",
+      "label": "India Mineral-Oil (HSN Ch.27) Trade × Pricing Dashboard",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_petrochemical_import_tree_from_petrol_to_product_hsn_coded",
+      "label": "India’s Petrochemical Import Tree — From Petrol to Product (HSN-coded)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L36",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_real_gdp_growth_india_fy2012_13_to_fy2025_26",
+      "label": "Real GDP Growth — India, FY2012-13 to FY2025-26",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L43",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_iem_conversion_a_historical_performance_review_2017_2025",
+      "label": "IEM Conversion — A Historical Performance Review (2017–2025)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L49",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_where_india_s_factories_actually_get_built_iem_state_sector_analysis",
+      "label": "Where India’s Factories Actually Get Built — IEM State & Sector Analysis",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L55",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_ethanol_blending_the_omc_books_e20_today_vs_e30_sgst",
+      "label": "Ethanol Blending & the OMC Books — E20 today vs E30 + SGST",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L61",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_price_of_grain_msp_msv_and_the_arithmetic_of_the_indian_grain_state",
+      "label": "The Price of Grain: MSP, MSV, and the Arithmetic of the Indian Grain State",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L67",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_forest_wildlife_crz_clearances_parivesh",
+      "label": "India Forest, Wildlife & CRZ Clearances — PARIVESH",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L73",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_ec_approval_funnel_parivesh_2_0",
+      "label": "India EC Approval Funnel — PARIVESH 2.0",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L79",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_trade_sector_policy_recommendations_chart_library",
+      "label": "India Trade — Sector & Policy Recommendations (Chart Library)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L85",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_jai_kisan_jai_javan_an_fci_based_military_ration_strategy",
+      "label": "Jai Kisan, Jai Javan — An FCI-Based Military Ration Strategy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L91",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_cpi_inflation_heatmap_india_june_2026",
+      "label": "CPI Inflation Heatmap — India, June 2026",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L96",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_import_dependent_sectors_vs_government_scheme_attention_india",
+      "label": "Import-Dependent Sectors vs. Government Scheme Attention — India",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L101",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_priority_trade_partners_by_import_growth_sector_real_pli_coverage",
+      "label": "Priority Trade Partners by Import-Growth Sector, & Real PLI Coverage",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L106",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_five_year_synthesis_trade_currency_policy_fy2021_22_to_fy2025_26",
+      "label": "Five-Year Synthesis: Trade, Currency & Policy, FY2021-22 to FY2025-26",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L111",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_priority_export_destinations_by_growth_sector_real_pli_coverage",
+      "label": "Priority Export Destinations by Growth Sector, & Real PLI Coverage",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L116",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_where_india_s_forex_goes_country_deficits_a_decade_of_policy_history",
+      "label": "Where India's Forex Goes — Country Deficits & a Decade of Policy History",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L121",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_chemical_import_substitution_full_hsn_8_chapter_wise_registry_827_codes",
+      "label": "Chemical Import Substitution — Full HSN-8 Chapter-Wise Registry (827 Codes)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L126",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_chemical_import_substitution_analysis_executive_summary",
+      "label": "Chemical Import Substitution Analysis: Executive Summary",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L131",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_fci_storage_scenario_capacity_stock_and_the_road_to_2_150_lmt",
+      "label": "FCI Storage Scenario — Capacity, Stock, and the Road to 2,150 LMT",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L136",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_grain_cultivation_fci_storage_fpos_state_map",
+      "label": "India — Grain Cultivation · FCI Storage · FPOs (State Map)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L141",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_fci_grain_flow_procurement_storage_disposal_dashboard",
+      "label": "FCI Grain Flow — Procurement · Storage · Disposal Dashboard",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L146",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_grain_value_loop_integrated_rice_biorefinery_pitch",
+      "label": "The Grain Value Loop — Integrated Rice Biorefinery Pitch",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L151",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_subsidised_imports_fertilisers_explode_76_fy25_vs_fy26",
+      "label": "India's Subsidised Imports — Fertilisers Explode +76% (FY25 vs FY26)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L156",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_cbg_incentive_stack_every_leg_of_a_biogas_plant_de_risked",
+      "label": "The CBG Incentive Stack — Every Leg of a Biogas Plant De-risked",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L161",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_textile_import_export_strategy_from_dependency_to_self_sufficiency",
+      "label": "India's Textile Import-Export Strategy: From Dependency to Self-Sufficiency",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L166",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_fearless_girl_s_charter_india_s_market_asks_2026",
+      "label": "The Fearless Girl's Charter — India's Market Asks 2026",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L171",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_cgd_geographical_areas_district_allotment_map_part_1_of_3",
+      "label": "CGD Geographical Areas — District Allotment Map (Part 1 of 3)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L176",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_cold_chain_fuel_outlet_integrated_map_part_3_of_3",
+      "label": "Cold-Chain × Fuel-Outlet Integrated Map (Part 3 of 3)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L181",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_environmental_clearances_state_sub_sector_dashboard",
+      "label": "India Environmental Clearances — State × Sub-sector Dashboard",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L186",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_fuel_retail_outlets_82k_geocoded_map_part_2_of_3",
+      "label": "India Fuel Retail Outlets — 82k Geocoded Map (Part 2 of 3)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L191",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_hsn_wise_historical_import_export_trends_india_fy2018_19_to_fy2025_26",
+      "label": "HSN-wise Historical Import/Export Trends — India, FY2018-19 to FY2025-26",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L196",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_trade_balance_hsn_wise_export_import_analysis",
+      "label": "India's Trade Balance — HSN-wise Export/Import Analysis",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L200",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_fy2025_26_sample_report_india_trade_currency_policy_snapshot",
+      "label": "FY2025-26 Sample Report — India Trade, Currency & Policy Snapshot",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L204",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_cpi_wpi_trends_mospi_bulletin",
+      "label": "CPI & WPI Trends — MoSPI Bulletin",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L208",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_rbi_foreign_exchange_reserves_2015_2026",
+      "label": "RBI Foreign Exchange Reserves — 2015–2026",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L212",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_ipa_digital_twin_reportage_latest_updates_3_jul_1_aug_2026",
+      "label": "IPA Digital Twin — Reportage: Latest Updates (3 Jul – 1 Aug 2026)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L216",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_top_15_chemicals_for_import_substitution_detailed_analysis_with_rationale",
+      "label": "Top 15 Chemicals for Import Substitution: Detailed Analysis with Rationale",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L220",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_chemical_import_substitution_quarterly_tracking_dashboard",
+      "label": "Chemical Import Substitution — Quarterly Tracking Dashboard",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L224",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_top_15_chemicals_for_import_substitution_india_fy26_30",
+      "label": "Top 15 Chemicals for Import Substitution — India (FY26–30)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L228",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_ai_high_demand_launch_tracker",
+      "label": "AI High-Demand Launch Tracker",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L232",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_recycling_lottery_playbook_norway_s_pantelotteriet_and_a_jal_jeevan_appli",
+      "label": "The Recycling Lottery Playbook — Norway's Pantelotteriet, and a Jal Jeevan Appli",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L236",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_textile_hsn_deep_dive_apparel_vs_mmf_fibre_trade_scenarios",
+      "label": "Textile HSN Deep-Dive — Apparel vs MMF Fibre Trade Scenarios",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L240",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_tyre_waste_problem_and_the_crumb_rubber_road_fix",
+      "label": "India's Tyre-Waste Problem and the Crumb-Rubber Road Fix",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L244",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_state_incentive_war_gujarat_s_execution_edge_karnataka_s_fdi_inversion",
+      "label": "India's State Incentive War: Gujarat's Execution Edge, Karnataka's FDI Inversion",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L251",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_empty_shed_greenhouse_what_india_s_polyhouse_economics_say_about_retrofitti",
+      "label": "The Empty-Shed Greenhouse: What India's Polyhouse Economics Say About Retrofitti",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L257",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_animal_protein_export_complex_buffalo_meat_the_tallow_biodiesel_byprod",
+      "label": "India's Animal-Protein Export Complex: Buffalo Meat, the Tallow-Biodiesel Byprod",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L263",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_who_s_actually_building_mri_and_ct_scanners_in_india_the_pli_applicant_list_and",
+      "label": "Who's Actually Building MRI and CT Scanners in India: The PLI Applicant List and",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L269",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_ethanol_sector_s_buyers_market_overcapacity_cooperative_mills_and_the_m",
+      "label": "The Ethanol Sector's Buyers' Market: Overcapacity, Cooperative Mills, and the M&",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L275",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_rare_earth_magnets_and_specialty_steel_india_s_7_280_crore_bet_on_the_ev_suppl",
+      "label": "Rare-Earth Magnets and Specialty Steel: India's ₹7,280 Crore Bet on the EV Suppl",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L281",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_vehicles_out_motors_in_india_s_chapter_87_surplus_and_its_chapter_85_problem",
+      "label": "Vehicles Out, Motors In: India's Chapter 87 Surplus and Its Chapter 85 Problem",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L287",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_about_the_author",
+      "label": "About the Author",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L293",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_fuel_pricing_to_crude_cost",
+      "label": "Fuel Pricing to Crude Cost",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L299",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_medical_device_trade_gap_and_the_devices_worth_making_here",
+      "label": "India's Medical-Device Trade Gap — and the Devices Worth Making Here",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L305",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_tech_for_business_so_2019_tech_as_business_is_for_2020",
+      "label": "Tech for Business so 2019, Tech As Business is for 2020!",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L311",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_where_india_s_green_hydrogen_bets_are_actually_landing_a_state_by_state_map_of",
+      "label": "Where India's Green Hydrogen Bets Are Actually Landing: A State-by-State Map of",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L317",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_ethanol_surplus_isn_t_going_to_brazil_or_the_usa_the_price_gap_and_th",
+      "label": "India's Ethanol Surplus Isn't Going to Brazil or the USA — the Price Gap, and th",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L322",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_pli_for_medical_devices_what_s_covered_what_isn_t_and_where_to_apply_next",
+      "label": "PLI for Medical Devices: What's Covered, What Isn't — and Where to Apply Next",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L327",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_lok_sabha_question_registry_scheme_incentive_questions_2019_to_today",
+      "label": "Lok Sabha Question Registry — Scheme & Incentive Questions, 2019 to Today",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L332",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_rajya_sabha_question_registry_scheme_incentive_questions_2019_to_today",
+      "label": "Rajya Sabha Question Registry — Scheme & Incentive Questions, 2019 to Today",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L337",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_most_discussed_schemes_in_parliament_lok_sabha_rajya_sabha",
+      "label": "The Most Discussed Schemes in Parliament — Lok Sabha & Rajya Sabha",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L342",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_indian_it_in_an_ai_era",
+      "label": "Indian IT in an AI Era",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L347",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_half_of_india_s_import_bill_is_commodities_recycling_and_import_substitution_ar",
+      "label": "Half of India's Import Bill Is Commodities. Recycling and Import Substitution Ar",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L352",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_article_index_start_here",
+      "label": "📚 Article Index — Start Here",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L357",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_if_india_paid_brics_in_rupees_a_scenario_model_of_de_dollarising_41_of_the_imp",
+      "label": "If India Paid BRICS in Rupees: A Scenario Model of De-Dollarising 41% of the Imp",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L362",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_is_india_a_dollar_salesman_china_sold_the_yuan_to_brics_as_a_payment_rail_and",
+      "label": "Is India a Dollar Salesman? China Sold the Yuan to BRICS as a Payment Rail — and",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L366",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_rupee_fell_10_and_exports_grew_0_9_what_the_exchange_rate_actually_does_t",
+      "label": "The Rupee Fell 10% and Exports Grew 0.9%: What the Exchange Rate Actually Does t",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L370",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_the_price_and_the_tap_the_two_levers_behind_every_central_bank_and_why_rbi_pul",
+      "label": "The Price and the Tap: The Two Levers Behind Every Central Bank, and Why RBI Pul",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L374",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_raising_green_debt_globally_the_rec_euroyen_playbook_the_cbi_stamp_and_every",
+      "label": "Raising Green Debt Globally: The REC EuroYen Playbook, the CBI Stamp, and Every",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L378",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_europe_s_export_credit_agencies_are_quietly_bankrolling_india_s_infrastructure",
+      "label": "Europe's Export Credit Agencies Are Quietly Bankrolling India's Infrastructure —",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L382",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_a_tax_play_grow_ethanol_sgst_revenue_cut_cng_vat_to_match_low_tax_states",
+      "label": "A Tax Play: Grow Ethanol SGST Revenue, Cut CNG VAT to Match Low-Tax States",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L386",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_state_by_state_who_actually_earns_from_ethanol_blending_sgst_scenarios_e10_e3",
+      "label": "State by State: Who Actually Earns from Ethanol Blending? SGST Scenarios, E10-E3",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L390",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_india_s_ev_market_the_single_digit_penetration_story_behind_the_doubling_headli",
+      "label": "India's EV Market: The Single-Digit Penetration Story Behind the Doubling Headli",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L394",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_discom_debt_relief_token_charge_calculator",
+      "label": "DISCOM Debt Relief — Token Charge Calculator",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L398",
+      "_origin": "ast"
+    },
+    {
+      "id": "out_report_us_stock_picks_multi_screen_quant_shortlist_24_jul_2026",
+      "label": "US Stock Picks — Multi-Screen Quant Shortlist (24 Jul 2026)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "out/report.md",
+      "source_location": "L402",
+      "_origin": "ast"
+    }
+  ],
+  "links": [
+    {
+      "source": "add_index_link",
+      "target": "argparse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link",
+      "target": "pathlib",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link",
+      "target": "add_index_link_insert",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link",
+      "target": "add_index_link_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link_main",
+      "target": "add_index_link_insert",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_index_link_rationale_2",
+      "target": "add_index_link",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "add_index_link.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "argparse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "pathlib",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "add_revision_line_pending_slugs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "add_revision_line_insert",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line",
+      "target": "add_revision_line_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line_main",
+      "target": "add_revision_line_pending_slugs",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line_main",
+      "target": "add_revision_line_insert",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line_rationale_2",
+      "target": "add_revision_line",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line_rationale_56",
+      "target": "add_revision_line_pending_slugs",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "add_revision_line_rationale_76",
+      "target": "add_revision_line_insert",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "add_revision_line.py",
+      "source_location": "L76",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "argparse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "subprocess",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "hashlib",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "concurrent_futures",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "checks",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_sh",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_post_list",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_fetch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_body_of",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_js_syntax_errors",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_static_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_rendered_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit",
+      "target": "audit_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_post_list",
+      "target": "audit_sh",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_fetch",
+      "target": "audit_sh",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_js_syntax_errors",
+      "target": "audit_sh",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_static_audit",
+      "target": "audit_fetch",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_static_audit",
+      "target": "audit_body_of",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_static_audit",
+      "target": "audit_js_syntax_errors",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_main",
+      "target": "audit_post_list",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L186",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_main",
+      "target": "audit_static_audit",
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "audit.py",
+      "source_location": "L191",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_main",
+      "target": "audit_rendered_audit",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L208",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_rationale_2",
+      "target": "audit",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "audit_rationale_64",
+      "target": "audit_body_of",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "audit.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_scripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_strip_scripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_disclaimer_not_in_script",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_disclaimer_present",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_no_inverted_media_query",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_dark_vars_locked",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_translate_widget",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_index_link",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_bw_override",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_table_units_in_header",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_scripts_parse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_wpi_attribution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_r_disclaimer_not_in_script",
+      "target": "checks_scripts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_r_disclaimer_present",
+      "target": "checks_strip_scripts",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_scripts_parse",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L131",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_disclaimer_not_in_script",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L132",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_no_inverted_media_query",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_dark_vars_locked",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L134",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_wpi_attribution",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_disclaimer_present",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L136",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_translate_widget",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_index_link",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_bw_override",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks",
+      "target": "checks_r_table_units_in_header",
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "checks.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_1",
+      "target": "checks",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_35",
+      "target": "checks_r_disclaimer_not_in_script",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_43",
+      "target": "checks_r_disclaimer_present",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_50",
+      "target": "checks_r_no_inverted_media_query",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_58",
+      "target": "checks_r_dark_vars_locked",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_73",
+      "target": "checks_r_translate_widget",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_79",
+      "target": "checks_r_index_link",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_85",
+      "target": "checks_r_bw_override",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_96",
+      "target": "checks_r_table_units_in_header",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_109",
+      "target": "checks_r_scripts_parse",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checks_rationale_117",
+      "target": "checks_r_wpi_attribution",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "checks.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "argparse",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "hashlib",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "http_server",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "socketserver",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "subprocess",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "threading",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "checks",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_sh",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_body_of",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_strip_inverted",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_unsplice_disclaimer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_unsplice_disclaimer",
+      "target": "fix_unsplice_disclaimer_scrub",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_light_lock",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_lum",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_is_panel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_dark_panel_guard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L182",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_dark_panel_guard",
+      "target": "fix_dark_panel_guard_resolve",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L204",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_add_translate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_repair",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L284",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_static_pass",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L311",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_q",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L326",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_q",
+      "target": "fix_q_log_message",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L327",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_serve",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L331",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_theme_css",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L341",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_contrast_of",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L366",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_verify_live",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_verify",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L410",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix",
+      "target": "fix_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L441",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_unsplice_disclaimer",
+      "target": "fix_unsplice_disclaimer_scrub",
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "fix.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_dark_panel_guard",
+      "target": "fix_theme_css",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L199",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_dark_panel_guard",
+      "target": "fix_dark_panel_guard_resolve",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L220",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_dark_panel_guard",
+      "target": "fix_lum",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L222",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_dark_panel_guard",
+      "target": "fix_is_panel",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L230",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_dark_panel_guard_resolve",
+      "target": "fix_dark_panel_guard_resolve",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L209",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_repair",
+      "target": "fix_strip_inverted",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L286",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_repair",
+      "target": "fix_unsplice_disclaimer",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L289",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_repair",
+      "target": "fix_light_lock",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L292",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_repair",
+      "target": "fix_dark_panel_guard",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L297",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_repair",
+      "target": "fix_add_translate",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L301",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_serve",
+      "target": "fix_q",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L332",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_theme_css",
+      "target": "fix_sh",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L351",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_verify",
+      "target": "fix_theme_css",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L415",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_verify",
+      "target": "fix_serve",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L420",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_verify",
+      "target": "fix_contrast_of",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L430",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_main",
+      "target": "fix_body_of",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L458",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_main",
+      "target": "fix_sh",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L458",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_main",
+      "target": "fix_static_pass",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L462",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_main",
+      "target": "fix_repair",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L463",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_main",
+      "target": "fix_verify_live",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L475",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_2",
+      "target": "fix",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_67",
+      "target": "fix_strip_inverted",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_96",
+      "target": "fix_unsplice_disclaimer",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_117",
+      "target": "fix_light_lock",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_134",
+      "target": "fix_lum",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L134",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_183",
+      "target": "fix_dark_panel_guard",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L183",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_267",
+      "target": "fix_add_translate",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L267",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_312",
+      "target": "fix_static_pass",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L312",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_342",
+      "target": "fix_theme_css",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L342",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_373",
+      "target": "fix_verify_live",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L373",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "fix_rationale_411",
+      "target": "fix_verify",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "fix.py",
+      "source_location": "L411",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_syntax",
+      "target": "ref_fs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "out/_syntax.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_syntax",
+      "target": "out_syntax_fs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/_syntax.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_syntax",
+      "target": "out_syntax_html",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/_syntax.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_syntax",
+      "target": "out_syntax_bad",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/_syntax.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist",
+      "target": "checklist_masaladeutsch_post_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_masaladeutsch_post_checklist",
+      "target": "checklist_a_blockers_the_reader_sees_something_broken",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_a_blockers_the_reader_sees_something_broken",
+      "target": "checklist_a1_no_html_inside_a_script_tag",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_a_blockers_the_reader_sees_something_broken",
+      "target": "checklist_a2_no_backwards_media_queries",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_a_blockers_the_reader_sees_something_broken",
+      "target": "checklist_a3_a_post_s_own_dark_palette_must_be_pinned_to_light",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_a_blockers_the_reader_sees_something_broken",
+      "target": "checklist_a4_contrast_3_1_in_both_colour_schemes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_masaladeutsch_post_checklist",
+      "target": "checklist_b_major_the_information_is_wrong",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_b_major_the_information_is_wrong",
+      "target": "checklist_b1_attribute_statistics_to_the_agency_that_publishes_them",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_b_major_the_information_is_wrong",
+      "target": "checklist_b2_state_the_base_year_and_never_splice_across_a_rebasing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_b_major_the_information_is_wrong",
+      "target": "checklist_b3_don_t_claim_a_statistic_is_unavailable_without_checking",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_b_major_the_information_is_wrong",
+      "target": "checklist_b4_recheck_derived_figures_against_the_primary_source",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_b_major_the_information_is_wrong",
+      "target": "checklist_b5_every_post_carries_the_ai_disclosure_outside_any_script",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L89",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_masaladeutsch_post_checklist",
+      "target": "checklist_c_minor_house_style",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checklist_masaladeutsch_post_checklist",
+      "target": "checklist_d_process_rules_for_editing_posts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHECKLIST.md",
+      "source_location": "L106",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme",
+      "target": "readme_blog_consistency_check",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme",
+      "target": "checklist",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_blog_consistency_check",
+      "target": "readme_install",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_blog_consistency_check",
+      "target": "readme_use",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_blog_consistency_check",
+      "target": "readme_what_it_checks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_blog_consistency_check",
+      "target": "readme_current_state_88_posts_2026_08_06",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_blog_consistency_check",
+      "target": "readme_adding_a_rule",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "readme_blog_consistency_check",
+      "target": "readme_screenshot_baselines",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report",
+      "target": "out_report_masaladeutsch_consistency_report",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_masaladeutsch_consistency_report",
+      "target": "out_report_rule_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_masaladeutsch_consistency_report",
+      "target": "out_report_posts_needing_attention",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_quarterly_reportage_4_034_scheme_announcements_2017_to_august_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_mineral_oil_hsn_ch_27_trade_pricing_dashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_petrochemical_import_tree_from_petrol_to_product_hsn_coded",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_real_gdp_growth_india_fy2012_13_to_fy2025_26",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_iem_conversion_a_historical_performance_review_2017_2025",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_where_india_s_factories_actually_get_built_iem_state_sector_analysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_ethanol_blending_the_omc_books_e20_today_vs_e30_sgst",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_price_of_grain_msp_msv_and_the_arithmetic_of_the_indian_grain_state",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_forest_wildlife_crz_clearances_parivesh",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_ec_approval_funnel_parivesh_2_0",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_trade_sector_policy_recommendations_chart_library",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_jai_kisan_jai_javan_an_fci_based_military_ration_strategy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_cpi_inflation_heatmap_india_june_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_import_dependent_sectors_vs_government_scheme_attention_india",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_priority_trade_partners_by_import_growth_sector_real_pli_coverage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L106",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_five_year_synthesis_trade_currency_policy_fy2021_22_to_fy2025_26",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_priority_export_destinations_by_growth_sector_real_pli_coverage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_where_india_s_forex_goes_country_deficits_a_decade_of_policy_history",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_chemical_import_substitution_full_hsn_8_chapter_wise_registry_827_codes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L126",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_chemical_import_substitution_analysis_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_fci_storage_scenario_capacity_stock_and_the_road_to_2_150_lmt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L136",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_grain_cultivation_fci_storage_fpos_state_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_fci_grain_flow_procurement_storage_disposal_dashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L146",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_grain_value_loop_integrated_rice_biorefinery_pitch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L151",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_subsidised_imports_fertilisers_explode_76_fy25_vs_fy26",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_cbg_incentive_stack_every_leg_of_a_biogas_plant_de_risked",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L161",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_textile_import_export_strategy_from_dependency_to_self_sufficiency",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_fearless_girl_s_charter_india_s_market_asks_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_cgd_geographical_areas_district_allotment_map_part_1_of_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L176",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_cold_chain_fuel_outlet_integrated_map_part_3_of_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L181",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_environmental_clearances_state_sub_sector_dashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L186",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_fuel_retail_outlets_82k_geocoded_map_part_2_of_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L191",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_hsn_wise_historical_import_export_trends_india_fy2018_19_to_fy2025_26",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L196",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_trade_balance_hsn_wise_export_import_analysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L200",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_fy2025_26_sample_report_india_trade_currency_policy_snapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L204",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_cpi_wpi_trends_mospi_bulletin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L208",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_rbi_foreign_exchange_reserves_2015_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L212",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_ipa_digital_twin_reportage_latest_updates_3_jul_1_aug_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L216",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_top_15_chemicals_for_import_substitution_detailed_analysis_with_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L220",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_chemical_import_substitution_quarterly_tracking_dashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L224",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_top_15_chemicals_for_import_substitution_india_fy26_30",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L228",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_ai_high_demand_launch_tracker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L232",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_recycling_lottery_playbook_norway_s_pantelotteriet_and_a_jal_jeevan_appli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L236",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_textile_hsn_deep_dive_apparel_vs_mmf_fibre_trade_scenarios",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L240",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_tyre_waste_problem_and_the_crumb_rubber_road_fix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_state_incentive_war_gujarat_s_execution_edge_karnataka_s_fdi_inversion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L251",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_empty_shed_greenhouse_what_india_s_polyhouse_economics_say_about_retrofitti",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L257",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_animal_protein_export_complex_buffalo_meat_the_tallow_biodiesel_byprod",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L263",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_who_s_actually_building_mri_and_ct_scanners_in_india_the_pli_applicant_list_and",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L269",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_ethanol_sector_s_buyers_market_overcapacity_cooperative_mills_and_the_m",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L275",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_rare_earth_magnets_and_specialty_steel_india_s_7_280_crore_bet_on_the_ev_suppl",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L281",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_vehicles_out_motors_in_india_s_chapter_87_surplus_and_its_chapter_85_problem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L287",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_about_the_author",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L293",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_fuel_pricing_to_crude_cost",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L299",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_medical_device_trade_gap_and_the_devices_worth_making_here",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L305",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_tech_for_business_so_2019_tech_as_business_is_for_2020",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L311",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_where_india_s_green_hydrogen_bets_are_actually_landing_a_state_by_state_map_of",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L317",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_ethanol_surplus_isn_t_going_to_brazil_or_the_usa_the_price_gap_and_th",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L322",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_pli_for_medical_devices_what_s_covered_what_isn_t_and_where_to_apply_next",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L327",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_lok_sabha_question_registry_scheme_incentive_questions_2019_to_today",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L332",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_rajya_sabha_question_registry_scheme_incentive_questions_2019_to_today",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L337",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_most_discussed_schemes_in_parliament_lok_sabha_rajya_sabha",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L342",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_indian_it_in_an_ai_era",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L347",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_half_of_india_s_import_bill_is_commodities_recycling_and_import_substitution_ar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L352",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_article_index_start_here",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L357",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_if_india_paid_brics_in_rupees_a_scenario_model_of_de_dollarising_41_of_the_imp",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L362",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_is_india_a_dollar_salesman_china_sold_the_yuan_to_brics_as_a_payment_rail_and",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L366",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_rupee_fell_10_and_exports_grew_0_9_what_the_exchange_rate_actually_does_t",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L370",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_the_price_and_the_tap_the_two_levers_behind_every_central_bank_and_why_rbi_pul",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L374",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_raising_green_debt_globally_the_rec_euroyen_playbook_the_cbi_stamp_and_every",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L378",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_europe_s_export_credit_agencies_are_quietly_bankrolling_india_s_infrastructure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L382",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_a_tax_play_grow_ethanol_sgst_revenue_cut_cng_vat_to_match_low_tax_states",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L386",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_state_by_state_who_actually_earns_from_ethanol_blending_sgst_scenarios_e10_e3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L390",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_india_s_ev_market_the_single_digit_penetration_story_behind_the_doubling_headli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L394",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_discom_debt_relief_token_charge_calculator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L398",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "out_report_posts_needing_attention",
+      "target": "out_report_us_stock_picks_multi_screen_quant_shortlist_24_jul_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "out/report.md",
+      "source_location": "L402",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "directed": false
+}

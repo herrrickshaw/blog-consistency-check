@@ -1,0 +1,440 @@
+{
+  "add_index_link.py": {
+    "mtime": 1785990603.8103201,
+    "seen": 1789193285.324723,
+    "ast_hash": "0a6f7369adf55da1a050d3b7e084ef9c",
+    "semantic_hash": ""
+  },
+  "add_revision_line.py": {
+    "mtime": 1785990359.3836987,
+    "seen": 1789193285.324726,
+    "ast_hash": "76c8f6075bcf9889319858e50de58dab",
+    "semantic_hash": ""
+  },
+  "audit.py": {
+    "mtime": 1785979715.1575432,
+    "seen": 1789193285.324728,
+    "ast_hash": "d50fe14d70f2680df98b9c088bb3fec9",
+    "semantic_hash": ""
+  },
+  "checks.py": {
+    "mtime": 1785980462.63222,
+    "seen": 1789193285.3247292,
+    "ast_hash": "914db1a054a1f0440e04aff6f5faec88",
+    "semantic_hash": ""
+  },
+  "fix.py": {
+    "mtime": 1785992147.251348,
+    "seen": 1789193285.3247302,
+    "ast_hash": "dd6804bf0fa8b95f793c3ec7ee064082",
+    "semantic_hash": ""
+  },
+  "fixes/apply_split.json": {
+    "mtime": 1785980291.4615939,
+    "seen": 1789193285.3247309,
+    "ast_hash": "1dba9865c669dc930959a1bb86eb8222",
+    "semantic_hash": ""
+  },
+  "fixes/manifest.json": {
+    "mtime": 1785981030.0371125,
+    "seen": 1789193285.3247309,
+    "ast_hash": "107adebe4fd5899d52b5f60c09529383",
+    "semantic_hash": ""
+  },
+  "out/_syntax.js": {
+    "mtime": 1785979088.876075,
+    "seen": 1789193285.3247318,
+    "ast_hash": "432e2617dce9e287f4efd7c5a7829bc8",
+    "semantic_hash": ""
+  },
+  "out/report.json": {
+    "mtime": 1785980919.05166,
+    "seen": 1789193285.324733,
+    "ast_hash": "82b5d24070bb7db483e7adbd9a36cd76",
+    "semantic_hash": ""
+  },
+  "CHECKLIST.md": {
+    "mtime": 1785979323.47829,
+    "seen": 1789193285.324733,
+    "ast_hash": "4d05c5701dda9a3107e0f25e26bb82a5",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1785979350.0682702,
+    "seen": 1789193285.324734,
+    "ast_hash": "58ba1417ac61cb529132559a46f64996",
+    "semantic_hash": ""
+  },
+  "fixes/READY.txt": {
+    "mtime": 1785980291.461693,
+    "seen": 1789193285.324735,
+    "ast_hash": "dfb28d1ee888c422b357511bd2e3525b",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/17c11470.after.html": {
+    "mtime": 1785980082.7576895,
+    "seen": 1789193285.324736,
+    "ast_hash": "c558c943ab2a733df71865966bc9fb1b",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/17c11470.before.html": {
+    "mtime": 1785980082.75745,
+    "seen": 1789193285.324736,
+    "ast_hash": "fbf845d254464d06173da12064e3ec44",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/1eec5aee.after.html": {
+    "mtime": 1785980082.7571235,
+    "seen": 1789193285.324737,
+    "ast_hash": "9bafa2893b1b0ace2c08467c5fb0c3d8",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/1eec5aee.before.html": {
+    "mtime": 1785980082.7569282,
+    "seen": 1789193285.324738,
+    "ast_hash": "852343490d2ae49196dcf8500e99d817",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/3b241c9e.after.html": {
+    "mtime": 1785980082.7526972,
+    "seen": 1789193285.324738,
+    "ast_hash": "2b2e90e7a328e5f0663c02d83890bd4b",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/3b241c9e.before.html": {
+    "mtime": 1785980082.7521615,
+    "seen": 1789193285.324739,
+    "ast_hash": "703082f3aaad28b797b6dd40c8925904",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/44227bcf.after.html": {
+    "mtime": 1785980082.7436485,
+    "seen": 1789193285.3247402,
+    "ast_hash": "afa253ad1eaee061a216da0e370781d1",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/44227bcf.before.html": {
+    "mtime": 1785980082.743053,
+    "seen": 1789193285.3247411,
+    "ast_hash": "56248031d57c2a7c81d78f0d47265c1c",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/5d72d342.after.html": {
+    "mtime": 1785980082.7544277,
+    "seen": 1789193285.3247411,
+    "ast_hash": "8e71a96f097ecbc8fd10cbd5ffe21286",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/5d72d342.before.html": {
+    "mtime": 1785980082.7541986,
+    "seen": 1789193285.3247418,
+    "ast_hash": "eefaa49a65cf429cbb993de8a782075c",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/5fcb72a5.after.html": {
+    "mtime": 1785980082.7509968,
+    "seen": 1789193285.3247428,
+    "ast_hash": "965ba92a7258ee9c5003eb6246695f8b",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/5fcb72a5.before.html": {
+    "mtime": 1785980082.7506695,
+    "seen": 1789193285.324744,
+    "ast_hash": "7f2a39ebe00b49d134f8a4359338f9c7",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/69ab7f6b.after.html": {
+    "mtime": 1785980082.7554538,
+    "seen": 1789193285.324744,
+    "ast_hash": "6d246afbcd5527bde443e56b822b79aa",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/69ab7f6b.before.html": {
+    "mtime": 1785980082.7550273,
+    "seen": 1789193285.324745,
+    "ast_hash": "0c0636df5be21953b4d31979a6b345e0",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/6fedc558.after.html": {
+    "mtime": 1785980082.7566462,
+    "seen": 1789193285.324746,
+    "ast_hash": "00e9a9bbd5379ec0d34687585f0582a6",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/6fedc558.before.html": {
+    "mtime": 1785980082.7562873,
+    "seen": 1789193285.324746,
+    "ast_hash": "3c3c02146c605a1b27c1ea3164cc1d23",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/81220332.after.html": {
+    "mtime": 1785980082.751458,
+    "seen": 1789193285.324747,
+    "ast_hash": "94f78ddf7ecbcf13402bedac3fd80379",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/81220332.before.html": {
+    "mtime": 1785980082.751243,
+    "seen": 1789193285.324748,
+    "ast_hash": "812f962497debbdb7758e498ab36901e",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/a79db494.after.html": {
+    "mtime": 1785980082.7533681,
+    "seen": 1789193285.324748,
+    "ast_hash": "9fabf2811541a0aa8d3b44d7292a2ca2",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/a79db494.before.html": {
+    "mtime": 1785980082.7531452,
+    "seen": 1789193285.324749,
+    "ast_hash": "5075e7eb6e04f13eadbf232b31bd1226",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/aab9cfe5.after.html": {
+    "mtime": 1785980082.7584546,
+    "seen": 1789193285.3247502,
+    "ast_hash": "01566116b6469cefdca2995e7ab89ec0",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/aab9cfe5.before.html": {
+    "mtime": 1785980082.7582579,
+    "seen": 1789193285.324768,
+    "ast_hash": "9705784eee4672aac44171397fcb934d",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/acdb5e57.after.html": {
+    "mtime": 1785980082.7489877,
+    "seen": 1789193285.3247712,
+    "ast_hash": "ce7a8c1f80317b1ac0be4f16bbaed3e3",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/acdb5e57.before.html": {
+    "mtime": 1785980082.7478316,
+    "seen": 1789193285.3247721,
+    "ast_hash": "01796ac8d66572458e52690c5baf6f40",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/b056a545.after.html": {
+    "mtime": 1785980082.753811,
+    "seen": 1789193285.324773,
+    "ast_hash": "77cddef9cb9ef48d51c552b5059e00c0",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/b056a545.before.html": {
+    "mtime": 1785980082.753605,
+    "seen": 1789193285.3247738,
+    "ast_hash": "1b62be50cd6bfc37df1a492dbd9c5ee1",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/d8117dd6.after.html": {
+    "mtime": 1785980082.7580814,
+    "seen": 1789193285.3247738,
+    "ast_hash": "694028ee118999957b31516c3f48011d",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/d8117dd6.before.html": {
+    "mtime": 1785980082.7578778,
+    "seen": 1789193285.324775,
+    "ast_hash": "80125ae2ffd02ac3cf031e70bcb5e52b",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/ff3ab9d5.after.html": {
+    "mtime": 1785980082.7502227,
+    "seen": 1789193285.324776,
+    "ast_hash": "8a318e0c92ab06e07e6f666009589235",
+    "semantic_hash": ""
+  },
+  "fixes/_verify/ff3ab9d5.before.html": {
+    "mtime": 1785980082.7496507,
+    "seen": 1789193285.324776,
+    "ast_hash": "5880df4a6e1dfdba3b8d539ac4f9cfdb",
+    "semantic_hash": ""
+  },
+  "fixes/about-author.html": {
+    "mtime": 1785990612.2656665,
+    "seen": 1789193285.324777,
+    "ast_hash": "c73a7cfb6adae5da193fc65ccfde0039",
+    "semantic_hash": ""
+  },
+  "fixes/article-index-updated.html": {
+    "mtime": 1785991020.2202208,
+    "seen": 1789193285.324779,
+    "ast_hash": "b91a257f593ab7f405e6f8244facf376",
+    "semantic_hash": ""
+  },
+  "fixes/chemical-import-substitution-full-hsn-8.html": {
+    "mtime": 1785980964.3992202,
+    "seen": 1789193285.324781,
+    "ast_hash": "50ac5b1c6a2010a9e8bf67675fdbc776",
+    "semantic_hash": ""
+  },
+  "fixes/ethanol-blending-omc-books-e20-today-vs.html": {
+    "mtime": 1785990612.2617304,
+    "seen": 1789193285.3247821,
+    "ast_hash": "57ab128333f7991423b27cef3d770648",
+    "semantic_hash": ""
+  },
+  "fixes/fci-grain-flow-procurement-storage.html": {
+    "mtime": 1785990314.0589416,
+    "seen": 1789193285.3247821,
+    "ast_hash": "92e76400c9b9734b7123ceefb9540a5f",
+    "semantic_hash": ""
+  },
+  "fixes/fci-storage-scenario-capacity-stock-and.html": {
+    "mtime": 1785990369.3523471,
+    "seen": 1789193285.324783,
+    "ast_hash": "c23534f6a1c0fa520a62b7465d763014",
+    "semantic_hash": ""
+  },
+  "fixes/five-year-synthesis-trade-currency.html": {
+    "mtime": 1785990314.0601358,
+    "seen": 1789193285.324784,
+    "ast_hash": "4a9ad380ac25d7efea65a920ec0f480e",
+    "semantic_hash": ""
+  },
+  "fixes/iem-conversion-historical-performance.html": {
+    "mtime": 1785990314.0606754,
+    "seen": 1789193285.324785,
+    "ast_hash": "8411e42884563db2f71f3802de10766b",
+    "semantic_hash": ""
+  },
+  "fixes/import-dependent-sectors-vs-government.html": {
+    "mtime": 1785990314.0609362,
+    "seen": 1789193285.324785,
+    "ast_hash": "3dff0c78df72d16f88b12869bf88c7cb",
+    "semantic_hash": ""
+  },
+  "fixes/india-mineral-oil-hsn-ch27-trade.html": {
+    "mtime": 1785980962.1210363,
+    "seen": 1789193285.324786,
+    "ast_hash": "d4520136fdba9d10717377fb61721d0d",
+    "semantic_hash": ""
+  },
+  "fixes/indias-animal-protein-export-complex.html": {
+    "mtime": 1785990612.2675898,
+    "seen": 1789193285.324787,
+    "ast_hash": "325ff73499cb52d648077ee23aae99b9",
+    "semantic_hash": ""
+  },
+  "fixes/indias-tyre-waste-problem-and-crumb.html": {
+    "mtime": 1785990612.2682161,
+    "seen": 1789193285.324787,
+    "ast_hash": "1fd31900e7e6b9f54672197ab675a695",
+    "semantic_hash": ""
+  },
+  "fixes/jai-kisan-jai-javan-fci-based-military.html": {
+    "mtime": 1785980821.366275,
+    "seen": 1789193285.3247879,
+    "ast_hash": "2cc56cb7c0c836d47bd12cbd7037670b",
+    "semantic_hash": ""
+  },
+  "fixes/mineral-repaired.html": {
+    "mtime": 1785992181.962038,
+    "seen": 1789193285.324789,
+    "ast_hash": "45d74b963d0a70b85e1e1893f5045bba",
+    "semantic_hash": ""
+  },
+  "fixes/post-diesel-cng.html": {
+    "mtime": 1785999846.900286,
+    "seen": 1789193285.32479,
+    "ast_hash": "8bbcfe591c000c2ac374982716e482d0",
+    "semantic_hash": ""
+  },
+  "fixes/priority-export-destinations-by-growth.html": {
+    "mtime": 1785990314.0620697,
+    "seen": 1789193285.324791,
+    "ast_hash": "f13b3ff3f1e7ccc8056ab3fd30aa80aa",
+    "semantic_hash": ""
+  },
+  "fixes/priority-trade-partners-by-import.html": {
+    "mtime": 1785980967.521182,
+    "seen": 1789193285.3247921,
+    "ast_hash": "78d46aa68f68146ac4f99ec5c92dcae6",
+    "semantic_hash": ""
+  },
+  "fixes/rare-earth-magnets-and-specialty-steel.html": {
+    "mtime": 1785990612.2691045,
+    "seen": 1789193285.3247921,
+    "ast_hash": "8119f5c62ef99eab41b341a65dadb86a",
+    "semantic_hash": ""
+  },
+  "fixes/tech-for-business-so-2019-tech-as.html": {
+    "mtime": 1785990612.2591643,
+    "seen": 1789193285.324793,
+    "ast_hash": "ed6026abe181eb29d9b155ccba9ea124",
+    "semantic_hash": ""
+  },
+  "fixes/the-empty-shed-greenhouse-what-indias.html": {
+    "mtime": 1785980935.8292966,
+    "seen": 1789193285.324794,
+    "ast_hash": "8891fa15c2aaa5dbcf5be1c52d3e960f",
+    "semantic_hash": ""
+  },
+  "fixes/the-ethanol-sectors-buyers-market.html": {
+    "mtime": 1785990612.2696762,
+    "seen": 1789193285.324794,
+    "ast_hash": "65037516f5462d104d19de09d71e69ad",
+    "semantic_hash": ""
+  },
+  "fixes/the-grain-value-loop-integrated-rice.html": {
+    "mtime": 1785990314.0594482,
+    "seen": 1789193285.3247948,
+    "ast_hash": "339465b3778bf951ac7bcd1146192200",
+    "semantic_hash": ""
+  },
+  "fixes/the-price-of-grain-msp-msv-and.html": {
+    "mtime": 1785990612.2650557,
+    "seen": 1789193285.324796,
+    "ast_hash": "b096e4cc50f460eb8d3c4cc4bb2a3a11",
+    "semantic_hash": ""
+  },
+  "fixes/vehicles-out-motors-in-indias-chapter.html": {
+    "mtime": 1785990612.2702143,
+    "seen": 1789193285.324797,
+    "ast_hash": "1f8d10fcddd4e035fd57fcf89c6ac1bb",
+    "semantic_hash": ""
+  },
+  "fixes/where-indias-factories-actually-get.html": {
+    "mtime": 1785990314.062993,
+    "seen": 1789193285.324797,
+    "ast_hash": "ba068979b94255462b2dc6f43d848275",
+    "semantic_hash": ""
+  },
+  "fixes/where-indias-forex-goes-country.html": {
+    "mtime": 1785980969.4472003,
+    "seen": 1789193285.3247979,
+    "ast_hash": "760604e7afbe1c6fa8030f5cc6f78f50",
+    "semantic_hash": ""
+  },
+  "fixes/whos-actually-building-mri-and-ct.html": {
+    "mtime": 1785990612.2712696,
+    "seen": 1789193285.324799,
+    "ast_hash": "49a3ae6546aebe6798db9c7ea9174e35",
+    "semantic_hash": ""
+  },
+  "out/all_fix_urls.txt": {
+    "mtime": 1785980957.564623,
+    "seen": 1789193285.324799,
+    "ast_hash": "6de7c19a724e4efe0da0a50f475f9f9b",
+    "semantic_hash": ""
+  },
+  "out/broken_urls.txt": {
+    "mtime": 1785979924.8313823,
+    "seen": 1789193285.3248,
+    "ast_hash": "a610bf1b666370975eac54dd67d5bc66",
+    "semantic_hash": ""
+  },
+  "out/no_translate.txt": {
+    "mtime": 1785980919.104108,
+    "seen": 1789193285.324801,
+    "ast_hash": "5c9ce7fcb200f27cf190479713faa77b",
+    "semantic_hash": ""
+  },
+  "out/report.md": {
+    "mtime": 1785980919.0477822,
+    "seen": 1789193285.3248022,
+    "ast_hash": "5c5b3e6b5ec53a4aa4e3aacbfcef14c4",
+    "semantic_hash": ""
+  }
+}
