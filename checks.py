@@ -182,11 +182,16 @@ CONTRAST_JS = r"""
   const els = [...document.querySelectorAll('.post-body *')].filter(el =>
     (el.textContent||'').trim().length > 3 && el.children.length === 0 && el.offsetParent !== null);
   for (const el of els.slice(0, 1500)) {
-    const fg = getComputedStyle(el).color, bg = eff(el);
+    const cs = getComputedStyle(el);
+    const fg = cs.color, bg = eff(el);
     const lf = lum(fg), lb = lum(bg);
     if (lf === null || lb === null) continue;
     const r = ratio(lf, lb);
-    if (r < 3.0) out.push({tag: el.tagName, ratio: +r.toFixed(2), fg, bg,
+    // WCAG 2.x SC 1.4.3 (AA): 4.5:1 for normal text, 3:1 for large text
+    // (>= 24px, or >= 18.66px i.e. 14pt when bold).
+    const px = parseFloat(cs.fontSize) || 16, wt = parseInt(cs.fontWeight, 10) || 400;
+    const need = (px >= 24 || (px >= 18.66 && wt >= 700)) ? 3.0 : 4.5;
+    if (r < need) out.push({tag: el.tagName, ratio: +r.toFixed(2), need, fg, bg,
                            text: (el.textContent||'').trim().slice(0,40)});
   }
   return {checked: els.length, fails: out.length, worst: out.slice(0, 6)};

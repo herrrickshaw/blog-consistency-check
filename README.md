@@ -47,7 +47,7 @@ fails**, so it can gate CI.
 | BLOCKER | `no-disclaimer-in-script` | HTML spliced into a JS string literal |
 | BLOCKER | `no-inverted-media-query` | `@media not all and (prefers-color-scheme:dark)` — applies in **light** mode |
 | BLOCKER | `dark-vars-locked` | post's dark palette consumed with no `!important` light lock |
-| BLOCKER | `contrast-light` / `contrast-dark` | computed WCAG ratio < 3:1, both schemes |
+| BLOCKER | `contrast-light` / `contrast-dark` | computed WCAG ratio below AA (4.5:1 normal text, 3:1 large text), both schemes |
 | MAJOR | `wpi-attribution` | WPI credited to MoSPI (it is DPIIT / Office of the Economic Adviser) |
 | MAJOR | `disclaimer-present` | AI disclosure missing, or only present inside a script |
 | MINOR | `translate-widget`, `index-link`, `bw-override`, `table-units-in-header`, `no-overflow-*` | house style |

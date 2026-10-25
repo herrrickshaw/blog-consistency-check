@@ -214,7 +214,7 @@ def main():
                 c, o = d["contrast"], d["overflow"]
                 r["checks"].append({"rule": f"contrast-{scheme}", "severity": BLOCKER,
                                     "ok": c["fails"] == 0,
-                                    "detail": (f"{c['fails']}/{c['checked']} nodes below 3:1"
+                                    "detail": (f"{c['fails']}/{c['checked']} nodes below WCAG AA (4.5:1, large text 3:1)"
                                                if c["fails"] else f"0/{c['checked']}")})
                 r["checks"].append({"rule": f"no-overflow-{scheme}", "severity": MINOR,
                                     "ok": not o["pageOverflow"],
