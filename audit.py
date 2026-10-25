@@ -5,7 +5,7 @@ masaladeutsch consistency checker.
 Two passes:
   static   - fetch every post, run the rule set (fast, no browser)
   rendered - Playwright, computed contrast + overflow in LIGHT and DARK,
-             plus a screenshot baseline for visual-regression diffing
+             plus a screenshot diff against baseline/ (visual-light/-dark, MINOR)
 
 Usage:
   python3 audit.py                      # static pass over all posts
@@ -132,6 +132,20 @@ def static_audit(post):
     return {**post, "checks": res, "bytes": len(html)}
 
 
+def screenshots_differ(a, b):
+    """True if two PNG screenshots differ. Pixel comparison when Pillow is
+    installed (ignores PNG encoder metadata); byte comparison otherwise."""
+    try:
+        from PIL import Image, ImageChops
+    except ImportError:
+        with open(a, "rb") as fa, open(b, "rb") as fb:
+            return fa.read() != fb.read()
+    with Image.open(a) as ia, Image.open(b) as ib:
+        if ia.size != ib.size:
+            return True
+        return ImageChops.difference(ia.convert("RGB"), ib.convert("RGB")).getbbox() is not None
+
+
 def rendered_audit(posts, baseline=False):
     from playwright.sync_api import sync_playwright
     os.makedirs(SHOTS, exist_ok=True)
@@ -150,9 +164,17 @@ def rendered_audit(posts, baseline=False):
                     ovf = pg.evaluate(OVERFLOW_JS)
                     key = (post["id"], scheme)
                     out[key] = {"contrast": con, "overflow": ovf}
+                    base = os.path.join(SHOTS, f"{post['id']}.{scheme}.png")
                     if baseline:
-                        pg.screenshot(path=os.path.join(SHOTS, f"{post['id']}.{scheme}.png"),
-                                      full_page=True)
+                        pg.screenshot(path=base, full_page=True)
+                    elif os.path.exists(base):
+                        # visual regression: render now, compare to the stored baseline
+                        cur_dir = os.path.join(OUT, "shots")
+                        os.makedirs(cur_dir, exist_ok=True)
+                        cur = os.path.join(cur_dir, f"{post['id']}.{scheme}.png")
+                        pg.screenshot(path=cur, full_page=True)
+                        out[key]["visual"] = {"baseline": base, "current": cur,
+                                              "changed": screenshots_differ(base, cur)}
                 except Exception as ex:
                     out[(post["id"], scheme)] = {"error": f"{type(ex).__name__}: {ex}"[:120]}
             ctx.close()
@@ -214,8 +236,14 @@ def main():
                 c, o = d["contrast"], d["overflow"]
                 r["checks"].append({"rule": f"contrast-{scheme}", "severity": BLOCKER,
                                     "ok": c["fails"] == 0,
-                                    "detail": (f"{c['fails']}/{c['checked']} nodes below 3:1"
+                                    "detail": (f"{c['fails']}/{c['checked']} nodes below WCAG AA (4.5:1, large text 3:1)"
                                                if c["fails"] else f"0/{c['checked']}")})
+                if "visual" in d:
+                    r["checks"].append({"rule": f"visual-{scheme}", "severity": MINOR,
+                                        "ok": not d["visual"]["changed"],
+                                        "detail": ("differs from baseline "
+                                                   f"{os.path.basename(d['visual']['baseline'])}"
+                                                   if d["visual"]["changed"] else "")})
                 r["checks"].append({"rule": f"no-overflow-{scheme}", "severity": MINOR,
                                     "ok": not o["pageOverflow"],
                                     "detail": (f"doc {o['docW']}px > view {o['viewW']}px"
