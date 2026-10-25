@@ -85,5 +85,8 @@ matching line to `CHECKLIST.md`. Rendered rules go in `audit.py`'s
 
 `--baseline` writes full-page PNGs to `baseline/<postid>.<scheme>.png`. These
 are for eyeballing a redesign, not for pixel-diff gating: post content changes
-legitimately, so a pixel diff produces mostly false alarms. The computed-style
-checks above are the reliable signal.
+legitimately, so a pixel diff produces mostly false alarms. A later `--rendered`
+run (without `--baseline`) renders each post again into `out/shots/` and reports
+`visual-light` / `visual-dark` as MINOR when it differs from the stored baseline
+(pixel diff with Pillow, byte diff without) — informational, never gating. The
+computed-style checks above are the reliable signal.

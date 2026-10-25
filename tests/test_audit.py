@@ -114,13 +114,13 @@ def test_main_reports_visual_regression_rule(monkeypatch, tmp_path):
     _install_fake_playwright(monkeypatch, shots)
     base = tmp_path / "baseline"
     base.mkdir()
-    (base / "p1.light.png").write_bytes(b"OLD-RENDER")
+    pid = audit.hashlib.md5(b"https://x/p.html").hexdigest()[:8]  # main's id for --url
+    (base / f"{pid}.light.png").write_bytes(b"OLD-RENDER")
     monkeypatch.setattr(audit, "SHOTS", str(base))
     monkeypatch.setattr(audit, "OUT", str(tmp_path / "out"))
     page = "<div class='post-body'><p>x</p></div>"
     monkeypatch.setattr(audit, "fetch", lambda url: page)
     monkeypatch.setattr(audit, "js_syntax_errors", lambda html, tmp: [])
-    monkeypatch.setattr(audit.hashlib, "md5", lambda b: types.SimpleNamespace(hexdigest=lambda: "p1" + "0" * 30))
     monkeypatch.setattr(sys, "argv", ["audit.py", "--url", "https://x/p.html", "--rendered"])
     audit.main()  # no BLOCKER -> no SystemExit
     results = json.loads((tmp_path / "out" / "report.json").read_text())
