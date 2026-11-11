@@ -1,8 +1,8 @@
 [
  {
-  "id": "6a518bfd",
-  "title": "indias-biofuel-rules-are-being-written.html",
-  "url": "https://masaladeutsch.blogspot.com/2026/10/indias-biofuel-rules-are-being-written.html",
+  "id": "f082692b",
+  "title": "screen-process-safety-question-in-five.html",
+  "url": "https://masaladeutsch.blogspot.com/2026/11/screen-process-safety-question-in-five.html",
   "checks": [
    {
     "rule": "js-parses",
@@ -25,8 +25,8 @@
    {
     "rule": "dark-vars-locked",
     "severity": "BLOCKER",
-    "ok": true,
-    "detail": ""
+    "ok": false,
+    "detail": "dark palette consumed with no !important light lock"
    },
    {
     "rule": "wpi-attribution",
@@ -55,16 +55,16 @@
    {
     "rule": "bw-override",
     "severity": "MINOR",
-    "ok": true,
-    "detail": ""
+    "ok": false,
+    "detail": "dark palette present with no BW-override / light lock"
    },
    {
     "rule": "table-units-in-header",
     "severity": "MINOR",
     "ok": true,
-    "detail": "0%"
+    "detail": "2%"
    }
   ],
-  "bytes": 71644
+  "bytes": 94862
  }
 ]
