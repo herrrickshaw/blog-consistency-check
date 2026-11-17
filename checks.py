@@ -9,7 +9,10 @@ Severity:
   MAJOR    wrong or misattributed information
   MINOR    house-style / consistency drift
 """
+from __future__ import annotations
+
 import re
+from typing import List, Optional, Tuple
 
 BLOCKER, MAJOR, MINOR = "BLOCKER", "MAJOR", "MINOR"
 
@@ -23,15 +26,15 @@ SCRIPT_RE = re.compile(r'<script(?:\s[^>]*)?>([\s\S]*?)</script>')
 INVERTED_MQ = '@media not all and (prefers-color-scheme'
 
 
-def _scripts(body):
+def _scripts(body: str) -> List[str]:
     return [m.group(1) for m in SCRIPT_RE.finditer(body)]
 
 
-def _strip_scripts(body):
+def _strip_scripts(body: str) -> str:
     return SCRIPT_RE.sub('', body)
 
 
-def r_disclaimer_not_in_script(body, **kw):
+def r_disclaimer_not_in_script(body: str, **kw) -> Tuple[bool, str]:
     """Bulk disclaimer insertion spliced <p> into a JS string literal, with a raw
     newline inside a quoted string -> SyntaxError -> every chart on the page died.
     Found on 7 posts."""
@@ -39,14 +42,14 @@ def r_disclaimer_not_in_script(body, **kw):
     return (not bad), (f"disclaimer inside <script> #{bad}" if bad else "")
 
 
-def r_disclaimer_present(body, **kw):
+def r_disclaimer_present(body: str, **kw) -> Tuple[bool, str]:
     """Disclaimer must exist OUTSIDE any script. On the 7 broken posts the only
     copy was the spliced one, so removing it would have left none."""
     ok = bool(DISCLAIMER_RE.search(_strip_scripts(body)))
     return ok, ("" if ok else "no AI-disclosure outside a <script>")
 
 
-def r_no_inverted_media_query(body, **kw):
+def r_no_inverted_media_query(body: str, **kw) -> Tuple[bool, str]:
     """`@media not all and (prefers-color-scheme:dark)` matches in LIGHT mode.
     Blocks doing this set --text:#e8e8e8 / .artx{color:#ddd} -> near-white text on
     white. On one post 242 of 645 text nodes were invisible."""
@@ -54,7 +57,7 @@ def r_no_inverted_media_query(body, **kw):
     return (n == 0), (f"{n} inverted dark-mode media query block(s)" if n else "")
 
 
-def r_dark_vars_locked(body, **kw):
+def r_dark_vars_locked(body: str, **kw) -> Tuple[bool, str]:
     """A post that declares its own dark palette must also pin the light values
     with !important, or the BW-override blackens text while the surface goes dark."""
     declares_dark = ('prefers-color-scheme' in body) or ('data-theme="dark"' in body)
@@ -69,19 +72,19 @@ def r_dark_vars_locked(body, **kw):
     return ok, ("" if ok else "dark palette consumed with no !important light lock")
 
 
-def r_translate_widget(body, **kw):
+def r_translate_widget(body: str, **kw) -> Tuple[bool, str]:
     """Per-post Google Translate embed (site-wide placement is blocked in Blogger)."""
     ok = 'google_translate_element' in body
     return ok, ("" if ok else "missing Google Translate widget")
 
 
-def r_index_link(body, **kw):
+def r_index_link(body: str, **kw) -> Tuple[bool, str]:
     """Every post carries the back-to-index nav link."""
     ok = 'topnav-index-link' in body
     return ok, ("" if ok else "missing All-Articles index link")
 
 
-def r_bw_override(body, **kw):
+def r_bw_override(body: str, **kw) -> Tuple[bool, str]:
     """The black-on-white override safety net. Only required where the post
     ships its own colour system that could go dark; a plain post that never
     declares a dark palette does not need it."""
@@ -92,7 +95,7 @@ def r_bw_override(body, **kw):
     return ok, ("" if ok else "dark palette present with no BW-override / light lock")
 
 
-def r_table_units_in_header(body, **kw):
+def r_table_units_in_header(body: str, **kw) -> Tuple[bool, str]:
     """Units belong in <th>, not repeated in every <td>. Was polluting 30-91% of
     cells across 7 flagship posts."""
     tds = re.findall(r'<td[^>]*>([\s\S]{0,120}?)</td>', body)
@@ -105,7 +108,7 @@ def r_table_units_in_header(body, **kw):
     return ok, (f"{pct:.0f}% of {len(tds)} cells carry units" if not ok else f"{pct:.0f}%")
 
 
-def r_scripts_parse(body, node_check, **kw):
+def r_scripts_parse(body: str, node_check: Optional[List[int]], **kw) -> Tuple[bool, str]:
     """Any JS syntax error kills the whole block (charts, tables, stat strips)."""
     if node_check is None:
         return True, "skipped (no node)"
@@ -113,7 +116,7 @@ def r_scripts_parse(body, node_check, **kw):
     return (not bad), (f"JS syntax error in script(s) {bad}" if bad else "")
 
 
-def r_wpi_attribution(body, **kw):
+def r_wpi_attribution(body: str, **kw) -> Tuple[bool, str]:
     """WPI is published by the Office of the Economic Adviser, DPIIT - not MoSPI
     (which publishes CPI). Several posts had this wrong."""
     mentions_wpi = re.search(r'\bWPI\b|Wholesale Price Index', body)

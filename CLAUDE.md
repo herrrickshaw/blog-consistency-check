@@ -2,6 +2,11 @@
 
 Guidance for Claude Code sessions working in this repository.
 
+## Layout and commands
+- `audit.py` (CLI), `checks.py` (rules), `common.py` (shared curl/body slicing), `fix.py`, `add_index_link.py`, `add_revision_line.py`. See README.md.
+- Verify: `ruff check . && pytest -q` (offline; `tests/golden_baseline.json` pins pre-refactor behaviour).
+- `fixes/` and `out/` are generated; do not hand-edit. Never publish to the live blog.
+
 <!-- source-fetch-toolkit:v1 (managed by ~/bin/add_source_fetch_section.py — edit there, not here) -->
 ## Source fetching for data collection & literature surveys
 

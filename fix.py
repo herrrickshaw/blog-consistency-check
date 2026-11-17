@@ -20,14 +20,31 @@ Usage:
   python3 fix.py --urls-file out/broken_urls.txt
   python3 fix.py --url <post-url> --verify
 """
-import argparse, hashlib, http.server, json, os, re, socketserver, subprocess, sys, threading
+from __future__ import annotations
+
+import argparse
+import hashlib
+import http.server
+import json
+import logging
+import os
+import re
+import socketserver
+import sys
+import threading
+from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from checks import STATIC_RULES, SCRIPT_RE, DISCLAIMER_RE, INVERTED_MQ, CONTRAST_JS
+from checks import STATIC_RULES, SCRIPT_RE, DISCLAIMER_RE, INVERTED_MQ, CONTRAST_JS  # noqa: E402
+from common import UA, VIEWPORT, body_of, fetch_html, sh  # noqa: E402,F401  (re-exported)
+
+log = logging.getLogger(__name__)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIXES = os.path.join(HERE, "fixes")
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+MAX_INVERTED_BLOCKS = 8        # safety cap on strip_inverted's loop
+DARK_PANEL_LUM = 0.42          # mean luminance below this = panel is dark by design
+MAX_SELECTOR_LEN = 80
 
 DISCLAIMER = (
     '<p class="disclaimer" data-gs-ai-disclosure-v1="1" '
@@ -39,29 +56,7 @@ DISCLAIMER = (
     'for how sourcing, AI use and corrections work.</p>')
 
 
-def sh(c):
-    return subprocess.run(c, capture_output=True, text=True).stdout
-
-
-def body_of(html):
-    s = html.find("<div class='post-body'>")
-    if s < 0:
-        s = html.find('<div class="post-body"')
-    if s < 0:
-        return ""
-    tail = html[s:]
-    depth = 0
-    for m in re.finditer(r'<div\b|</div>', tail):
-        if m.group(0) == '</div>':
-            depth -= 1
-            if depth == 0:
-                return tail[:m.end()]
-        else:
-            depth += 1
-    return tail
-
-
-def strip_inverted(src):
+def strip_inverted(src: str) -> Tuple[str, int]:
     """Remove every inverted media-query block, matching braces properly."""
     n = 0
     while True:
@@ -85,12 +80,12 @@ def strip_inverted(src):
                + '/* gs-fix: removed inverted dark-mode block (it matched in LIGHT mode) */'
                + src[j:])
         n += 1
-        if n > 8:
+        if n > MAX_INVERTED_BLOCKS:
             break
     return src, n
 
 
-def unsplice_disclaimer(src):
+def unsplice_disclaimer(src: str) -> Tuple[str, int]:
     """Pull an AI-disclosure out of any <script> string literal.
 
     The splice always landed immediately before  \\n</div>';  so removing the
@@ -111,7 +106,7 @@ def unsplice_disclaimer(src):
     return out, n
 
 
-def light_lock(src):
+def light_lock(src: str) -> str:
     """Build a lock from the post's OWN light palette. Returns '' if none found."""
     if 'gs-light-lock-v1' in src:
         return ''
@@ -128,7 +123,7 @@ def light_lock(src):
             + css + 'color-scheme:light!important;}</style>')
 
 
-def _lum(c):
+def _lum(c: str) -> Optional[float]:
     """Relative luminance of a #hex / rgb() colour, or None."""
     c = c.strip()
     if c.startswith('#'):
@@ -166,7 +161,7 @@ _NEVER_PANEL = {
 }
 
 
-def _is_panel(sel):
+def _is_panel(sel: str) -> bool:
     s = sel.strip().lower().rstrip('>+~ ').strip()
     if s in _NEVER_PANEL:
         return False
@@ -177,7 +172,7 @@ def _is_panel(sel):
     return True
 
 
-def dark_panel_guard(src):
+def dark_panel_guard(src: str) -> str:
     """Keep intentionally-dark panels, but stop the BW-override painting black
     text on them.
 
@@ -220,10 +215,10 @@ def dark_panel_guard(src):
         lums = [l for l in (_lum(c) for c in cols) if l is not None]
         if not lums:
             continue
-        if sum(lums) / len(lums) < 0.42:          # dark panel by design
+        if sum(lums) / len(lums) < DARK_PANEL_LUM:          # dark panel by design
             for s in sel.split(','):
                 s = s.strip()
-                if not s or len(s) >= 80:
+                if not s or len(s) >= MAX_SELECTOR_LEN:
                     continue
                 if not _is_panel(s):
                     continue
@@ -261,7 +256,7 @@ TRANSLATE = (
     '?cb=googleTranslateElementInit"></script>')
 
 
-def add_translate(src):
+def add_translate(src: str) -> Tuple[str, bool]:
     """Insert the per-post Google Translate embed.
 
     Site-wide placement is blocked in Blogger, so each post carries its own.
@@ -279,7 +274,8 @@ def add_translate(src):
     return TRANSLATE + '\n' + src, True
 
 
-def repair(body):
+def repair(body: str) -> Tuple[str, List[str]]:
+    """Apply every repair to a post body; return (new body, human-readable notes)."""
     notes = []
     out, n_inv = strip_inverted(body)
     if n_inv:
@@ -306,14 +302,15 @@ def repair(body):
     return out, notes
 
 
-def static_pass(body):
+def static_pass(body: str) -> List[str]:
     """Return list of failing rule names."""
     errs = []
     fails = []
     for name, sev, fn in STATIC_RULES:
         try:
             ok, _ = fn(body=body, node_check=errs)
-        except Exception:
+        except Exception:  # a crashing rule counts as a failure of that rule
+            log.exception("rule %s crashed", name)
             ok = False
         if not ok:
             fails.append(name)
@@ -326,7 +323,8 @@ class _Q(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-def serve(directory, port):
+def serve(directory: str, port: int) -> socketserver.TCPServer:
+    """Serve ``directory`` over HTTP on 127.0.0.1:``port`` in a daemon thread."""
     handler = lambda *a, **k: _Q(*a, directory=directory, **k)
     httpd = socketserver.TCPServer(("127.0.0.1", port), handler)
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
@@ -336,7 +334,7 @@ def serve(directory, port):
 _THEME_CACHE = {}
 
 
-def theme_css():
+def theme_css() -> str:
     """The live theme's own stylesheet.
 
     Rendering a post body on a bare page is NOT faithful: the theme supplies a
@@ -346,7 +344,7 @@ def theme_css():
     """
     if "css" in _THEME_CACHE:
         return _THEME_CACHE["css"]
-    html = sh(["curl", "-s", "-A", UA, "https://masaladeutsch.blogspot.com/"])
+    html = fetch_html("https://masaladeutsch.blogspot.com/")
     blocks = re.findall(r"<style[^>]*id='page-skin-1'[^>]*>([\s\S]*?)</style>", html)
     if not blocks:
         blocks = re.findall(r"<style[^>]*>([\s\S]*?)</style>", html)[:3]
@@ -361,13 +359,14 @@ PAGE = ("<!doctype html><meta charset=utf-8>"
         "<div class='post-body'>{BODY}</div>")
 
 
-def contrast_of(page, url):
+def contrast_of(page, url: str) -> dict:
+    """Load ``url`` in a Playwright page and return the CONTRAST_JS result."""
     page.goto(url, wait_until="load", timeout=30000)
     page.wait_for_timeout(400)
     return page.evaluate(CONTRAST_JS)
 
 
-def verify_live(meta, pairs):
+def verify_live(meta: List[dict], pairs: List[tuple]) -> Dict[str, tuple]:
     """Faithful verification: load the real post, measure, then swap the repaired
     body into the live DOM and measure again.
 
@@ -381,7 +380,7 @@ def verify_live(meta, pairs):
     out = {}
     with sync_playwright() as p:
         br = p.chromium.launch()
-        ctx = br.new_context(viewport={"width": 1280, "height": 900},
+        ctx = br.new_context(viewport=VIEWPORT,
                              color_scheme="light", user_agent=UA)
         pg = ctx.new_page()
         for m in meta:
@@ -399,13 +398,14 @@ def verify_live(meta, pairs):
                 pg.wait_for_timeout(500)
                 after = pg.evaluate(CONTRAST_JS)
                 out[m["id"]] = (before, after)
-            except Exception as ex:
+            except Exception as ex:  # one bad page must not abort the batch
+                log.warning("live verification failed for %s: %s", m["url"], ex)
                 out[m["id"]] = ({"fails": -1, "checked": 0}, {"fails": -1, "checked": 0})
         br.close()
     return out
 
 
-def verify(pairs, port=8901):
+def verify(pairs: List[tuple], port: int = 8901) -> Dict[str, tuple]:
     """Offline harness (kept for posts that render standalone)."""
     from playwright.sync_api import sync_playwright
     tmp = os.path.join(FIXES, "_verify")
@@ -420,7 +420,7 @@ def verify(pairs, port=8901):
     try:
         with sync_playwright() as p:
             br = p.chromium.launch()
-            ctx = br.new_context(viewport={"width": 1280, "height": 900},
+            ctx = br.new_context(viewport=VIEWPORT,
                                  color_scheme="light", user_agent=UA)
             pg = ctx.new_page()
             for pid, _, _ in pairs:
@@ -428,7 +428,8 @@ def verify(pairs, port=8901):
                     b = contrast_of(pg, f"http://127.0.0.1:{port}/{pid}.before.html")
                     a = contrast_of(pg, f"http://127.0.0.1:{port}/{pid}.after.html")
                     res[pid] = (b, a)
-                except Exception as ex:
+                except Exception as ex:  # one bad page must not abort the batch
+                    log.warning("offline verification failed for %s: %s", pid, ex)
                     res[pid] = ({"fails": -1, "checked": 0}, {"fails": -1, "checked": 0})
             br.close()
     finally:
@@ -436,7 +437,7 @@ def verify(pairs, port=8901):
     return res
 
 
-def main():
+def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", default="")
     ap.add_argument("--urls-file", default="")
@@ -453,7 +454,7 @@ def main():
     for u in urls:
         pid = hashlib.md5(u.encode()).hexdigest()[:8]
         slug = u.rsplit("/", 1)[-1].replace(".html", "")
-        body = body_of(sh(["curl", "-s", "-A", UA, u]))
+        body = body_of(fetch_html(u))
         if not body:
             print(f"  !! could not extract body: {u}")
             continue
