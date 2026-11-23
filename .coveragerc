@@ -1,0 +1,8 @@
+[run]
+source = .
+omit =
+    tests/*
+    */conftest.py
+    fixes/*
+    out/*
+    graphify-out/*
