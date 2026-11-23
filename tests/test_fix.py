@@ -96,7 +96,7 @@ def test_lum_values(c, v):
     assert (got is None) if v is None else abs(got - v) < 1e-9
 
 
-@pytest.mark.parametrize("c", ["#ab", "#gggggg", "rgb(1,2)", "hsl(0,0%,0%)", "red", "rgb(a,b,c)"])
+@pytest.mark.parametrize("c", ["#ab", "#12345", "#gggggg", "rgb(1,2)", "hsl(0,0%,0%)", "red", "rgb(a,b,c)"])
 def test_lum_invalid(c):
     assert fix._lum(c) is None
 
@@ -138,6 +138,14 @@ def test_guard_threshold_boundary():
     dark = fix.dark_panel_guard("<style>.a{background:#6b6b6b}</style>")      # lum 0.4196 < 0.42
     light = fix.dark_panel_guard("<style>.a{background:#6c6c6c}</style>")     # lum 0.4235
     assert ".a{background:#6b6b6b!important}" in dark and light == ""
+
+
+def test_guard_selector_length_limit_is_80():
+    ok79 = "." + "a" * 78
+    bad80 = "." + "a" * 79
+    assert len(ok79) == 79 and len(bad80) == 80
+    assert f"{ok79}{{background:#000!important}}" in fix.dark_panel_guard(f"<style>{ok79}{{background:#000}}</style>")
+    assert fix.dark_panel_guard(f"<style>{bad80}{{background:#000}}</style>") == ""
 
 
 def test_guard_averages_gradient_stops_and_selector_list_and_dedup():
@@ -328,6 +336,7 @@ def test_verify_live_swaps_body_and_measures(monkeypatch):
     assert [e for e in log if e[0] == "eval" and e[1] == "arg"] == [("eval", "arg")] * 2
     assert log[0] == ("ctx", {"viewport": {"width": 1280, "height": 900}, "color_scheme": "light", "user_agent": fix.UA})
     assert log[-1] == ("br-close",)
+    assert log.count(("wait", 600)) == 2 and log.count(("wait", 500)) == 2
 
 
 def test_verify_live_errors_become_minus_one(monkeypatch):

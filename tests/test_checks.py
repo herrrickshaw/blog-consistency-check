@@ -21,6 +21,8 @@ def test_disclaimer_present_only_outside_scripts():
 
 def test_inverted_media_query_count():
     assert c.r_no_inverted_media_query("a") == (True, "")
+    ok, d = c.r_no_inverted_media_query(c.INVERTED_MQ)
+    assert not ok and d == "1 inverted dark-mode media query block(s)"
     ok, d = c.r_no_inverted_media_query(c.INVERTED_MQ * 2)
     assert not ok and d == "2 inverted dark-mode media query block(s)"
 
@@ -105,6 +107,9 @@ def test_wpi_attribution():
     assert c.r_wpi_attribution("Wholesale Price Index (WPI) is not CPI, unlike MoSPI.")[0]
     # a long gap breaks the association
     assert c.r_wpi_attribution("MoSPI " + "x" * 50 + " Wholesale Price Index")[0]
+    # the window before 'Wholesale' is 40 chars: 35 flagged, 41 not
+    assert not c.r_wpi_attribution("MoSPI " + "x" * 35 + "Wholesale Price Index")[0]
+    assert c.r_wpi_attribution("MoSPI" + "x" * 41 + "Wholesale Price Index")[0]
     assert c.r_wpi_attribution("Wholesale Price Index " + "x" * 60 + " MoSPI")[0]
     assert c.r_wpi_attribution("MoSPI says. WPI Wholesale Price Index")[0]  # '.' stops the match
 

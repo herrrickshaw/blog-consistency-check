@@ -280,6 +280,54 @@ def test_main_rendered_adds_contrast_and_overflow_checks(monkeypatch, tmp_path, 
     assert not [c for c in res[1]["checks"] if c["rule"].startswith("contrast")]   # errored post: no rendered rows
 
 
+def test_main_contrast_one_failing_node_is_a_failure(monkeypatch, tmp_path):
+    rend = {("1", "light"): {"contrast": {"checked": 5, "fails": 1, "worst": []},
+                              "overflow": {"pageOverflow": False, "docW": 1, "viewW": 1, "wideEls": []}}}
+    with pytest.raises(SystemExit):
+        _run_main(monkeypatch, tmp_path, ["--rendered"], POSTS[:1], rendered=rend)
+    res = json.loads((tmp_path / "out" / "report.json").read_text())
+    c = {x["rule"]: x for x in res[0]["checks"]}
+    assert c["contrast-light"]["ok"] is False and c["contrast-light"]["severity"] == "BLOCKER"
+    assert c["no-overflow-light"]["ok"] is True and c["no-overflow-light"]["severity"] == "MINOR"
+
+
+def test_main_uses_eight_workers(monkeypatch, tmp_path):
+    seen = []
+
+    class Pool:
+        def __init__(self, max_workers):
+            seen.append(max_workers)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def map(self, fn, it):
+            return map(fn, it)
+
+    monkeypatch.setattr(audit, "ThreadPoolExecutor", Pool)
+    _run_main(monkeypatch, tmp_path, [], POSTS)
+    assert seen == [8]
+
+
+def test_main_same_severity_sorted_by_failure_count_desc(monkeypatch, tmp_path):
+    monkeypatch.setattr(audit, "OUT", str(tmp_path / "out"))
+    monkeypatch.setattr(audit, "post_list", lambda: [{"id": "1", "title": "one-fail", "url": "1"},
+                                                      {"id": "2", "title": "three-fails", "url": "2"}])
+
+    def sa(post):
+        n = 1 if post["id"] == "1" else 3
+        return {**post, "checks": [{"rule": f"r{i}", "severity": "MINOR", "ok": False, "detail": ""} for i in range(n)]}
+
+    monkeypatch.setattr(audit, "static_audit", sa)
+    monkeypatch.setattr(sys, "argv", ["audit.py"])
+    audit.main()
+    rep = (tmp_path / "out" / "report.md").read_text()
+    assert rep.index("### three-fails") < rep.index("### one-fail")
+
+
 def test_main_baseline_implies_rendered(monkeypatch, tmp_path):
     called = {}
     monkeypatch.setattr(audit, "OUT", str(tmp_path / "out"))
